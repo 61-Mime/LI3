@@ -43,6 +43,11 @@ void tblCli(THashC* tcli)
   char* buffer= malloc(sizeof(char) * MAX);
   int i, pos;
 
+  if((fcli = fopen("../files/Clientes.txt", "r")) == NULL) {
+    printf("ERROR");
+    return;
+  }
+
   initTblC(tcli);
 
   while(fgets(buffer,MAX,fcli))

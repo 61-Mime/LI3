@@ -4,7 +4,7 @@
 #include "produtos.h"
 
 #define MAX 10
-#define SIZE 26
+#define SIZE 26 
 
 int hashP(char c)
 {
@@ -40,13 +40,18 @@ int prodVal(char *prod)
 
 void tblProd(THashP* tprod)
 {
-  FILE* fcli = fopen("../files/Produtos.txt", "r");
+  FILE* fprod;
   char* buffer= malloc(sizeof(char) * MAX);
   int i, pos;
 
+  if((fprod = fopen("../files/Produtos.txt", "r")) == NULL) {
+    printf("ERROR");
+    return;
+  }
+
   initTblP(tprod);
 
-  while(fgets(buffer,MAX,fcli))
+  while(fgets(buffer,MAX,fprod))
   {
     buffer = strsep(&buffer, "\r");
 
@@ -66,7 +71,7 @@ void tblProd(THashP* tprod)
     }
   }
 
-  fclose(fcli);
+  fclose(fprod);
 
   for(i=0; i<SIZE; i++)
     quickSort(tprod->tbl[i].list, 0, tprod->tbl[i].size - 1);

@@ -57,9 +57,14 @@ void saleS(SALES* s, char* buffer, THashP* tprod, THashC* tcli)
 // Passa todas as vendas para um array
 void salesToA(ARR* sales)
 {
-  FILE *fsales = fopen("../files/Vendas_1M.txt", "r");
+  FILE *fsales;
   char* buffer= malloc(sizeof(char) * MAX);
   int used;
+
+  if((fsales = fopen("../files/Vendas_1M.txt", "r")) == NULL) {
+    printf("ERROR");
+    return;
+  }
 
   for(used=0; fgets(buffer,MAX,fsales); used++)
   {
@@ -79,7 +84,12 @@ void salesToA(ARR* sales)
 // Passa todas as vendas válidas do array para um ficheiro
 void salesToF(SALES* s)
 {
-  FILE* fsalesv = fopen("../files/Vendas_1MValidas.txt", "w");
+  FILE* fsalesv;
+
+  if((fsalesv = fopen("../files/Vendas_1MValidas.txt", "w")) == NULL) {
+    printf("ERROR");
+    return;
+  }
 
   for(int i=0; i<s->usedV; i++){
     fprintf(fsalesv, "%s %f %d %s %s %d %d\r\n",

@@ -59,7 +59,7 @@ void tblCli(THashC* tcli)
       i = hashC(buffer[0]);
       pos = tcli->tbl[i].size;
 
-      tcli->tbl[i].list = realloc(tcli->tbl[i].list,sizeof(char*) * (pos + 1));
+      tcli->tbl[i].list = realloc(tcli->tbl[i].list,sizeof(char*) * (tcli->tbl[i].size + 1));
 
       tcli->tbl[i].list[pos] = malloc(sizeof(char) * MAX);
       strcpy(tcli->tbl[i].list[pos],buffer);

@@ -61,7 +61,7 @@ void tblProd(THashP* tprod)
 
       pos = tprod->tbl[i].size;
 
-      tprod->tbl[i].list = realloc(tprod->tbl[i].list,sizeof(char*) * (pos + 1));
+      tprod->tbl[i].list = realloc(tprod->tbl[i].list,sizeof(char*) * (tprod->tbl[i].size + 1));
 
       tprod->tbl[i].list[pos] = malloc(sizeof(char) * MAX);
       strcpy(tprod->tbl[i].list[pos],buffer);

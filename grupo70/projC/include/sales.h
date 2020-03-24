@@ -1,9 +1,9 @@
+#ifndef __sales_h
+#define __sales_h
+
 #include "produtos.h"
 #include "clientes.h"
 #include "sort.h"
-
-#ifndef __sales_h
-#define __sales_h
 
 // Struct array
 typedef struct arr{
@@ -22,15 +22,22 @@ typedef struct selling{
   int branch;
 } SALE;
 
+//struct uma letra de vendas
+typedef struct tsale {
+  int size;
+  SALE* list;
+} TSALE;
+
 // Struct que suporta duas listas de vendas
 typedef struct sellings{
   int usedV;
   int usedT;
-  SALE* listV;
+  //SALE* listV;
+  TSALE listV[676];
   SALE* listT;
 } SALES;
 
-#endif
-
 void salesToStructs(ARR* sales, SALES* s, THashP* prod, THashC* cli);
 void printSales(SALES* s);
+
+#endif

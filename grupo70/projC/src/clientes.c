@@ -78,7 +78,7 @@ void tblCli(THashC* tcli)
 void printCli(THashC* cli) {
   int i, j;
 
-  for(i=0; i<26; i++)
+  for(i=0; i<SIZE; i++)
     for(j=0; j<cli->tbl[i].size; j++)
       printf("%s\n", cli->tbl[i].list[j]);
 
@@ -88,7 +88,7 @@ void printCli(THashC* cli) {
 void freeCli(THashC* cli) {
   int i, j;
 
-  for(i=0; i<26; i++) {
+  for(i=0; i<SIZE; i++) {
     for(j=0; j<cli->tbl[i].size; j++)
       free(cli->tbl[i].list[j]);
     free(cli->tbl[i].list);

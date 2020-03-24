@@ -80,7 +80,7 @@ void tblProd(THashP* tprod)
 void printProd(THashP* prod) {
   int i, j;
 
-  for(i=0; i<26; i++)
+  for(i=0; i<SIZE; i++)
     for(j=0; j<prod->tbl[i].size; j++)
       printf("%s\n", prod->tbl[i].list[j]);
 
@@ -90,7 +90,7 @@ void printProd(THashP* prod) {
 void freeProd(THashP* prod) {
   int i, j;
 
-  for(i=0; i<26; i++) {
+  for(i=0; i<SIZE; i++) {
     for(j=0; j<prod->tbl[i].size; j++)
       free(prod->tbl[i].list[j]);
     free(prod->tbl[i].list);

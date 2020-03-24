@@ -15,7 +15,7 @@ typedef struct thashprod {
 } THashP;
 
 int hashP(char c,char c2);
-void tblProd(THashP* tprod);
+int tblProd(THashP* tprod);
 void printProd(THashP* prod);
 void freeProd(THashP* prod);
 

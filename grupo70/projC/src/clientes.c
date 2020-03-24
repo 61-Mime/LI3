@@ -37,16 +37,14 @@ int cliVal(char *cliente)
   return 1;
 }
 
-void tblCli(THashC* tcli)
+int tblCli(THashC* tcli)
 {
   FILE* fcli = fopen("../files/Clientes.txt", "r");
   char* buffer= malloc(sizeof(char) * MAX);
   int i, pos;
 
-  if((fcli = fopen("../files/Clientes.txt", "r")) == NULL) {
-    printf("ERROR");
-    return;
-  }
+  if((fcli = fopen("../files/Clientes.txt", "r")) == NULL)
+    return -1;
 
   initTblC(tcli);
 
@@ -73,6 +71,8 @@ void tblCli(THashC* tcli)
 
   for(i=0; i<SIZE; i++)
     quickSort(tcli->tbl[i].list, 0, tcli->tbl[i].size - 1);
+
+  return 0;
 }
 
 void printCli(THashC* cli) {

@@ -5,14 +5,8 @@
 #include "clientes.h"
 #include "sort.h"
 
-// Struct array
-typedef struct arr{
-  int used;
-  char** list;
-} ARR;
-
 // Struct que suporta uma venda
-typedef struct selling{
+typedef struct sale{
   char* p;
   float price;
   int uni;
@@ -20,24 +14,50 @@ typedef struct selling{
   char* c;
   int month;
   int branch;
-} SALE;
+} Sale;
 
 //struct uma letra de vendas
 typedef struct tsale {
   int size;
-  SALE* list;
-} TSALE;
+  Sale* list;
+} TSale;
 
-// Struct que suporta duas listas de vendas
-typedef struct sellings{
-  int usedV;
-  int usedT;
-  //SALE* listV;
-  TSALE listV[676];
-  SALE* listT;
-} SALES;
+typedef struct thashsalesp {
+  int sizet;
+  TSale tblp[676];
+  TSale tblc[26];
+} THashSales;
 
-void salesToStructs(ARR* sales, SALES* s, THashP* prod, THashC* cli);
-void printSales(SALES* s);
+// Functions
+int tblSales(THashSales* salesp, THashP* prod, THashC* cli);
+void printSales(THashSales* salesp);
 
 #endif
+
+// ESTA AQUI PARA NAO OCUPAR ESPAÇO
+
+/*
+// Passa todas as vendas válidas do array para um ficheiro
+void salesToF(SALES* s) {
+  FILE* fsalesv;
+
+  if((fsalesv = fopen("../files/Vendas_1MValidas.txt", "w")) == NULL) {
+    printf("ERROR");
+    return;
+  }
+
+  for(int i=0; i<SIZE; i++){
+    for(int j = 0;j < s -> listV[i].size;j++)
+      fprintf(fsalesv,"%s %f %d %s %s %d %d\r\n",
+              s->listV[i].list[j].p,
+              s->listV[i].list[j].price,
+              s->listV[i].list[j].uni,
+              s->listV[i].list[j].type,
+              s->listV[i].list[j].c,
+              s->listV[i].list[j].month,
+              s->listV[i].list[j].branch);
+  }
+
+  fclose(fsalesv);
+}
+*/

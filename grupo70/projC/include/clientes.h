@@ -1,8 +1,9 @@
-#include "sort.h"
-
 #ifndef __clientes_h
 #define __clientes_h
 
+#include "sort.h"
+
+//STRUCTS CLIENTES
 typedef struct cli {
   int size;
   char** list;
@@ -13,9 +14,9 @@ typedef struct thashcli {
   Cli tbl[26];
 } THashC;
 
-#endif
-
 int hashC(char c);
 void tblCli(THashC* tcli);
 void printCli(THashC* cli);
 void freeCli(THashC* cli);
+
+#endif

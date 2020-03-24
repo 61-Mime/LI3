@@ -4,12 +4,29 @@
 #include "sales.h"
 
 #define MAX 64
+#define SIZE 676
+
+void initSales(SALES* s)
+{
+  int i;
+
+  s = malloc(sizeof(SALES));
+  s -> usedV = 0;
+  s -> usedT = 0;
+
+  s -> listT = NULL;
+
+  for(i=0; i<SIZE; i++) {
+    s->listV[i].size = 0;
+    s->listV[i].list = NULL;
+  }
+}
 
 // Corre uma venda, passa para a struct total e se for válida passa a struct valida
 void saleS(SALES* s, char* buffer, THashP* tprod, THashC* tcli)
 {
   char *aux = NULL;
-  int p, c;
+  int p, c,x;
 
   s->listT = realloc(s->listT,sizeof(SALE) * (s->usedT + 1));
 
@@ -36,19 +53,22 @@ void saleS(SALES* s, char* buffer, THashP* tprod, THashC* tcli)
   aux = strsep(&buffer, " ");
   s->listT[s->usedT].branch = atoi(aux);
 
-  if((binarySearch(tprod->tbl[p].list, s->listT[s->usedT].p, 0, tprod->tbl[p].size)!=(-1))
-  &&(binarySearch(tcli->tbl[c].list, s->listT[s->usedT].c, 0, tcli->tbl[c].size)!=(-1)))
+  if((binarySearch(tprod->tbl[p].list, s->listT[s->usedT].p, 0, tprod->tbl[p].size-1)!=(-1))
+  &&(binarySearch(tcli->tbl[c].list, s->listT[s->usedT].c, 0, tcli->tbl[c].size-1)!=(-1)))
   {
-    s->listV = realloc(s->listV,sizeof(SALE) * (s->usedV + 1));
+    //s->listV = realloc(s->listV,sizeof(SALE) * (s->usedV + 1));
+    x = s->listV[p].size;
+    s->listV[p].list = realloc(s->listV[p].list,sizeof(SALE) * (x + 1));
 
-    s->listV[s->usedV].p = s->listT[s->usedT].p;
-    s->listV[s->usedV].price = s->listT[s->usedT].price;
-    s->listV[s->usedV].uni = s->listT[s->usedT].uni;
-    s->listV[s->usedV].type = s->listT[s->usedT].type;
-    s->listV[s->usedV].c = s->listT[s->usedT].c;
-    s->listV[s->usedV].month = s->listT[s->usedT].month;
-    s->listV[s->usedV].branch = s->listT[s->usedT].branch;
+    s->listV[p].list[x].p = s->listT[s->usedT].p;
+    s->listV[p].list[x].price = s->listT[s->usedT].price;
+    s->listV[p].list[x].uni = s->listT[s->usedT].uni;
+    s->listV[p].list[x].type = s->listT[s->usedT].type;
+    s->listV[p].list[x].c = s->listT[s->usedT].c;
+    s->listV[p].list[x].month = s->listT[s->usedT].month;
+    s->listV[p].list[x].branch = s->listT[s->usedT].branch;
     s->usedV++;
+    s->listV[p].size++;
   }
 
   s ->usedT++;
@@ -88,15 +108,16 @@ void salesToF(SALES* s) {
     return;
   }
 
-  for(int i=0; i<s->usedV; i++) {
-    fprintf(fsalesv, "%s %f %d %s %s %d %d\r\n",
-    s->listV[i].p,
-    s->listV[i].price,
-    s->listV[i].uni,
-    s->listV[i].type,
-    s->listV[i].c,
-    s->listV[i].month,
-    s->listV[i].branch);
+  for(int i=0; i<SIZE; i++){
+    for(int j = 0;j < s -> listV[i].size;j++)
+      fprintf(fsalesv,"%s %f %d %s %s %d %d\r\n",
+              s->listV[i].list[j].p,
+              s->listV[i].list[j].price,
+              s->listV[i].list[j].uni,
+              s->listV[i].list[j].type,
+              s->listV[i].list[j].c,
+              s->listV[i].list[j].month,
+              s->listV[i].list[j].branch);
   }
 
   fclose(fsalesv);
@@ -104,30 +125,32 @@ void salesToF(SALES* s) {
 
 // Abre o array das vendas e passa-as para uma struct
 void salesToStructs(ARR* sales,SALES*s, THashP* tprod, THashC* tcli) {
-  s->usedV = 0;
-  s->usedT = 0;
-
+  initSales(s);
   salesToA(sales);
 
   for(int i=0; i<sales->used; i++)
     saleS(s, sales->list[i], tprod, tcli);
+
+  for(int i=0; i<SIZE; i++)
+    quickSortSALE(s->listV[i].list, 0, s->listV[i].size - 1);
 
   salesToF(s);
 
 }
 
 void printSales(SALES* s) {
-  int i;
+  int i,j;
 
-  for(i=0; i<s->usedV; i++){
-    printf("%s %f %d %s %s %d %d\r\n",
-    s->listV[i].p,
-    s->listV[i].price,
-    s->listV[i].uni,
-    s->listV[i].type,
-    s->listV[i].c,
-    s->listV[i].month,
-    s->listV[i].branch);
+  for(i=0; i<SIZE; i++){
+    for(j = 0;j < s -> listV[i].size;j++)
+      printf("%s %f %d %s %s %d %d\r\n",
+              s->listV[i].list[j].p,
+              s->listV[i].list[j].price,
+              s->listV[i].list[j].uni,
+              s->listV[i].list[j].type,
+              s->listV[i].list[j].c,
+              s->listV[i].list[j].month,
+              s->listV[i].list[j].branch);
   }
 
   printf("Vendas Válidas: %d\n", s->usedV);

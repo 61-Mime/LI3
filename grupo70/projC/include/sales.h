@@ -2,6 +2,9 @@
 #include "clientes.h"
 #include "sort.h"
 
+#ifndef __sales_h
+#define __sales_h
+
 // Struct array
 typedef struct arr{
   int used;
@@ -26,6 +29,8 @@ typedef struct sellings{
   SALE* listV;
   SALE* listT;
 } SALES;
+
+#endif
 
 void salesToStructs(ARR* sales, SALES* s, THashP* prod, THashC* cli);
 void printSales(SALES* s);

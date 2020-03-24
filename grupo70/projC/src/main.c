@@ -12,13 +12,14 @@ int main()
 {
   tblProd(&prod);
   tblCli(&cli);
+  salesToStructs(&sales, &s, &prod, &cli);
 
   //printProd(&prod);
   //printCli(&cli);
-
-  salesToStructs(&sales, &s, &prod, &cli);
-
   //printSales(&s);
+
+  freeProd(&prod);
+  freeCli(&cli);
 
   return 0;
 }

@@ -75,7 +75,7 @@ void tblCli(THashC* tcli)
     quickSort(tcli->tbl[i].list, 0, tcli->tbl[i].size - 1);
 }
 
-void printCli (THashC* cli) {
+void printCli(THashC* cli) {
   int i, j;
 
   for(i=0; i<26; i++)
@@ -83,4 +83,14 @@ void printCli (THashC* cli) {
       printf("%s\n", cli->tbl[i].list[j]);
 
   printf("Total Clientes: %d\n", cli->sizet);
+}
+
+void freeCli(THashC* cli) {
+  int i, j;
+
+  for(i=0; i<26; i++) {
+    for(j=0; j<cli->tbl[i].size; j++)
+      free(cli->tbl[i].list[j]);
+    free(cli->tbl[i].list);
+  }
 }

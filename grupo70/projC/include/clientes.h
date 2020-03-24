@@ -12,8 +12,10 @@ typedef struct thashcli {
   int sizet;
   Cli tbl[26];
 } THashC;
+
 #endif
 
 int hashC(char c);
 void tblCli(THashC* tcli);
-void printCli (THashC* cli);
+void printCli(THashC* cli);
+void freeCli(THashC* cli);

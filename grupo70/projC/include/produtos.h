@@ -9,9 +9,9 @@ typedef struct prod {
 
 typedef struct thashprod {
   int sizet;
-  Prod tbl[26];
+  Prod tbl[676];
 } THashP;
 #endif
 
-int hashP(char c);
+int hashP(char c,char c2);
 void tblProd(THashP* tprod);

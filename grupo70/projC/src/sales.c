@@ -15,7 +15,7 @@ void saleS(SALES* s, char* buffer, THashP* tprod, THashC* tcli)
 
   aux = strsep(&buffer, " ");
   s->listT[s->usedT].p = aux;
-  p = hashP(aux[0]);
+  p = hashP(aux[0],aux[1]);
 
   aux = strsep(&buffer, " ");
   s->listT[s->usedT].price = atof(aux);

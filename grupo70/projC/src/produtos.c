@@ -4,11 +4,11 @@
 #include "produtos.h"
 
 #define MAX 10
-#define SIZE 26 
+#define SIZE 676
 
-int hashP(char c)
+int hashP(char c,char c2)
 {
-  return c - 65 ;
+  return (c - 'a')*26 + c2 - 'a';
 }
 
 void initTblP(THashP* tprod)
@@ -57,7 +57,7 @@ void tblProd(THashP* tprod)
 
     if(prodVal(buffer))
     {
-      i = hashP(buffer[0]);
+      i = hashP(buffer[0],buffer[1]);
 
       pos = tprod->tbl[i].size;
 

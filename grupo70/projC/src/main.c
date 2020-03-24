@@ -12,16 +12,25 @@ int main()
 {
   tblProd(&prod);
   tblCli(&cli);
+  salesToStructs(&sales, &s, &prod, &cli);
 
+<<<<<<< HEAD
 
   //for(int i=0; i<TSIZEC; i++)
     //for(int j=0, i=0; j<cli.tbl[i].size; j++)
       //printf("%s\n", cli.tbl[i].list[j]);
+=======
+  //printProd(&prod);
+  //printCli(&cli);
+  //printSales(&s);
+>>>>>>> 0128f0c775d79fc1cdd738f08fff1e989b8518e3
 
-  //for(int i = 0;i < prod.tbl[0].size;i++)
-//printf("%s\n", prod.tbl[0].list[i]);
-//printf("%d\n", prod.tbl[0].size);
+  freeProd(&prod);
+  freeCli(&cli);
 
+<<<<<<< HEAD
   salesToStructs(&sales, &s, &prod, &cli);
+=======
+>>>>>>> 0128f0c775d79fc1cdd738f08fff1e989b8518e3
   return 0;
 }

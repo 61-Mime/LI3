@@ -55,8 +55,7 @@ void saleS(SALES* s, char* buffer, THashP* tprod, THashC* tcli)
 }
 
 // Passa todas as vendas para um array
-void salesToA(ARR* sales)
-{
+void salesToA(ARR* sales) {
   FILE *fsales;
   char* buffer= malloc(sizeof(char) * MAX);
   int used;
@@ -66,8 +65,7 @@ void salesToA(ARR* sales)
     return;
   }
 
-  for(used=0; fgets(buffer,MAX,fsales); used++)
-  {
+  for(used=0; fgets(buffer,MAX,fsales); used++) {
     buffer = strsep(&buffer, "\r");
 
     sales->list = realloc(sales->list,sizeof(char*) * (used + 1));
@@ -82,8 +80,7 @@ void salesToA(ARR* sales)
 }
 
 // Passa todas as vendas válidas do array para um ficheiro
-void salesToF(SALES* s)
-{
+void salesToF(SALES* s) {
   FILE* fsalesv;
 
   if((fsalesv = fopen("../files/Vendas_1MValidas.txt", "w")) == NULL) {
@@ -91,7 +88,7 @@ void salesToF(SALES* s)
     return;
   }
 
-  for(int i=0; i<s->usedV; i++){
+  for(int i=0; i<s->usedV; i++) {
     fprintf(fsalesv, "%s %f %d %s %s %d %d\r\n",
     s->listV[i].p,
     s->listV[i].price,
@@ -106,8 +103,7 @@ void salesToF(SALES* s)
 }
 
 // Abre o array das vendas e passa-as para uma struct
-void salesToStructs(ARR* sales,SALES*s, THashP* tprod, THashC* tcli)
-{
+void salesToStructs(ARR* sales,SALES*s, THashP* tprod, THashC* tcli) {
   s->usedV = 0;
   s->usedT = 0;
 
@@ -118,4 +114,21 @@ void salesToStructs(ARR* sales,SALES*s, THashP* tprod, THashC* tcli)
 
   salesToF(s);
 
+}
+
+void printSales(SALES* s) {
+  int i;
+
+  for(i=0; i<s->usedV; i++){
+    printf("%s %f %d %s %s %d %d\r\n",
+    s->listV[i].p,
+    s->listV[i].price,
+    s->listV[i].uni,
+    s->listV[i].type,
+    s->listV[i].c,
+    s->listV[i].month,
+    s->listV[i].branch);
+  }
+
+  printf("Vendas Válidas: %d\n", s->usedV);
 }

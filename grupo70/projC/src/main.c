@@ -11,10 +11,10 @@ SALES s;
 int main()
 {
   tblProd(&prod);
-  //tblCli(&cli);
-  //salesToStructs(&sales, &s, &prod, &cli);
+  tblCli(&cli);
+  salesToStructs(&sales, &s, &prod, &cli);
 
-  printProd(&prod);
+  //printProd(&prod);
   //printCli(&cli);
   //printSales(&s);
 

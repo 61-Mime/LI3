@@ -8,7 +8,7 @@
 
 int hashP(char c,char c2)
 {
-  return (c - 'a')*26 + c2 - 'a';
+  return (c - 'A')*26 + c2 - 'A';
 }
 
 void initTblP(THashP* tprod)
@@ -19,8 +19,10 @@ void initTblP(THashP* tprod)
 
   tprod->sizet = 0;
 
-  for(i=0; i<SIZE; i++)
+  for(i=0; i<SIZE; i++) {
     tprod->tbl[i].size = 0;
+    tprod->tbl[i].list = NULL;
+  }
 }
 
 int prodVal(char *prod)
@@ -61,7 +63,10 @@ void tblProd(THashP* tprod)
 
       pos = tprod->tbl[i].size;
 
-      tprod->tbl[i].list = realloc(tprod->tbl[i].list,sizeof(char*) * (tprod->tbl[i].size + 1));
+      if(pos == 0)
+        tprod->tbl[i].list = malloc(sizeof(char*));
+      else
+        tprod->tbl[i].list = realloc(tprod->tbl[i].list,sizeof(char*) * (pos+ 1));
 
       tprod->tbl[i].list[pos] = malloc(sizeof(char) * MAX);
       strcpy(tprod->tbl[i].list[pos],buffer);

@@ -2,6 +2,7 @@
 
 #ifndef __produtos_h
 #define __produtos_h
+
 typedef struct prod {
   int size;
   char** list;
@@ -15,3 +16,4 @@ typedef struct thashprod {
 
 int hashP(char c);
 void tblProd(THashP* tprod);
+void printProd (THashP* prod);

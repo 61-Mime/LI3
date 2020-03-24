@@ -2,6 +2,7 @@
 
 #ifndef __clientes_h
 #define __clientes_h
+
 typedef struct cli {
   int size;
   char** list;
@@ -15,3 +16,4 @@ typedef struct thashcli {
 
 int hashC(char c);
 void tblCli(THashC* tcli);
+void printCli (THashC* cli);

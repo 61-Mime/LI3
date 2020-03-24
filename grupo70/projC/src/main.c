@@ -13,15 +13,12 @@ int main()
   tblProd(&prod);
   tblCli(&cli);
 
-  
-  //for(int i=0; i<TSIZEC; i++)
-    for(int j=0, i=0; i<cli.tbl[i].size; j++)
-      printf("%s\n", cli.tbl[i].list[j]);
+  //printProd(&prod);
+  //printCli(&cli);
 
-  //for(int i = 0;i < prod.tbl[0].size;i++)
-//printf("%s\n", prod.tbl[0].list[i]);
-//printf("%d\n", prod.tbl[0].size);
+  salesToStructs(&sales, &s, &prod, &cli);
 
-  //salesToStructs(&sales, &s, &prod, &cli);
+  //printSales(&s);
+
   return 0;
 }

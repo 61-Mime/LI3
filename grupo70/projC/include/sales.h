@@ -28,3 +28,4 @@ typedef struct sellings{
 } SALES;
 
 void salesToStructs(ARR* sales, SALES* s, THashP* prod, THashC* cli);
+void printSales(SALES* s);

@@ -76,3 +76,13 @@ void tblProd(THashP* tprod)
   for(i=0; i<SIZE; i++)
     quickSort(tprod->tbl[i].list, 0, tprod->tbl[i].size - 1);
 }
+
+void printProd (THashP* prod) {
+  int i, j;
+
+  for(i=0; i<26; i++)
+    for(j=0; j<prod->tbl[i].size; j++)
+      printf("%s\n", prod->tbl[i].list[j]);
+
+  printf("Total Produtos: %d\n", prod->sizet);
+}

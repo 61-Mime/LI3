@@ -3,94 +3,21 @@
 #include <string.h>
 #include "sales.h"
 
+#define SMAX 10
 #define MAX 64
 #define SIZEP 676
 #define SIZEC 26
-
-void swapS(Sale* a, Sale* b)
-{
-    void* aux = a;
-    a = b;
-    b = aux;
-}
-
-void quickSortByCli(Sale* list, int low, int high)
-{
-    if (low < high)
-    {
-      char* pivot = list[high].c;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (strcmp(list[j].c, pivot) < 0)
-          {
-              i++;
-              swapS(&list[i], &list[j]);
-          }
-      }
-      swapS(&list[i + 1], &list[high]);
-
-      int pi = i + 1;
-
-      quickSortByCli(list, low, pi - 1);
-      quickSortByCli(list, pi + 1, high);
-    }
-}
-
-void quickSortByProd(Sale* list, int low, int high)
-{
-    if (low < high)
-    {
-      char* pivot = list[high].p;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (strcmp(list[j].p, pivot) < 0)
-          {
-              i++;
-              swapS(&list[i], &list[j]);
-          }
-      }
-      swapS(&list[i + 1], &list[high]);
-
-      int pi = i + 1;
-
-      quickSortByProd(list, low, pi - 1);
-      quickSortByProd(list, pi + 1, high);
-    }
-}
-
-void initSales(THashSales* sales)
-{
-  int i;
-
-  sales = malloc(sizeof(THashSales));
-  sales->sizet = 0;
-
-  for(i=0; i<SIZEP; i++) {
-    sales->tblp[i].size = 0;
-    sales->tblp[i].list = NULL;
-  }
-
-  for(i=0; i<SIZEC; i++) {
-    sales->tblc[i].size = 0;
-    sales->tblc[i].list = NULL;
-  }
-}
 
 // Corre uma venda, passa para a struct total e se for válida passa a struct valida
 void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
 {
   char *aux = NULL, *prod = NULL, *cli = NULL, *type = NULL;
-  int hashp, hashc, pos;
+  int hashp, hashc, posp, posc, size;
   int uni, month, branch;
   float price;
 
   aux = strsep(&buffer, " ");
   prod = aux;
-  hashp = hashP(aux[0], aux[1]);
 
   aux = strsep(&buffer, " ");
   price = atof(aux);
@@ -103,7 +30,6 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
 
   aux = strsep(&buffer, " ");
   cli = aux;
-  hashc = hashC(aux[0]);
 
   aux = strsep(&buffer, " ");
   month = atoi(aux);
@@ -111,34 +37,73 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
   aux = strsep(&buffer, " ");
   branch = atoi(aux);
 
-  if((binarySearch(tprod->tbl[hashp].list, prod, 0, tprod->tbl[hashp].size-1)!=(-1))
-  &&(binarySearch(tcli->tbl[hashc].list, cli, 0, tcli->tbl[hashc].size-1)!=(-1)))
+  hashc = hashC(aux[0]);
+  hashp = hashP(aux[0], aux[1]);
+
+  posp = searchProd(prod, tprod);
+  posc = searchCli(cli, tcli);
+
+  if(posp!=(-1) && posc!=(-1))
   {
-    pos = sales->tblp[hashp].size;
+    size = sales->tblp[hashp].list[posp].size3;
 
-    sales->tblp[hashp].list = realloc(sales->tblp[hashp].list ,sizeof(Sale) * (pos + 1));
-    sales->tblp[hashp].list[pos].p = prod;
-    sales->tblp[hashp].list[pos].price = price;
-    sales->tblp[hashp].list[pos].uni = uni;
-    sales->tblp[hashp].list[pos].type = type;
-    sales->tblp[hashp].list[pos].c = cli;
-    sales->tblp[hashp].list[pos].month = month;
-    sales->tblp[hashp].list[pos].branch = branch;
-    sales->tblp[hashp].size++;
+    sales->tblp[hashp].list[posp].venda = realloc(sales->tblp[hashp].list[posp].venda, sizeof(Sale) * (size + 1));
+    sales->tblp[hashp].list[posp].venda[size].p = prod;
+    sales->tblp[hashp].list[posp].venda[size].price = price;
+    sales->tblp[hashp].list[posp].venda[size].uni = uni;
+    sales->tblp[hashp].list[posp].venda[size].type = type;
+    sales->tblp[hashp].list[posp].venda[size].c = cli;
+    sales->tblp[hashp].list[posp].venda[size].month = month;
+    sales->tblp[hashp].list[posp].venda[size].branch = branch;
+    sales->tblp[hashp].list[posp].size3++;
 
-    pos = sales->tblc[hashc].size;
+    size = sales->tblc[hashp].list[posc].size3;
 
-    sales->tblc[hashc].list = realloc(sales->tblc[hashc].list ,sizeof(Sale) * (pos + 1));
-    sales->tblc[hashc].list[pos].p = prod;
-    sales->tblc[hashc].list[pos].price = price;
-    sales->tblc[hashc].list[pos].uni = uni;
-    sales->tblc[hashc].list[pos].type = type;
-    sales->tblc[hashc].list[pos].c = cli;
-    sales->tblc[hashc].list[pos].month = month;
-    sales->tblc[hashc].list[pos].branch = branch;
-    sales->tblc[hashc].size++;
+    sales->tblc[hashc].list[posc].venda = realloc(sales->tblc[hashc].list[posc].venda ,sizeof(Sale) * (size + 1));
+    sales->tblc[hashc].list[posc].venda[size].p = prod;
+    sales->tblc[hashc].list[posc].venda[size].price = price;
+    sales->tblc[hashc].list[posc].venda[size].uni = uni;
+    sales->tblc[hashc].list[posc].venda[size].type = type;
+    sales->tblc[hashc].list[posc].venda[size].c = cli;
+    sales->tblc[hashc].list[posc].venda[size].month = month;
+    sales->tblc[hashc].list[posc].venda[size].branch = branch;
+    sales->tblc[hashc].list[posc].size3++;
 
-    sales->sizet++;
+    sales->size1++;
+  }
+}
+
+void initSales(THashSales* sales, THashP* tprod, THashC* tcli)
+{
+  int i, j;
+
+  sales = malloc(sizeof(THashSales));
+  sales->size1 = 0;
+
+  for(i=0; i<SIZEP; i++) {
+    sales->tblp[i].list = malloc(sizeof(List) * tprod->tbl[i].size);
+    sales->tblp[i].size2 = tprod->tbl[i].size;
+
+    for(j=0; j<tprod->tbl[i].size; j++) {
+      sales->tblp[i].list[j].key = malloc(sizeof(char) * SMAX);
+      strcpy(sales->tblp[i].list[j].key, tprod->tbl[i].list[j]);
+
+      sales->tblp[i].list[j].size3 = 0;
+      sales->tblp[i].list[j].venda = NULL;
+    }
+  }
+
+  for(i=0; i<SIZEC; i++) {
+    sales->tblc[i].list = malloc(sizeof(List) * tcli->tbl[i].size);
+    sales->tblc[i].size2 = tcli->tbl[i].size;
+
+    for(j=0; j<tcli->tbl[i].size; j++) {
+      sales->tblc[i].list[j].key = malloc(sizeof(char) * SMAX);
+      strcpy(sales->tblc[i].list[j].key, tcli->tbl[i].list[j]);
+      
+      sales->tblc[i].list[j].size3 = 0;
+      sales->tblc[i].list[j].venda = NULL;
+    }
   }
 }
 
@@ -150,7 +115,7 @@ int tblSales(THashSales* sales, THashP* tprod, THashC* tcli) {
   if((fsales = fopen("../files/Vendas_1M.txt", "r")) == NULL)
     return -1;
   
-  initSales(sales);
+  initSales(sales, tprod, tcli);
 
   while(fgets(buffer,MAX,fsales)) {
     buffer = strsep(&buffer, "\r");
@@ -158,16 +123,11 @@ int tblSales(THashSales* sales, THashP* tprod, THashC* tcli) {
   }
 
   fclose(fsales);  
-
-  for(int i=0; i<SIZEP; i++)
-    quickSortByProd(sales->tblp[i].list, 0, sales->tblp[i].size - 1);
-  
-  for(int i=0; i<SIZEC; i++)
-    quickSortByCli(sales->tblc[i].list, 0, sales->tblc[i].size - 1);
     
    return 0;
 }
 
+/*
 void printSales(THashSales* sales) {
   int i,j;
 
@@ -183,6 +143,6 @@ void printSales(THashSales* sales) {
               sales->tblc[i].list[j].branch);
   }
 
-  printf("Vendas Válidas: %d\n", sales->sizet);
+  printf("Vendas Válidas: %d\n", sales->size1);
 }
-
+*/

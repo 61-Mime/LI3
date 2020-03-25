@@ -6,6 +6,15 @@
 #define MAX 10
 #define SIZE 26
 
+int searchCli(char* cli, THashC* tcli){
+  int hash, res;
+  
+  hash = hashC(cli[0]);
+  res = binarySearch(tcli->tbl[hash].list, cli, 0, tcli->tbl[hash].size-1);
+
+  return res;
+}
+
 int hashC(char c)
 {
   return c - 65;

@@ -3,7 +3,6 @@
 
 #include "produtos.h"
 #include "clientes.h"
-#include "sort.h"
 
 // Struct que suporta uma venda
 typedef struct sale{
@@ -16,14 +15,20 @@ typedef struct sale{
   int branch;
 } Sale;
 
+typedef struct list {
+  char* key;
+  int size3;
+  Sale* venda;
+} List;
+
 //struct uma letra de vendas
 typedef struct tsale {
-  int size;
-  Sale* list;
+  int size2;
+  List* list;
 } TSale;
 
 typedef struct thashsalesp {
-  int sizet;
+  int size1;
   TSale tblp[676];
   TSale tblc[26];
 } THashSales;

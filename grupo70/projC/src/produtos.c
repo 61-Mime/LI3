@@ -6,7 +6,16 @@
 #define MAX 10
 #define SIZE 676
 
-int hashP(char c,char c2)
+int searchProd(char* prod, THashP* tprod){
+  int hash, res;
+  
+  hash = hashP(prod[0], prod[1]);
+  res = binarySearch(tprod->tbl[hash].list, prod, 0, tprod->tbl[hash].size-1);
+
+  return res;
+}
+
+int hashP(char c, char c2)
 {
   return (c - 'A')*26 + c2 - 'A';
 }

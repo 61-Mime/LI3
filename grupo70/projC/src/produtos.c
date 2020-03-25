@@ -8,7 +8,7 @@
 
 int searchProd(char* prod, THashP* tprod){
   int hash, res;
-  
+
   hash = hashP(prod[0], prod[1]);
   res = binarySearch(tprod->tbl[hash].list, prod, 0, tprod->tbl[hash].size-1);
 

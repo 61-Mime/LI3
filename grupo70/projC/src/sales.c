@@ -37,15 +37,18 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
   aux = strsep(&buffer, " ");
   branch = atoi(aux);
 
-  hashc = hashC(aux[0]);
-  hashp = hashP(aux[0], aux[1]);
+  hashc = hashC(cli[0]);
+  hashp = hashP(prod[0], prod[1]);
 
   posp = searchProd(prod, tprod);
   posc = searchCli(cli, tcli);
 
+
   if(posp!=(-1) && posc!=(-1))
   {
     size = sales->tblp[hashp].list[posp].size3;
+
+    //printf("%d\n", size);
 
     sales->tblp[hashp].list[posp].venda = realloc(sales->tblp[hashp].list[posp].venda, sizeof(Sale) * (size + 1));
     sales->tblp[hashp].list[posp].venda[size].p = prod;
@@ -57,7 +60,7 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
     sales->tblp[hashp].list[posp].venda[size].branch = branch;
     sales->tblp[hashp].list[posp].size3++;
 
-    size = sales->tblc[hashp].list[posc].size3;
+    size = sales->tblc[hashc].list[posc].size3;
 
     sales->tblc[hashc].list[posc].venda = realloc(sales->tblc[hashc].list[posc].venda ,sizeof(Sale) * (size + 1));
     sales->tblc[hashc].list[posc].venda[size].p = prod;
@@ -100,7 +103,7 @@ void initSales(THashSales* sales, THashP* tprod, THashC* tcli)
     for(j=0; j<tcli->tbl[i].size; j++) {
       sales->tblc[i].list[j].key = malloc(sizeof(char) * SMAX);
       strcpy(sales->tblc[i].list[j].key, tcli->tbl[i].list[j]);
-      
+
       sales->tblc[i].list[j].size3 = 0;
       sales->tblc[i].list[j].venda = NULL;
     }
@@ -114,7 +117,7 @@ int tblSales(THashSales* sales, THashP* tprod, THashC* tcli) {
 
   if((fsales = fopen("../files/Vendas_1M.txt", "r")) == NULL)
     return -1;
-  
+
   initSales(sales, tprod, tcli);
 
   while(fgets(buffer,MAX,fsales)) {
@@ -122,8 +125,8 @@ int tblSales(THashSales* sales, THashP* tprod, THashC* tcli) {
     saleS(sales, buffer, tprod, tcli);
   }
 
-  fclose(fsales);  
-    
+  fclose(fsales);
+
    return 0;
 }
 

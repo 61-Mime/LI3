@@ -43,19 +43,20 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
   posp = searchProd(prod, tprod);
   posc = searchCli(cli, tcli);
 
-
+//printf("%s %d %d\n", prod,hashp,posp);
   if(posp!=(-1) && posc!=(-1))
   {
+
     size = sales->tblp[hashp].list[posp].size3;
 
-    //printf("%d\n", size);
-
     sales->tblp[hashp].list[posp].venda = realloc(sales->tblp[hashp].list[posp].venda, sizeof(Sale) * (size + 1));
-    sales->tblp[hashp].list[posp].venda[size].p = prod;
+    sales->tblp[hashp].list[posp].venda[size].p = sales->tblp[hashp].list[posp].key;
     sales->tblp[hashp].list[posp].venda[size].price = price;
     sales->tblp[hashp].list[posp].venda[size].uni = uni;
-    sales->tblp[hashp].list[posp].venda[size].type = type;
-    sales->tblp[hashp].list[posp].venda[size].c = cli;
+    sales->tblp[hashp].list[posp].venda[size].type = malloc(sizeof(char) * 3);
+    strcpy(sales->tblp[hashp].list[posp].venda[size].type,type);
+    sales->tblp[hashp].list[posp].venda[size].c = malloc(sizeof(char) * SMAX);
+    strcpy(sales->tblp[hashp].list[posp].venda[size].c,cli);
     sales->tblp[hashp].list[posp].venda[size].month = month;
     sales->tblp[hashp].list[posp].venda[size].branch = branch;
     sales->tblp[hashp].list[posp].size3++;
@@ -63,11 +64,13 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
     size = sales->tblc[hashc].list[posc].size3;
 
     sales->tblc[hashc].list[posc].venda = realloc(sales->tblc[hashc].list[posc].venda ,sizeof(Sale) * (size + 1));
-    sales->tblc[hashc].list[posc].venda[size].p = prod;
+    sales->tblc[hashc].list[posc].venda[size].p = malloc(sizeof(char) * SMAX);
+    strcpy(sales->tblc[hashc].list[posc].venda[size].p,prod);
     sales->tblc[hashc].list[posc].venda[size].price = price;
     sales->tblc[hashc].list[posc].venda[size].uni = uni;
-    sales->tblc[hashc].list[posc].venda[size].type = type;
-    sales->tblc[hashc].list[posc].venda[size].c = cli;
+    sales->tblc[hashc].list[posc].venda[size].type = malloc(sizeof(char) * 3);
+    strcpy(sales->tblc[hashc].list[posc].venda[size].type,type);
+    sales->tblc[hashc].list[posc].venda[size].c = sales->tblc[hashc].list[posc].key;
     sales->tblc[hashc].list[posc].venda[size].month = month;
     sales->tblc[hashc].list[posc].venda[size].branch = branch;
     sales->tblc[hashc].list[posc].size3++;
@@ -76,11 +79,11 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
   }
 }
 
-void initSales(THashSales* sales, THashP* tprod, THashC* tcli)
+void initSales(THashSales * sales, THashP* tprod, THashC* tcli)
 {
   int i, j;
 
-  sales = malloc(sizeof(THashSales));
+  //sales = malloc(sizeof(THashSales));
   sales->size1 = 0;
 
   for(i=0; i<SIZEP; i++) {
@@ -111,7 +114,7 @@ void initSales(THashSales* sales, THashP* tprod, THashC* tcli)
 }
 
 // Abre o array das vendas e passa-as para uma struct
-int tblSales(THashSales* sales, THashP* tprod, THashC* tcli) {
+int tblSales(THashSales * sales, THashP* tprod, THashC* tcli) {
   FILE *fsales;
   char* buffer= malloc(sizeof(char) * MAX);
 
@@ -130,22 +133,47 @@ int tblSales(THashSales* sales, THashP* tprod, THashC* tcli) {
    return 0;
 }
 
-/*
+
 void printSales(THashSales* sales) {
-  int i,j;
+  int i,j,c;
 
   for(i=0; i<SIZEC; i++){
-    for(j=0 ;j<sales->tblc[i].size; j++)
-      printf("%s %f %d %s %s %d %d\r\n",
-              sales->tblc[i].list[j].p,
-              sales->tblc[i].list[j].price,
-              sales->tblc[i].list[j].uni,
-              sales->tblc[i].list[j].type,
-              sales->tblc[i].list[j].c,
-              sales->tblc[i].list[j].month,
-              sales->tblc[i].list[j].branch);
+    for(j=0 ;j<sales->tblc[i].size2; j++) {
+      printf("\n" );
+      for(c=0 ;c<sales->tblc[i].list[j].size3; c++)
+        printf("%s %f %d %s %s %d %d\r\n",
+                sales->tblc[i].list[j].venda[c].p,
+                sales->tblc[i].list[j].venda[c].price,
+                sales->tblc[i].list[j].venda[c].uni,
+                sales->tblc[i].list[j].venda[c].type,
+                sales->tblc[i].list[j].venda[c].c,
+                sales->tblc[i].list[j].venda[c].month,
+                sales->tblc[i].list[j].venda[c].branch);
+    }
   }
 
   printf("Vendas Válidas: %d\n", sales->size1);
 }
-*/
+
+
+void freeSales(THashSales* sales) {
+  int i, j, c;
+
+  for(i=0; i<SIZEC; i++){
+    for(j=0 ;j<sales->tblc[i].size2; j++) {
+      for(c=0 ;c<sales->tblc[i].list[j].size3; c++)
+        free(sales->tblc[i].list[j].venda[c]);
+
+      free(sales->tblc[i].list[j]);
+    }
+  }
+
+  for(i=0; i<SIZEP; i++){
+    for(j=0 ;j<sales->tblp[i].size2; j++) {
+      for(c=0 ;c<sales->tblp[i].list[j].size3; c++)
+        free(sales->tblp[i].list[j].venda[c]);
+
+      free(sales->tblp[i].list[j]);
+    }
+  }
+}

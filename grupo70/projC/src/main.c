@@ -19,7 +19,7 @@ int main()
 
   freeProd(&prod);
   freeCli(&cli);
-
+  //freeSales(&sales);
 
   return 0;
 }

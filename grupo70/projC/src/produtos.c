@@ -24,7 +24,7 @@ void initTblP(THashP* tprod)
 {
   int i;
 
-  tprod = malloc(sizeof(THashP));
+  //tprod = malloc(sizeof(THashP));
 
   tprod->sizet = 0;
 

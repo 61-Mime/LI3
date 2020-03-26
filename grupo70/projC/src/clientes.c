@@ -8,7 +8,7 @@
 
 int searchCli(char* cli, THashC* tcli){
   int hash, res;
-  
+
   hash = hashC(cli[0]);
   res = binarySearch(tcli->tbl[hash].list, cli, 0, tcli->tbl[hash].size-1);
 
@@ -24,7 +24,7 @@ void initTblC(THashC* tcli)
 {
   int i;
 
-  tcli = malloc(sizeof(THashC));
+  //tcli = malloc(sizeof(THashC));
 
   tcli->sizet = 0;
 

@@ -29,11 +29,12 @@ typedef struct tsale {
 
 typedef struct thashsalesp {
   int size1;
-  TSale tblp[676];
+  TSale tblp[26];
   TSale tblc[26];
 } THashSales;
 
 // Functions
+THashSales* initSales();
 int tblSales(THashSales* salesp, THashP* prod, THashC* cli);
 void printSales(THashSales* salesp);
 void freeSales(THashSales* sales);

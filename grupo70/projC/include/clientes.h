@@ -14,6 +14,7 @@ typedef struct thashcli {
   Cli tbl[26];
 } THashC;
 
+THashC* initCli();
 int searchCli(char* cli, THashC* tcli);
 int hashC(char c);
 int tblCli(THashC* tcli);

@@ -6,6 +6,21 @@
 #define MAX 10
 #define SIZE 26
 
+THashC* initCli()
+{
+  THashC* tcli = malloc(sizeof(THashC));
+  int i;
+
+  tcli->sizet = 0;
+
+  for(i=0; i<SIZE; i++) {
+    tcli->tbl[i].size = 0;
+    tcli->tbl[i].list = NULL;
+  }
+
+  return tcli;
+}
+
 int searchCli(char* cli, THashC* tcli){
   int hash, res;
 
@@ -18,18 +33,6 @@ int searchCli(char* cli, THashC* tcli){
 int hashC(char c)
 {
   return c - 65;
-}
-
-void initTblC(THashC* tcli)
-{
-  int i;
-
-  //tcli = malloc(sizeof(THashC));
-
-  tcli->sizet = 0;
-
-  for(i=0; i<SIZE; i++)
-    tcli->tbl[i].size = 0;
 }
 
 int cliVal(char *cliente)
@@ -54,8 +57,6 @@ int tblCli(THashC* tcli)
 
   if((fcli = fopen("../files/Clientes.txt", "r")) == NULL)
     return -1;
-
-  initTblC(tcli);
 
   while(fgets(buffer,MAX,fcli))
   {
@@ -102,4 +103,7 @@ void freeCli(THashC* cli) {
       free(cli->tbl[i].list[j]);
     free(cli->tbl[i].list);
   }
+
+  free(cli->tbl);
+  free(cli);
 }

@@ -5,12 +5,30 @@
 
 #define SMAX 10
 #define MAX 64
-#define SIZEP 676
+#define SIZEP 26
 #define SIZEC 26
 
+THashSales* initSales() {
+  THashSales* sales = malloc(sizeof(THashSales));
+  int i;
+
+  sales->size1 = 0;
+
+  for(i=0; i<SIZEP; i++) {
+    sales->tblp[i].size2 = 0;
+    sales->tblp[i].list = NULL;
+  }
+
+  for(i=0; i<SIZEC; i++) {
+    sales->tblc[i].size2 = 0;
+    sales->tblc[i].list = NULL;
+  }
+
+  return sales;
+}
+
 // Corre uma venda, passa para a struct total e se for válida passa a struct valida
-void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
-{
+void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
   char *aux = NULL, *prod = NULL, *cli = NULL, *type = NULL;
   int hashp, hashc, posp, posc, size;
   int uni, month, branch;
@@ -38,7 +56,7 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
   branch = atoi(aux);
 
   hashc = hashC(cli[0]);
-  hashp = hashP(prod[0], prod[1]);
+  hashp = hashP(prod[0]);
 
   posp = searchProd(prod, tprod);
   posc = searchCli(cli, tcli);
@@ -79,12 +97,9 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli)
   }
 }
 
-void initSales(THashSales * sales, THashP* tprod, THashC* tcli)
+void copyTbl(THashSales* sales, THashP* tprod, THashC* tcli)
 {
   int i, j;
-
-  //sales = malloc(sizeof(THashSales));
-  sales->size1 = 0;
 
   for(i=0; i<SIZEP; i++) {
     sales->tblp[i].list = malloc(sizeof(List) * tprod->tbl[i].size);
@@ -121,7 +136,7 @@ int tblSales(THashSales * sales, THashP* tprod, THashC* tcli) {
   if((fsales = fopen("../files/Vendas_1M.txt", "r")) == NULL)
     return -1;
 
-  initSales(sales, tprod, tcli);
+  copyTbl(sales, tprod, tcli);
 
   while(fgets(buffer,MAX,fsales)) {
     buffer = strsep(&buffer, "\r");
@@ -154,25 +169,36 @@ void printSales(THashSales* sales) {
   printf("Vendas Válidas: %d\n", sales->size1);
 }
 
-
 void freeSales(THashSales* sales) {
   int i, j, c;
 
   for(i=0; i<SIZEC; i++){
     for(j=0 ;j<sales->tblc[i].size2; j++) {
-      for(c=0 ;c<sales->tblc[i].list[j].size3; c++)
-        free(sales->tblc[i].list[j].venda[c]);
-
-      free(sales->tblc[i].list[j]);
+      for(c=0 ;c<sales->tblc[i].list[j].size3; c++) {
+        free(sales->tblc[i].list[j].venda[c].c);
+        free(sales->tblc[i].list[j].venda[c].p);
+        free(sales->tblc[i].list[j].venda[c].type);
+      }
+      free(sales->tblc[i].list[j].venda);
+      free(sales->tblc[i].list[j].key);
     }
+    free(sales->tblc[i].list);
   }
 
   for(i=0; i<SIZEP; i++){
     for(j=0 ;j<sales->tblp[i].size2; j++) {
-      for(c=0 ;c<sales->tblp[i].list[j].size3; c++)
-        free(sales->tblp[i].list[j].venda[c]);
-
-      free(sales->tblp[i].list[j]);
+      for(c=0 ;c<sales->tblp[i].list[j].size3; c++) {
+        free(sales->tblp[i].list[j].venda[c].c);
+        free(sales->tblp[i].list[j].venda[c].p);
+        free(sales->tblp[i].list[j].venda[c].type);
+      }
+      free(sales->tblp[i].list[j].venda);
+      free(sales->tblp[i].list[j].key);
     }
+    free(sales->tblp[i].list);
   }
+
+  free(sales->tblc);
+  free(sales->tblp);
+  free(sales);
 }

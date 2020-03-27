@@ -11,11 +11,12 @@ typedef struct prod {
 
 typedef struct thashprod {
   int sizet;
-  Prod tbl[676];
+  Prod tbl[26];
 } THashP;
 
+THashP* initProd();
 int searchProd(char* prod, THashP* tprod);
-int hashP(char c,char c2);
+int hashP(char c);
 int tblProd(THashP* tprod);
 void printProd(THashP* prod);
 void freeProd(THashP* prod);

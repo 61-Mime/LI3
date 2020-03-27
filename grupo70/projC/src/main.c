@@ -1,25 +1,14 @@
-#include <stdio.h>
-#include "clientes.h"
-#include "produtos.h"
-#include "sales.h"
+#include "sgv.h"
 
-THashP prod;
-THashC cli;
-THashSales sales;
+SGV sgv;
 
 int main()
 {
-  tblProd(&prod);
-  tblCli(&cli);
-  tblSales(&sales, &prod, &cli);
+  sgv = initSGV();
 
-  //printProd(&prod);
-  //printCli(&cli);
-  //printSales(&sales);
+  sgv = loadSGVFromFiles(sgv);
 
-  freeProd(&prod);
-  freeCli(&cli);
-  //freeSales(&sales);
+  destroySGV(sgv);
 
   return 0;
 }

@@ -4,34 +4,35 @@
 #include "produtos.h"
 
 #define MAX 10
-#define SIZE 676
+#define SIZE 26
 
-int searchProd(char* prod, THashP* tprod){
-  int hash, res;
-
-  hash = hashP(prod[0], prod[1]);
-  res = binarySearch(tprod->tbl[hash].list, prod, 0, tprod->tbl[hash].size-1);
-
-  return res;
-}
-
-int hashP(char c, char c2)
+THashP* initProd()
 {
-  return (c - 'A')*26 + c2 - 'A';
-}
-
-void initTblP(THashP* tprod)
-{
+  THashP* tprod = malloc(sizeof(THashP));
   int i;
-
-  //tprod = malloc(sizeof(THashP));
-
+  
   tprod->sizet = 0;
 
   for(i=0; i<SIZE; i++) {
     tprod->tbl[i].size = 0;
     tprod->tbl[i].list = NULL;
   }
+
+  return tprod;
+}
+
+int searchProd(char* prod, THashP* tprod){
+  int hash, res;
+
+  hash = hashP(prod[0]);
+  res = binarySearch(tprod->tbl[hash].list, prod, 0, tprod->tbl[hash].size-1);
+
+  return res;
+}
+
+int hashP(char c)
+{
+  return (c - 'A');
 }
 
 int prodVal(char *prod)
@@ -58,22 +59,17 @@ int tblProd(THashP* tprod)
   if((fprod = fopen("../files/Produtos.txt", "r")) == NULL)
     return -1;
 
-  initTblP(tprod);
-
   while(fgets(buffer,MAX,fprod))
   {
     buffer = strsep(&buffer, "\r");
 
     if(prodVal(buffer))
     {
-      i = hashP(buffer[0],buffer[1]);
+      i = hashP(buffer[0]);
 
       pos = tprod->tbl[i].size;
 
-      if(pos == 0)
-        tprod->tbl[i].list = malloc(sizeof(char*));
-      else
-        tprod->tbl[i].list = realloc(tprod->tbl[i].list,sizeof(char*) * (pos+ 1));
+      tprod->tbl[i].list = realloc(tprod->tbl[i].list,sizeof(char*) * (pos+ 1));
 
       tprod->tbl[i].list[pos] = malloc(sizeof(char) * MAX);
       strcpy(tprod->tbl[i].list[pos],buffer);
@@ -109,4 +105,7 @@ void freeProd(THashP* prod) {
       free(prod->tbl[i].list[j]);
     free(prod->tbl[i].list);
   }
+
+  free(prod->tbl);
+  free(prod);
 }

@@ -5,13 +5,15 @@ SGV sgv;
 
 int main()
 {
+  char path[] = "../files";
+  
   sgv = initSGV();
 
-  sgv = loadSGVFromFiles(sgv);
+  sgv = loadSGVFromFiles(sgv, path);
 
   //printSGV(sgv);
 
-  //destroySGV(sgv);
+  destroySGV(sgv);
 
   return 0;
 }

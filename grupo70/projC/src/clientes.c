@@ -104,6 +104,5 @@ void freeCli(THashC* cli) {
     free(cli->tbl[i].list);
   }
 
-  free(cli->tbl);
   free(cli);
 }

@@ -4,6 +4,7 @@
 #include "produtos.h"
 #include "clientes.h"
 #include "sales.h"
+#include "faturacao.h"
 
 typedef struct sgv
 {
@@ -11,12 +12,11 @@ typedef struct sgv
     THashP* prod;
     THashSales* sales;
     THashFact* fact;
-    // Faturação
 }*SGV;
 
 // Functions
 SGV initSGV();
-SGV loadSGVFromFiles(SGV sgv/*, char* filesFolderPath*/);
+SGV loadSGVFromFiles(SGV sgv, char* filesFolderPath);
 void printSGV(SGV sgv);
 void destroySGV(SGV sgv);
 

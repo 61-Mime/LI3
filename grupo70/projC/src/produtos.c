@@ -106,6 +106,5 @@ void freeProd(THashP* prod) {
     free(prod->tbl[i].list);
   }
 
-  free(prod->tbl);
   free(prod);
 }

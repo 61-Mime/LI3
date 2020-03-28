@@ -27,6 +27,61 @@ THashSales* initSales() {
   return sales;
 }
 
+THashFact* initFact() {
+  THashFact *fact = malloc(sizeof(THashFact));
+
+  fact -> size1 = 0;
+
+  for(int i=0; i<SIZEP; i++) {
+    fact->tbl[i].size2 = 0;
+    fact->tbl[i].list = NULL;
+  }
+
+  return fact;
+}
+
+void tblFact(THashSales *sales,THashFact *fact) {
+  int i,i2,i3,f;
+
+  for(i = 0;i < SIZEP;i++) {
+    fact -> tbl[i].size2 = sales -> tblp[i].size2;
+    fact -> size1 += fact -> tbl[i].size2;
+    fact -> tbl[i].list = malloc(sizeof(Facturacao) * fact -> tbl[i].size2);
+
+    for(i2 = 0;i2 < fact->tbl[i].size2;i2++) {
+      fact -> tbl[i].list[i2].prod = sales -> tblp[i].list[i2].key;
+      fact -> tbl[i].list[i2].numeroN = 0;
+      fact -> tbl[i].list[i2].numeroP = 0;
+      fact -> tbl[i].list[i2].facturacaoN = 0;
+      fact -> tbl[i].list[i2].facturacaoP = 0;
+
+      for(i3 = 0;i3 < sales -> tblp[i].list[i2].size3;i3++) {
+        f = sales->tblp[i].list[i2].venda[i3].price * sales->tblp[i].list[i2].venda[i3].uni;
+        if(sales -> tblp[i].list[i2].venda[i3].type[0] == 'N') {
+          fact -> tbl[i].list[i2].numeroN++;
+          fact -> tbl[i].list[i2].facturacaoN += f;
+        }
+        else {
+          fact -> tbl[i].list[i2].numeroP++;
+          fact -> tbl[i].list[i2].facturacaoP += f;
+        }
+      }
+    }
+  }
+}
+
+int vendaVal(float preco,int uni,char type,int mes,int branch) {
+  int r;
+  if(preco >= 0.0 && preco < 1000.0 && uni > 0 && uni <= 200 &&
+    (type == 'N' || type == 'P') && mes > 0 && mes <= 12 &&
+    branch > 0 && branch <= 3)
+    r = 1;
+  else
+    r = 0;
+
+  return r;
+}
+
 // Corre uma venda, passa para a struct total e se for válida passa a struct valida
 void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
   char *aux = NULL, *prod = NULL, *cli = NULL, *type = NULL;
@@ -62,7 +117,7 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
   posc = searchCli(cli, tcli);
 
 //printf("%s %d %d\n", prod,hashp,posp);
-  if(posp!=(-1) && posc!=(-1))
+  if(posp!=(-1) && posc!=(-1) && vendaVal(price,uni,type[0],month,branch))
   {
 
     size = sales->tblp[hashp].list[posp].size3;
@@ -167,6 +222,22 @@ void printSales(THashSales* sales) {
   }
 
   printf("Vendas Válidas: %d\n", sales->size1);
+}
+
+void printFact(THashFact* fact) {
+  int i,j;
+
+  for(i=0; i<SIZEC; i++){
+    for(j=0 ;j<fact->tbl[i].size2; j++) {
+        printf("%s %d %d %d %d\r\n",
+                fact->tbl[i].list[j].prod,
+                fact->tbl[i].list[j].numeroN,
+                fact->tbl[i].list[j].numeroP,
+                fact->tbl[i].list[j].facturacaoN,
+                fact->tbl[i].list[j].facturacaoP);
+
+    }
+  }
 }
 
 void freeSales(THashSales* sales) {

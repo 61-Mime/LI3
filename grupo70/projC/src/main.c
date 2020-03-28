@@ -1,4 +1,5 @@
 #include "sgv.h"
+#include <stdio.h>
 
 SGV sgv;
 
@@ -8,7 +9,9 @@ int main()
 
   sgv = loadSGVFromFiles(sgv);
 
-  destroySGV(sgv);
+  //printSGV(sgv);
+
+  //destroySGV(sgv);
 
   return 0;
 }

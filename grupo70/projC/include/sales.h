@@ -33,11 +33,32 @@ typedef struct thashsalesp {
   TSale tblc[26];
 } THashSales;
 
+typedef struct fact {
+  char *prod;
+  int numeroN;
+  int numeroP;
+  int facturacaoN;
+  int facturacaoP;
+} Facturacao;
+
+typedef struct Tfact {
+  int size2;
+  Facturacao *list;
+} TFacturacao;
+
+typedef struct thashfact {
+  int size1;
+  TFacturacao tbl[26];
+} THashFact;
+
 // Functions
 THashSales* initSales();
 int tblSales(THashSales* salesp, THashP* prod, THashC* cli);
 void printSales(THashSales* salesp);
 void freeSales(THashSales* sales);
+THashFact* initFact();
+void tblFact(THashSales *sales,THashFact *fact);
+void printFact(THashFact* fact);
 
 #endif
 

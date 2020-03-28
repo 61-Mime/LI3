@@ -10,6 +10,7 @@ typedef struct sgv
     THashC* cli;
     THashP* prod;
     THashSales* sales;
+    THashFact* fact;
     // Faturação
 }*SGV;
 

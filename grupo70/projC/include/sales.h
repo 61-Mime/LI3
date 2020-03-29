@@ -29,8 +29,8 @@ typedef struct tsale {
 
 typedef struct thashsalesp {
   int size1;
-  TSale tblp[26];
-  TSale tblc[26];
+  TSale tblp[78];
+  TSale tblc[78];
 } THashSales;
 
 // Functions

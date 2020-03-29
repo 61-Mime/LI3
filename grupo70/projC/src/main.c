@@ -11,9 +11,9 @@ int main()
 
   sgv = loadSGVFromFiles(sgv, path);
 
-  //printSGV(sgv);
+  printSGV(sgv);
 
-  destroySGV(sgv);
+  //destroySGV(sgv);
 
   return 0;
 }

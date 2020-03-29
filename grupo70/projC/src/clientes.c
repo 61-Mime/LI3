@@ -32,7 +32,7 @@ int searchCli(char* cli, THashC* tcli){
 
 int hashC(char c)
 {
-  return c - 65;
+  return (c - 65);
 }
 
 int cliVal(char *cliente)

@@ -23,9 +23,9 @@ SGV loadSGVFromFiles(SGV sgv, char* filesFolderPath) {
 }
 
 void printSGV(SGV sgv) {
-    printProd(sgv->prod);
+    //printProd(sgv->prod);
     //printCli(sgv->cli);
-    //printSales(sgv->sales);
+    printSales(sgv->sales);
     //printFact(sgv->fact);
 }
 

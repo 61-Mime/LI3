@@ -18,11 +18,6 @@ typedef struct sale{
 typedef struct list {
   char* key;
   int size3;
-  int vendidos;
-  int numeroN;
-  int numeroP;
-  int facturacaoN;
-  int facturacaoP;
   Sale* venda;
 } List;
 
@@ -34,10 +29,8 @@ typedef struct tsale {
 
 typedef struct thashsalesp {
   int size1;
-  int comprados;
-  int compradores;
-  TSale tblp[78];
-  TSale tblc[78];
+  TSale tblp[26];
+  TSale tblc[26];
 } THashSales;
 
 // Functions

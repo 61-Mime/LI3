@@ -50,15 +50,17 @@ int prodVal(char *prod)
   return 1;
 }
 
-int tblProd(THashP* tprod)
+int tblProd(THashP* tprod, char* filePath)
 {
   FILE* fprod;
   char* buffer= malloc(sizeof(char) * MAX);
   int i, pos;
 
-  if((fprod = fopen("../files/Produtos.txt", "r")) == NULL)
+  if((fprod = fopen(filePath, "r")) == NULL) {
+    perror(filePath);
     return -1;
-
+  }
+    
   while(fgets(buffer,MAX,fprod))
   {
     buffer = strsep(&buffer, "\r");

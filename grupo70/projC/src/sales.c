@@ -196,13 +196,15 @@ void quickSortS(Sale *sales, int low, int high)
 }
 
 // Abre o array das vendas e passa-as para uma struct
-int tblSales(THashSales * sales, THashP* tprod, THashC* tcli) {
+int tblSales(THashSales * sales, THashP* tprod, THashC* tcli, char* filePath) {
   FILE *fsales;
   char* buffer= malloc(sizeof(char) * MAX);
 
-  if((fsales = fopen("../files/Vendas_1M.txt", "r")) == NULL)
+  if((fsales = fopen(filePath, "r")) == NULL) {
+    perror(filePath);
     return -1;
-
+  }
+    
   copyTbl(sales, tprod, tcli);
 
   while(fgets(buffer,MAX,fsales)) {

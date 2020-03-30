@@ -16,8 +16,15 @@ typedef struct sgv
 
 // Functions
 SGV initSGV();
-SGV loadSGVFromFiles(SGV sgv, char* filesFolderPath);
+SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath,
+                              char* productsFilePath,
+                              char* salesFilePath
+                              );
+void getCurrentFilesInfo(SGV sgv);
 void printSGV(SGV sgv);
 void destroySGV(SGV sgv);
+void getProductsStartedByLetter(SGV sgv, char letter);
+void getClientsAndProductsNeverBoughtCount(SGV sgv);
+void getProductsBoughtByClient(SGV sgv, char* clientID);
 
 #endif

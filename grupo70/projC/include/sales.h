@@ -37,7 +37,7 @@ typedef struct thashsalesp {
 
 // Functions
 THashSales* initSales();
-int tblSales(THashSales* salesp, THashP* prod, THashC* cli);
+int tblSales(THashSales* salesp, THashP* prod, THashC* cli, char* filePath);
 void printSales(THashSales* salesp);
 void freeSales(THashSales* sales);
 

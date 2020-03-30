@@ -49,14 +49,16 @@ int cliVal(char *cliente)
   return 1;
 }
 
-int tblCli(THashC* tcli)
+int tblCli(THashC* tcli, char* filePath)
 {
-  FILE* fcli = fopen("../files/Clientes.txt", "r");
+  FILE* fcli;
   char* buffer= malloc(sizeof(char) * MAX);
   int i, pos;
 
-  if((fcli = fopen("../files/Clientes.txt", "r")) == NULL)
+  if((fcli = fopen(filePath, "r")) == NULL) {
+    perror(filePath);
     return -1;
+  }
 
   while(fgets(buffer,MAX,fcli))
   {

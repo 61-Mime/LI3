@@ -5,15 +5,24 @@ SGV sgv;
 
 int main()
 {
-  char path[] = "../files";
+  char productPath[] = "../files/Produtos.txt";
+  char clientPath[] = "../files/Clientes.txt";
+  char salesPath[] = "../files/Vendas_1M.txt";
+  char clientID[] = "R2292";
 
   sgv = initSGV();
 
-  sgv = loadSGVFromFiles(sgv, path);
+  sgv = loadSGVFromFiles(sgv, clientPath, productPath, salesPath);
 
-  printSGV(sgv);
+  //printSGV(sgv);
+  
+  //getProductsStartedByLetter(sgv, 'A');
 
-  //destroySGV(sgv);
+  //getClientsAndProductsNeverBoughtCount(sgv);
+
+  getProductsBoughtByClient(sgv, clientID);
+
+  destroySGV(sgv);
 
   return 0;
 }

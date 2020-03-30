@@ -5,6 +5,7 @@
 #include "clientes.h"
 #include "sales.h"
 #include "faturacao.h"
+#include "filial.h"
 
 typedef struct sgv
 {
@@ -12,6 +13,7 @@ typedef struct sgv
     THashP* prod;
     THashSales* sales;
     THashFact* fact;
+    Filiais* fil;
 }*SGV;
 
 // Functions

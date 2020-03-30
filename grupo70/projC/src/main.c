@@ -10,20 +10,7 @@ int main()
 
   intrepertador(sgv);
 
-  //sgv = loadSGVFromFiles(sgv, clientPath, productPath, salesPath);
-
-  //printSGV(sgv);
-
-  //getProductsStartedByLetter(sgv, 'A');
-
-  //getClientsAndProductsNeverBoughtCount(sgv);
-
-  //getProductsBoughtByClient(sgv, clientID);
-  //getProductBuyers(sgv,"ZZ1804",3);
-
-  //getSalesAndProfit(sgv,1,10);
-
-  //destroySGV(sgv);
+  destroySGV(sgv);
 
   return 0;
 }

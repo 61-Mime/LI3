@@ -3,7 +3,6 @@
 #include <string.h>
 #include "sgv.h"
 
-// Querie 1
 SGV initSGV() {
     SGV sgv = malloc(sizeof(struct sgv));
 
@@ -11,6 +10,7 @@ SGV initSGV() {
     sgv->cli = initCli();
     sgv->sales = initSales();
     sgv->fact = initFact();
+    sgv->fil = initFil();
 
     return sgv;
 }
@@ -20,7 +20,7 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, cha
     tblCli(sgv->cli, clientsFilePath);
     tblSales(sgv->sales, sgv->prod, sgv->cli, salesFilePath);
     tblFact(sgv->sales,sgv->fact);
-
+    //load Fil
 
     return sgv;
 }
@@ -40,6 +40,7 @@ void destroySGV(SGV sgv) {
     freeProd(sgv->prod);
     freeCli(sgv->cli);
     freeSales(sgv->sales);
-    //freeFact(sgv->fact);
+    freeFact(sgv->fact);
+    
     free(sgv);
 }

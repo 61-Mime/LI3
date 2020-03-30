@@ -1,6 +1,7 @@
 #ifndef __filial_h
 #define __filial_h
 
+#include "sales.h"
 
 typedef struct venda{
   char* p;
@@ -20,18 +21,21 @@ typedef struct lista{
 
 typedef struct hsale{
   int size2;
-  Lista* lista;
+  Lista* list;
 } HSale;
 
 typedef struct filial{
   int size1;
-  HSale tbf[26];
+  HSale tbl[26];
 } Filial;
 
-typedef struct branch{
-  Filial filial1;
-  Filial filial2;
-  Filial filial3;
-} Branch;
+typedef struct filiais{
+  Filial f1;
+  Filial f2;
+  Filial f3;
+} Filiais;
+
+Filiais* initFil();
+void freeFil(Filiais* fil);
 
 #endif

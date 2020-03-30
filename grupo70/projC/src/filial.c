@@ -1,3 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "filial.h"
+
+#define SIZE 26
+
+Filiais* initFil() {
+  Filiais* fil = malloc(sizeof(Filiais));
+
+  fil->f1.size1 = 0;
+  fil->f2.size1 = 0;
+  fil->f3.size1 = 0;
+
+  for(int i=0; i<SIZE; i++) {
+    fil->f1.tbl[i].list = NULL;
+    fil->f1.tbl[i].size2 = 0;
+
+    fil->f2.tbl[i].list = NULL;
+    fil->f2.tbl[i].size2 = 0;
+
+    fil->f3.tbl[i].list = NULL;
+    fil->f3.tbl[i].size2 = 0;
+  }
+
+  return fil;
+}
+
+void freeFil(Filiais* fil) {
+  free(fil);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 void ProdCliComp(THashSales* sales,int hash,int pos,int tabela) {
   int p1,p2;

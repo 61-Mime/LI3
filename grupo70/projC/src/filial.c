@@ -5,28 +5,23 @@
 
 #define SIZE 26
 
-Filiais* initFil() {
-  Filiais* fil = malloc(sizeof(Filiais));
+TblFil* initFil() {
+  TblFil* fil = malloc(sizeof(TblFil));
 
-  fil->f1.size1 = 0;
-  fil->f2.size1 = 0;
-  fil->f3.size1 = 0;
+  fil->size1 = 0;
 
   for(int i=0; i<SIZE; i++) {
-    fil->f1.tbl[i].list = NULL;
-    fil->f1.tbl[i].size2 = 0;
+    fil->tblc[i].list = NULL;
+    fil->tblc[i].size2 = 0;
 
-    fil->f2.tbl[i].list = NULL;
-    fil->f2.tbl[i].size2 = 0;
-
-    fil->f3.tbl[i].list = NULL;
-    fil->f3.tbl[i].size2 = 0;
+    fil->tblp[i].list = NULL;
+    fil->tblp[i].size2 = 0;
   }
 
   return fil;
 }
 
-void freeFil(Filiais* fil) {
+void freeFil(TblFil* fil) {
   free(fil);
 }
 

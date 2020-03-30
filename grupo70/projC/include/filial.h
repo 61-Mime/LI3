@@ -5,16 +5,14 @@
 
 typedef struct venda{
   char* p;
-  float price;
-  int uni;
   char* type;
   char* c;
   int month;
-  int branch;
 } Venda;
 
 typedef struct lista{
   char* key;
+  int used; // 0-notused 1-used
   int size3;
   Venda* venda;
 } Lista;
@@ -26,16 +24,11 @@ typedef struct hsale{
 
 typedef struct filial{
   int size1;
-  HSale tbl[26];
-} Filial;
+  HSale tblc[26];
+  HSale tblp[26];
+} TblFil;
 
-typedef struct filiais{
-  Filial f1;
-  Filial f2;
-  Filial f3;
-} Filiais;
-
-Filiais* initFil();
-void freeFil(Filiais* fil);
+TblFil* initFil();
+void freeFil(TblFil* fil);
 
 #endif

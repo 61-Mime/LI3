@@ -6,6 +6,7 @@
 typedef struct factM {
   int vendasN;
   int vendasP;
+  int numeroCli;
   float facturacaoN;
   float facturacaoP;
 } FMensal;

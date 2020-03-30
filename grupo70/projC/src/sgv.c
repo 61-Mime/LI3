@@ -10,7 +10,9 @@ SGV initSGV() {
     sgv->cli = initCli();
     sgv->sales = initSales();
     sgv->fact = initFact();
-    sgv->fil = initFil();
+    sgv->fil1 = initFil();
+    sgv->fil2 = initFil();
+    sgv->fil3 = initFil();
 
     return sgv;
 }
@@ -41,6 +43,6 @@ void destroySGV(SGV sgv) {
     freeCli(sgv->cli);
     freeSales(sgv->sales);
     freeFact(sgv->fact);
-    
+
     free(sgv);
 }

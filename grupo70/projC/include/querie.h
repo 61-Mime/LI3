@@ -2,6 +2,7 @@
 #define __querie_h
 
 #include "sgv.h"
+#include "faturacao.h"
 
 void getProductsStartedByLetter(SGV sgv, char letter);
 void getClientsAndProductsNeverBoughtCount(SGV sgv);

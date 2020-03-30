@@ -1,4 +1,5 @@
 #include "sgv.h"
+#include "querie.h"
 #include <stdio.h>
 
 SGV sgv;

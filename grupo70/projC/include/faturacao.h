@@ -3,21 +3,24 @@
 
 #include "sales.h"
 
+typedef struct factM {
+  int vendasN;
+  int vendasP;
+  float facturacaoN;
+  float facturacaoP;
+} FMensal;
+
 typedef struct fact {
   char *prod;
-  int numeroN;
-  int numeroP;
-  int facturacaoN;
-  int facturacaoP;
+  FMensal mesfilial[12][3];
 } Facturacao;
 
 typedef struct Tfact {
-  int size2;
+  int size;
   Facturacao *list;
 } TFacturacao;
 
 typedef struct thashfact {
-  int size1;
   TFacturacao tbl[26];
 } THashFact;
 

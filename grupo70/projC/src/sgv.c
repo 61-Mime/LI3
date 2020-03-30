@@ -10,7 +10,7 @@ SGV initSGV() {
     sgv->prod = initProd();
     sgv->cli = initCli();
     sgv->sales = initSales();
-    //sgv->fact = initFact();
+    sgv->fact = initFact();
 
     return sgv;
 }
@@ -19,7 +19,8 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, cha
     tblProd(sgv->prod, productsFilePath);
     tblCli(sgv->cli, clientsFilePath);
     tblSales(sgv->sales, sgv->prod, sgv->cli, salesFilePath);
-    //tblFact(sgv->sales,sgv->fact);
+    tblFact(sgv->sales,sgv->fact);
+
 
     return sgv;
 }
@@ -31,8 +32,8 @@ void getCurrentFilesInfo(SGV sgv) {
 void printSGV(SGV sgv) {
     //printProd(sgv->prod);
     //printCli(sgv->cli);
-    printSales(sgv->sales);
-    //printFact(sgv->fact);
+    //printSales(sgv->sales);
+    printFact(sgv->fact);
 }
 
 void destroySGV(SGV sgv) {

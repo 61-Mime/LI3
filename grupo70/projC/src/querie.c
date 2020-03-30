@@ -20,6 +20,7 @@ void getProductsStartedByLetter(SGV sgv, char letter) {
 // Querie 5
 
 // Querie 6
+/*
 void getClientsAndProductsNeverBoughtCount(SGV sgv) {
     int prod = sgv->prod->sizet - sgv->sales->comprados;
     int cli = sgv->cli->sizet - sgv->sales->compradores;
@@ -27,7 +28,7 @@ void getClientsAndProductsNeverBoughtCount(SGV sgv) {
     printf("Produtos não comprados: %d\n", prod);
     printf("Clientes não compradores: %d\n", cli);
 }
-
+*/
 // Querie 7
 void getProductsBoughtByClient(SGV sgv, char* clientID) {
     int i, k, hash, pos, mes;
@@ -61,27 +62,27 @@ void getProductsBoughtByClient(SGV sgv, char* clientID) {
 
 // Querie 8
 void getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
-  int n = 0,i,i2,i3,total = 0;
+  int n = 0,i,i2,i3,i4;
+  float total = 0.0;
   if(minMonth < 1 || maxMonth>12) {
     printf("Mês inválido\n");
     return;
   }
 
-  for(i = 0;i < 78;i++)
-    for(i2 = 0;i2 < sgv->sales->tblp[i].size2;i2++)
-      for(i3 = 0;i3 < sgv->sales->tblp[i].list[i2].size3 &&
-          sgv->sales->tblp[i].list[i2].venda[i3].month <= maxMonth;i3++)
-          if(sgv->sales->tblp[i].list[i2].venda[i3].month >=minMonth) {
-            n++;
-            total += sgv->sales->tblp[i].list[i2].venda[i3].uni *
-                     sgv->sales->tblp[i].list[i2].venda[i3].price;
-                     printf("%d\n", total);
-            if(total < 0) {printf("%d %d %d\n", i,i2,i3);return;}
-          }
+  for(i = 0;i < 26;i++)
+    for(i2 = 0;i2 < sgv->fact->tbl[i].size;i2++)
+      for(i3 = minMonth-1;i3 < maxMonth;i3++)
+        for(i4 = 0;i4 <= 3;i4++) {
+          n += sgv->fact->tbl[i].list[i2].mesfilial[i3][i4].vendasN +
+               sgv->fact->tbl[i].list[i2].mesfilial[i3][i4].vendasP;
+          total += sgv->fact->tbl[i].list[i2].mesfilial[i3][i4].facturacaoP +
+                   sgv->fact->tbl[i].list[i2].mesfilial[i3][i4].facturacaoN;
+          if(total < 0) {printf("%d %d %d\n", i,i2,i3);return;}
+        }
 
-  printf("Total vendas:%d\nTotal faturado:%d", n,total);
+  printf("Total vendas:%d\nTotal faturado:%f", n,total);
 }
-
+/*
 // Querie 9
 void quickSortS2(Sale *sale, int low, int high)
 {
@@ -139,7 +140,7 @@ void getProductBuyers(SGV sgv,char *prodID,int branch)
     printf("Total clientes %d\n", n);
   }
 }
-
+*/
 // Querie 10
 
 // Querie 11

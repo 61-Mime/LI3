@@ -246,7 +246,7 @@ void printSales(THashSales* sales) {
     }
   }
 
-  printf("Vendas Válidas: %d\nClientes compradores %d\nProdutos comprados %d",
+  printf("Vendas Válidas: %d\nClientes compradores %d\nProdutos comprados %d\n",
           sales->size1,sales -> compradores,sales -> comprados);
 }
 

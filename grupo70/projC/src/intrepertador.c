@@ -23,16 +23,32 @@ void menu() {
     printf("Introduza o seu comando: ");
 }
 
+int temEspaco(char* s) {
+  int r = 0, i;
+  for(i=0; s[i] && r; i++)
+    if(s[i] == ' ') r = 1;
+
+  return r;
+}
+
 void intrepertador(SGV sgv) {
     int r=1, querie=-1;
     char *buffer = NULL;
     buffer = malloc(MAX*sizeof(char));
+    char* s = NULL;
 
     while(r)
     {
         menu();
         fgets(buffer, MAX, stdin);
-        sscanf(buffer, "%d", &querie);
+        //sscanf(buffer, "%d", &querie);
+
+        if(!temEspaco(buffer))
+          s = strsep(&buffer, "\n");
+        else
+          s = strsep(&buffer, " ");
+
+        querie = atoi(s);
 
         switch(querie) {
             case 0:
@@ -44,7 +60,7 @@ void intrepertador(SGV sgv) {
 
             case 2:
                 break;
-            
+
             case 3:
                 break;
 

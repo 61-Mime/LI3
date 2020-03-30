@@ -15,12 +15,14 @@ int main()
   sgv = loadSGVFromFiles(sgv, clientPath, productPath, salesPath);
 
   //printSGV(sgv);
-  
+
   //getProductsStartedByLetter(sgv, 'A');
 
   //getClientsAndProductsNeverBoughtCount(sgv);
 
-  getProductsBoughtByClient(sgv, clientID);
+  //getProductsBoughtByClient(sgv, clientID);
+  //getProductBuyers(sgv,"ZZ1804",3);
+  getSalesAndProfit(sgv,1,10);
 
   destroySGV(sgv);
 

@@ -18,6 +18,11 @@ typedef struct sale{
 typedef struct list {
   char* key;
   int size3;
+  int vendidos;
+  int numeroN;
+  int numeroP;
+  int facturacaoN;
+  int facturacaoP;
   Sale* venda;
 } List;
 
@@ -40,5 +45,6 @@ THashSales* initSales();
 int tblSales(THashSales* salesp, THashP* prod, THashC* cli, char* filePath);
 void printSales(THashSales* salesp);
 void freeSales(THashSales* sales);
+void swapS(Sale *a, Sale *b);
 
 #endif

@@ -100,6 +100,15 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
 
     if(sales->tblp[hashp].list[posp].venda == NULL)
       ProdCliComp(sales,hashp,posp,0);
+    sales->tblp[hashp].list[posp].vendidos += uni;
+    if(type[0] == 'N') {
+      sales->tblp[hashp].list[posp].numeroN++;
+      sales->tblp[hashp].list[posp].facturacaoN += uni * price;
+    }
+    else {
+      sales->tblp[hashp].list[posp].numeroP++;
+      sales->tblp[hashp].list[posp].facturacaoP += uni * price;
+    }
     sales->tblp[hashp].list[posp].venda = realloc(sales->tblp[hashp].list[posp].venda, sizeof(Sale) * (size + 1));
     sales->tblp[hashp].list[posp].venda[size].p = sales->tblp[hashp].list[posp].key;
     sales->tblp[hashp].list[posp].venda[size].price = price;
@@ -150,7 +159,11 @@ void copyTbl(THashSales* sales, THashP* tprod, THashC* tcli)
         strcpy(sales->tblp[i+26*k].list[j].key, tprod->tbl[i].list[j]);
 
         sales->tblp[i+26*k].list[j].size3 = 0;
-        sales->tblp[i+26*k].list[j].venda = NULL;
+        sales->tblp[i+26*k].list[j].vendidos = 0;
+        sales->tblp[i+26*k].list[j].numeroN = 0;
+        sales->tblp[i+26*k].list[j].numeroP = 0;
+        sales->tblp[i+26*k].list[j].facturacaoP = 0;
+        sales->tblp[i+26*k].list[j].facturacaoN = 0;
       }
 
       for(j=0; j<tcli->tbl[i].size; j++) {
@@ -204,7 +217,7 @@ int tblSales(THashSales * sales, THashP* tprod, THashC* tcli, char* filePath) {
     perror(filePath);
     return -1;
   }
-    
+
   copyTbl(sales, tprod, tcli);
 
   while(fgets(buffer,MAX,fsales)) {
@@ -235,7 +248,7 @@ void printSales(THashSales* sales) {
 
   for(i=0; i<SIZE*3; i++){
     for(j=0 ;j<sales->tblp[i].size2; j++) {
-      printf("\n" );
+      printf("FaturaçãoN:%d FaturaçãoP:%d\n", sales->tblp[i].list[j].facturacaoN,sales->tblp[i].list[j].facturacaoP);
       for(c=0 ;c<sales->tblp[i].list[j].size3; c++)
         printf("%s %f %d %s %s %d %d\r\n",
                 sales->tblp[i].list[j].venda[c].p,

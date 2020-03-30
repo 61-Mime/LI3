@@ -72,7 +72,7 @@ void getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
   for(i = 0;i < 26;i++)
     for(i2 = 0;i2 < sgv->fact->tbl[i].size;i2++)
       for(i3 = minMonth-1;i3 < maxMonth;i3++)
-        for(i4 = 0;i4 <= 3;i4++) {
+        for(i4 = 0;i4 < 3;i4++) {
           n += sgv->fact->tbl[i].list[i2].mesfilial[i3][i4].vendasN +
                sgv->fact->tbl[i].list[i2].mesfilial[i3][i4].vendasP;
           total += sgv->fact->tbl[i].list[i2].mesfilial[i3][i4].facturacaoP +

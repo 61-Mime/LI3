@@ -21,7 +21,7 @@ THashFact* initFact() {
 void tblFact(THashSales *sales, THashFact *fact) {
   int i,i2,i3,f;
 
-  for(i = 0;i < SIZE;i++) {
+  for(i = 0;i < SIZE * 3;i++) {
     fact -> tbl[i].size2 = sales -> tblp[i].size2;
     fact -> size1 += fact -> tbl[i].size2;
     fact -> tbl[i].list = malloc(sizeof(Facturacao) * fact -> tbl[i].size2);
@@ -68,6 +68,6 @@ void freeFact(THashFact* fact) {
 
     for(i=0; i<SIZE; i++)
         free(fact->tbl[i].list);
-    
+
     free(fact);
 }

@@ -17,7 +17,7 @@ SGV loadSGVFromFiles(SGV sgv, char* filesFolderPath) {
     tblProd(sgv->prod);
     tblCli(sgv->cli);
     tblSales(sgv->sales, sgv->prod, sgv->cli);
-    tblFact(sgv->sales,sgv->fact);
+    //tblFact(sgv->sales,sgv->fact);
 
     return sgv;
 }

@@ -6,7 +6,7 @@ SGV sgv;
 int main()
 {
   char path[] = "../files";
-  
+
   sgv = initSGV();
 
   sgv = loadSGVFromFiles(sgv, path);

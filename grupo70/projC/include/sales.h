@@ -29,6 +29,8 @@ typedef struct tsale {
 
 typedef struct thashsalesp {
   int size1;
+  int comprados;
+  int compradores;
   TSale tblp[78];
   TSale tblc[78];
 } THashSales;

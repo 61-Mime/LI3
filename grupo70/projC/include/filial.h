@@ -4,9 +4,9 @@
 #include "sales.h"
 
 typedef struct venda{
-  char* p;
-  char* type;
-  char* c;
+  char p[10];
+  char type[2];
+  char c[10];
   int month;
   int uni;
   float price;
@@ -30,7 +30,8 @@ typedef struct filial{
 } TblFil;
 
 TblFil* initFil();
-void tblFil(THashSales *sales,TblFil *fil, int filial);
+void tblFil(THashSales *sales,TblFil *fil,int branch);
+void printFil(TblFil* fil);
 void freeFil(TblFil* fil);
 
 #endif

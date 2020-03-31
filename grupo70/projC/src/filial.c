@@ -22,59 +22,57 @@ TblFil* initFil() {
 
 void preenchevenda(Venda *v,Sale v2) {
   v->month = v2.month;
-  v->uni = v2.uni;
   v->price = v2.price;
   v->branch = v2.branch;
-  v->c = malloc(sizeof(char) * SMAX);
-  v->p = malloc(sizeof(char) * SMAX);
-  v->type = malloc(sizeof(char) * 2);
+  v->uni = v2.uni;
   strcpy(v->c,v2.c);
   strcpy(v->p,v2.p);
   strcpy(v->type,v2.type);
 }
 
-void tblFil(THashSales *sales,TblFil *fil, int filial) {
-  int i,j,k;
+void tblFil(THashSales *sales,TblFil *fil1,int branch) {
+  int i,j,k,sfil;
 
   for(i = 0;i < SIZE;i++) {
-    fil->tblp[i].list = malloc(sizeof(Lista) * sales->tblp[i].size2);
-    fil->tblp[i].size2 = sales->tblp[i].size2;
+    fil1->tblp[i].list = malloc(sizeof(Lista) * sales->tblp[i].size2);
+    fil1->tblp[i].size2 = sales->tblp[i].size2;
+
+    fil1->tblc[i].list = malloc(sizeof(Lista) * sales->tblc[i].size2);
+    fil1->tblc[i].size2 = sales->tblc[i].size2;
 
     for(j = 0;j < sales->tblp[i].size2;j++) {
-      fil->tblp[i].list[j].key = malloc(sizeof(char)*SMAX);
-      strcpy(fil->tblp[i].list[j].key, sales->tblp[i].list[j].key);
-      fil->tblp[i].list[j].size3 = 0;
+      fil1->tblp[i].list[j].key = malloc(sizeof(char)*SMAX);
+      strcpy(fil1->tblp[i].list[j].key,sales->tblp[i].list[j].key);
+      fil1->tblp[i].list[j].size3 = 0;
 
       for(k = 0;k < sales->tblp[i].list[j].size3;k++) {
-        if(sales->tblp[i].list[j].venda[k].branch == filial) {
-          fil->tblp[i].list[j].venda = realloc(fil->tblp[i].list[j].venda,sizeof(Venda) * (fil->tblp[i].list[j].size3 + 1));
-          fil->tblp[i].list[j].size3++;
-          preenchevenda(&fil->tblp[i].list[j].venda[k], sales->tblp[i].list[j].venda[k]);
-          printf("%d %d %d\n", i, j, k);
+        if(sales->tblp[i].list[j].venda[k].branch == branch) {
+          sfil = fil1->tblp[i].list[j].size3;
+          fil1->tblp[i].list[j].size3++;
+          fil1->tblp[i].list[j].venda = realloc(fil1->tblp[i].list[j].venda,sizeof(Venda) * (sfil+1));
+          preenchevenda(&fil1->tblp[i].list[j].venda[sfil],sales->tblp[i].list[j].venda[k]);
         }
       }
     }
 
-    fil->tblc[i].list = malloc(sizeof(Lista) * sales->tblc[i].size2);
-    fil ->tblc[i].size2 = sales->tblc[i].size2;
-
     for(j = 0;j < sales->tblc[i].size2;j++) {
-      fil->tblc[i].list[j].key = malloc(sizeof(char)*SMAX);
-      strcpy(fil->tblc[i].list[j].key,sales->tblc[i].list[j].key);
-      fil->tblc[i].list[j].size3 = 0;
+      fil1->tblc[i].list[j].key = malloc(sizeof(char)*SMAX);
+      strcpy(fil1->tblc[i].list[j].key,sales->tblc[i].list[j].key);
+      fil1->tblc[i].list[j].size3 = 0;
 
       for(k = 0;k < sales->tblc[i].list[j].size3;k++) {
-        if(sales->tblc[i].list[j].venda[k].branch == filial) {
-          fil->tblc[i].list[j].venda = realloc(fil->tblc[i].list[j].venda,sizeof(Venda) * (fil->tblc[i].list[j].size3 + 1));
-          fil->tblc[i].list[j].size3++;
-          preenchevenda(&fil->tblc[i].list[j].venda[k],sales->tblc[i].list[j].venda[k]);
+        if(sales->tblc[i].list[j].venda[k].branch == branch) {
+          sfil = fil1->tblc[i].list[j].size3;
+          fil1->tblc[i].list[j].size3++;
+          fil1->tblc[i].list[j].venda = realloc(fil1->tblc[i].list[j].venda,sizeof(Venda) * (sfil + 1));
+          preenchevenda(&fil1->tblc[i].list[j].venda[sfil],sales->tblc[i].list[j].venda[k]);
         }
       }
     }
   }
 }
 
-void printFils(TblFil* fil) {
+void printFil(TblFil* fil) {
   int i,j,c;
 
   for(i=0; i<SIZE; i++){

@@ -8,11 +8,13 @@ typedef struct venda{
   char* type;
   char* c;
   int month;
+  int uni;
+  float price;
+  int branch;
 } Venda;
 
 typedef struct lista{
   char* key;
-  int used; // 0-notused 1-used
   int size3;
   Venda* venda;
 } Lista;
@@ -23,7 +25,6 @@ typedef struct hsale{
 } HSale;
 
 typedef struct filial{
-  int size1;
   HSale tblc[26];
   HSale tblp[26];
 } TblFil;

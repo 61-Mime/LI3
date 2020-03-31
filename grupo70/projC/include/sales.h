@@ -38,6 +38,6 @@ THashSales* initSales();
 int tblSales(THashSales* salesp, THashP* prod, THashC* cli, char* filePath);
 void printSales(THashSales* salesp);
 void freeSales(THashSales* sales);
-void swapS(Sale *a, Sale *b);
+//void swapS(Sale *a, Sale *b);
 
 #endif

@@ -82,9 +82,16 @@ void getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
 
   printf("Total vendas:%d\nTotal faturado:%f", n,total);
 }
-/*
+
 // Querie 9
-void quickSortS2(Sale *sale, int low, int high)
+void swapS(Venda *a, Venda *b)
+{
+    Venda aux = *a;
+    *a = *b;
+    *b = aux;
+}
+
+void quickSortS2(Venda *sale, int low, int high)
 {
     if (low < high)
     {
@@ -112,24 +119,32 @@ void getProductBuyers(SGV sgv,char *prodID,int branch)
 {
   int pos = searchProd(prodID, sgv->prod),n = 0,j,r = 1;
   if(pos != -1) {
-    int hash = hashP(prodID[0]) + 26*(branch - 1);
-    Sale *s = NULL;
-    s = realloc(s, sizeof(Sale) * (sgv->sales->tblp[hash].list[pos].size3));
+    TblFil *fil;
+    int hash = hashP(prodID[0]);
+    Venda *s = NULL;
 
-    for(int i = 0;i < sgv->sales->tblp[hash].list[pos].size3;i++) {
-      s[i] = sgv->sales->tblp[hash].list[pos].venda[i];
+    if(branch == 1)
+      fil = sgv->fil1;
+    else if(branch == 2)
+      fil = sgv->fil2;
+    else
+      fil = sgv->fil3;
+
+    s = realloc(s, sizeof(Venda) * (fil->tblp[hash].list[pos].size3));
+
+    for(int i = 0;i < fil->tblp[hash].list[pos].size3;i++) {
+      s[i] = fil->tblp[hash].list[pos].venda[i];
     }
 
-    quickSortS2(s,0,sgv->sales->tblp[hash].list[pos].size3 - 1);
+    quickSortS2(s,0,fil->tblp[hash].list[pos].size3 - 1);
 
-    for(int i = 0;i < sgv->sales->tblp[hash].list[pos].size3;i++) {
+    for(int i = 0;i < fil->tblp[hash].list[pos].size3;i++) {
       if(i > 0 && strcmp(s[i].c,s[i - 1].c) == 0) {
         for(j = i - 1;i >= 0 && !strcmp(s[i].c,s[j].c) && r;j--)
           if(s[j].type[0] == s[j + 1].type[0])
             r = 0;
 
-        if(r)
-          printf("Cliente:%s Tipo de compra:%s\n", s[i].c,s[i].type);
+        if(r) printf("Cliente:%s Tipo de compra:%s\n", s[i].c,s[i].type);
       }
       else {
         n++;
@@ -140,7 +155,7 @@ void getProductBuyers(SGV sgv,char *prodID,int branch)
     printf("Total clientes %d\n", n);
   }
 }
-*/
+
 // Querie 10
 
 // Querie 11

@@ -108,7 +108,7 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
 
 void copyTbl(THashSales* sales, THashP* tprod, THashC* tcli)
 {
-  int i, j, k;
+  int i, j;
 
   for(i=0; i<SIZE; i++) {
     sales->tblp[i].list = malloc(sizeof(List) * tprod->tbl[i].size);

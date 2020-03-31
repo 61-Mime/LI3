@@ -8,7 +8,8 @@ int main()
 {
   sgv = initSGV();
 
-  intrepertador(sgv);
+  loadSGVFromFiles(sgv, "../files/Clientes.txt", "../files/Produtos.txt", "../files/Vendas_1M.txt"),
+  //intrepertador(sgv);
 
   destroySGV(sgv);
 

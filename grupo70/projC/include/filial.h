@@ -30,6 +30,7 @@ typedef struct filial{
 } TblFil;
 
 TblFil* initFil();
+void tblFil(THashSales *sales,TblFil *fil, int filial);
 void freeFil(TblFil* fil);
 
 #endif

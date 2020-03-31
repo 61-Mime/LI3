@@ -22,7 +22,9 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, cha
     tblCli(sgv->cli, clientsFilePath);
     tblSales(sgv->sales, sgv->prod, sgv->cli, salesFilePath);
     tblFact(sgv->sales,sgv->fact);
-    //load Fil
+    tblFil(sgv->sales, sgv->fil1, 1);
+    tblFil(sgv->sales, sgv->fil2, 2);
+    tblFil(sgv->sales, sgv->fil3, 3);
 
     return sgv;
 }

@@ -25,7 +25,7 @@ void menu() {
 
 int temEspaco(char* s) {
   int r = 0, i;
-  for(i=0; s[i] && r; i++)
+  for(i=0; s[i] && !r; i++)
     if(s[i] == ' ') r = 1;
 
   return r;
@@ -36,6 +36,7 @@ void intrepertador(SGV sgv) {
     char *buffer = NULL;
     buffer = malloc(MAX*sizeof(char));
     char* s = NULL;
+    char* c1 = NULL;
 
     while(r)
     {
@@ -56,9 +57,35 @@ void intrepertador(SGV sgv) {
                 break;
 
             case 1:
+                if(!temEspaco(buffer))
+                  printf("Querie inválida\n");
+                else{
+                  c1 = strsep(&buffer, " ");
+                  if(!temEspaco(buffer))
+                    printf("Querie inválida\n");
+                  else {
+                    char* c2 = strsep(&buffer, " ");
+                    if(temEspaco(buffer))
+                      printf("Querie inválida\n");
+                    else {
+                      char* c3 = strsep(&buffer, "\n");
+                      printf("done\n%s %s %s\n", c1, c2, c3);
+                    }
+                  }
+
+                //querie1(c1, c2, c3);
+                }
                 break;
 
             case 2:
+                if(temEspaco(buffer))
+                  printf("Querie inválida\n");
+                else{
+                  c1 = strsep(&buffer, "\n");
+                  printf("done\n%s\n", c1);
+
+                //getProductsStartedByLetter(sgv, c1);
+                }
                 break;
 
             case 3:

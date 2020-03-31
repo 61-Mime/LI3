@@ -13,9 +13,7 @@ typedef struct sgv
     THashP* prod;
     THashSales* sales;
     THashFact* fact;
-    TblFil* fil1;
-    TblFil* fil2;
-    TblFil* fil3;
+    GFiliais* gfil;
 }*SGV;
 
 // Functions

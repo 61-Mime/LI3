@@ -22,6 +22,8 @@ typedef struct Tfact {
 } TFacturacao;
 
 typedef struct thashfact {
+  int prodNaoComprado;
+  int cliNaoComprador;
   TFacturacao tbl[26];
 } THashFact;
 

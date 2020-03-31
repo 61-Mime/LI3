@@ -3,35 +3,49 @@
 
 #include "sales.h"
 
-typedef struct venda{
-  char p[10];
-  char type[2];
-  char c[10];
-  int month;
-  int uni;
-  float price;
-  int branch;
-} Venda;
+typedef struct pordcli{
+  char prod[10];
+  int uni[12];
+  float fat;
+} ProdCli;
 
-typedef struct lista{
+typedef struct listc{
   char* key;
-  int size3;
-  Venda* venda;
-} Lista;
+  int sizeProds;
+  ProdCli* prods;
+} ListC;
 
-typedef struct hsale{
-  int size2;
-  Lista* list;
-} HSale;
+typedef struct tfilc{
+  int sizeCli;
+  ListC* list;
+} TFilialC;
+
+typedef struct listp{
+  char* key;
+  int sizeN;
+  int sizeP;
+  char** cliN;
+  char** cliP;
+} ListP;
+
+typedef struct tfilp{
+  int sizeProd;
+  ListP* list;
+} TFilialP;
 
 typedef struct filial{
-  HSale tblc[26];
-  HSale tblp[26];
-} TblFil;
+  TFilialC tblc[26];
+  TFilialP tblp[26];
+} THashFilial;
 
-TblFil* initFil();
-void tblFil(THashSales *sales,TblFil *fil,int branch);
-void printFil(TblFil* fil);
-void freeFil(TblFil* fil);
+typedef struct gfiliais{
+  THashFilial fil1;
+  THashFilial fil2;
+  THashFilial fil3;
+} GFiliais;
+ 
+GFiliais* initGFil();
+void tblGFil(GFiliais *fil, THashSales *sales);
+void freeGFil(GFiliais* fil);
 
 #endif

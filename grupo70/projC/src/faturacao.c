@@ -9,6 +9,9 @@
 THashFact* initFact() {
   THashFact *fact = malloc(sizeof(THashFact));
 
+  fact->cliNaoComprador = 0;
+  fact->prodNaoComprado = 0;
+
   for(int i=0; i<SIZE; i++) {
     fact->tbl[i].size = 0;
     fact->tbl[i].list = NULL;
@@ -46,7 +49,10 @@ void tblFact(THashSales *sales, THashFact *fact) {
       fact -> tbl[i].list[i2] = initFacturacao();
       strcpy(fact -> tbl[i].list[i2].prod,sales -> tblp[i].list[i2].key);
 
-      for(i3 = 0;i3 < sales -> tblp[i].list[i2].size3;i3++) {
+      if(sales->tblp[i].list[i2].size3 == 0)
+        fact->prodNaoComprado++;
+
+      for(i3=0; i3<sales->tblp[i].list[i2].size3; i3++) {
         f = sales->tblp[i].list[i2].venda[i3].price * sales->tblp[i].list[i2].venda[i3].uni;
         mes = sales->tblp[i].list[i2].venda[i3].month;
         filial = sales->tblp[i].list[i2].venda[i3].branch;
@@ -61,6 +67,10 @@ void tblFact(THashSales *sales, THashFact *fact) {
         }
       }
     }
+
+    for(i2=0; i2<sales->tblc[i].size2; i2++)
+      if(sales->tblc[i].list[i2].size3 == 0)
+        fact->cliNaoComprador++;
   }
 }
 

@@ -13,10 +13,10 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-exe: $(OBJ)
+program: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 clean:
 	rm -f obj/*.o
-	rm -f exe
+	rm -f program
 	rm -f ..file/Vendas_1MValidas.txt

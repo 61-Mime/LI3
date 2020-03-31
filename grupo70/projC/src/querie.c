@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "querie.h"
-
+/*
 // Querie 2
 void getProductsStartedByLetter(SGV sgv, char letter) {
     int i, hash = hashP(letter);
@@ -20,7 +20,7 @@ void getProductsStartedByLetter(SGV sgv, char letter) {
 // Querie 5
 
 // Querie 6
-/*
+
 void getClientsAndProductsNeverBoughtCount(SGV sgv) {
     int prod = sgv->prod->sizet - sgv->sales->comprados;
     int cli = sgv->cli->sizet - sgv->sales->compradores;
@@ -28,7 +28,7 @@ void getClientsAndProductsNeverBoughtCount(SGV sgv) {
     printf("Produtos não comprados: %d\n", prod);
     printf("Clientes não compradores: %d\n", cli);
 }
-*/
+
 // Querie 7
 void getProductsBoughtByClient(SGV sgv, char* clientID) {
     int i, k, hash, pos, mes;
@@ -163,3 +163,4 @@ void getProductBuyers(SGV sgv,char *prodID,int branch)
 // Querie 12
 
 // Querie 13
+*/

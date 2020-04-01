@@ -74,20 +74,6 @@ void tblFact(THashSales *sales, THashFact *fact) {
   }
 }
 
-void printFact(THashFact* fact) {
-  int i,i2,i3;
-
-  for(i=0; i<SIZE; i++)
-    for(i2=0 ;i2<fact->tbl[i].size; i2++)
-      for(i3=0 ;i3<12; i3++)
-        printf("mês%d %s %d %d %f %f\r\n",i3,
-                fact->tbl[i].list[i2].prod,
-                fact->tbl[i].list[i2].mesfilial[i3][0].vendasP,
-                fact->tbl[i].list[i2].mesfilial[i3][0].vendasN,
-                fact->tbl[i].list[i2].mesfilial[i3][0].facturacaoP,
-                fact->tbl[i].list[i2].mesfilial[i3][0].facturacaoN);
-}
-
 void freeFact(THashFact* fact) {
     int i;
 

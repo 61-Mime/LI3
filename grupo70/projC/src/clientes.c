@@ -11,7 +11,8 @@ THashC* initCli()
   THashC* tcli = malloc(sizeof(THashC));
   int i;
 
-  tcli->sizet = 0;
+  tcli->nValidas = 0;
+  tcli->nLidas = 0;
 
   for(i=0; i<SIZE; i++) {
     tcli->tbl[i].size = 0;
@@ -75,8 +76,10 @@ int tblCli(THashC* tcli, char* filePath)
       strcpy(tcli->tbl[i].list[pos],buffer);
 
       tcli->tbl[i].size ++;
-      tcli->sizet ++;
+      tcli->nValidas ++;
     }
+
+    tcli->nLidas ++;
   }
 
   fclose(fcli);
@@ -85,16 +88,6 @@ int tblCli(THashC* tcli, char* filePath)
     quickSort(tcli->tbl[i].list, 0, tcli->tbl[i].size - 1);
 
   return 0;
-}
-
-void printCli(THashC* cli) {
-  int i, j;
-
-  for(i=0; i<SIZE; i++)
-    for(j=0; j<cli->tbl[i].size; j++)
-      printf("%s\n", cli->tbl[i].list[j]);
-
-  printf("Total Clientes: %d\n", cli->sizet);
 }
 
 void freeCli(THashC* cli) {

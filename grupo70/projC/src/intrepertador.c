@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "intrepertador.h"
 
 #define MAX 100
@@ -9,7 +10,7 @@ void menu() {
     printf("\n- 0\n");
     printf("- 1 <pathProd> <pathCli> <pathSales>\n");
     printf("- 2 <letter>\n");
-    printf("- 3 <prodID> <month>\n");
+    printf("- 3 <prodID> <month> <type>\n");
     printf("- 4 <branchID>\n");
     printf("- 5\n");
     printf("- 6\n");
@@ -20,7 +21,6 @@ void menu() {
     printf("- 11 <limit>\n");
     printf("- 12 <clientID> <limit>\n");
     printf("- 13\n");
-    printf("Introduza o seu comando: ");
 }
 
 int temEspaco(char* s) {
@@ -33,202 +33,249 @@ int temEspaco(char* s) {
 
 void intrepertador(SGV sgv) {
     int r=1, querie=-1, tam = 0;
-    char *buffer = NULL;
+    char *buffer = NULL, *s = NULL, *c1 = NULL, *c2 = NULL, *c3 = NULL;
     buffer = malloc(MAX*sizeof(char));
-    char* s = NULL;
+    clock_t start_t, end_t; 
 
     while(r)
     {
-        menu();
+        printf("\nIntroduza menu, um comando para executar uma querie ou 0 para sair\n");
+        printf("Introduza o seu comando: ");
         fgets(buffer, MAX, stdin);
-        //sscanf(buffer, "%d", &querie);
 
         if(!temEspaco(buffer)) {
-            tam = strlen(buffer);
             s = strsep(&buffer, "\n");
+            tam = strlen(buffer);
         }
+
         else
           s = strsep(&buffer, " ");
 
-        querie = atoi(s);
+        if(strcmp(s,"menu") == 0) {
+          menu();
+        }
 
-        switch(querie) {
-            case 0:
-                r=0;
-                break;
+        else{
+          querie = atoi(s);
 
-            case 1:
-                if(!temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, " ");
-                  if(!temEspaco(buffer)){
-                    printf("Querie inválida\n");
-                    break;
-                  }
+          switch(querie) {
+              case 0:
+                  r=0;
+                  printf("A Sair do Programa\n");
+                  break;
+
+              case 1:
+                  if(!temEspaco(buffer)) {
+                    c1 = "../files/Clientes.txt";
+                    c2 = "../files/Produtos.txt";
+                    c3 = "../files/Vendas_1M.txt";
+                    }
                   else {
-                    char* c2 = strsep(&buffer, " ");
-                    if(temEspaco(buffer)){
-                      printf("Querie inválida\n");
-                      break;
+                    c1 = strsep(&buffer, " ");
+                    if(!temEspaco(buffer)){
+                      c2 = "../files/Produtos.txt";
+                      c3 = "../files/Vendas_1M.txt";
                     }
                     else {
-                      char* c3 = strsep(&buffer, "\n");
-                      printf("done\n%s %s %s\n", c1, c2, c3);
-                      //querie1(c1, c2, c3);
+                      c2 = strsep(&buffer, " ");
+                      if(temEspaco(buffer))
+                        c3 = "../files/Vendas_1M.txt";
+
+                      else
+                        c3 = strsep(&buffer, "\n");
                     }
                   }
-                }
-                break;
+                  
+                  /*
+                  if(sgv->load == 1) {
+                    destroySGV(sgv);
+                    sgv = initSGV();
+                  }
+                  */
 
-            case 2:
-                if(temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, "\n");
-                  printf("done\n%s\n", c1);
+                  start_t = clock();
+                  loadSGVFromFiles(sgv, c1, c2, c3);
+                  end_t = clock();
 
-                //getProductsStartedByLetter(sgv, c1);
-                }
-                break;
+                  printQ1(start_t, end_t);
 
-            case 3:
-                if(!temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, " ");
+                  break;
+
+              case 2:
                   if(temEspaco(buffer))
-                    {printf("Querie invalida\n");
+                    printf("Querie inválida\n");
+
+                  else {
+                    c1 = strsep(&buffer, "\n");
+
+                    Q2* querie2 = getProductsStartedByLetter(sgv, c1[0]);
+                    printQ2(querie2, c1[0]);
+                  }
+                  break;
+
+              case 3:
+                  if(!temEspaco(buffer))
+                    printf("Querie inválida\n");
+
+                  else {
+                    c1 = strsep(&buffer, " ");
+
+                    if(!temEspaco(buffer))
+                      printf("Querie invalida\n");
+
+                    else {
+                      c2 = strsep(&buffer, " ");
+
+                      if(temEspaco(buffer))
+                        printf("Querie invalida\n");
+
+                      else {
+                        c3 = strsep(&buffer, "\n");
+
+                        Q3* querie3 = getProductSalesAndProfit(sgv, c1, atoi(c2), atoi(c3));
+                        printQ3(querie3, c1, atoi(c2));
+                      }
+                    }
+                  }
+                  break;
+
+              case 4:
+                  if(temEspaco(buffer))
+                    {printf("Querie inválida\n");
                     break;}
                   else{
-                    char* c2 = strsep(&buffer, "\n");
-                    printf("done\n%s %s\n", c1, c2);
-                    //querie3(c1,c2);
+                    char* c1 = strsep(&buffer, "\n");
+                    printf("done\n%s\n", c1);
+                    //querie4(c1);
                   }
-                }
-                break;
+                  break;
 
-            case 4:
-                if(temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, "\n");
-                  printf("done\n%s\n", c1);
-                  //querie4(c1);
-                }
-                break;
+              case 5:
+                  if(tam>2) printf("Querie inválida\n");
+                  break;
 
-            case 5:
-                if(tam>2) printf("Querie inválida\n");
-                //else {querie5();}
-                break;
+              case 6:
+                  if(tam>2) 
+                    printf("Querie inválida\n");
 
-            case 6:
-                if(tam>2) printf("Querie inválida\n");
-                //else {getClientsAndProductsNeverBoughtCount(sgv);}
-                break;
+                  else {
+                    printf(".");
+                  }
 
-            case 7:
-                if(temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, "\n");
-                  printf("done\n%s\n", c1);
-                  //getProductsBoughtByClient(sgv, c1);
-                }
-                break;
+                  break;
 
-            case 8:
-                if(!temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, " ");
+              case 7:
                   if(temEspaco(buffer))
-                    {printf("Querie invalida\n");
+                    printf("Querie inválida\n");
+
+                  else {
+                    c1 = strsep(&buffer, "\n");
+
+                    start_t = clock();
+                    Q7* querie7 = getProductsBoughtByClient(sgv, c1);
+                    end_t = clock();
+
+                    printQ7(querie7, start_t, end_t);
+                  }
+                  break;
+
+              case 8:
+                  if(!temEspaco(buffer))
+                    printf("Querie inválida\n");
+                    
+                  else {
+                    c1 = strsep(&buffer, " ");
+                    if(temEspaco(buffer))
+                      printf("Querie invalida\n");
+                      
+                    else{
+                      c2 = strsep(&buffer, "\n");
+
+                      start_t = clock();
+                      Q8* querie8 = getSalesAndProfit(sgv, atoi(c1), atoi(c2));
+                      end_t = clock();
+
+                      printQ8(querie8, start_t, end_t);
+                    }
+                  }
+                  break;
+
+              case 9:
+                  if(!temEspaco(buffer))
+                    {printf("Querie inválida\n");
                     break;}
                   else{
-                    char* c2 = strsep(&buffer, "\n");
-                    printf("done\n%s %s\n", c1, c2);
-                    //getSalesAndProfit(sgv, c1, c2));
+                    char* c1 = strsep(&buffer, " ");
+                    if(temEspaco(buffer))
+                      {printf("Querie invalida\n");
+                      break;}
+                    else{
+                      char* c2 = strsep(&buffer, "\n");
+                      printf("done\n%s %s\n", c1, c2);
+                      //getProductBuyers(sgv, c1, c2);
+                    }
                   }
-                }
-                break;
+                  break;
 
-            case 9:
-                if(!temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, " ");
-                  if(temEspaco(buffer))
-                    {printf("Querie invalida\n");
+              case 10:
+                  if(!temEspaco(buffer))
+                    {printf("Querie inválida\n");
                     break;}
                   else{
-                    char* c2 = strsep(&buffer, "\n");
-                    printf("done\n%s %s\n", c1, c2);
-                    //getProductBuyers(sgv, c1, c2);
+                    char* c1 = strsep(&buffer, " ");
+                    if(temEspaco(buffer))
+                      {printf("Querie invalida\n");
+                      break;}
+                    else{
+                      char* c2 = strsep(&buffer, "\n");
+                      printf("done\n%s %s\n", c1, c2);
+                      //querie10(c1, c2);
+                    }
                   }
-                }
-                break;
+                  break;
 
-            case 10:
-                if(!temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, " ");
+              case 11:
                   if(temEspaco(buffer))
-                    {printf("Querie invalida\n");
+                    {printf("Querie inválida\n");
                     break;}
                   else{
-                    char* c2 = strsep(&buffer, "\n");
-                    printf("done\n%s %s\n", c1, c2);
-                    //querie10(c1, c2);
+                    char* c1 = strsep(&buffer, "\n");
+                    printf("done\n%s\n", c1);
+                    //querie11(c1);
                   }
-                }
-                break;
+                  break;
 
-            case 11:
-                if(temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, "\n");
-                  printf("done\n%s\n", c1);
-                  //querie11(c1);
-                }
-                break;
-
-            case 12:
-                if(!temEspaco(buffer))
-                  {printf("Querie inválida\n");
-                  break;}
-                else{
-                  char* c1 = strsep(&buffer, " ");
-                  if(temEspaco(buffer))
-                    {printf("Querie invalida\n");
+              case 12:
+                  if(!temEspaco(buffer))
+                    {printf("Querie inválida\n");
                     break;}
                   else{
-                    char* c2 = strsep(&buffer, "\n");
-                    printf("done\n%s %s\n", c1, c2);
-                    //querie12(c1, c2);
+                    char* c1 = strsep(&buffer, " ");
+                    if(temEspaco(buffer))
+                      {printf("Querie invalida\n");
+                      break;}
+                    else{
+                      char* c2 = strsep(&buffer, "\n");
+                      printf("done\n%s %s\n", c1, c2);
+                      //querie12(c1, c2);
+                    }
                   }
-                }
-                break;
+                  break;
 
-            case 13:
-                //querie13();
-                break;
+              case 13:
+                  if(tam>3) 
+                    printf("Querie inválida\n");
 
-            default:
-                printf("Querie Inválida\n");
-                break;
+                  else {
+                    Q13* querie13 = getCurrentFilesInfo(sgv);
+                    printQ13(querie13);
+                  }
+                  break;
+
+              default:
+                  printf("Querie Inválida\n");
+                  break;
+          }
         }
     }
 }

@@ -106,3 +106,36 @@ void tblFil(THashSales *sales,TblFil *fil, int filial) {
   }
 }
 */
+
+/*
+void swapS(Venda *a, Venda *b)
+{
+    Venda aux = *a;
+    *a = *b;
+    *b = aux;
+}
+
+void quickSortS2(Venda *sale, int low, int high)
+{
+    if (low < high)
+    {
+      char* pivot = sale[high].c;
+      int i = (low - 1);
+
+      for (int j=low; j<=high-1; j++)
+      {
+          if (strcmp(sale[j].c, pivot) < 0)
+          {
+              i++;
+              swapS(&sale[i], &sale[j]);
+          }
+      }
+      swapS(&sale[i+1], &sale[high]);
+
+      int pi = i + 1;
+
+      quickSortS2(sale, low, pi - 1);
+      quickSortS2(sale, pi + 1, high);
+    }
+}
+*/

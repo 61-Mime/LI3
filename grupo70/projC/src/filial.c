@@ -82,7 +82,6 @@ void initFProd(THashSales* sales, GFiliais* gfil, int i, int j) {
 
 void preencheListC(ProdCli* prods, Sale s) {
   int i;
-  //list->prods = realloc(list->prods, sizeof(ProdCli)*(pos + 1));
 
   for(i=0; i<12; i++)
     prods->uni[i] = 0;
@@ -190,20 +189,58 @@ void tblGFil(GFiliais* gfil, THashSales* sales) {
   }
 }
 
-void printFil(GFiliais* gfil) {
-  int i,j,c;
-
-  for(i=0; i<SIZE; i++){
-    for(j=0 ;j<gfil->fil1.tblp[i].sizeProd; j++) {
-      for(c=0 ;c<gfil->fil1.tblp[i].list[j].sizeN; c++)
-        printf("%s %s\r\n",
-                gfil->fil1.tblp[i].list[j].key,
-                gfil->fil1.tblp[i].list[j].cliN[c]);
-
-    }
-  }
-}
-
 void freeGFil(GFiliais* gfil) {
-  return;
+  int i, j, k;
+
+  for(i=0; i<SIZE; i++) {
+    for(j=0; j<gfil->fil1.tblc[i].sizeCli; j++) {
+      free(gfil->fil1.tblc[i].list[j].prods);
+      free(gfil->fil2.tblc[i].list[j].prods);
+      free(gfil->fil3.tblc[i].list[j].prods);
+    }
+
+    for(j=0; j<gfil->fil1.tblp[i].sizeProd; j++) {
+      for(k=0; k<gfil->fil1.tblp[i].list[j].sizeN; k++) {
+        free(gfil->fil1.tblp[i].list[j].cliN[k]);
+      }
+      
+      for(k=0; k<gfil->fil2.tblp[i].list[j].sizeN; k++) {
+        free(gfil->fil2.tblp[i].list[j].cliN[k]);
+      }
+
+      for(k=0; k<gfil->fil3.tblp[i].list[j].sizeN; k++) {
+        free(gfil->fil3.tblp[i].list[j].cliN[k]);
+      }
+
+      for(k=0; k<gfil->fil1.tblp[i].list[j].sizeP; k++) {
+        free(gfil->fil1.tblp[i].list[j].cliP[k]);
+      }
+
+      for(k=0; k<gfil->fil2.tblp[i].list[j].sizeP; k++) {
+        free(gfil->fil2.tblp[i].list[j].cliP[k]);
+      }
+
+      for(k=0; k<gfil->fil3.tblp[i].list[j].sizeP; k++) {
+        free(gfil->fil3.tblp[i].list[j].cliP[k]);
+      }
+
+      free(gfil->fil1.tblp[i].list[j].cliN);
+      free(gfil->fil2.tblp[i].list[j].cliN);
+      free(gfil->fil3.tblp[i].list[j].cliN);
+
+      free(gfil->fil1.tblp[i].list[j].cliP);
+      free(gfil->fil2.tblp[i].list[j].cliP);
+      free(gfil->fil3.tblp[i].list[j].cliP);
+    }
+
+    free(gfil->fil1.tblc[i].list);
+    free(gfil->fil2.tblc[i].list);
+    free(gfil->fil3.tblc[i].list);
+
+    free(gfil->fil1.tblp[i].list);
+    free(gfil->fil2.tblp[i].list);
+    free(gfil->fil3.tblp[i].list);
+  }
+  
+  free(gfil);
 }

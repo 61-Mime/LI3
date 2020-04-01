@@ -11,7 +11,8 @@ THashSales* initSales() {
   THashSales* sales = malloc(sizeof(THashSales));
   int i;
 
-  sales->size1 = 0;
+  sales->nValidas = 0;
+  sales->nLidas = 0;
 
   for(i=0; i<SIZE * 3; i++) {
     sales->tblp[i].size2 = 0;
@@ -102,8 +103,10 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
     sales->tblc[hashc].list[posc].venda[size].branch = branch;
     sales->tblc[hashc].list[posc].size3++;
 
-    sales->size1++;
+    sales->nValidas++;
   }
+
+  sales->nLidas++;
 }
 
 void copyTbl(THashSales* sales, THashP* tprod, THashC* tcli)

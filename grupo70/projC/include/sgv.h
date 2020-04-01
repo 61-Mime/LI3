@@ -14,6 +14,7 @@ typedef struct sgv
     THashSales* sales;
     THashFact* fact;
     GFiliais* gfil;
+    int load;
 }*SGV;
 
 // Functions
@@ -22,8 +23,6 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath,
                               char* productsFilePath,
                               char* salesFilePath
                               );
-void getCurrentFilesInfo(SGV sgv);
-void printSGV(SGV sgv);
 void destroySGV(SGV sgv);
 
 #endif

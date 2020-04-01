@@ -10,7 +10,8 @@ typedef struct prod {
 } Prod;
 
 typedef struct thashprod {
-  int sizet;
+  int nValidas;
+  int nLidas;
   Prod tbl[26];
 } THashP;
 
@@ -18,7 +19,6 @@ THashP* initProd();
 int searchProd(char* prod, THashP* tprod);
 int hashP(char c);
 int tblProd(THashP* tprod, char* filePath);
-void printProd(THashP* prod);
 void freeProd(THashP* prod);
 
 #endif

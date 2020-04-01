@@ -11,7 +11,8 @@ THashP* initProd()
   THashP* tprod = malloc(sizeof(THashP));
   int i;
   
-  tprod->sizet = 0;
+  tprod->nValidas = 0;
+  tprod->nLidas = 0;
 
   for(i=0; i<SIZE; i++) {
     tprod->tbl[i].size = 0;
@@ -77,8 +78,10 @@ int tblProd(THashP* tprod, char* filePath)
       strcpy(tprod->tbl[i].list[pos],buffer);
 
       tprod->tbl[i].size ++;
-      tprod->sizet ++;
+      tprod->nValidas ++;
     }
+
+    tprod->nLidas++;
   }
 
   fclose(fprod);
@@ -87,16 +90,6 @@ int tblProd(THashP* tprod, char* filePath)
     quickSort(tprod->tbl[i].list, 0, tprod->tbl[i].size - 1);
 
   return 0;
-}
-
-void printProd(THashP* prod) {
-  int i, j;
-
-  for(i=0; i<SIZE; i++)
-    for(j=0; j<prod->tbl[i].size; j++)
-      printf("%s\n", prod->tbl[i].list[j]);
-
-  printf("Total Produtos: %d\n", prod->sizet);
 }
 
 void freeProd(THashP* prod) {

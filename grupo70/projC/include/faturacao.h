@@ -29,7 +29,6 @@ typedef struct thashfact {
 
 THashFact* initFact();
 void tblFact(THashSales *sales,THashFact *fact);
-void printFact(THashFact* fact);
 void freeFact(THashFact* fact);
 
 #endif

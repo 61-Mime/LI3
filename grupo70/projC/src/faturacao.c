@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "faturacao.h"
 
 #define SIZE 26
@@ -82,3 +79,38 @@ void freeFact(THashFact* fact) {
 
     free(fact);
 }
+
+//GETTERS
+
+int getFatVendasN(THashFact* fact, int i, int j, int month, int branch) {
+  return fact->tbl[i].list[j].mesfilial[month][branch].vendasN;
+}
+
+int getFatVendasP(THashFact* fact, int i, int j, int month, int branch) {
+  return fact->tbl[i].list[j].mesfilial[month][branch].vendasP;
+}
+
+float getFatFaturacaoN(THashFact* fact, int i, int j, int month, int branch) {
+  return fact->tbl[i].list[j].mesfilial[month][branch].facturacaoN;
+}
+
+float getFatFaturacaoP(THashFact* fact, int i, int j, int month, int branch) {
+  return fact->tbl[i].list[j].mesfilial[month][branch].facturacaoP;
+}
+
+int getFatNumeroCli(THashFact* fact, int i, int j, int month, int branch) {
+  return fact->tbl[i].list[j].mesfilial[month][branch].numeroCli;
+}
+
+int getFatListSize(THashFact* fact, int i) {
+  return fact->tbl[i].size;
+}
+
+int getFatProdNC(THashFact* fact) {
+  return fact->prodNaoComprado;
+}
+
+int getFatCliNC(THashFact* fact) {
+  return fact->cliNaoComprador;
+}
+

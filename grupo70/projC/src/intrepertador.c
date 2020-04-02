@@ -90,20 +90,7 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 10:
-                  if(!temEspaco(buffer))
-                    {printf("Querie inválida\n");
-                    break;}
-                  else{
-                    char* c1 = strsep(&buffer, " ");
-                    if(temEspaco(buffer))
-                      {printf("Querie invalida\n");
-                      break;}
-                    else{
-                      char* c2 = strsep(&buffer, "\n");
-                      printf("done\n%s %s\n", c1, c2);
-                      //querie10(c1, c2);
-                    }
-                  }
+                  runQuerie10(sgv, buffer);
                   break;
 
               case 11:

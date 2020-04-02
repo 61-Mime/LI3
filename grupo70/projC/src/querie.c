@@ -246,7 +246,108 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
 }
 
 // Querie 10
+void swapP(P *a, P *b)
+{
+    P aux = *a;
+    *a = *b;
+    *b = aux;
+}
 
+void quickSortbyP(P *prods, int low, int high)
+{
+    if (low < high)
+    {
+      char* pivot = prods[high].prod;
+      int i = (low - 1);
+
+      for (int j=low; j<=high-1; j++)
+      {
+          if (strcmp(prods[j].prod, pivot) < 0)
+          {
+              i++;
+              swapP(&prods[i], &prods[j]);
+          }
+      }
+      swapP(&prods[i + 1], &prods[high]);
+
+      int pi = i + 1;
+
+      quickSortbyP(prods, low, pi - 1);
+      quickSortbyP(prods, pi + 1, high);
+    }
+}
+
+void quickSortbyQP(P *prods, int low, int high)
+{
+    if (low < high)
+    {
+      int pivot = prods[high].quantidade;
+      int i = (low - 1);
+
+      for (int j=low; j<=high-1; j++)
+      {
+          if (prods[j].quantidade < pivot)
+          {
+              i++;
+              swapP(&prods[i], &prods[j]);
+          }
+      }
+      swapP(&prods[i + 1], &prods[high]);
+
+      int pi = i + 1;
+
+      quickSortbyQP(prods, low, pi - 1);
+      quickSortbyQP(prods, pi + 1, high);
+    }
+}
+
+Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
+  int pos = searchCat(cliID, sgv->cli),hash = hashCat(cliID[0]),i,i2,r,c;
+
+  if(hash == -1 || pos == -1) return 0;
+printf(".\n" );
+  ListC *l1,*l2,*l3;
+  Q10 *querie10 = NULL;
+  querie10 -> size = 0;
+  querie10 -> produtos = NULL;
+
+  l1 = &sgv -> gfil -> fil1.tblc[hash].list[pos];
+  l2 = &sgv -> gfil -> fil2.tblc[hash].list[pos];
+  l3 = &sgv -> gfil -> fil3.tblc[hash].list[pos];
+
+  querie10 -> size = l1->sizeProds + l2->sizeProds + l3->sizeProds;
+  querie10 -> produtos = malloc(sizeof(P)*querie10->size);
+printf(".\n" );
+  for(i = 0;i < l1->sizeProds;i++) {
+    querie10 -> produtos[i].quantidade = l1 -> prods[i].uni[month - 1];
+    strcpy(querie10 -> produtos[i].prod,l1 -> prods[i].prod);
+  }
+printf(".\n" );
+  for(i2 = 0;i2 <l2->sizeProds;i2++,i++) {
+    querie10 -> produtos[i].quantidade = l2 -> prods[i].uni[month - 1];
+    strcpy(querie10 -> produtos[i].prod,l2 -> prods[i].prod);
+  }
+  for(i2 = 0;i2 < l3->sizeProds;i++,i2++) {
+    querie10 -> produtos[i].quantidade = l3 -> prods[i].uni[month - 1];
+    strcpy(querie10 -> produtos[i].prod,l3 -> prods[i].prod);
+  }
+printf(".\n" );
+  quickSortbyP(querie10->produtos,0,querie10->size);
+printf(".\n" );
+  for(i = 0,r = 1,c = 1;c < querie10 -> size;i++) {
+    for(i2 = c,r = 1;r;i2++,i2++){
+      if(!strcmp(querie10->produtos[i2].prod,querie10->produtos[i].prod))
+        querie10->produtos[i].quantidade += querie10->produtos[i2].quantidade;
+      else r = 0;
+    }
+    if(i2 != c)
+      swapP(&querie10->produtos[i + 1],&querie10->produtos[i2]);
+    c = i2;
+  }
+
+  return querie10;
+
+}
 // Querie 11
 
 // Querie 12

@@ -218,6 +218,20 @@ void runQuerie9(SGV sgv, char* buffer) {
         printf("O SGV ainda não foi carregado\n");
 }
 
+void runQuerie10(SGV sgv, char* buffer) {
+  char *c1 = NULL,*c2 = NULL;
+
+  c1 = strsep(&buffer, " ");
+  if(temEspaco(buffer))
+    printf("Querie inválida\n");
+  else {
+    c2 = strsep(&buffer, "\n");
+
+    Q10* querie10 = getClientFavouriteProducts(sgv,c1,atoi(c2));
+    printQ10(querie10);
+  }
+}
+
 void runQuerie13(SGV sgv, char* buffer, int tam) {
     if(sgv->load == 1) {
         if(tam>3)

@@ -98,6 +98,13 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 9: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
+void printQ10(Q10* querie10) {
+  int i;
+
+  for(i = 0; i < querie10 -> size;i++)
+    printf("%s %d\n", querie10->produtos[i].prod,querie10->produtos[i].quantidade);
+}
+
 void printQ13(Q13* querie13) {
     printf("\nNumero de Clientes Lidos: %d\n", querie13->cliL);
     printf("Numero de Clientes Validados: %d\n", querie13->cliV);

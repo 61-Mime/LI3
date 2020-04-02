@@ -104,7 +104,15 @@ char** preencheListP(char** list, Sale s,int pos) {
   }
   return list;
 }
-
+/*
+int comprouProd(ListC *l,char *prod) {
+  int i, r = 0;
+  for(i = 0;i < l ->sizeProds;i++) {
+    if(!strcmp(l->prods[i].prod,prod)
+      r = 0;
+  }
+}
+*/
 void insereFilC(GFiliais* gfil,Sale s,int i,int j) {
   int size;
   if(s.branch == 1) {

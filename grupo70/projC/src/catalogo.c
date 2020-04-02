@@ -29,6 +29,7 @@ int searchCat(char* key, Catalogo* cat){
 }
 
 int hashCat(char c) {
+  if(c <'A' || c > 'Z') return -1;
   return (c - 65);
 }
 

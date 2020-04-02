@@ -19,6 +19,7 @@ void runQuerie6(SGV sgv, char* buffer, int tam);
 void runQuerie7(SGV sgv, char* buffer);
 void runQuerie8(SGV sgv, char* buffer);
 void runQuerie9(SGV sgv, char* buffer);
+void runQuerie10(SGV sgv, char* buffer);
 void runQuerie13(SGV sgv, char* buffer, int tam);
 
 #endif

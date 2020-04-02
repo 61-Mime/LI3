@@ -9,12 +9,12 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
 
   hash = hashCat(letter);
 
-  querie2->size = sgv->prod->tbl[hash].size;
+  querie2->size = getCatListSize(sgv->prod, hash);
   querie2->prods = malloc(sizeof(char*)*querie2->size);
 
   for(i=0; i<querie2->size; i++) {
     querie2->prods[i] = malloc(sizeof(char)*SMAX);
-    strcpy(querie2->prods[i],sgv->prod->tbl[hash].list[i]);
+    strcpy(querie2->prods[i], getCatKey(sgv->prod, hash, i));
   }
 
   return querie2;
@@ -111,6 +111,29 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
 }
 
 // Querie 5
+Q5* getClientsOfAllBranches(SGV sgv) {
+    int i, j;
+    Q5* querie5 = malloc(sizeof(Q5));
+    ListC *p,*p2,*p3;
+
+    querie5->cli = NULL;
+    querie5->size = 0;
+
+    for(i=0; i<26; i++)
+      for(j=0; j<sgv->gfil->fil1.tblc[i].sizeCli; j++) {
+        p = &sgv->gfil->fil1.tblc[i].list[j];
+        p2 = &sgv->gfil->fil2.tblc[i].list[j];
+        p3 = &sgv->gfil->fil3.tblc[i].list[j];
+
+        if(p->sizeProds>0 && p2->sizeProds>0 && p3->sizeProds>0){
+          querie5->cli = realloc(querie5->cli, sizeof(char*) * (querie5->size + 1));
+          querie5->cli[querie5->size] = malloc(sizeof(char)*SMAX);
+          strcpy(querie5->cli[querie5->size], p->key);
+          querie5->size++;
+        }
+      }
+    return querie5;
+}
 
 // Querie 6
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
@@ -232,10 +255,10 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
 Q13* getCurrentFilesInfo(SGV sgv) {
     Q13* querie13 = malloc(sizeof(Q13));
 
-    querie13->cliL = sgv->cli->nLidas;
-    querie13->cliV = sgv->cli->nValidas;
-    querie13->prodL = sgv->prod->nLidas;
-    querie13->prodV = sgv->prod->nValidas;
+    querie13->cliL = getCatLinhaLida(sgv->cli);
+    querie13->cliV = getCatLinhaVal(sgv->cli);
+    querie13->prodL = getCatLinhaLida(sgv->prod);
+    querie13->prodV = getCatLinhaVal(sgv->prod);
     querie13->salesL = sgv->sales->nLidas;
     querie13->salesV = sgv->sales->nValidas;
 

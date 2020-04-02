@@ -23,5 +23,9 @@ int searchCat(char* key, Catalogo* cat);
 int hashCat(char c);
 int tblCat(Catalogo* tcli, char* filePath, char type);
 void freeCat(Catalogo* cli);
+int getCatLinhaVal(Catalogo* cat);
+int getCatLinhaLida(Catalogo* cat);
+int getCatListSize(Catalogo* cat, int i);
+char* getCatKey(Catalogo* cat, int i, int j);
 
 #endif

@@ -1,5 +1,6 @@
 #include "sgv.h"
 #include "intrepertador.h"
+#include "time.h"
 
 SGV sgv;
 

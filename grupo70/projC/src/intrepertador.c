@@ -70,7 +70,7 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 5:
-                  if(tam>2) printf("Querie inválida\n");
+                  runQuerie5(sgv, tam);
                   break;
 
               case 6:

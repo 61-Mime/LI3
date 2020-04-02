@@ -111,6 +111,16 @@ void runQuerie4(SGV sgv, char* buffer) {
   }
 }
 
+void runQuerie5(SGV sgv, int tam) {
+  if(tam>2) printf("Querie inválida\n");
+
+  else {
+    Q5* querie5 = getClientsOfAllBranches(sgv);
+
+    printQ5(querie5);
+  }
+}
+
 void runQuerie6(SGV sgv, char* buffer, int tam) {
     clock_t start_t, end_t;
 

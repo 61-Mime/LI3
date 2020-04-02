@@ -70,8 +70,7 @@ void saleS(THashSales* sales, char* buffer, Catalogo* tprod, Catalogo* tcli) {
   if(posc != (-1))
     posp = searchCat(prod, tprod);
 
-  if(vendaVal(posp,posc,price,uni,type[0],month,branch))
-  {
+  if(vendaVal(posp,posc,price,uni,type[0],month,branch)) {
     size = sales->tblp[hashp].list[posp].size3;
 
     sales->tblp[hashp].list[posp].venda = realloc(sales->tblp[hashp].list[posp].venda, sizeof(Sale) * (size + 1));
@@ -106,28 +105,31 @@ void saleS(THashSales* sales, char* buffer, Catalogo* tprod, Catalogo* tcli) {
   sales->nLidas++;
 }
 
-void copyTbl(THashSales* sales, Catalogo* tprod, Catalogo* tcli)
-{
+void copyTbl(THashSales* sales, Catalogo* tprod, Catalogo* tcli) {
   int i, j;
+  int sizeP, sizeC;
 
   for(i=0; i<SIZE; i++) {
-    sales->tblp[i].list = malloc(sizeof(List) * tprod->tbl[i].size);
-    sales->tblp[i].size2 = tprod->tbl[i].size;
+    sizeP = getCatListSize(tprod, i);
+    sales->tblp[i].list = malloc(sizeof(List) * sizeP);
+    sales->tblp[i].size2 = sizeP;
 
-    sales->tblc[i].list = malloc(sizeof(List) * tcli->tbl[i].size);
-    sales->tblc[i].size2 = tcli->tbl[i].size;
+    sizeC = getCatListSize(tcli, i);
+    sales->tblc[i].list = malloc(sizeof(List) * sizeC);
+    sales->tblc[i].size2 = sizeC;
 
-    for(j=0; j<tprod->tbl[i].size; j++) {
+    for(j=0; j<sizeP; j++) {
 
       sales->tblp[i].list[j].key = malloc(sizeof(char) * SMAX);
-      strcpy(sales->tblp[i].list[j].key, tprod->tbl[i].list[j]);
+      strcpy(sales->tblp[i].list[j].key, getCatKey(tprod, i, j));
 
       sales->tblp[i].list[j].size3 = 0;
+      sales->tblp[i].list[j].venda = NULL;
     }
 
-    for(j=0; j<tcli->tbl[i].size; j++) {
+    for(j=0; j<sizeC; j++) {
       sales->tblc[i].list[j].key = malloc(sizeof(char) * SMAX);
-      strcpy(sales->tblc[i].list[j].key, tcli->tbl[i].list[j]);
+      strcpy(sales->tblc[i].list[j].key, getCatKey(tcli, i, j));
 
       sales->tblc[i].list[j].size3 = 0;
       sales->tblc[i].list[j].venda = NULL;
@@ -157,28 +159,10 @@ int tblSales(THashSales * sales, Catalogo* tprod, Catalogo* tcli, char* filePath
   return 0;
 }
 
-void printSales(THashSales* sales) {
-  int i,j,c;
-
-  for(i=0; i<SIZE; i++){
-    for(j=0 ;j<sales->tblp[i].size2; j++) {
-      for(c=0 ;c<sales->tblp[i].list[j].size3; c++)
-        printf("%s %f %d %s %s %d %d\r\n",
-                sales->tblp[i].list[j].venda[c].p,
-                sales->tblp[i].list[j].venda[c].price,
-                sales->tblp[i].list[j].venda[c].uni,
-                sales->tblp[i].list[j].venda[c].type,
-                sales->tblp[i].list[j].venda[c].c,
-                sales->tblp[i].list[j].venda[c].month,
-                sales->tblp[i].list[j].venda[c].branch);
-    }
-  }
-}
-
 void freeSales(THashSales* sales) {
   int i, j;
 
-  for(i=0; i<SIZE; i++){
+  for(i=0; i<SIZE; i++) {
     for(j=0 ;j<sales->tblc[i].size2; j++) {
       free(sales->tblc[i].list[j].venda);
       free(sales->tblc[i].list[j].key);
@@ -186,7 +170,7 @@ void freeSales(THashSales* sales) {
     free(sales->tblc[i].list);
   }
 
-  for(i=0; i<SIZE; i++){
+  for(i=0; i<SIZE; i++) {
     for(j=0 ;j<sales->tblp[i].size2; j++) {
       free(sales->tblp[i].list[j].venda);
       free(sales->tblp[i].list[j].key);

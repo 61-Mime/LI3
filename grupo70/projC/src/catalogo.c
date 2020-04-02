@@ -57,34 +57,32 @@ int isVal(char *key, char type)
   return res;
 }
 
-int tblCat(Catalogo* cat, char* filePath, char type)
-{
+void addKey(Catalogo* cat, char* key, int i) {
+  int pos = cat->tbl[i].size;
+
+  cat->tbl[i].list = realloc(cat->tbl[i].list,sizeof(char*) * (cat->tbl[i].size + 1));
+  cat->tbl[i].list[pos] = malloc(sizeof(char) * MAX);
+  strcpy(cat->tbl[i].list[pos], key);
+
+  cat->tbl[i].size ++;
+  cat->nValidas ++;
+}
+
+int tblCat(Catalogo* cat, char* filePath, char type) {
   FILE* f;
   char* buffer= malloc(sizeof(char) * MAX);
-  int i, pos;
+  int i;
 
   if((f = fopen(filePath, "r")) == NULL) {
     perror(filePath);
     return -1;
   }
 
-  while(fgets(buffer,MAX,f))
-  {
+  while(fgets(buffer,MAX,f)) {
     buffer = strsep(&buffer, "\r");
 
     if(isVal(buffer, type))
-    {
-      i = hashCat(buffer[0]);
-      pos = cat->tbl[i].size;
-
-      cat->tbl[i].list = realloc(cat->tbl[i].list,sizeof(char*) * (cat->tbl[i].size + 1));
-
-      cat->tbl[i].list[pos] = malloc(sizeof(char) * MAX);
-      strcpy(cat->tbl[i].list[pos],buffer);
-
-      cat->tbl[i].size ++;
-      cat->nValidas ++;
-    }
+      addKey(cat, buffer, hashCat(buffer[0]));
 
     cat->nLidas ++;
   }
@@ -107,4 +105,22 @@ void freeCat(Catalogo* cat) {
   }
 
   free(cat);
+}
+
+//GETTERS
+
+int getCatLinhaVal(Catalogo* cat) {
+  return cat->nValidas;
+}
+
+int getCatLinhaLida(Catalogo* cat) {
+  return cat->nLidas;
+}
+
+int getCatListSize(Catalogo* cat, int i) {
+  return cat->tbl[i].size;
+}
+
+char* getCatKey(Catalogo* cat, int i, int j) {
+  return strdup(cat->tbl[i].list[j]);
 }

@@ -39,10 +39,20 @@ void printQ3(Q3* querie3, char* prodID, int month) {
 
 void printQ4(Q4* querie4) {
   int i;
+
   for(i = 0; i < querie4 -> size;i++)
     printf("%s\n", querie4->prods[i]);
 
   printf("Produtos não comprados:%d\n", querie4->size);
+}
+
+void printQ5(Q5* querie5) {
+    int i;
+
+    for(i=0; i<querie5->size; i++)
+        printf("%s\n", querie5->cli[i]);
+
+    printf("Clientes que realizaram compras em todas as Filiais: %d\n", querie5->size);
 }
 
 void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {

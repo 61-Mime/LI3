@@ -13,6 +13,7 @@ int temEspaco(char* s);
 void runQuerie1(SGV sgv, char* buffer);
 void runQuerie2(SGV sgv, char* buffer);
 void runQuerie3(SGV sgv, char* buffer);
+void runQuerie4(SGV sgv, char* buffer);
 void runQuerie6(SGV sgv, char* buffer, int tam);
 void runQuerie7(SGV sgv, char* buffer);
 void runQuerie8(SGV sgv, char* buffer);

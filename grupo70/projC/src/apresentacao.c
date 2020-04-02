@@ -17,7 +17,7 @@ void printQ2(Q2* querie2, char letter) {
 
 void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
-    
+
     if(querie3->size == 1) {
         printf("\nFaturação do produto %s no mês %d\n", prodID, month);
         printf("Número de vendas N: %d\n", querie3->fat->nVendasN);
@@ -37,6 +37,14 @@ void printQ3(Q3* querie3, char* prodID, int month) {
     }
 }
 
+void printQ4(Q4* querie4) {
+  int i;
+  for(i = 0; i < querie4 -> size;i++)
+    printf("%s\n", querie4->prods[i]);
+
+  printf("Produtos não comprados:%d\n", querie4->size);
+}
+
 void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
     printf("\nClientes não compradores: %d\n", querie6->nCli);
     printf("Produtos não comprados: %d\n", querie6->nProd);
@@ -46,7 +54,7 @@ void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
 
 void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     int i;
-    
+
     printf("Filial  1   2   3\n" );
     for(i=0; i<12; i++)
         printf("Mes %d: %d   %d   %d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);

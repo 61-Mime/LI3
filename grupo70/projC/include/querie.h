@@ -24,6 +24,11 @@ typedef struct q3 {
     Q3fat* fat;
 } Q3;
 
+typedef struct q4 {
+    int size;
+    char**prods;
+} Q4;
+
 typedef struct q6 {
     int nProd;
     int nCli;
@@ -60,6 +65,7 @@ typedef struct q13 {
 
 Q2* getProductsStartedByLetter(SGV sgv, char letter);
 Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type);
+Q4* getProductsNeverBough(SGV sgv,int branch);
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv);
 Q7* getProductsBoughtByClient(SGV sgv, char* clientID);
 Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth);

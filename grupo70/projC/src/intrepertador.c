@@ -41,6 +41,9 @@ void intrepertador(SGV sgv) {
         if(strcmp(s,"menu") == 0)
           menu();
 
+        else if(atoi(s) != 1 && sgv -> load == 0)
+          printf("O SGV ainda não foi carregado\n");
+
         else{
           querie = atoi(s);
 
@@ -63,14 +66,7 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 4:
-                  if(temEspaco(buffer))
-                    {printf("Querie inválida\n");
-                    break;}
-                  else{
-                    char* c1 = strsep(&buffer, "\n");
-                    printf("done\n%s\n", c1);
-                    //querie4(c1);
-                  }
+                  runQuerie4(sgv, buffer);
                   break;
 
               case 5:
@@ -86,7 +82,7 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 8:
-                  runQuerie8(sgv, buffer);  
+                  runQuerie8(sgv, buffer);
                   break;
 
               case 9:

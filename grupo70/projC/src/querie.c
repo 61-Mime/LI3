@@ -62,7 +62,53 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
 }
 
 // Querie 4
+Q4* getProductsNeverBough(SGV sgv,int branch) {
+  int i,i2;
+  Q4 *querie4 = malloc(sizeof(Q4));
+  querie4->size = 0;
+  querie4->prods = NULL;
 
+  THashFilial *f;
+
+  if(branch == 0) {
+  ListP *p,*p2,*p3;
+    for(i = 0;i < 26;i++)
+      for(i2 = 0;i2 < sgv->gfil->fil1.tblp[i].sizeProd;i2++) {
+        p = &sgv->gfil->fil1.tblp[i].list[i2];
+        p2 = &sgv->gfil->fil2.tblp[i].list[i2];
+        p3 = &sgv->gfil->fil3.tblp[i].list[i2];
+        if(!p -> sizeN && !p -> sizeP && !p2 -> sizeN &&
+           !p2 -> sizeP && !p3 -> sizeN && !p3 -> sizeP) {
+          querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
+          querie4->prods[querie4->size] = malloc(sizeof(char) * 10);
+          strcpy(querie4 -> prods[querie4->size],p->key);
+          querie4 -> size ++;
+        }
+      }
+  }
+  else {
+    ListP *p;
+
+    if(branch == 1)
+      f = &sgv->gfil->fil1;
+    else if(branch == 2)
+      f = &sgv->gfil->fil2;
+    else
+      f = &sgv->gfil->fil3;
+
+    for(i = 0;i < 26;i++)
+      for(i2 = 0;i2 < f->tblp[i].sizeProd;i2++) {
+        p = &f -> tblp[i].list[i2];
+        if((p -> sizeN == 0) && (p -> sizeP == 0)) {
+          querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
+          querie4->prods[querie4->size] = malloc(sizeof(char) * 10);
+          strcpy(querie4 -> prods[querie4->size],p->key);
+          querie4 -> size ++;
+        }
+      }
+  }
+  return querie4;
+}
 
 // Querie 5
 
@@ -132,7 +178,7 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
 Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
   int pos = searchCat(prodID, sgv->prod),n,r,c,i;
   Q9* querie9 = malloc(sizeof(Q9));
-  
+
   if(pos != -1) {
     ListP *prod;
     int hash = hashCat(prodID[0]);

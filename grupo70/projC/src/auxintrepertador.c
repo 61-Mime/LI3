@@ -11,7 +11,7 @@ int temEspaco(char* s) {
 void runQuerie1(SGV sgv, char* buffer) {
   char *c1 = NULL, *c2 = NULL, *c3 = NULL;
   clock_t start_t, end_t;
-  
+
   if(!temEspaco(buffer)) {
     c1 = "../files/Clientes.txt";
     c2 = "../files/Produtos.txt";
@@ -32,7 +32,7 @@ void runQuerie1(SGV sgv, char* buffer) {
         c3 = strsep(&buffer, "\n");
     }
   }
-                  
+
   if(sgv->load == 1) {
     destroySGV(sgv);
     sgv = initSGV();
@@ -47,7 +47,7 @@ void runQuerie1(SGV sgv, char* buffer) {
 
 void runQuerie2(SGV sgv, char* buffer) {
   char *c1 = NULL;
-  
+
   if(sgv->load == 1){
     if(temEspaco(buffer))
       printf("Querie inválida\n");
@@ -97,11 +97,25 @@ void runQuerie3(SGV sgv, char* buffer){
     printf("O SGV ainda não foi carregado\n");
 }
 
+void runQuerie4(SGV sgv, char* buffer) {
+  char *c1 = NULL;
+
+  if(temEspaco(buffer))
+    printf("Querie inválida\n");
+
+  else {
+    c1 = strsep(&buffer, "\n");
+
+    Q4* querie4 = getProductsNeverBough(sgv, atoi(c1));
+    printQ4(querie4);
+  }
+}
+
 void runQuerie6(SGV sgv, char* buffer, int tam) {
     clock_t start_t, end_t;
 
     if(sgv->load == 1) {
-        if(tam>2) 
+        if(tam>2)
             printf("Querie inválida\n");
 
         else {
@@ -111,9 +125,9 @@ void runQuerie6(SGV sgv, char* buffer, int tam) {
 
             printQ6(querie6, start_t, end_t);
         }
-    }  
+    }
 
-    else 
+    else
         printf("O SGV ainda não foi carregado\n");
 }
 
@@ -143,12 +157,12 @@ void runQuerie7(SGV sgv, char* buffer) {
 void runQuerie8(SGV sgv, char* buffer) {
     char *c1 = NULL, *c2 = NULL;
     clock_t start_t, end_t;
-    
+
     if(sgv->load == 1) {
         c1 = strsep(&buffer, " ");
         if(temEspaco(buffer))
             printf("Querie invalida\n");
-        
+
         else{
             c2 = strsep(&buffer, "\n");
 
@@ -167,7 +181,7 @@ void runQuerie8(SGV sgv, char* buffer) {
 void runQuerie9(SGV sgv, char* buffer) {
     char *c1 = NULL, *c2 = NULL;
     clock_t start_t, end_t;
-    
+
     if(sgv->load == 1) {
         if(!temEspaco(buffer))
           printf("Querie inválida\n");
@@ -196,7 +210,7 @@ void runQuerie9(SGV sgv, char* buffer) {
 
 void runQuerie13(SGV sgv, char* buffer, int tam) {
     if(sgv->load == 1) {
-        if(tam>3) 
+        if(tam>3)
           printf("Querie inválida\n");
 
         else {

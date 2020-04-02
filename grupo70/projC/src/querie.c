@@ -139,8 +139,8 @@ Q5* getClientsOfAllBranches(SGV sgv) {
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
     Q6* querie6 = malloc(sizeof(Q6));
 
-    querie6->nProd = sgv->fact->prodNaoComprado;
-    querie6->nCli = sgv->fact->cliNaoComprador;
+    //querie6->nProd = sgv->fact->prodNaoComprado;
+    //querie6->nCli = sgv->fact->cliNaoComprador;
 
     return querie6;
 }
@@ -363,8 +363,8 @@ Q13* getCurrentFilesInfo(SGV sgv) {
     querie13->cliV = getCatLinhaVal(sgv->cli);
     querie13->prodL = getCatLinhaLida(sgv->prod);
     querie13->prodV = getCatLinhaVal(sgv->prod);
-    querie13->salesL = sgv->sales->nLidas;
-    querie13->salesV = sgv->sales->nValidas;
+    //querie13->salesL = sgv->sales->nLidas;
+    //querie13->salesV = sgv->sales->nValidas;
 
     return querie13;
 }

@@ -5,7 +5,6 @@ SGV initSGV() {
 
     sgv->prod = initCat();
     sgv->cli = initCat();
-    sgv->sales = initSales();
     sgv->fact = initFact();
     sgv->gfil = initGFil();
     sgv->load = 0;
@@ -16,9 +15,10 @@ SGV initSGV() {
 SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, char* salesFilePath) {
     tblCat(sgv->prod, productsFilePath, 'p');
     tblCat(sgv->cli, clientsFilePath, 'c');
-    tblSales(sgv->sales, sgv->prod, sgv->cli, salesFilePath);
-    tblFact(sgv->sales, sgv->fact);
-    tblGFil(sgv->gfil, sgv->sales);
+    loadFactFromProds(sgv->fact, sgv->prod);
+    loadGFilFromProds(sgv->gfil, sgv->prod, sgv->cli);
+    loadFromSales(sgv->prod, sgv->cli, sgv->fact, sgv->gfil, salesFilePath);
+
     sgv->load = 1;
 
     return sgv;
@@ -27,7 +27,6 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, cha
 void destroySGV(SGV sgv) {
     freeCat(sgv->prod);
     freeCat(sgv->cli);
-    freeSales(sgv->sales);
     freeFact(sgv->fact);
     freeGFil(sgv->gfil);
     sgv->load = 0;

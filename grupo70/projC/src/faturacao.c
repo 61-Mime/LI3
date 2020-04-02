@@ -6,8 +6,7 @@
 THashFact* initFact() {
   THashFact *fact = malloc(sizeof(THashFact));
 
-  fact->cliNaoComprador = 0;
-  fact->prodNaoComprado = 0;
+  fact->prodComprado = 0;
 
   for(int i=0; i<SIZE; i++) {
     fact->tbl[i].size = 0;
@@ -17,57 +16,53 @@ THashFact* initFact() {
   return fact;
 }
 
-Facturacao initFacturacao() {
-  int i,i2;
-  Facturacao *f = malloc(sizeof(Facturacao));
+void initTFacturacao(THashFact* fact, int i, int size) {
+  TFacturacao* f = &fact->tbl[i];
 
-  f->prod = malloc(sizeof(char)*MAX);
-
-  for(i = 0;i < 3;i++)
-    for(i2 = 0;i2 < 12;i2++) {
-      f->mesfilial[i2][i].vendasN = 0;
-      f->mesfilial[i2][i].vendasP = 0;
-      f->mesfilial[i2][i].facturacaoN = 0;
-      f->mesfilial[i2][i].facturacaoP = 0;
-    }
-
-  return *f;
+  f->list = malloc(sizeof(Facturacao)*size);
+  f->size = size;
 }
 
-void tblFact(THashSales *sales, THashFact *fact) {
-  int i,i2,i3,mes,filial;
-  float f;
+void initFacturacao(THashFact* fact, int i, int j, char* key) {
+  Facturacao *f = &fact->tbl[i].list[j];
 
-  for(i = 0;i < SIZE;i++) {
-    fact -> tbl[i].size = sales -> tblp[i].size2;
-    fact -> tbl[i].list = malloc(sizeof(Facturacao) * fact -> tbl[i].size);
+  f->prod = key;
 
-    for(i2 = 0;i2 < fact->tbl[i].size;i2++) {
-      fact -> tbl[i].list[i2] = initFacturacao();
-      strcpy(fact -> tbl[i].list[i2].prod,sales -> tblp[i].list[i2].key);
-
-      if(sales->tblp[i].list[i2].size3 == 0)
-        fact->prodNaoComprado++;
-
-      for(i3=0; i3<sales->tblp[i].list[i2].size3; i3++) {
-        f = sales->tblp[i].list[i2].venda[i3].price * sales->tblp[i].list[i2].venda[i3].uni;
-        mes = sales->tblp[i].list[i2].venda[i3].month;
-        filial = sales->tblp[i].list[i2].venda[i3].branch;
-
-        if(sales -> tblp[i].list[i2].venda[i3].type[0] == 'N') {
-          fact -> tbl[i].list[i2].mesfilial[mes-1][filial-1].vendasN++;
-          fact -> tbl[i].list[i2].mesfilial[mes-1][filial-1].facturacaoN += f;
-        }
-        else {
-          fact -> tbl[i].list[i2].mesfilial[mes-1][filial-1].vendasP++;
-          fact -> tbl[i].list[i2].mesfilial[mes-1][filial-1].facturacaoP += f;
-        }
-      }
+  for(i=0; i<12; i++)
+    for(j=0 ; j<3; j++) {
+      f->mesfilial[i][j].vendasN = 0;
+      f->mesfilial[i][j].vendasP = 0;
+      f->mesfilial[i][j].facturacaoN = 0;
+      f->mesfilial[i][j].facturacaoP = 0;
     }
+}
 
-    for(i2=0; i2<sales->tblc[i].size2; i2++)
-      if(sales->tblc[i].list[i2].size3 == 0)
-        fact->cliNaoComprador++;
+void loadFactFromProds(THashFact* fact, Catalogo* prod) {
+  int i, j, size;
+
+  for(i=0; i<SIZE; i++) {
+    size = getCatListSize(prod, i);
+    initTFacturacao(fact, i, size);
+    
+    for(j=0; j<size; j++)
+      initFacturacao(fact, i, j, getCatKey(prod, i, j));
+  }
+}
+
+void addFact(THashFact* fact, int hash, int pos, int month, int branch, char type, float price, int uni) {  
+  FMensal* f = &fact->tbl[hash].list[pos].mesfilial[month-1][branch-1];
+  
+  if(f->vendasN == 0 && f->vendasP == 0)
+    fact->prodComprado ++;
+  
+  if(type == 'N') {
+    f->vendasN ++;
+    f->facturacaoN += (price * uni);
+  }
+
+  else {
+    f->vendasP ++;
+    f->facturacaoP += (price * uni);
   }
 }
 
@@ -98,19 +93,10 @@ float getFatFaturacaoP(THashFact* fact, int i, int j, int month, int branch) {
   return fact->tbl[i].list[j].mesfilial[month][branch].facturacaoP;
 }
 
-int getFatNumeroCli(THashFact* fact, int i, int j, int month, int branch) {
-  return fact->tbl[i].list[j].mesfilial[month][branch].numeroCli;
-}
-
 int getFatListSize(THashFact* fact, int i) {
   return fact->tbl[i].size;
 }
 
-int getFatProdNC(THashFact* fact) {
-  return fact->prodNaoComprado;
+int getFatProdC(THashFact* fact) {
+  return fact->prodComprado;
 }
-
-int getFatCliNC(THashFact* fact) {
-  return fact->cliNaoComprador;
-}
-

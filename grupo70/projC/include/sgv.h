@@ -13,7 +13,6 @@ typedef struct sgv
 {
     Catalogo* cli;
     Catalogo* prod;
-    THashSales* sales;
     THashFact* fact;
     GFiliais* gfil;
     int load;

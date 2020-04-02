@@ -1,7 +1,10 @@
 #ifndef __filial_h
 #define __filial_h
 
-#include "sales.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "catalogo.h"
 
 typedef struct pordcli{
   char prod[10];
@@ -39,13 +42,12 @@ typedef struct filial{
 } THashFilial;
 
 typedef struct gfiliais{
-  THashFilial fil1;
-  THashFilial fil2;
-  THashFilial fil3;
+  THashFilial fil[3];
 } GFiliais;
  
 GFiliais* initGFil();
-void tblGFil(GFiliais *fil, THashSales *sales);
+void loadGFilFromProds(GFiliais* gfil, Catalogo* prod, Catalogo* cli);
+void addGFil(GFiliais* gfil, int posp, int posc, int branch, char* prod, char* cli, float price, int uni, char type, int month);
 void freeGFil(GFiliais* fil);
 
 #endif

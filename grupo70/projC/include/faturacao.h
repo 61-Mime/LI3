@@ -4,12 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "sales.h"
+#include "catalogo.h"
 
 typedef struct factM {
   int vendasN;
   int vendasP;
-  int numeroCli;
   float facturacaoN;
   float facturacaoP;
 } FMensal;
@@ -25,13 +24,13 @@ typedef struct Tfact {
 } TFacturacao;
 
 typedef struct thashfact {
-  int prodNaoComprado;
-  int cliNaoComprador;
+  int prodComprado;
   TFacturacao tbl[26];
 } THashFact;
 
 THashFact* initFact();
-void tblFact(THashSales *sales,THashFact *fact);
+void loadFactFromProds(THashFact* fact, Catalogo* prod);
+void addFact(THashFact* fact, int hash, int pos, int month, int branch, char type, float price, int uni);
 void freeFact(THashFact* fact);
 
 // GETTERS
@@ -39,9 +38,7 @@ int getFatVendasN(THashFact* fact, int i, int j, int month, int branch);
 int getFatVendasP(THashFact* fact, int i, int j, int month, int branch);
 float getFatFaturacaoN(THashFact* fact, int i, int j, int month, int branch);
 float getFatFaturacaoP(THashFact* fact, int i, int j, int month, int branch);
-int getFatNumeroCli(THashFact* fact, int i, int j, int month, int branch);
 int getFatListSize(THashFact* fact, int i);
-int getFatProdNC(THashFact* fact);
-int getFatCliNC(THashFact* fact);
+int getFatProdC(THashFact* fact);
 
 #endif

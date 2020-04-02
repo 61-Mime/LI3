@@ -1,6 +1,9 @@
 #ifndef __clientes_h
 #define __clientes_h
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "sort.h"
 
 //STRUCTS CLIENTES

@@ -1,6 +1,5 @@
 #include "sgv.h"
 #include "intrepertador.h"
-#include <stdio.h>
 
 SGV sgv;
 

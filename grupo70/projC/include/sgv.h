@@ -1,6 +1,9 @@
 #ifndef __sgv_h
 #define __sgv_h
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "catalogo.h"
 #include "sales.h"
 #include "faturacao.h"

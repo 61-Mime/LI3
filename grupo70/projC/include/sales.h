@@ -1,6 +1,9 @@
 #ifndef __sales_h
 #define __sales_h
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "catalogo.h"
 
 // Struct que suporta uma venda
@@ -38,6 +41,5 @@ THashSales* initSales();
 int tblSales(THashSales* salesp, Catalogo* prod, Catalogo* cli, char* filePath);
 void printSales(THashSales* salesp);
 void freeSales(THashSales* sales);
-//void swapS(Sale *a, Sale *b);
 
 #endif

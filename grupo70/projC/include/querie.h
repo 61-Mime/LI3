@@ -38,6 +38,18 @@ typedef struct q8 {
     float fact;
 } Q8;
 
+typedef struct cl9
+{
+    int tipocompra;
+    char cliente[10];
+} Cl;
+
+typedef struct q9
+{
+    int total;
+    Cl *lista;
+}*Q9;
+
 typedef struct q13 {
     int prodL;
     int prodV;
@@ -52,7 +64,7 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type);
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv);
 Q7* getProductsBoughtByClient(SGV sgv, char* clientID);
 Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth);
-void getProductBuyers(SGV sgv,char *prodID,int branch);
+Q9 getProductBuyers(SGV sgv,char *prodID,int branch);
 Q13* getCurrentFilesInfo(SGV sgv);
 
 #endif

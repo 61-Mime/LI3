@@ -31,13 +31,13 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
   if(type == 0) {
     querie3->size = 1;
     querie3->fat = malloc(sizeof(Q3fat));
-    
+
     querie3->fat->fatN = 0;
     querie3->fat->fatP = 0;
     querie3->fat->nVendasN = 0;
     querie3->fat->nVendasP = 0;
 
-    
+
     for(i=0; i<3; i++) {
       querie3->fat->fatN += sgv->fact->tbl[hash].list[pos].mesfilial[month][i].facturacaoN;
       querie3->fat->fatP += sgv->fact->tbl[hash].list[pos].mesfilial[month][i].facturacaoP;
@@ -69,7 +69,7 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
 // Querie 6
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
     Q6* querie6 = malloc(sizeof(Q6));
-    
+
     querie6->nProd = sgv->fact->prodNaoComprado;
     querie6->nCli = sgv->fact->cliNaoComprador;
 
@@ -128,8 +128,8 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
 }
 
 // Querie 9
-/*
-void getProductBuyers(SGV sgv,char *prodID,int branch)
+
+Q9 getProductBuyers(SGV sgv,char *prodID,int branch)
 {
   int pos = searchProd(prodID, sgv->prod),n,r,c,i;
   if(pos != -1) {
@@ -172,13 +172,10 @@ void getProductBuyers(SGV sgv,char *prodID,int branch)
         l->total++;
       }
     }
-
-    for(i = 0;i < l->total;i++)
-        printf("cliente:%s Tipo compra:%d\n",l->lista[i].cliente,l->lista[i].tipocompra);
-    printf("Total:%d\n", l->total);
+    return l;
   }
 }
-*/
+
 // Querie 10
 
 // Querie 11

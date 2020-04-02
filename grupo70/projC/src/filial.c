@@ -203,7 +203,7 @@ void freeGFil(GFiliais* gfil) {
       for(k=0; k<gfil->fil1.tblp[i].list[j].sizeN; k++) {
         free(gfil->fil1.tblp[i].list[j].cliN[k]);
       }
-      
+
       for(k=0; k<gfil->fil2.tblp[i].list[j].sizeN; k++) {
         free(gfil->fil2.tblp[i].list[j].cliN[k]);
       }
@@ -241,6 +241,6 @@ void freeGFil(GFiliais* gfil) {
     free(gfil->fil2.tblp[i].list);
     free(gfil->fil3.tblp[i].list);
   }
-  
+
   free(gfil);
 }

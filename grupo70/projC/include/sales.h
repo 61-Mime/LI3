@@ -1,8 +1,10 @@
 #ifndef __sales_h
 #define __sales_h
 
-#include "produtos.h"
-#include "clientes.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "catalogo.h"
 
 // Struct que suporta uma venda
 typedef struct sale{
@@ -36,9 +38,8 @@ typedef struct thashsalesp {
 
 // Functions
 THashSales* initSales();
-int tblSales(THashSales* salesp, THashP* prod, THashC* cli, char* filePath);
+int tblSales(THashSales* salesp, Catalogo* prod, Catalogo* cli, char* filePath);
 void printSales(THashSales* salesp);
 void freeSales(THashSales* sales);
-//void swapS(Sale *a, Sale *b);
 
 #endif

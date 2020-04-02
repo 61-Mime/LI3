@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "sales.h"
 
 #define SMAX 10
@@ -38,7 +35,7 @@ int vendaVal(int posp, int posc, float preco, int uni, char type, int mes, int b
 }
 
 // Corre uma venda, passa para a struct total e se for válida passa a struct valida
-void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
+void saleS(THashSales* sales, char* buffer, Catalogo* tprod, Catalogo* tcli) {
   char *aux = NULL, *prod = NULL, *cli = NULL, *type = NULL;
   int hashp, hashc, posp=0, posc=0, size;
   int uni, month, branch;
@@ -65,13 +62,13 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
   aux = strsep(&buffer, " ");
   branch = atoi(aux);
 
-  hashc = hashC(cli[0]);
-  hashp = hashP(prod[0]);
+  hashc = hashCat(cli[0]);
+  hashp = hashCat(prod[0]);
 
-  posc = searchCli(cli, tcli);
+  posc = searchCat(cli, tcli);
 
   if(posc != (-1))
-    posp = searchProd(prod, tprod);
+    posp = searchCat(prod, tprod);
 
   if(vendaVal(posp,posc,price,uni,type[0],month,branch))
   {
@@ -109,7 +106,7 @@ void saleS(THashSales* sales, char* buffer, THashP* tprod, THashC* tcli) {
   sales->nLidas++;
 }
 
-void copyTbl(THashSales* sales, THashP* tprod, THashC* tcli)
+void copyTbl(THashSales* sales, Catalogo* tprod, Catalogo* tcli)
 {
   int i, j;
 
@@ -139,7 +136,7 @@ void copyTbl(THashSales* sales, THashP* tprod, THashC* tcli)
 }
 
 // Abre o array das vendas e passa-as para uma struct
-int tblSales(THashSales * sales, THashP* tprod, THashC* tcli, char* filePath) {
+int tblSales(THashSales * sales, Catalogo* tprod, Catalogo* tcli, char* filePath) {
   FILE *fsales;
   char* buffer= malloc(sizeof(char) * MAX);
 

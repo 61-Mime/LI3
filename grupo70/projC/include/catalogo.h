@@ -1,0 +1,26 @@
+#ifndef __catalogo_h
+#define __catalogo_h
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "sort.h"
+
+typedef struct cat {
+  int size;
+  char** list;
+} Cat;
+
+typedef struct catalogo {
+  int nValidas;
+  int nLidas;
+  Cat tbl[26];
+} Catalogo;
+
+Catalogo* initCat();
+int searchCat(char* key, Catalogo* cat);
+int hashCat(char c);
+int tblCat(Catalogo* tcli, char* filePath, char type);
+void freeCat(Catalogo* cli);
+
+#endif

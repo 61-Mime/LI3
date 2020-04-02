@@ -1,13 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "sgv.h"
 
 SGV initSGV() {
     SGV sgv = malloc(sizeof(struct sgv));
 
-    sgv->prod = initProd();
-    sgv->cli = initCli();
+    sgv->prod = initCat();
+    sgv->cli = initCat();
     sgv->sales = initSales();
     sgv->fact = initFact();
     sgv->gfil = initGFil();
@@ -17,8 +14,8 @@ SGV initSGV() {
 }
 
 SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, char* salesFilePath) {
-    tblProd(sgv->prod, productsFilePath);
-    tblCli(sgv->cli, clientsFilePath);
+    tblCat(sgv->prod, productsFilePath, 'p');
+    tblCat(sgv->cli, clientsFilePath, 'c');
     tblSales(sgv->sales, sgv->prod, sgv->cli, salesFilePath);
     tblFact(sgv->sales, sgv->fact);
     tblGFil(sgv->gfil, sgv->sales);
@@ -28,8 +25,8 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, cha
 }
 
 void destroySGV(SGV sgv) {
-    freeProd(sgv->prod);
-    freeCli(sgv->cli);
+    freeCat(sgv->prod);
+    freeCat(sgv->cli);
     freeSales(sgv->sales);
     freeFact(sgv->fact);
     freeGFil(sgv->gfil);

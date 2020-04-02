@@ -1,16 +1,18 @@
 #ifndef __sgv_h
 #define __sgv_h
 
-#include "produtos.h"
-#include "clientes.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "catalogo.h"
 #include "sales.h"
 #include "faturacao.h"
 #include "filial.h"
 
 typedef struct sgv
 {
-    THashC* cli;
-    THashP* prod;
+    Catalogo* cli;
+    Catalogo* prod;
     THashSales* sales;
     THashFact* fact;
     GFiliais* gfil;

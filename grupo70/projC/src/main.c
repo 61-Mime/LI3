@@ -1,11 +1,9 @@
 #include "sgv.h"
 #include "intrepertador.h"
-#include <stdio.h>
 
 SGV sgv;
 
-int main()
-{
+int main() {
   sgv = initSGV();
 
   intrepertador(sgv);

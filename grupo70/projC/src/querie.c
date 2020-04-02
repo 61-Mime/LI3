@@ -286,7 +286,7 @@ void quickSortbyQP(P *prods, int low, int high)
 
       for (int j=low; j<=high-1; j++)
       {
-          if (prods[j].quantidade < pivot)
+          if (prods[j].quantidade > pivot)
           {
               i++;
               swapP(&prods[i], &prods[j]);
@@ -303,11 +303,11 @@ void quickSortbyQP(P *prods, int low, int high)
 
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
   int pos = searchCat(cliID, sgv->cli),hash = hashCat(cliID[0]),i,i2,r,c;
+printf("%d %d\n", hash,pos);
+  if(hash == -1 || pos == -1) return NULL;
 
-  if(hash == -1 || pos == -1) return 0;
-printf(".\n" );
   ListC *l1,*l2,*l3;
-  Q10 *querie10 = NULL;
+  Q10 *querie10 = malloc(sizeof(Q10));
   querie10 -> size = 0;
   querie10 -> produtos = NULL;
 
@@ -317,23 +317,23 @@ printf(".\n" );
 
   querie10 -> size = l1->sizeProds + l2->sizeProds + l3->sizeProds;
   querie10 -> produtos = malloc(sizeof(P)*querie10->size);
-printf(".\n" );
+
   for(i = 0;i < l1->sizeProds;i++) {
     querie10 -> produtos[i].quantidade = l1 -> prods[i].uni[month - 1];
     strcpy(querie10 -> produtos[i].prod,l1 -> prods[i].prod);
   }
-printf(".\n" );
+
   for(i2 = 0;i2 <l2->sizeProds;i2++,i++) {
-    querie10 -> produtos[i].quantidade = l2 -> prods[i].uni[month - 1];
-    strcpy(querie10 -> produtos[i].prod,l2 -> prods[i].prod);
+    querie10 -> produtos[i].quantidade = l2 -> prods[i2].uni[month - 1];
+    strcpy(querie10 -> produtos[i].prod,l2 -> prods[i2].prod);
   }
   for(i2 = 0;i2 < l3->sizeProds;i++,i2++) {
-    querie10 -> produtos[i].quantidade = l3 -> prods[i].uni[month - 1];
-    strcpy(querie10 -> produtos[i].prod,l3 -> prods[i].prod);
+    querie10 -> produtos[i].quantidade = l3 -> prods[i2].uni[month - 1];
+    strcpy(querie10 -> produtos[i].prod,l3 -> prods[i2].prod);
   }
-printf(".\n" );
-  quickSortbyP(querie10->produtos,0,querie10->size);
-printf(".\n" );
+
+  quickSortbyP(querie10->produtos,0,querie10->size - 1);
+
   for(i = 0,r = 1,c = 1;c < querie10 -> size;i++) {
     for(i2 = c,r = 1;r;i2++,i2++){
       if(!strcmp(querie10->produtos[i2].prod,querie10->produtos[i].prod))
@@ -344,6 +344,9 @@ printf(".\n" );
       swapP(&querie10->produtos[i + 1],&querie10->produtos[i2]);
     c = i2;
   }
+  querie10 -> size = i;
+
+  quickSortbyQP(querie10->produtos,0,querie10->size - 1);
 
   return querie10;
 

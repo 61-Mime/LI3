@@ -226,7 +226,6 @@ void runQuerie10(SGV sgv, char* buffer) {
     printf("Querie inválida\n");
   else {
     c2 = strsep(&buffer, "\n");
-
     Q10* querie10 = getClientFavouriteProducts(sgv,c1,atoi(c2));
     printQ10(querie10);
   }

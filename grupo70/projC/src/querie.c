@@ -7,7 +7,7 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
   int i, hash;
   Q2* querie2 = malloc(sizeof(Q2));
 
-  hash = hashP(letter);
+  hash = hashCat(letter);
 
   querie2->size = sgv->prod->tbl[hash].size;
   querie2->prods = malloc(sizeof(char*)*querie2->size);
@@ -25,8 +25,8 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
   int i, pos, hash;
   Q3* querie3 = malloc(sizeof(Q3));
 
-  hash=hashP(productID[0]);
-  pos=searchProd(productID, sgv->prod);
+  hash=hashCat(productID[0]);
+  pos=searchCat(productID, sgv->prod);
 
   if(type == 0) {
     querie3->size = 1;
@@ -82,8 +82,8 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
     Q7* querie7 = malloc(sizeof(Q7));
     ListC *l;
 
-    hash = hashC(clientID[0]);
-    pos = searchCli(clientID, sgv->cli);
+    hash = hashCat(clientID[0]);
+    pos = searchCat(clientID, sgv->cli);
 
     for(i=0; i<12; i++)
       for(k=0; k<3; k++)
@@ -129,15 +129,15 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
 
 // Querie 9
 
-Q9 getProductBuyers(SGV sgv,char *prodID,int branch)
-{
-  int pos = searchProd(prodID, sgv->prod),n,r,c,i;
+Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
+  int pos = searchCat(prodID, sgv->prod),n,r,c,i;
+  Q9* querie9 = malloc(sizeof(Q9));
+  
   if(pos != -1) {
     ListP *prod;
-    int hash = hashP(prodID[0]);
-    Q9 l = malloc(sizeof(Q9));
-    l->total = 0;
-    l->lista = NULL;
+    int hash = hashCat(prodID[0]);
+    querie9->total = 0;
+    querie9->lista = NULL;
 
     if(branch == 1)
       prod = &sgv->gfil->fil1.tblp[hash].list[pos];
@@ -151,29 +151,29 @@ Q9 getProductBuyers(SGV sgv,char *prodID,int branch)
 
     for(i = 0;i < prod->sizeN;i++)
       if(i == 0 || strcmp(prod->cliN[i],prod->cliN[i-1])) {
-        l->lista = realloc(l->lista,sizeof(Cl)*(l->total+1));
-        l->lista[l->total].tipocompra = 1;
-        strcpy(l->lista[l->total].cliente,prod->cliN[i]);
-        l->total++;
+        querie9->lista = realloc(querie9->lista,sizeof(Cl)*(querie9->total+1));
+        querie9->lista[querie9->total].tipocompra = 1;
+        strcpy(querie9->lista[querie9->total].cliente,prod->cliN[i]);
+        querie9->total++;
       }
 
-    c = l->total;
+    c = querie9->total;
     for(i = 0;i < prod->sizeP;i++) {
       for(n = 0;n < c && r < 0;n++) {
-        r = strcmp(prod->cliP[i],l->lista[n].cliente);
+        r = strcmp(prod->cliP[i],querie9->lista[n].cliente);
         if(n == 0) {
-          l->lista[n].tipocompra = 3;
+          querie9->lista[n].tipocompra = 3;
         }
       }
       if(!r && (!i || strcmp(prod->cliN[i],prod->cliN[i-1]))) {
-        l->lista = realloc(l->lista,sizeof(Cl)*(l->total+1));
-        l->lista[l->total].tipocompra = 2;
-        strcpy(l->lista[l->total].cliente,prod->cliN[i]);
-        l->total++;
+        querie9->lista = realloc(querie9->lista,sizeof(Cl)*(querie9->total+1));
+        querie9->lista[querie9->total].tipocompra = 2;
+        strcpy(querie9->lista[querie9->total].cliente,prod->cliN[i]);
+        querie9->total++;
       }
     }
-    return l;
   }
+  return querie9;
 }
 
 // Querie 10

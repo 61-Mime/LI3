@@ -4,8 +4,7 @@
 
 SGV sgv;
 
-int main()
-{
+int main() {
   sgv = initSGV();
 
   intrepertador(sgv);

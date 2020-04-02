@@ -1,7 +1,7 @@
 #include "apresentacao.h"
 
 void printQ1(clock_t start_t, clock_t end_t) {
-    printf("\nTempo de execução da Querie 1: %.2f s\n", (end_t - start_t) * 0.000001);
+    printf("\nTempo de execução da Querie 1: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
 void printQ2(Q2* querie2, char letter) {
@@ -37,9 +37,11 @@ void printQ3(Q3* querie3, char* prodID, int month) {
     }
 }
 
-void printQ6(Q6* querie6) {
+void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
     printf("\nClientes não compradores: %d\n", querie6->nCli);
     printf("Produtos não comprados: %d\n", querie6->nProd);
+
+    printf("\nTempo de execução da Querie 6: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
 void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
@@ -49,14 +51,33 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     for(i=0; i<12; i++)
         printf("Mes %d: %d   %d   %d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
 
-    printf("\nTempo de execução da Querie 7: %.2f s\n", (end_t - start_t) * 0.000001);
+    printf("\nTempo de execução da Querie 7: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
 void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
     printf("\nTotal vendas: %d\n", querie8->vendas);
     printf("Total faturado: %.2f\n", querie8->fact);
 
-    printf("\nTempo de execução da Querie 8: %.2f s\n", (end_t - start_t) * 0.000001);
+    printf("\nTempo de execução da Querie 8: %.4f s\n", (end_t - start_t) * 0.000001);
+}
+
+void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
+    int i;
+
+    printf("\n");
+
+    for(i=0; i<querie9->total; i++) {
+        if(querie9->lista[i].tipocompra == 1)
+            printf("%s (N)\n", querie9->lista[i].cliente);
+        else if(querie9->lista[i].tipocompra == 2)
+            printf("%s (P)\n", querie9->lista[i].cliente);
+        else
+            printf("%s (N/P)\n", querie9->lista[i].cliente);
+    }
+
+    printf("Numero de Clientes que comraram o produto da filial %d: %d\n", filial, querie9->total);
+
+    printf("\nTempo de execução da Querie 9: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
 void printQ13(Q13* querie13) {

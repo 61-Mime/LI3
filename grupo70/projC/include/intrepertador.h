@@ -1,9 +1,12 @@
 #ifndef __intrepertador_h
 #define __intrepertador_h
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "sgv.h"
-#include "querie.h"
-#include "apresentacao.h"
+#include "auxintrepertador.h"
 
 void intrepertador(SGV sgv);
 

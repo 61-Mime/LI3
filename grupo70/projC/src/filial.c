@@ -6,8 +6,6 @@
 GFiliais* initGFil() {
   GFiliais* gfil = malloc(sizeof(GFiliais));
 
-  gfil -> compradores = 0;
-
   for(int i=0; i<3; i++) {
     for(int j=0; j<SIZE; j++)
       gfil->fil[i].tblc[i].list = NULL;
@@ -121,11 +119,6 @@ int existsGFilC(ListC* lc, char* prod) {
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni) {
   int i, j;
   ListC* lc = &gfil->fil[branch-1].tblc[hash].list[pos];
-  
-  /*
-  if(lc->sizeProds == 0) 
-    gfil -> compradores++;
-  */
 
   if((j = existsGFilC(lc, prod)) != 0) {
     lc->prods[j].uni[month - 1] += uni;
@@ -221,8 +214,4 @@ float getGFilCfat(GFiliais*gfil,int branch,int i,int j,int k) {
 
 int getGFilCsizeProds(GFiliais*gfil,int branch,int i,int j) {
   return gfil->fil[branch].tblc[i].list[j].sizeProds;
-}
-
-int getGFilComp(GFiliais*gfil) {
-  return gfil->compradores;
 }

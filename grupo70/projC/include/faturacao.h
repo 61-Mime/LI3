@@ -24,7 +24,6 @@ typedef struct Tfact {
 } TFacturacao;
 
 typedef struct thashfact {
-  int prodComprado;
   TFacturacao tbl[26];
 } THashFact;
 
@@ -39,6 +38,5 @@ int getFatVendasP(THashFact* fact, int i, int j, int month, int branch);
 float getFatFaturacaoN(THashFact* fact, int i, int j, int month, int branch);
 float getFatFaturacaoP(THashFact* fact, int i, int j, int month, int branch);
 int getFatListSize(THashFact* fact, int i);
-int getFatProdC(THashFact* fact);
 
 #endif

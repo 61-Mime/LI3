@@ -1,5 +1,6 @@
 #include "querie.h"
 
+#define SIZE 26
 #define SMAX 10
 
 // Querie 2
@@ -76,7 +77,7 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   querie4->prods = NULL;
 
   if(branch == 0)
-    for(i = 0;i < 26;i++)
+    for(i = 0;i < SIZE;i++)
       for(i2 = 0;i2 < getGFilPListSize(sgv->gfil,0,i);i2++) {
         size = getGFilPSizeN(sgv->gfil, 0, i, i2) + getGFilPSizeP(sgv->gfil, 0, i, i2) +
                getGFilPSizeN(sgv->gfil, 1, i, i2) + getGFilPSizeP(sgv->gfil, 1, i, i2) +
@@ -90,7 +91,7 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
       }
 
   else {
-    for(i = 0;i < 26;i++)
+    for(i = 0;i < SIZE;i++)
       for(i2 = 0;i2 < getGFilPListSize(sgv->gfil,branch-1,i);i2++) {
         size = getGFilPSizeN(sgv->gfil, branch-1, i, i2) + getGFilPSizeP(sgv->gfil, branch-1, i, i2);
         if(size == 0) {
@@ -112,7 +113,7 @@ Q5* getClientsOfAllBranches(SGV sgv) {
     querie5->cli = NULL;
     querie5->size = 0;
 
-    for(i=0; i<26; i++)
+    for(i=0; i<SIZE; i++)
       for(j=0; j<getGFilCListSize(sgv->gfil,0,i); j++) {
         size1 = getGFilCsizeProds(sgv->gfil, 0, i, j);
         size2 = getGFilCsizeProds(sgv->gfil, 1, i, j);
@@ -130,10 +131,31 @@ Q5* getClientsOfAllBranches(SGV sgv) {
 
 // Querie 6
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
+    int i, j, k, l, size;
     Q6* querie6 = malloc(sizeof(Q6));
 
-    querie6->nProd = getCatLinhaVal(sgv->prod) - getFatProdC(sgv->fact);
-    querie6->nCli = getCatLinhaVal(sgv->cli) - getGFilComp(sgv->gfil);
+    querie6->nCli = 0;
+    querie6->nProd = 0;
+
+    for(i=0; i<SIZE; i++)
+      for(j=0; j<getGFilCListSize(sgv->gfil, 0, i); j++)
+        if(getGFilCsizeProds(sgv->gfil, 0, i, j)==0 &&
+           getGFilCsizeProds(sgv->gfil, 1, i, j)==0 &&
+           getGFilCsizeProds(sgv->gfil, 2, i, j)==0)
+           querie6->nCli++;
+
+    for(i=0; i<SIZE; i++)
+      for(j=0; j<getFatListSize(sgv->fact, i); j++) {
+        size = 0;
+        for(k=0; k<12; k++) {
+          for(l=0; l<3; l++) {
+            size += getFatVendasN(sgv->fact, i, j, k, l)
+                  + getFatVendasP(sgv->fact, i, j, k, l);
+          }
+        }
+        if(size == 0)
+          querie6->nProd++;
+      }
 
     return querie6;
 }
@@ -169,7 +191,7 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
   querie8->vendas = 0;
   querie8->fact = 0.0;
 
-  for(i = 0;i < 26;i++)
+  for(i = 0;i < SIZE;i++)
     for(i2 = 0;i2 < getFatListSize(sgv -> fact,i);i2++)
       for(i3 = minMonth-1;i3 < maxMonth;i3++)
         for(i4 = 0;i4 < 3;i4++) {

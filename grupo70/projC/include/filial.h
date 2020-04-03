@@ -42,7 +42,6 @@ typedef struct filial{
 } THashFilial;
 
 typedef struct gfiliais{
-  int compradores;
   THashFilial fil[3];
 } GFiliais;
 

@@ -18,30 +18,33 @@ void menu() {
     printf("- 13\n");
 }
 
-void printQ1(clock_t start_t, clock_t end_t) {
+void printArray(char** arr, int size) {
+    int i, j;
+    
     system("clear");
 
+    for(i=0; i<size; i+=12) {
+        for(j=i; (j<i+11) && (j<size-1); j++)
+            printf("%s - %-5d  ", arr[j], j+1);
+        printf("%s - %-5d\n", arr[j], j+1);
+    }
+}
+
+void printQ1(clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 1: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
 void printQ2(Q2* querie2, char letter) {
-    int i;
-
-    system("clear");
-
     if(querie2 == NULL) 
         printf("Letra inválida\n");
 
-    for(i=0; i<querie2->size; i++)
-        printf("(%d) %s\n", i, querie2->prods[i]);
+    printArray(querie2->prods, querie2->size);
 
-    printf("Numero de Produtos começados por %c: %d\n", letter, querie2->size);
+    printf("\nNumero de Produtos começados por %c: %d\n", letter, querie2->size);
 }
 
 void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
-
-    system("clear");
 
     if(querie3 == NULL) 
         printf("Produto inválido\n");
@@ -66,30 +69,19 @@ void printQ3(Q3* querie3, char* prodID, int month) {
 }
 
 void printQ4(Q4* querie4) {
-    int i;
 
-    system("clear");
+    printArray(querie4->prods, querie4->size);
 
-    for(i = 0; i < querie4 -> size;i++)
-        printf("%s\n", querie4->prods[i]);
-
-    printf("Produtos não comprados:%d\n", querie4->size);
+    printf("\nProdutos não comprados:%d\n", querie4->size);
 }
 
 void printQ5(Q5* querie5) {
-    int i;
+    printArray(querie5->cli, querie5->size);
 
-    system("clear");
-
-    for(i=0; i<querie5->size; i++)
-        printf("%s\n", querie5->cli[i]);
-
-    printf("Clientes que realizaram compras em todas as Filiais: %d\n", querie5->size);
+    printf("\nClientes que realizaram compras em todas as Filiais: %d\n", querie5->size);
 }
 
 void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
-    system("clear");
-
     printf("\nClientes não compradores: %d\n", querie6->nCli);
     printf("Produtos não comprados: %d\n", querie6->nProd);
 
@@ -99,21 +91,17 @@ void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
 void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     int i;
 
-    system("clear");
-
     if(querie7 == NULL) 
         printf("Cliente inválido\n");
 
-    printf("Filial  1   2   3\n" );
+    printf("\nFilial  1     2     3\n" );
     for(i=0; i<12; i++)
-        printf("Mes %d: %d   %d   %d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
+        printf("Mes %02d: %-4d  %-4d  %-4d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
 
     printf("\nTempo de execução da Querie 7: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
 void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
-    system("clear");
-
     printf("\nTotal vendas: %d\n", querie8->vendas);
     printf("Total faturado: %.2f\n", querie8->fact);
 
@@ -122,8 +110,6 @@ void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
 
 void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     int i;
-
-    system("clear");
 
     if(querie9 == NULL) 
         printf("Produto inválido\n");
@@ -145,8 +131,6 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
 void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   int i;
 
-  system("clear");
-
   if(querie10 == NULL) 
     printf("Cliente inválido\n");
 
@@ -157,8 +141,6 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
 }
 
 void printQ13(Q13* querie13) {
-    system("clear");
-
     printf("\nNumero de Clientes Lidos: %d\n", querie13->cliL);
     printf("Numero de Clientes Validados: %d\n", querie13->cliV);
 

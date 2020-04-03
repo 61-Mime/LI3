@@ -5,9 +5,7 @@
 
 THashFact* initFact() {
   THashFact *fact = malloc(sizeof(THashFact));
-
-  fact->prodComprado = 0;
-
+  
   for(int i=0; i<SIZE; i++) {
     fact->tbl[i].size = 0;
     fact->tbl[i].list = NULL;
@@ -52,9 +50,6 @@ void loadFactFromCat(THashFact* fact, Catalogo* prod) {
 void addFact(THashFact* fact, int hash, int pos, int month, int branch, char type, float price, int uni) {
   FMensal* f = &fact->tbl[hash].list[pos].mesfilial[month-1][branch-1];
 
-  if(f->vendasN == 0 && f->vendasP == 0)
-    fact->prodComprado ++;
-
   if(type == 'N') {
     f->vendasN ++;
     f->facturacaoN += (price * uni);
@@ -97,6 +92,4 @@ int getFatListSize(THashFact* fact, int i) {
   return fact->tbl[i].size;
 }
 
-int getFatProdC(THashFact* fact) {
-  return fact->prodComprado;
-}
+

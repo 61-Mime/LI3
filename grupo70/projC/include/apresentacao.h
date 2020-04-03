@@ -16,6 +16,8 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t);
 void printQ8(Q8* querie8, clock_t start_t, clock_t end_t);
 void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t);
 void printQ10(Q10* querie10, clock_t start_t, clock_t end_t);
+void printQ11(Q11* querie11, clock_t start_t, clock_t end_t);
+void printQ12(Q12* querie12, clock_t start_t, clock_t end_t);
 void printQ13(Q13* querie13);
 
 #endif

@@ -71,6 +71,31 @@ typedef struct q10
     P *produtos;
 } Q10;
 
+typedef struct pp
+{
+  int unidades[3];
+  int clientes[3];
+  int total;
+  char prod[10];
+} PP;
+
+typedef struct q11
+{
+  int size;
+  PP *produtos;
+} Q11;
+
+typedef struct pf
+{
+    float faturacao;
+    char prod[10];
+} PF;
+
+typedef struct q12{
+  int size;
+  PF* prods;
+} Q12;
+
 typedef struct q13 {
     int prodL;
     int prodV;
@@ -89,6 +114,8 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID);
 Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth);
 Q9* getProductBuyers(SGV sgv,char *prodID,int branch);
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month);
+Q11* getTopSelledProducts(SGV sgv, int limit);
+Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit);
 Q13* getCurrentFilesInfo(SGV sgv);
 
 #endif

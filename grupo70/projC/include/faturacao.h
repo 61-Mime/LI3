@@ -11,10 +11,12 @@ typedef struct factM {
   int vendasP;
   float facturacaoN;
   float facturacaoP;
+  int unidades;
 } FMensal;
 
 typedef struct fact {
   char *prod;
+  int ocup;
   FMensal mesfilial[12][3];
 } Facturacao;
 
@@ -37,6 +39,8 @@ int getFatVendasN(THashFact* fact, int i, int j, int month, int branch);
 int getFatVendasP(THashFact* fact, int i, int j, int month, int branch);
 float getFatFaturacaoN(THashFact* fact, int i, int j, int month, int branch);
 float getFatFaturacaoP(THashFact* fact, int i, int j, int month, int branch);
+int getFatUnidades(THashFact* fact, int i, int j, int month, int branch);
 int getFatListSize(THashFact* fact, int i);
+int getFatOcup(THashFact* fact, int i, int j);
 
 #endif

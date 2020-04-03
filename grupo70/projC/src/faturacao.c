@@ -37,24 +37,24 @@ void initFacturacao(THashFact* fact, int i, int j, char* key) {
     }
 }
 
-void loadFactFromProds(THashFact* fact, Catalogo* prod) {
+void loadFactFromCat(THashFact* fact, Catalogo* prod) {
   int i, j, size;
 
   for(i=0; i<SIZE; i++) {
     size = getCatListSize(prod, i);
     initTFacturacao(fact, i, size);
-    
+
     for(j=0; j<size; j++)
       initFacturacao(fact, i, j, getCatKey(prod, i, j));
   }
 }
 
-void addFact(THashFact* fact, int hash, int pos, int month, int branch, char type, float price, int uni) {  
+void addFact(THashFact* fact, int hash, int pos, int month, int branch, char type, float price, int uni) {
   FMensal* f = &fact->tbl[hash].list[pos].mesfilial[month-1][branch-1];
-  
+
   if(f->vendasN == 0 && f->vendasP == 0)
     fact->prodComprado ++;
-  
+
   if(type == 'N') {
     f->vendasN ++;
     f->facturacaoN += (price * uni);

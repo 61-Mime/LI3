@@ -29,7 +29,7 @@ typedef struct thashfact {
 } THashFact;
 
 THashFact* initFact();
-void loadFactFromProds(THashFact* fact, Catalogo* prod);
+void loadFactFromCat(THashFact* fact, Catalogo* prod);
 void addFact(THashFact* fact, int hash, int pos, int month, int branch, char type, float price, int uni);
 void freeFact(THashFact* fact);
 

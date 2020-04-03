@@ -39,10 +39,10 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
 
 
     for(i=0; i<3; i++) {
-      querie3->fat->fatN += sgv->fact->tbl[hash].list[pos].mesfilial[month][i].facturacaoN;
-      querie3->fat->fatP += sgv->fact->tbl[hash].list[pos].mesfilial[month][i].facturacaoP;
-      querie3->fat->nVendasN += sgv->fact->tbl[hash].list[pos].mesfilial[month][i].vendasN;
-      querie3->fat->nVendasP += sgv->fact->tbl[hash].list[pos].mesfilial[month][i].vendasP;
+      querie3->fat->fatN += getFatFaturacaoN(sgv->fact,hash,pos,month,i);
+      querie3->fat->fatP += getFatFaturacaoP(sgv->fact,hash,pos,month,i);
+      querie3->fat->nVendasN += getFatVendasN(sgv->fact,hash,pos,month,i);
+      querie3->fat->nVendasP += getFatVendasP(sgv->fact,hash,pos,month,i);
     }
   }
 
@@ -50,11 +50,11 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
     querie3->size = 3;
     querie3->fat = malloc(sizeof(Q3fat) * querie3->size);
 
-    for(i=0; i<4; i++) {
-      querie3->fat[i].fatN = sgv->fact->tbl[hash].list[pos].mesfilial[month][i].facturacaoN;
-      querie3->fat[i].fatP = sgv->fact->tbl[hash].list[pos].mesfilial[month][i].facturacaoP;
-      querie3->fat[i].nVendasN = sgv->fact->tbl[hash].list[pos].mesfilial[month][i].vendasN;
-      querie3->fat[i].nVendasP = sgv->fact->tbl[hash].list[pos].mesfilial[month][i].vendasP;
+    for(i=0; i<3; i++) {
+      querie3->fat[i].fatN = getFatFaturacaoN(sgv->fact,hash,pos,month,i);
+      querie3->fat[i].fatP = getFatFaturacaoP(sgv->fact,hash,pos,month,i);
+      querie3->fat[i].nVendasN = getFatVendasN(sgv->fact,hash,pos,month,i);
+      querie3->fat[i].nVendasP = getFatVendasP(sgv->fact,hash,pos,month,i);
     }
   }
 
@@ -73,10 +73,10 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   if(branch == 0) {
   ListP *p,*p2,*p3;
     for(i = 0;i < 26;i++)
-      for(i2 = 0;i2 < sgv->gfil->fil1.tblp[i].sizeProd;i2++) {
-        p = &sgv->gfil->fil1.tblp[i].list[i2];
-        p2 = &sgv->gfil->fil2.tblp[i].list[i2];
-        p3 = &sgv->gfil->fil3.tblp[i].list[i2];
+      for(i2 = 0;i2 < getGFilPListSize(sgv->gfil,0,i);i2++) {
+        p = &sgv->gfil->fil[0].tblp[i].list[i2];
+        p2 = &sgv->gfil->fil[1].tblp[i].list[i2];
+        p3 = &sgv->gfil->fil[2].tblp[i].list[i2];
         if(!p -> sizeN && !p -> sizeP && !p2 -> sizeN &&
            !p2 -> sizeP && !p3 -> sizeN && !p3 -> sizeP) {
           querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
@@ -89,12 +89,7 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   else {
     ListP *p;
 
-    if(branch == 1)
-      f = &sgv->gfil->fil1;
-    else if(branch == 2)
-      f = &sgv->gfil->fil2;
-    else
-      f = &sgv->gfil->fil3;
+      f = &sgv->gfil->fil[branch-1];
 
     for(i = 0;i < 26;i++)
       for(i2 = 0;i2 < f->tblp[i].sizeProd;i2++) {
@@ -120,10 +115,10 @@ Q5* getClientsOfAllBranches(SGV sgv) {
     querie5->size = 0;
 
     for(i=0; i<26; i++)
-      for(j=0; j<sgv->gfil->fil1.tblc[i].sizeCli; j++) {
-        p = &sgv->gfil->fil1.tblc[i].list[j];
-        p2 = &sgv->gfil->fil2.tblc[i].list[j];
-        p3 = &sgv->gfil->fil3.tblc[i].list[j];
+      for(j=0; j<getGFilCListSize(sgv->gfil,0,i); j++) {
+        p = &sgv->gfil->fil[0].tblc[i].list[j];
+        p2 = &sgv->gfil->fil[1].tblc[i].list[j];
+        p3 = &sgv->gfil->fil[2].tblc[i].list[j];
 
         if(p->sizeProds>0 && p2->sizeProds>0 && p3->sizeProds>0){
           querie5->cli = realloc(querie5->cli, sizeof(char*) * (querie5->size + 1));
@@ -139,8 +134,8 @@ Q5* getClientsOfAllBranches(SGV sgv) {
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
     Q6* querie6 = malloc(sizeof(Q6));
 
-    //querie6->nProd = sgv->fact->prodNaoComprado;
-    //querie6->nCli = sgv->fact->cliNaoComprador;
+    querie6->nProd = getCatLinhaVal(sgv->prod) - getFatProdC(sgv->fact);
+    querie6->nCli = getCatLinhaVal(sgv->cli) - getGFilComp(sgv->gfil);
 
     return querie6;
 }
@@ -159,15 +154,15 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
         querie7->tabela[i][k] = 0;
 
     for(i=0; i<12; i++) {
-      l = &sgv->gfil->fil1.tblc[hash].list[pos];
+      l = &sgv->gfil->fil[0].tblc[hash].list[pos];
       for(k = 0;k < l->sizeProds;k++)
         querie7->tabela[i][0] += l->prods[k].uni[i];
 
-      l = &sgv->gfil->fil2.tblc[hash].list[pos];
+      l = &sgv->gfil->fil[1].tblc[hash].list[pos];
       for(k = 0;k < l->sizeProds;k++)
         querie7->tabela[i][1] += l->prods[k].uni[i];
 
-      l = &sgv->gfil->fil3.tblc[hash].list[pos];
+      l = &sgv->gfil->fil[2].tblc[hash].list[pos];
       for(k = 0;k < l->sizeProds;k++)
         querie7->tabela[i][2] += l->prods[k].uni[i];
     }
@@ -178,19 +173,19 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
 // Querie 8
 Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
   int i,i2,i3,i4;
-  FMensal *f;
   Q8* querie8 = malloc(sizeof(Q8));
 
   querie8->vendas = 0;
   querie8->fact = 0.0;
 
   for(i = 0;i < 26;i++)
-    for(i2 = 0;i2 < sgv->fact->tbl[i].size;i2++)
+    for(i2 = 0;i2 < getFatListSize(sgv -> fact,i);i2++)
       for(i3 = minMonth-1;i3 < maxMonth;i3++)
         for(i4 = 0;i4 < 3;i4++) {
-          f = &sgv->fact->tbl[i].list[i2].mesfilial[i3][i4];
-          querie8->vendas += f->vendasN + f->vendasP;
-          querie8->fact += f->facturacaoP + f->facturacaoN;
+          querie8->vendas += getFatVendasN(sgv->fact,i,i2,i3,i4) +
+                             getFatVendasP(sgv->fact,i,i2,i3,i4);
+          querie8->fact += getFatFaturacaoN(sgv->fact,i,i2,i3,i4) +
+                           getFatFaturacaoP(sgv->fact,i,i2,i3,i4);
         }
 
   return querie8;
@@ -208,12 +203,7 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
     querie9->total = 0;
     querie9->lista = NULL;
 
-    if(branch == 1)
-      prod = &sgv->gfil->fil1.tblp[hash].list[pos];
-    else if(branch == 2)
-      prod = &sgv->gfil->fil2.tblp[hash].list[pos];
-    else
-      prod = &sgv->gfil->fil3.tblp[hash].list[pos];
+    prod = &sgv->gfil->fil[branch-1].tblp[hash].list[pos];
 
     quickSort(prod->cliN,0,prod->sizeN-1);
     quickSort(prod->cliP,0,prod->sizeP-1);
@@ -303,7 +293,7 @@ void quickSortbyQP(P *prods, int low, int high)
 
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
   int pos = searchCat(cliID, sgv->cli),hash = hashCat(cliID[0]),i,i2,r,c;
-printf("%d %d\n", hash,pos);
+
   if(hash == -1 || pos == -1) return NULL;
 
   ListC *l1,*l2,*l3;
@@ -311,13 +301,13 @@ printf("%d %d\n", hash,pos);
   querie10 -> size = 0;
   querie10 -> produtos = NULL;
 
-  l1 = &sgv -> gfil -> fil1.tblc[hash].list[pos];
-  l2 = &sgv -> gfil -> fil2.tblc[hash].list[pos];
-  l3 = &sgv -> gfil -> fil3.tblc[hash].list[pos];
+  l1 = &sgv -> gfil -> fil[0].tblc[hash].list[pos];
+  l2 = &sgv -> gfil -> fil[1].tblc[hash].list[pos];
+  l3 = &sgv -> gfil -> fil[2].tblc[hash].list[pos];
 
   querie10 -> size = l1->sizeProds + l2->sizeProds + l3->sizeProds;
   querie10 -> produtos = malloc(sizeof(P)*querie10->size);
-
+printf("%d\n", querie10->size);
   for(i = 0;i < l1->sizeProds;i++) {
     querie10 -> produtos[i].quantidade = l1 -> prods[i].uni[month - 1];
     strcpy(querie10 -> produtos[i].prod,l1 -> prods[i].prod);
@@ -347,7 +337,7 @@ printf("%d %d\n", hash,pos);
   querie10 -> size = i;
 
   quickSortbyQP(querie10->produtos,0,querie10->size - 1);
-
+printf("%d\n", querie10->size);
   return querie10;
 
 }

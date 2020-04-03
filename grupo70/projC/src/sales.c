@@ -19,7 +19,7 @@ int vendaVal(int posp, int posc, float preco, int uni, char type, int mes, int b
 // Corre uma venda, passa para a struct total e se for válida passa a struct valida
 void saleS(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, char* buffer) {
   char *aux = NULL, *prod = NULL, *cli = NULL, *type = NULL;
-  int hashp, hashc, posp=0, posc=0, size;
+  int hashp, hashc, posp=0, posc=0;
   int uni, month, branch;
   float price;
 
@@ -71,7 +71,7 @@ int loadFromSales(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gf
   while(fgets(buffer,MAX,fsales)) {
     buffer = strsep(&buffer, "\r");
     saleS(tprod, tcli, fact, gfil, buffer);
-  }  
+  }
 
   fclose(fsales);
 

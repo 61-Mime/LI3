@@ -100,7 +100,7 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
 
 void printQ10(Q10* querie10) {
   int i;
-
+  if(querie10 == NULL) printf("Cliente inválido\n");
   for(i = 0; i < querie10 -> size;i++)
     printf("%s %d\n", querie10->produtos[i].prod,querie10->produtos[i].quantidade);
 }
@@ -110,6 +110,6 @@ void printQ13(Q13* querie13) {
     printf("Numero de Clientes Validados: %d\n", querie13->cliV);
     printf("Numero de Produtos Lidos: %d\n", querie13->prodL);
     printf("Numero de Produtos Validados: %d\n", querie13->prodV);
-    printf("Numero de Vendas Lidas: %d\n", querie13->salesL);
-    printf("Numero de Vendas Validadas: %d\n", querie13->salesV);
+    //printf("Numero de Vendas Lidas: %d\n", querie13->salesL);
+    //printf("Numero de Vendas Validadas: %d\n", querie13->salesV);
 }

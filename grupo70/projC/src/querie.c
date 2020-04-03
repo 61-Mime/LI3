@@ -45,10 +45,10 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
 
 
     for(i=0; i<3; i++) {
-      querie3->fat->fatN += getFatFaturacaoN(sgv->fact,hash,pos,month,i);
-      querie3->fat->fatP += getFatFaturacaoP(sgv->fact,hash,pos,month,i);
-      querie3->fat->nVendasN += getFatVendasN(sgv->fact,hash,pos,month,i);
-      querie3->fat->nVendasP += getFatVendasP(sgv->fact,hash,pos,month,i);
+      querie3->fat->fatN += getFatFaturacaoN(sgv->fact,hash,pos,month-1,i);
+      querie3->fat->fatP += getFatFaturacaoP(sgv->fact,hash,pos,month-1,i);
+      querie3->fat->nVendasN += getFatVendasN(sgv->fact,hash,pos,month-1,i);
+      querie3->fat->nVendasP += getFatVendasP(sgv->fact,hash,pos,month-1,i);
     }
   }
 
@@ -57,10 +57,10 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
     querie3->fat = malloc(sizeof(Q3fat) * querie3->size);
 
     for(i=0; i<3; i++) {
-      querie3->fat[i].fatN = getFatFaturacaoN(sgv->fact,hash,pos,month,i);
-      querie3->fat[i].fatP = getFatFaturacaoP(sgv->fact,hash,pos,month,i);
-      querie3->fat[i].nVendasN = getFatVendasN(sgv->fact,hash,pos,month,i);
-      querie3->fat[i].nVendasP = getFatVendasP(sgv->fact,hash,pos,month,i);
+      querie3->fat[i].fatN = getFatFaturacaoN(sgv->fact,hash,pos,month-1,i);
+      querie3->fat[i].fatP = getFatFaturacaoP(sgv->fact,hash,pos,month-1,i);
+      querie3->fat[i].nVendasN = getFatVendasN(sgv->fact,hash,pos,month-1,i);
+      querie3->fat[i].nVendasP = getFatVendasP(sgv->fact,hash,pos,month-1,i);
     }
   }
 

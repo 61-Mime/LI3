@@ -25,7 +25,7 @@ void intrepertador(SGV sgv) {
         if(strcmp(s,"menu") == 0)
           menu();
 
-        else if(strcmp(s,"q")==0 || strcmp(s,"q")==0)
+        else if(strcmp(s,"q")==0 || strcmp(s,"Q")==0)
           r=0;
 
         else if(atoi(s)!=1 && atoi(s)!=0 && sgv->load==0)

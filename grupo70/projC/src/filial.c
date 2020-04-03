@@ -173,7 +173,7 @@ float getGFilCfat(GFiliais*gfil,int branch,int i,int j,int k) {
   return gfil->fil[branch].tblc[i].list[j].prods[k].fat;
 }
 
-int getGFilsizeP(GFiliais*gfil,int branch,int i,int j) {
+int getGFilCsizeProds(GFiliais*gfil,int branch,int i,int j) {
   return gfil->fil[branch].tblc[i].list[j].sizeProds;
 }
 
@@ -185,7 +185,7 @@ void print(GFiliais *g) {
   int i,i2,i3;
   for(i = 0;i < SIZE;i++)
     for(i2 = 0;i2 < getGFilCListSize(g,0,i);i2++)
-      for(i3 = 0;i3 < getGFilsizeP(g,0,i,i2);i3++) {
+      for(i3 = 0;i3 < getGFilCsizeProds(g,0,i,i2);i3++) {
         printf("%d %s\n", g->fil[0].tblc[i].list[i2].prods[i3].uni[1],g->fil[0].tblc[i].list[i2].prods[i3].prod);
       }
 }

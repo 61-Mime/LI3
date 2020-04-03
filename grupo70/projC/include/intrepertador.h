@@ -7,6 +7,7 @@
 #include <time.h>
 #include "sgv.h"
 #include "auxintrepertador.h"
+#include "apresentacao.h"
 
 void intrepertador(SGV sgv);
 

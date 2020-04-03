@@ -9,6 +9,9 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
 
   hash = hashCat(letter);
 
+  if(hash == -1) 
+    return NULL;
+
   querie2->size = getCatListSize(sgv->prod, hash);
   querie2->prods = malloc(sizeof(char*)*querie2->size);
 
@@ -27,6 +30,9 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
 
   hash=hashCat(productID[0]);
   pos=searchCat(productID, sgv->prod);
+
+  if(hash == -1 || pos == -1) 
+    return NULL;
 
   if(type == 0) {
     querie3->size = 1;
@@ -63,42 +69,35 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
 
 // Querie 4
 Q4* getProductsNeverBough(SGV sgv,int branch) {
-  int i,i2;
+  int i,i2, size;
+
   Q4 *querie4 = malloc(sizeof(Q4));
   querie4->size = 0;
   querie4->prods = NULL;
 
-  THashFilial *f;
-
-  if(branch == 0) {
-  ListP *p,*p2,*p3;
+  if(branch == 0)
     for(i = 0;i < 26;i++)
       for(i2 = 0;i2 < getGFilPListSize(sgv->gfil,0,i);i2++) {
-        p = &sgv->gfil->fil[0].tblp[i].list[i2];
-        p2 = &sgv->gfil->fil[1].tblp[i].list[i2];
-        p3 = &sgv->gfil->fil[2].tblp[i].list[i2];
-        if(!p -> sizeN && !p -> sizeP && !p2 -> sizeN &&
-           !p2 -> sizeP && !p3 -> sizeN && !p3 -> sizeP) {
+        size = getGFilPSizeN(sgv->gfil, 0, i, i2) + getGFilPSizeP(sgv->gfil, 0, i, i2) +
+               getGFilPSizeN(sgv->gfil, 1, i, i2) + getGFilPSizeP(sgv->gfil, 1, i, i2) +
+               getGFilPSizeN(sgv->gfil, 2, i, i2) + getGFilPSizeP(sgv->gfil, 2, i, i2);
+        if(size == 0) {
           querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
           querie4->prods[querie4->size] = malloc(sizeof(char) * 10);
-          strcpy(querie4 -> prods[querie4->size],p->key);
-          querie4 -> size ++;
+          strcpy(querie4->prods[querie4->size], getCatKey(sgv->prod, i, i2));
+          querie4->size++;
         }
       }
-  }
+
   else {
-    ListP *p;
-
-      f = &sgv->gfil->fil[branch-1];
-
     for(i = 0;i < 26;i++)
-      for(i2 = 0;i2 < f->tblp[i].sizeProd;i2++) {
-        p = &f -> tblp[i].list[i2];
-        if((p -> sizeN == 0) && (p -> sizeP == 0)) {
+      for(i2 = 0;i2 < getGFilPListSize(sgv->gfil,branch-1,i);i2++) {
+        size = getGFilPSizeN(sgv->gfil, branch-1, i, i2) + getGFilPSizeP(sgv->gfil, branch-1, i, i2);
+        if(size == 0) {
           querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
           querie4->prods[querie4->size] = malloc(sizeof(char) * 10);
-          strcpy(querie4 -> prods[querie4->size],p->key);
-          querie4 -> size ++;
+          strcpy(querie4->prods[querie4->size], getCatKey(sgv->prod, i, i2));
+          querie4->size++;
         }
       }
   }
@@ -107,23 +106,22 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
 
 // Querie 5
 Q5* getClientsOfAllBranches(SGV sgv) {
-    int i, j;
+    int i, j, size1, size2, size3;
     Q5* querie5 = malloc(sizeof(Q5));
-    ListC *p,*p2,*p3;
 
     querie5->cli = NULL;
     querie5->size = 0;
 
     for(i=0; i<26; i++)
       for(j=0; j<getGFilCListSize(sgv->gfil,0,i); j++) {
-        p = &sgv->gfil->fil[0].tblc[i].list[j];
-        p2 = &sgv->gfil->fil[1].tblc[i].list[j];
-        p3 = &sgv->gfil->fil[2].tblc[i].list[j];
+        size1 = getGFilCsizeProds(sgv->gfil, 0, i, j);
+        size2 = getGFilCsizeProds(sgv->gfil, 1, i, j);
+        size3 = getGFilCsizeProds(sgv->gfil, 2, i, j);
 
-        if(p->sizeProds>0 && p2->sizeProds>0 && p3->sizeProds>0){
+        if(size1>0 && size2>0 && size3>0){
           querie5->cli = realloc(querie5->cli, sizeof(char*) * (querie5->size + 1));
           querie5->cli[querie5->size] = malloc(sizeof(char)*SMAX);
-          strcpy(querie5->cli[querie5->size], p->key);
+          strcpy(querie5->cli[querie5->size], getCatKey(sgv->prod, i, j));
           querie5->size++;
         }
       }
@@ -142,31 +140,27 @@ Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
 
 // Querie 7
 Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
-    int i, k, hash, pos;
+    int i, j, k, hash, pos;
     Q7* querie7 = malloc(sizeof(Q7));
-    ListC *l;
 
     hash = hashCat(clientID[0]);
     pos = searchCat(clientID, sgv->cli);
 
+    if(hash == -1 || pos == -1) 
+      return NULL;
+
+    if(hash == -1 || pos == -1) 
+      return NULL;
+
     for(i=0; i<12; i++)
-      for(k=0; k<3; k++)
-        querie7->tabela[i][k] = 0;
+      for(j=0; j<3; j++)
+        querie7->tabela[i][j] = 0;
 
-    for(i=0; i<12; i++) {
-      l = &sgv->gfil->fil[0].tblc[hash].list[pos];
-      for(k = 0;k < l->sizeProds;k++)
-        querie7->tabela[i][0] += l->prods[k].uni[i];
-
-      l = &sgv->gfil->fil[1].tblc[hash].list[pos];
-      for(k = 0;k < l->sizeProds;k++)
-        querie7->tabela[i][1] += l->prods[k].uni[i];
-
-      l = &sgv->gfil->fil[2].tblc[hash].list[pos];
-      for(k = 0;k < l->sizeProds;k++)
-        querie7->tabela[i][2] += l->prods[k].uni[i];
-    }
-
+    for(i=0; i<12; i++)
+      for(j=0; j<3; j++)
+        for(k=0; k<getGFilCsizeProds(sgv->gfil, j, i, k); k++)
+          querie7->tabela[i][j] += getGFilCuni(sgv->gfil, j, hash, pos, k, i);
+      
     return querie7;
 }
 
@@ -194,10 +188,12 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
 // Querie 9
 
 Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
-  int pos = searchCat(prodID, sgv->prod),n,r,c,i;
-  Q9* querie9 = malloc(sizeof(Q9));
+    int pos = searchCat(prodID, sgv->prod),n,r,c,i;
+    Q9* querie9 = malloc(sizeof(Q9));
 
-  if(pos != -1) {
+    if(pos == -1)
+      return NULL;
+
     ListP *prod;
     int hash = hashCat(prodID[0]);
     querie9->total = 0;
@@ -231,8 +227,8 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
         querie9->total++;
       }
     }
-  }
-  return querie9;
+  
+    return querie9;
 }
 
 // Querie 10
@@ -294,7 +290,8 @@ void quickSortbyQP(P *prods, int low, int high)
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
   int pos = searchCat(cliID, sgv->cli),hash = hashCat(cliID[0]),i,i2,r,c;
 
-  if(hash == -1 || pos == -1) return NULL;
+  if(hash == -1 || pos == -1) 
+    return NULL;
 
   ListC *l1,*l2,*l3;
   Q10 *querie10 = malloc(sizeof(Q10));
@@ -307,7 +304,7 @@ Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
 
   querie10 -> size = l1->sizeProds + l2->sizeProds + l3->sizeProds;
   querie10 -> produtos = malloc(sizeof(P)*querie10->size);
-printf("%d\n", querie10->size);
+
   for(i = 0;i < l1->sizeProds;i++) {
     querie10 -> produtos[i].quantidade = l1 -> prods[i].uni[month - 1];
     strcpy(querie10 -> produtos[i].prod,l1 -> prods[i].prod);
@@ -337,9 +334,8 @@ printf("%d\n", querie10->size);
   querie10 -> size = i;
 
   quickSortbyQP(querie10->produtos,0,querie10->size - 1);
-printf("%d\n", querie10->size);
-  return querie10;
 
+  return querie10;
 }
 // Querie 11
 

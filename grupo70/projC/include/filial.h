@@ -60,7 +60,7 @@ int getGFilCListSize(GFiliais* gfil, int branch, int i);
 char* getGFilCprod(GFiliais*gfil,int branch,int i,int j,int k);
 int getGFilCuni(GFiliais*gfil,int branch,int i,int j,int k,int m);
 float getGFilCfat(GFiliais*gfil,int branch,int i,int j,int k);
-int getGFilsizeP(GFiliais*gfil,int branch,int i,int j);
+int getGFilCsizeProds(GFiliais*gfil,int branch,int i,int j);
 int getGFilComp(GFiliais*gfil);
 void print(GFiliais *g);
 

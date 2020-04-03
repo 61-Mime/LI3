@@ -33,7 +33,7 @@ void runQuerie1(SGV sgv, char* buffer) {
     }
   }
 
-  if(sgv->load == 1) {
+  if(sgv->load==1) {
     destroySGV(sgv);
     sgv = initSGV();
   }
@@ -46,9 +46,8 @@ void runQuerie1(SGV sgv, char* buffer) {
 }
 
 void runQuerie2(SGV sgv, char* buffer) {
-  char *c1 = NULL;
+    char *c1 = NULL;
 
-  if(sgv->load == 1){
     if(temEspaco(buffer))
       printf("Querie inválida\n");
 
@@ -58,16 +57,11 @@ void runQuerie2(SGV sgv, char* buffer) {
       Q2* querie2 = getProductsStartedByLetter(sgv, c1[0]);
       printQ2(querie2, c1[0]);
     }
-  }
-
-  else
-    printf("O SGV ainda não foi carregado\n");
 }
 
 void runQuerie3(SGV sgv, char* buffer){
-  char *c1 = NULL, *c2 = NULL, *c3 = NULL;
-
-  if(sgv->load == 1) {
+    char *c1 = NULL, *c2 = NULL, *c3 = NULL;
+  
     if(!temEspaco(buffer))
       printf("Querie inválida\n");
 
@@ -91,10 +85,7 @@ void runQuerie3(SGV sgv, char* buffer){
         }
       }
     }
-  }
-
-  else
-    printf("O SGV ainda não foi carregado\n");
+  
 }
 
 void runQuerie4(SGV sgv, char* buffer) {
@@ -112,7 +103,8 @@ void runQuerie4(SGV sgv, char* buffer) {
 }
 
 void runQuerie5(SGV sgv, int tam) {
-  if(tam>2) printf("Querie inválida\n");
+  if(tam>2) 
+    printf("Querie inválida\n");
 
   else {
     Q5* querie5 = getClientsOfAllBranches(sgv);
@@ -124,28 +116,22 @@ void runQuerie5(SGV sgv, int tam) {
 void runQuerie6(SGV sgv, char* buffer, int tam) {
     clock_t start_t, end_t;
 
-    if(sgv->load == 1) {
-        if(tam>2)
-            printf("Querie inválida\n");
+    if(tam>2)
+        printf("Querie inválida\n");
 
-        else {
-            start_t = clock();
-            Q6* querie6 = getClientsAndProductsNeverBoughtCount(sgv);
-            end_t = clock();
+    else {
+        start_t = clock();
+        Q6* querie6 = getClientsAndProductsNeverBoughtCount(sgv);
+        end_t = clock();
 
-            printQ6(querie6, start_t, end_t);
-        }
+        printQ6(querie6, start_t, end_t);
     }
-
-    else
-        printf("O SGV ainda não foi carregado\n");
 }
 
 void runQuerie7(SGV sgv, char* buffer) {
-  char *c1 = NULL;
-  clock_t start_t, end_t;
+    char *c1 = NULL;
+    clock_t start_t, end_t;
 
-  if(sgv->load == 1) {
     if(temEspaco(buffer))
       printf("Querie inválida\n");
 
@@ -158,17 +144,16 @@ void runQuerie7(SGV sgv, char* buffer) {
 
       printQ7(querie7, start_t, end_t);
     }
-  }
-
-  else
-    printf("O SGV ainda não foi carregado\n");
 }
 
 void runQuerie8(SGV sgv, char* buffer) {
     char *c1 = NULL, *c2 = NULL;
     clock_t start_t, end_t;
 
-    if(sgv->load == 1) {
+    if(!temEspaco(buffer))
+      printf("Querie inválida\n");
+
+    else {
         c1 = strsep(&buffer, " ");
         if(temEspaco(buffer))
             printf("Querie invalida\n");
@@ -183,65 +168,93 @@ void runQuerie8(SGV sgv, char* buffer) {
             printQ8(querie8, start_t, end_t);
         }
     }
-
-    else
-        printf("O SGV ainda não foi carregado\n");
 }
 
 void runQuerie9(SGV sgv, char* buffer) {
     char *c1 = NULL, *c2 = NULL;
     clock_t start_t, end_t;
 
-    if(sgv->load == 1) {
-        if(!temEspaco(buffer))
-          printf("Querie inválida\n");
+    if(!temEspaco(buffer))
+      printf("Querie inválida\n");
 
-        else {
-          c1 = strsep(&buffer, " ");
+    else {
+      c1 = strsep(&buffer, " ");
 
-          if(temEspaco(buffer))
-            printf("Querie invalida\n");
+      if(temEspaco(buffer))
+        printf("Querie invalida\n");
 
-          else {
-            c2 = strsep(&buffer, "\n");
+      else {
+        c2 = strsep(&buffer, "\n");
 
-            start_t = clock();
-            Q9* querie9 = getProductBuyers(sgv, c1, atoi(c2));
-            end_t = clock();
+        start_t = clock();
+        Q9* querie9 = getProductBuyers(sgv, c1, atoi(c2));
+        end_t = clock();
 
-            printQ9(querie9, atoi(c2), start_t, end_t);
-          }
-        }
+        printQ9(querie9, atoi(c2), start_t, end_t);
+      }
     }
 
-    else
-        printf("O SGV ainda não foi carregado\n");
 }
 
 void runQuerie10(SGV sgv, char* buffer) {
   char *c1 = NULL,*c2 = NULL;
+  clock_t start_t, end_t;
 
-  c1 = strsep(&buffer, " ");
-  if(temEspaco(buffer))
+  if(!temEspaco(buffer))
     printf("Querie inválida\n");
+
   else {
-    c2 = strsep(&buffer, "\n");
-    Q10* querie10 = getClientFavouriteProducts(sgv,c1,atoi(c2));
-    printQ10(querie10);
+    c1 = strsep(&buffer, " ");
+    if(temEspaco(buffer))
+      printf("Querie inválida\n");
+    else {
+      c2 = strsep(&buffer, "\n");
+
+      start_t = clock();
+      Q10* querie10 = getClientFavouriteProducts(sgv,c1,atoi(c2));
+      end_t = clock();
+
+      printQ10(querie10, start_t, end_t);
+    }
   }
 }
 
-void runQuerie13(SGV sgv, char* buffer, int tam) {
-    if(sgv->load == 1) {
-        if(tam>3)
-          printf("Querie inválida\n");
+void runQuerie11(SGV sgv, char* buffer) {
+  char *c1 = NULL;
+  
+  if(temEspaco(buffer))
+    printf("Querie inválida\n");
 
-        else {
-          Q13* querie13 = getCurrentFilesInfo(sgv);
-          printQ13(querie13);
-        }
+  else{
+    c1 = strsep(&buffer, "\n");
+    printf("done\n%s\n", c1);
+  }
+}
+
+void runQuerie12(SGV sgv, char* buffer) {
+  char *c1 = NULL, *c2 = NULL;
+  
+  if(!temEspaco(buffer))
+    printf("Querie inválida\n");
+
+  else{
+    c1 = strsep(&buffer, " ");
+    if(temEspaco(buffer))
+      printf("Querie invalida\n");
+
+    else{
+      c2 = strsep(&buffer, "\n");
+      printf("done\n%s %s\n", c1, c2);
     }
+}
+}
 
-    else
-        printf("O SGV ainda não foi carregado\n");
+void runQuerie13(SGV sgv, char* buffer, int tam) {
+    if(tam>3)
+      printf("Querie inválida\n");
+
+    else {
+      Q13* querie13 = getCurrentFilesInfo(sgv);
+      printQ13(querie13);
+    }
 }

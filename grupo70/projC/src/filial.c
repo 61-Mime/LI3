@@ -8,10 +8,12 @@ GFiliais* initGFil() {
 
   for(int i=0; i<3; i++) {
     for(int j=0; j<SIZE; j++)
-      gfil->fil[i].tblc[i].list = NULL;
-      gfil->fil[i].tblc[i].sizeCli = 0;
-      gfil->fil[i].tblp[i].list = NULL;
-      gfil->fil[i].tblp[i].sizeProd = 0;
+      {
+        gfil->fil[i].tblc[i].list = NULL;
+        gfil->fil[i].tblc[i].sizeCli = 0;
+        gfil->fil[i].tblp[i].list = NULL;
+        gfil->fil[i].tblp[i].sizeProd = 0;
+      }
   }
 
   return gfil;
@@ -76,13 +78,13 @@ int existsGFilP(ListP* lp, char* cli, char type) {
       if(strcmp(lp->cliN[i], cli)==0)
         r = 1;
   }
-  
+
   else {
     for(i=0; i<lp->sizeP && r; i++)
       if(strcmp(lp->cliP[i], cli)==0)
         r = 1;
   }
-  
+
   return r;
 }
 

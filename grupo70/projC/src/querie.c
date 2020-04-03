@@ -363,7 +363,76 @@ Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
 
   return querie10;
 }
+
 // Querie 11
+void swapPP(PP *a, PP *b)
+{
+    PP aux = *a;
+    *a = *b;
+    *b = aux;
+}
+
+void quickSortbyPP(PP *prods, int low, int high)
+{
+    if (low < high)
+    {
+      int pivot = prods[high].total;
+      int i = (low - 1);
+
+      for (int j=low; j<=high-1; j++)
+      {
+          if (prods[j].total > pivot)
+          {
+              i++;
+              swapPP(&prods[i], &prods[j]);
+          }
+      }
+      swapPP(&prods[i + 1], &prods[high]);
+
+      int pi = i + 1;
+
+      quickSortbyPP(prods, low, pi - 1);
+      quickSortbyPP(prods, pi + 1, high);
+    }
+}
+
+Q11* getTopSelledProducts(SGV sgv, int limit) {
+  int i, j, k, l, hash, pos;
+  Q11* querie11 = malloc(sizeof(Q11));
+  querie11->produtos = NULL;
+  querie11->size = 0;
+
+  for(i=0; i < SIZE; i++) {
+    for(j=0; j < getFatListSize(sgv->fact, i); j++) {
+      if(getFatOcup(sgv->fact, i, j)) {
+        querie11->produtos = realloc(querie11->produtos, sizeof(PP)*(querie11->size+1));
+        querie11->produtos[querie11->size].total = 0;
+        strcpy(querie11->produtos[querie11->size].prod, getCatKey(sgv->prod, i, j));
+
+        for(k=0; k<3; k++) {
+          querie11->produtos[querie11->size].unidades[k] = 0;
+          for(l=0; l<12; l++) {
+            querie11->produtos[querie11->size].unidades[k] += getFatUnidades(sgv->fact, i, j, k, l);
+          }
+          querie11->produtos[querie11->size].total += querie11->produtos[querie11->size].unidades[k];
+        }
+        querie11->size++;
+      }
+    }
+  }
+
+  quickSortbyPP(querie11->produtos, 0, querie11->size - 1);
+  if(limit < querie11->size) querie11->size = limit;
+  for(i=0; i<querie11->size; i++) {
+    pos = searchCat(querie11->produtos[i].prod, sgv->prod);
+    hash = hashCat(querie11->produtos[i].prod[0]);
+    querie11->produtos[i].clientes[0] = getGFilPSizeP(sgv->gfil, 0, hash, pos);
+    querie11->produtos[i].clientes[1] = getGFilPSizeP(sgv->gfil, 1, hash, pos);
+    querie11->produtos[i].clientes[2] = getGFilPSizeP(sgv->gfil, 2, hash, pos);
+  }
+
+  return querie11;
+}
 
 // Querie 12
 void swapPF(PF *a, PF *b)

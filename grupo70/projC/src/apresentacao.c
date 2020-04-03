@@ -150,6 +150,21 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   printf("\nTempo de execução da Querie 10: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
+void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
+  int i;
+
+  if(querie11 == NULL) {
+    printf("Cliente inválido\n");
+    return;
+  }
+
+  for(i = 0; i < querie11 -> size;i++)
+    printf("%s %d %d %d %d %d %d %d\n", querie11->produtos[i].prod, querie11->produtos[i].unidades[0], querie11->produtos[i].unidades[1], querie11->produtos[i].unidades[2],
+                        querie11->produtos[i].clientes[0], querie11->produtos[i].clientes[1], querie11->produtos[i].clientes[2], querie11->produtos[i].total);
+
+  printf("\nTempo de execução da Querie 11: %.4f s\n", (end_t - start_t) * 0.000001);
+}
+
 void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
   int i;
 

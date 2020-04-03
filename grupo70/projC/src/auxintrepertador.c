@@ -220,14 +220,18 @@ void runQuerie10(SGV sgv, char* buffer) {
 }
 
 void runQuerie11(SGV sgv, char* buffer) {
-  char *c1 = NULL;
+  clock_t start_t, end_t;
 
   if(temEspaco(buffer))
     printf("Querie inválida\n");
 
-  else{
-    c1 = strsep(&buffer, "\n");
-    printf("done\n%s\n", c1);
+  else {
+    int i = atoi(buffer);
+    start_t = clock();
+    Q11* querie11 = getTopSelledProducts(sgv,i);
+    end_t = clock();
+
+    printQ11(querie11, start_t, end_t);
   }
 }
 
@@ -252,6 +256,7 @@ void runQuerie12(SGV sgv, char* buffer) {
     }
   }
 }
+
 
 void runQuerie13(SGV sgv, char* buffer, int tam) {
     if(tam>3)

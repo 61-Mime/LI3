@@ -29,6 +29,9 @@ void printQ2(Q2* querie2, char letter) {
 
     system("clear");
 
+    if(querie2 == NULL) 
+        printf("Letra inválida\n");
+
     for(i=0; i<querie2->size; i++)
         printf("(%d) %s\n", i, querie2->prods[i]);
 
@@ -39,6 +42,9 @@ void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
 
     system("clear");
+
+    if(querie3 == NULL) 
+        printf("Produto inválido\n");
 
     if(querie3->size == 1) {
         printf("\nFaturação do produto %s no mês %d\n", prodID, month);
@@ -95,6 +101,9 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
 
     system("clear");
 
+    if(querie7 == NULL) 
+        printf("Cliente inválido\n");
+
     printf("Filial  1   2   3\n" );
     for(i=0; i<12; i++)
         printf("Mes %d: %d   %d   %d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
@@ -115,6 +124,9 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     int i;
 
     system("clear");
+
+    if(querie9 == NULL) 
+        printf("Produto inválido\n");
 
     for(i=0; i<querie9->total; i++) {
         if(querie9->lista[i].tipocompra == 1)

@@ -70,42 +70,80 @@ void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli) {
     }
 }
 
-void addGFil(GFiliais* gfil, int posp, int posc, int branch, char* prod, char* cli, float price, int uni, char type, int month) {
-  int hashp, hashc;
-
-  hashp = hashCat(prod[0]);
-  hashc = hashCat(cli[0]);
-
-  ListP *lp = &gfil->fil[branch-1].tblp[hashp].list[posp];
+int existsGFilP(ListP* lp, char* cli, char type) {
+  int i, r=0;
 
   if(type == 'N') {
-    lp->cliN = realloc(lp->cliN, sizeof(char*)*(lp->sizeN + 1));
-    lp->cliN[lp->sizeN] = malloc(sizeof(char) * SMAX);
-    strcpy(lp->cliN[lp->sizeN], prod);
-    lp->sizeN++;
+    for(i=0; i<lp->sizeN && r; i++)
+      if(strcmp(lp->cliN[i], cli)==0)
+        r = 1;
+  }
+  
+  else {
+    for(i=0; i<lp->sizeP && r; i++)
+      if(strcmp(lp->cliP[i], cli)==0)
+        r = 1;
+  }
+  
+  return r;
+}
+
+void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type) {
+  ListP *lp = &gfil->fil[branch-1].tblp[hash].list[pos];
+
+  if(existsGFilP(lp, cli, type) == 0) {
+    if(type == 'N') {
+      lp->cliN = realloc(lp->cliN, sizeof(char*)*(lp->sizeN + 1));
+      lp->cliN[lp->sizeN] = malloc(sizeof(char) * SMAX);
+      strcpy(lp->cliN[lp->sizeN], cli);
+      lp->sizeN++;
+    }
+
+    else {
+      lp->cliP = realloc(lp->cliP, sizeof(char*)* (lp->sizeP + 1));
+      lp->cliP[lp->sizeP] = malloc(sizeof(char) * SMAX);
+      strcpy(lp->cliP[lp->sizeP], cli);
+      lp->sizeP++;
+    }
+  }
+}
+
+int existsGFilC(ListC* lc, char* prod) {
+  int i, r=0;
+
+  for(i=0; i<lc->sizeProds && r==0; i++)
+    if(strcmp(lc->prods[i].prod, prod)==0)
+      r=i;
+
+  return r;
+}
+
+void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni) {
+  int i, j;
+  ListC* lc = &gfil->fil[branch-1].tblc[hash].list[pos];
+  
+  /*
+  if(lc->sizeProds == 0) 
+    gfil -> compradores++;
+  */
+
+  if((j = existsGFilC(lc, prod)) != 0) {
+    lc->prods[j].uni[month - 1] += uni;
+    lc->prods[j].fat += uni * price;
   }
 
   else {
-    lp->cliP = realloc(lp->cliP, sizeof(char*)* (lp->sizeP + 1));
-    lp->cliP[lp->sizeP] = malloc(sizeof(char) * SMAX);
-    strcpy(lp->cliP[lp->sizeP], prod);
-    lp->sizeP++;
+    lc->prods = realloc(lc->prods, sizeof(ProdCli)*(lc->sizeProds + 1));
+
+    for(i=0; i<12; i++)
+      lc->prods[lc->sizeProds].uni[i] = 0;
+
+    lc->prods[lc->sizeProds].prod = malloc(sizeof(char) * SMAX);
+    strcpy(lc->prods[lc->sizeProds].prod, prod);
+    lc->prods[lc->sizeProds].uni[month - 1] = uni;
+    lc->prods[lc->sizeProds].fat = uni * price;
+    lc->sizeProds++;
   }
-
-  ListC* lc = &gfil->fil[branch-1].tblc[hashc].list[posc];
-  if(lc->sizeProds == 0) gfil -> compradores++;
-
-  lc->prods = realloc(lc->prods, sizeof(ProdCli)*(lc->sizeProds + 1));
-
-  for(int i=0; i<12; i++)
-    lc->prods[lc->sizeProds].uni[i] = 0;
-
-  lc->prods[lc->sizeProds].prod = malloc(sizeof(char) * SMAX);
-  strcpy(lc->prods[lc->sizeProds].prod, prod);
-  lc->prods[lc->sizeProds].uni[month - 1] = uni;
-  lc->prods[lc->sizeProds].fat = uni * price;
-
-  lc -> sizeProds++;
 }
 
 void freeGFil(GFiliais* gfil) {
@@ -153,8 +191,16 @@ char* getGFilPCliN(GFiliais* gfil, int branch, int i, int j, int k) {
   return strdup(gfil->fil[branch].tblp[i].list[j].cliN[k]);
 }
 
+ListP* getGFilPList(GFiliais* gfil, int branch, int i, int j) {
+  return &(gfil->fil[branch].tblp[i].list[j]);
+}
+
 int getGFilPListSize(GFiliais* gfil, int branch, int i) {
   return gfil->fil[branch].tblp[i].sizeProd;
+}
+
+ListC* getGFilCList(GFiliais* gfil, int branch, int i, int j) {
+  return &(gfil->fil[branch].tblc[i].list[j]);
 }
 
 int getGFilCListSize(GFiliais* gfil, int branch, int i) {
@@ -179,13 +225,4 @@ int getGFilCsizeProds(GFiliais*gfil,int branch,int i,int j) {
 
 int getGFilComp(GFiliais*gfil) {
   return gfil->compradores;
-}
-
-void print(GFiliais *g) {
-  int i,i2,i3;
-  for(i = 0;i < SIZE;i++)
-    for(i2 = 0;i2 < getGFilCListSize(g,0,i);i2++)
-      for(i3 = 0;i3 < getGFilCsizeProds(g,0,i,i2);i3++) {
-        printf("%d %s\n", g->fil[0].tblc[i].list[i2].prods[i3].uni[1],g->fil[0].tblc[i].list[i2].prods[i3].prod);
-      }
 }

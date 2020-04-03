@@ -54,7 +54,8 @@ void saleS(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, cha
 
   if(vendaVal(posp,posc,price,uni,type[0],month,branch)) {
     addFact(fact, hashp, posp, month, branch, type[0], price, uni);
-    addGFil(gfil, posp, posc, branch, prod, cli, price, uni, type[0], month);
+    addGFilP(gfil, hashp, posp, cli, branch, type[0]);
+    addGFilC(gfil, hashc, posc, prod, branch, month, price, uni);
   }
 }
 

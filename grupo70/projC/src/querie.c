@@ -149,9 +149,6 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
     if(hash == -1 || pos == -1) 
       return NULL;
 
-    if(hash == -1 || pos == -1) 
-      return NULL;
-
     for(i=0; i<12; i++)
       for(j=0; j<3; j++)
         querie7->tabela[i][j] = 0;
@@ -188,29 +185,36 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
 // Querie 9
 
 Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
-    int pos = searchCat(prodID, sgv->prod),n,r,c,i;
+    int pos, hash, n, r, c, i;
+    char *cliN = NULL, *cliN1 = NULL;
     Q9* querie9 = malloc(sizeof(Q9));
 
-    if(pos == -1)
+    hash = hashCat(prodID[0]);
+    pos = searchCat(prodID, sgv->prod);
+
+    if(hash == -1 || pos == -1)
       return NULL;
 
     ListP *prod;
-    int hash = hashCat(prodID[0]);
     querie9->total = 0;
     querie9->lista = NULL;
 
-    prod = &sgv->gfil->fil[branch-1].tblp[hash].list[pos];
+    prod = getGFilPList(sgv->gfil, branch-1, hash, pos);
 
     quickSort(prod->cliN,0,prod->sizeN-1);
     quickSort(prod->cliP,0,prod->sizeP-1);
 
-    for(i = 0;i < prod->sizeN;i++)
-      if(i == 0 || strcmp(prod->cliN[i],prod->cliN[i-1])) {
+
+    for(i = 0;i < prod->sizeN;i++) {
+      cliN = getGFilPCliN(sgv->gfil, branch-1, hash, pos, i);
+      cliN1 = getGFilPCliN(sgv->gfil, branch-1, hash, pos, i-1);
+      if(i == 0 || strcmp(cliN, cliN1)) {
         querie9->lista = realloc(querie9->lista,sizeof(Cl)*(querie9->total+1));
         querie9->lista[querie9->total].tipocompra = 1;
-        strcpy(querie9->lista[querie9->total].cliente,prod->cliN[i]);
+        strcpy(querie9->lista[querie9->total].cliente, prod->cliN[i]);
         querie9->total++;
       }
+    }
 
     c = querie9->total;
     for(i = 0;i < prod->sizeP;i++) {

@@ -93,6 +93,8 @@ int tblCat(Catalogo* cat, char* filePath, char type) {
   for(i=0; i<SIZE; i++)
     quickSort(cat->tbl[i].list, 0, cat->tbl[i].size - 1);
 
+  free(buffer);
+
   return 0;
 }
 
@@ -123,5 +125,5 @@ int getCatListSize(Catalogo* cat, int i) {
 }
 
 char* getCatKey(Catalogo* cat, int i, int j) {
-  return strdup(cat->tbl[i].list[j]);
+  return cat->tbl[i].list[j];
 }

@@ -144,8 +144,11 @@ void freeGFil(GFiliais* gfil) {
 
   for(fil=0; fil<3; fil++) {
     for(i=0; i<SIZE; i++) {
-      for(j=0; j<gfil->fil[fil].tblc[i].sizeCli; j++)
+      for(j=0; j<gfil->fil[fil].tblc[i].sizeCli; j++) {
+        for(k=0; k<gfil->fil[fil].tblc[i].list[j].sizeProds; k++)
+          free(gfil->fil[fil].tblc[i].list[j].prods[k].prod);
         free(gfil->fil[fil].tblc[i].list[j].prods);
+      }
 
       for(j=0; j<gfil->fil[fil].tblp[i].sizeProd; j++) {
         for(k=0; k<gfil->fil[fil].tblp[i].list[j].sizeN; k++)
@@ -177,11 +180,11 @@ int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j) {
 }
 
 char* getGFilPCliP(GFiliais* gfil, int branch, int i, int j, int k) {
-  return strdup(gfil->fil[branch].tblp[i].list[j].cliP[k]);
+  return gfil->fil[branch].tblp[i].list[j].cliP[k];
 }
 
 char* getGFilPCliN(GFiliais* gfil, int branch, int i, int j, int k) {
-  return strdup(gfil->fil[branch].tblp[i].list[j].cliN[k]);
+  return gfil->fil[branch].tblp[i].list[j].cliN[k];
 }
 
 ListP* getGFilPList(GFiliais* gfil, int branch, int i, int j) {
@@ -201,7 +204,7 @@ int getGFilCListSize(GFiliais* gfil, int branch, int i) {
 }
 
 char* getGFilCprod(GFiliais*gfil,int branch,int i,int j,int k) {
-  return strdup(gfil->fil[branch].tblc[i].list[j].prods[k].prod);
+  return gfil->fil[branch].tblc[i].list[j].prods[k].prod;
 }
 
 int getGFilCuni(GFiliais*gfil,int branch,int i,int j,int k,int m) {

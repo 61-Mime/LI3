@@ -35,8 +35,10 @@ void printQ1(clock_t start_t, clock_t end_t) {
 }
 
 void printQ2(Q2* querie2, char letter) {
-    if(querie2 == NULL) 
+    if(querie2 == NULL) {
         printf("Letra inválida\n");
+        return;
+    }
 
     printArray(querie2->prods, querie2->size);
 
@@ -46,8 +48,10 @@ void printQ2(Q2* querie2, char letter) {
 void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
 
-    if(querie3 == NULL) 
+    if(querie3 == NULL) {
         printf("Produto inválido\n");
+        return;
+    }
 
     if(querie3->size == 1) {
         printf("\nFaturação do produto %s no mês %d\n", prodID, month);
@@ -91,8 +95,10 @@ void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
 void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     int i;
 
-    if(querie7 == NULL) 
+    if(querie7 == NULL) {
         printf("Cliente inválido\n");
+        return;
+    }
 
     printf("\nFilial  1     2     3\n" );
     for(i=0; i<12; i++)
@@ -111,8 +117,10 @@ void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
 void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     int i;
 
-    if(querie9 == NULL) 
+    if(querie9 == NULL) {
         printf("Produto inválido\n");
+        return;
+    }
 
     for(i=0; i<querie9->total; i++) {
         if(querie9->lista[i].tipocompra == 1)
@@ -131,8 +139,10 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
 void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   int i;
 
-  if(querie10 == NULL) 
+  if(querie10 == NULL) {
     printf("Cliente inválido\n");
+    return;
+  }
 
   for(i = 0; i < querie10 -> size;i++)
     printf("%s %d\n", querie10->produtos[i].prod,querie10->produtos[i].quantidade);

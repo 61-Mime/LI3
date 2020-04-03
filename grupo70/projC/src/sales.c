@@ -76,5 +76,7 @@ int loadFromSales(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gf
 
   fclose(fsales);
 
+  free(buffer);
+
   return 0;
 }

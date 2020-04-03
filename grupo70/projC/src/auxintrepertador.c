@@ -61,7 +61,7 @@ void runQuerie2(SGV sgv, char* buffer) {
 
 void runQuerie3(SGV sgv, char* buffer){
     char *c1 = NULL, *c2 = NULL, *c3 = NULL;
-  
+
     if(!temEspaco(buffer))
       printf("Querie inválida\n");
 
@@ -85,7 +85,7 @@ void runQuerie3(SGV sgv, char* buffer){
         }
       }
     }
-  
+
 }
 
 void runQuerie4(SGV sgv, char* buffer) {
@@ -103,7 +103,7 @@ void runQuerie4(SGV sgv, char* buffer) {
 }
 
 void runQuerie5(SGV sgv, int tam) {
-  if(tam>2) 
+  if(tam>2)
     printf("Querie inválida\n");
 
   else {
@@ -221,7 +221,7 @@ void runQuerie10(SGV sgv, char* buffer) {
 
 void runQuerie11(SGV sgv, char* buffer) {
   char *c1 = NULL;
-  
+
   if(temEspaco(buffer))
     printf("Querie inválida\n");
 
@@ -233,7 +233,8 @@ void runQuerie11(SGV sgv, char* buffer) {
 
 void runQuerie12(SGV sgv, char* buffer) {
   char *c1 = NULL, *c2 = NULL;
-  
+  clock_t start_t, end_t;
+
   if(!temEspaco(buffer))
     printf("Querie inválida\n");
 
@@ -244,9 +245,12 @@ void runQuerie12(SGV sgv, char* buffer) {
 
     else{
       c2 = strsep(&buffer, "\n");
-      printf("done\n%s %s\n", c1, c2);
+      start_t = clock();
+      Q12* querie12 = getClientTopProfitProducts(sgv, c1, atoi(c2));
+      end_t = clock();
+      printQ12(querie12, start_t, end_t);
     }
-}
+  }
 }
 
 void runQuerie13(SGV sgv, char* buffer, int tam) {

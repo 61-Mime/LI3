@@ -20,7 +20,7 @@ void menu() {
 
 void printArray(char** arr, int size) {
     int i, j;
-    
+
     system("clear");
 
     for(i=0; i<size; i+=12) {
@@ -147,7 +147,21 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   for(i = 0; i < querie10 -> size;i++)
     printf("%s %d\n", querie10->produtos[i].prod,querie10->produtos[i].quantidade);
 
-    printf("\nTempo de execução da Querie 9: %.4f s\n", (end_t - start_t) * 0.000001);
+  printf("\nTempo de execução da Querie 10: %.4f s\n", (end_t - start_t) * 0.000001);
+}
+
+void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
+  int i;
+
+  if(querie12 == NULL) {
+    printf("Cliente inválido\n");
+    return;
+  }
+
+  for(i = 0; i < querie12 -> size;i++)
+    printf("%s %.2f\n", querie12->prods[i].prod,querie12->prods[i].faturacao);
+
+  printf("\nTempo de execução da Querie 12: %.4f s\n", (end_t - start_t) * 0.000001);
 }
 
 void printQ13(Q13* querie13) {
@@ -156,7 +170,7 @@ void printQ13(Q13* querie13) {
 
     printf("Numero de Produtos Lidos: %d\n", querie13->prodL);
     printf("Numero de Produtos Validados: %d\n", querie13->prodV);
-    
+
     //printf("Numero de Vendas Lidas: %d\n", querie13->salesL);
     //printf("Numero de Vendas Validadas: %d\n", querie13->salesV);
 }

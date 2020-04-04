@@ -314,7 +314,7 @@ void quickSortbyQP(P *prods, int low, int high)
 }
 
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
-  int pos = searchCat(cliID, sgv->cli),hash = hashCat(cliID[0]),i,i2,r,c;
+  int pos = searchCat(cliID, sgv->cli),hash = hashCat(cliID[0]),i,i2,c;
 
   if(hash == -1 || pos == -1)
     return NULL;
@@ -347,17 +347,16 @@ Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
 
   quickSortbyP(querie10->produtos,0,querie10->size - 1);
 
-  for(i = 0,r = 1,c = 1;c < querie10 -> size;i++) {
-    for(i2 = c,r = 1;r;i2++,i2++){
-      if(!strcmp(querie10->produtos[i2].prod,querie10->produtos[i].prod))
-        querie10->produtos[i].quantidade += querie10->produtos[i2].quantidade;
-      else r = 0;
-    }
-    if(i2 != c)
+  for(i = 0,c = 1;c < querie10->size;i++) {
+    for(i2 = c;i2 < querie10->size && !strcmp(querie10->produtos[i2].prod,querie10->produtos[i].prod);i2++)
+      querie10->produtos[i].quantidade += querie10->produtos[i2].quantidade;
+
+    if(i2 != i + 1 && i2 < querie10->size)
       swapP(&querie10->produtos[i + 1],&querie10->produtos[i2]);
-    c = i2;
+
+    c = i2 + 1;
   }
-  querie10 -> size = i;
+  querie10 -> size = i + 1;
 
   quickSortbyQP(querie10->produtos,0,querie10->size - 1);
 
@@ -491,7 +490,7 @@ void quickSortbyFP(PF *prods, int low, int high)
 }
 
 Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
-  int pos = searchCat(clientID, sgv->cli),hash = hashCat(clientID[0]),i,i2,r,c;
+  int pos = searchCat(clientID, sgv->cli),hash = hashCat(clientID[0]),i,i2,c;
 
   if(hash == -1 || pos == -1)
     return NULL;
@@ -524,17 +523,15 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
 
   quickSortbyPF(querie12->prods,0,querie12->size - 1);
 
-  for(i = 0,r = 1,c = 1;c < querie12 -> size;i++) {
-    for(i2 = c,r = 1;r;i2++,i2++){
-      if(!strcmp(querie12->prods[i2].prod,querie12->prods[i].prod))
+  for(i = 0,c = 1;c < querie12 -> size;i++) {
+    for(i2 = c;i2 < querie12 -> size && !strcmp(querie12->prods[i2].prod,querie12->prods[i].prod);i2++)
         querie12->prods[i].faturacao += querie12->prods[i2].faturacao;
-      else r = 0;
-    }
-    if(i2 != c)
+    if(i2 != i + 1 && i2 < querie12 -> size)
       swapPF(&querie12->prods[i + 1],&querie12->prods[i2]);
-    c = i2;
+
+    c = i2 + 1;
   }
-  querie12 -> size = i;
+  querie12 -> size = i + 1;
 
   quickSortbyFP(querie12->prods,0,querie12->size - 1);
 

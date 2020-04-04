@@ -6,9 +6,10 @@
 #include <string.h>
 #include "catalogo.h"
 
-typedef struct pordcli{
+typedef struct prodcli{
   char *prod;
   int uni[12];
+  int mes;
   float fat;
 } ProdCli;
 
@@ -67,4 +68,5 @@ float getGFilCfat(GFiliais*gfil,int branch,int i,int j,int k);
 int getGFilCsizeProds(GFiliais*gfil,int branch,int i,int j);
 int getGFilComp(GFiliais*gfil);
 
+void remRep(GFiliais *gfil);
 #endif

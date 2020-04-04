@@ -7,8 +7,8 @@
 #include "catalogo.h"
 
 typedef struct prodcli{
-  char *prod;
-  int uni[12];
+  char* prod;
+  int* uni;
   int mes;
   float fat;
 } ProdCli;
@@ -38,18 +38,19 @@ typedef struct tfilp{
 } TFilialP;
 
 typedef struct filial{
-  TFilialC tblc[26];
-  TFilialP tblp[26];
+  TFilialC* tblc;
+  TFilialP* tblp;
 } THashFilial;
 
 typedef struct gfiliais{
-  THashFilial fil[3];
+  THashFilial* fil;
 } GFiliais;
 
 //Functions
 GFiliais* initGFil();
 void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli);
 void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type);
+void remRepC(GFiliais *gfil);
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni);
 void freeGFil(GFiliais* fil);
 void remRepC(GFiliais *gfil);

@@ -13,18 +13,14 @@ typedef struct cat {
 } Cat;
 
 typedef struct catalogo {
-  int nValidas;
-  int nLidas;
-  Cat tbl[26];
+  Cat* tbl;
 } Catalogo;
 
 Catalogo* initCat();
 int searchCat(char* key, Catalogo* cat);
 int hashCat(char c);
-int tblCat(Catalogo* tcli, char* filePath, char type);
+int tblCat(Catalogo* tcli, char* filePath, char type, int* val, int* lida);
 void freeCat(Catalogo* cli);
-int getCatLinhaVal(Catalogo* cat);
-int getCatLinhaLida(Catalogo* cat);
 int getCatListSize(Catalogo* cat, int i);
 char* getCatKey(Catalogo* cat, int i, int j);
 

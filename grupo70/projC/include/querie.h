@@ -99,10 +99,13 @@ typedef struct q12{
 typedef struct q13 {
     int prodL;
     int prodV;
+    char pathProd[64];
     int cliL;
     int cliV;
+    char pathCli[64];
     int salesL;
     int salesV;
+    char pathSales[64];
 } Q13;
 
 Q2* getProductsStartedByLetter(SGV sgv, char letter);
@@ -116,6 +119,6 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch);
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month);
 Q11* getTopSelledProducts(SGV sgv, int limit);
 Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit);
-Q13* getCurrentFilesInfo(SGV sgv);
+Q13* getCurrentFilesInfo(SGV sgv, char* pathCli, char* pathProd, char* pathSales);
 
 #endif

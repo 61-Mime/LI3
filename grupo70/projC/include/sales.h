@@ -8,6 +8,6 @@
 #include "faturacao.h"
 #include "filial.h"
 
-int loadFromSales(Catalogo* prod, Catalogo* cli, THashFact* fact, GFiliais* gfil, char* filePath);
+int loadFromSales(Catalogo* prod, Catalogo* cli, THashFact* fact, GFiliais* gfil, char* filePath, int* val, int* lida);
 
 #endif

@@ -5,8 +5,11 @@
 
 GFiliais* initGFil() {
   GFiliais* gfil = malloc(sizeof(GFiliais));
+  gfil->fil = malloc(sizeof(THashFilial) * 3);
 
   for(int i=0; i<3; i++) {
+    gfil->fil[i].tblc = malloc(sizeof(TFilialC)*SIZE);
+    gfil->fil[i].tblp = malloc(sizeof(TFilialP)*SIZE);
     for(int j=0; j<SIZE; j++)
       {
         gfil->fil[i].tblc[i].list = NULL;
@@ -108,16 +111,6 @@ void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char typ
   }
 }
 
-int existsGFilC(ListC* lc, char* prod) {
-  int i, r=0;
-
-  for(i=0; i<lc->sizeProds && r==0; i++)
-    if(strcmp(lc->prods[i].prod, prod)==0)
-      r=i;
-
-  return r;
-}
-
 void swapPCli(ProdCli *a, ProdCli *b)
 {
     ProdCli aux = *a;
@@ -177,29 +170,21 @@ void remRepC(GFiliais *gfil) {
 }
 
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni) {
-  int i, j;
+  int i;
   ListC* lc = &gfil->fil[branch-1].tblc[hash].list[pos];
-/*
-  if((j = existsGFilC(lc, prod)) != 0) {
-    lc->prods[j].uni[month - 1] += uni;
-    lc->prods[j].fat += uni * price;
-    printf("%d %d %d\n",branch,hash,pos );
-  }
 
-  else {
-*/
-    lc->prods = realloc(lc->prods, sizeof(ProdCli)*(lc->sizeProds + 1));
+  lc->prods = realloc(lc->prods, sizeof(ProdCli)*(lc->sizeProds + 1));
+  lc->prods[lc->sizeProds].uni = malloc(sizeof(int) * 12);
 
-    for(i=0; i<12; i++)
-      lc->prods[lc->sizeProds].uni[i] = 0;
+  for(i=0; i<12; i++)
+    lc->prods[lc->sizeProds].uni[i] = 0;
 
-    lc->prods[lc->sizeProds].prod = malloc(sizeof(char) * SMAX);
-    strcpy(lc->prods[lc->sizeProds].prod, prod);
-    lc->prods[lc->sizeProds].uni[month - 1] = uni;
-    lc->prods[lc->sizeProds].mes = month;
-    lc->prods[lc->sizeProds].fat = uni * price;
-    lc->sizeProds++;
-  //}
+  lc->prods[lc->sizeProds].prod = malloc(sizeof(char) * SMAX);
+  strcpy(lc->prods[lc->sizeProds].prod, prod);
+  lc->prods[lc->sizeProds].uni[month - 1] = uni;
+  lc->prods[lc->sizeProds].mes = month;
+  lc->prods[lc->sizeProds].fat = uni * price;
+  lc->sizeProds++;
 }
 
 void freeGFil(GFiliais* gfil) {
@@ -208,28 +193,49 @@ void freeGFil(GFiliais* gfil) {
   for(fil=0; fil<3; fil++) {
     for(i=0; i<SIZE; i++) {
       for(j=0; j<gfil->fil[fil].tblc[i].sizeCli; j++) {
-        for(k=0; k<gfil->fil[fil].tblc[i].list[j].sizeProds; k++)
+        for(k=0; k<gfil->fil[fil].tblc[i].list[j].sizeProds; k++) {
           free(gfil->fil[fil].tblc[i].list[j].prods[k].prod);
+          gfil->fil[fil].tblc[i].list[j].prods[k].prod = NULL;
+          free(gfil->fil[fil].tblc[i].list[j].prods[k].uni);
+          gfil->fil[fil].tblc[i].list[j].prods[k].uni = NULL;
+        }
         free(gfil->fil[fil].tblc[i].list[j].prods);
+        gfil->fil[fil].tblc[i].list[j].prods = NULL;
       }
 
       for(j=0; j<gfil->fil[fil].tblp[i].sizeProd; j++) {
-        for(k=0; k<gfil->fil[fil].tblp[i].list[j].sizeN; k++)
+        for(k=0; k<gfil->fil[fil].tblp[i].list[j].sizeN; k++) {
           free(gfil->fil[fil].tblp[i].list[j].cliN[k]);
+          gfil->fil[fil].tblp[i].list[j].cliN[k] = NULL;
+        }
 
-        for(k=0; k<gfil->fil[fil].tblp[i].list[j].sizeP; k++)
+        for(k=0; k<gfil->fil[fil].tblp[i].list[j].sizeP; k++) {
           free(gfil->fil[fil].tblp[i].list[j].cliP[k]);
+          gfil->fil[fil].tblp[i].list[j].cliP[k] = NULL;
+        }
 
         free(gfil->fil[fil].tblp[i].list[j].cliN);
         free(gfil->fil[fil].tblp[i].list[j].cliP);
+
+        gfil->fil[fil].tblp[i].list[j].cliN = NULL;
+        gfil->fil[fil].tblp[i].list[j].cliP = NULL;
       }
 
       free(gfil->fil[fil].tblc[i].list);
       free(gfil->fil[fil].tblp[i].list);
+
+      gfil->fil[fil].tblc[i].list = NULL;
+      gfil->fil[fil].tblp[i].list = NULL;
     }
+    free(gfil->fil[fil].tblc);
+    free(gfil->fil[fil].tblp);
+
+    gfil->fil[fil].tblc = NULL;
+    gfil->fil[fil].tblp = NULL;
   }
 
   free(gfil);
+  gfil = NULL;
 }
 
 // GETTERS

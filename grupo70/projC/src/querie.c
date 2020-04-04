@@ -131,7 +131,7 @@ Q5* getClientsOfAllBranches(SGV sgv) {
 
 // Querie 6
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
-    int i, j, k, l, size;
+    int i, j;
     Q6* querie6 = malloc(sizeof(Q6));
 
     querie6->nCli = 0;
@@ -145,17 +145,9 @@ Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
            querie6->nCli++;
 
     for(i=0; i<SIZE; i++)
-      for(j=0; j<getFatListSize(sgv->fact, i); j++) {
-        size = 0;
-        for(k=0; k<12; k++) {
-          for(l=0; l<3; l++) {
-            size += getFatVendasN(sgv->fact, i, j, k, l)
-                  + getFatVendasP(sgv->fact, i, j, k, l);
-          }
-        }
-        if(size == 0)
+      for(j=0; j<getFatListSize(sgv->fact, i); j++)
+        if(!getFatOcup(sgv->fact, i, j))
           querie6->nProd++;
-      }
 
     return querie6;
 }
@@ -411,7 +403,7 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
         for(k=0; k<3; k++) {
           querie11->produtos[querie11->size].unidades[k] = 0;
           for(l=0; l<12; l++) {
-            querie11->produtos[querie11->size].unidades[k] += getFatUnidades(sgv->fact, i, j, k, l);
+            querie11->produtos[querie11->size].unidades[k] += getFatUnidades(sgv->fact, i, j, l, k);
           }
           querie11->produtos[querie11->size].total += querie11->produtos[querie11->size].unidades[k];
         }
@@ -421,7 +413,12 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
   }
 
   quickSortbyPP(querie11->produtos, 0, querie11->size - 1);
-  if(limit < querie11->size) querie11->size = limit;
+  
+  if(limit < querie11->size) {
+    querie11->produtos=realloc(querie11->produtos, sizeof(PP)*limit);
+    querie11->size = limit;
+  }
+
   for(i=0; i<querie11->size; i++) {
     pos = searchCat(querie11->produtos[i].prod, sgv->prod);
     hash = hashCat(querie11->produtos[i].prod[0]);
@@ -535,21 +532,27 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
 
   quickSortbyFP(querie12->prods,0,querie12->size - 1);
 
-  if(limit < i) querie12->size = limit;
+  if(limit < i) {
+    querie12->prods = realloc(querie12->prods, sizeof(PF)*limit);
+    querie12->size = limit;
+  }
 
   return querie12;
 }
 
 // Querie 13
-Q13* getCurrentFilesInfo(SGV sgv) {
+Q13* getCurrentFilesInfo(SGV sgv, char* pathCli, char* pathProd, char* pathSales) {
     Q13* querie13 = malloc(sizeof(Q13));
 
-    querie13->cliL = getCatLinhaLida(sgv->cli);
-    querie13->cliV = getCatLinhaVal(sgv->cli);
-    querie13->prodL = getCatLinhaLida(sgv->prod);
-    querie13->prodV = getCatLinhaVal(sgv->prod);
-    //querie13->salesL = sgv->sales->nLidas;
-    //querie13->salesV = sgv->sales->nValidas;
+    querie13->cliL = getSGVcliL(sgv->info);
+    querie13->cliV = getSGVcliV(sgv->info);
+    strcpy(querie13->pathCli, pathCli);
+    querie13->prodL = getSGVprodL(sgv->info);
+    querie13->prodV = getSGVprodV(sgv->info);
+    strcpy(querie13->pathProd, pathProd);
+    querie13->salesL = getSGVsaleL(sgv->info);
+    querie13->salesV = getSGVsaleV(sgv->info);
+    strcpy(querie13->pathSales, pathSales);
 
     return querie13;
 }

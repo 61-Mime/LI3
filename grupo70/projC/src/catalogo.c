@@ -6,10 +6,8 @@
 Catalogo* initCat()
 {
   Catalogo* cat = malloc(sizeof(Catalogo));
+  cat->tbl = malloc(sizeof(Cat) * SIZE);
   int i;
-
-  cat->nValidas = 0;
-  cat->nLidas = 0;
 
   for(i=0; i<SIZE; i++) {
     cat->tbl[i].size = 0;
@@ -58,7 +56,7 @@ int isVal(char *key, char type)
   return res;
 }
 
-void addKey(Catalogo* cat, char* key, int i) {
+void addKey(Catalogo* cat, char* key, int i, int* val) {
   int pos = cat->tbl[i].size;
 
   cat->tbl[i].list = realloc(cat->tbl[i].list,sizeof(char*) * (cat->tbl[i].size + 1));
@@ -66,10 +64,10 @@ void addKey(Catalogo* cat, char* key, int i) {
   strcpy(cat->tbl[i].list[pos], key);
 
   cat->tbl[i].size ++;
-  cat->nValidas ++;
+  (*val)++;
 }
 
-int tblCat(Catalogo* cat, char* filePath, char type) {
+int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   FILE* f;
   char* buffer= malloc(sizeof(char) * MAX);
   int i;
@@ -83,9 +81,9 @@ int tblCat(Catalogo* cat, char* filePath, char type) {
     buffer = strsep(&buffer, "\r");
 
     if(isVal(buffer, type))
-      addKey(cat, buffer, hashCat(buffer[0]));
+      addKey(cat, buffer, hashCat(buffer[0]), val);
 
-    cat->nLidas ++;
+    (*lida)++;
   }
 
   fclose(f);
@@ -102,23 +100,22 @@ void freeCat(Catalogo* cat) {
   int i, j;
 
   for(i=0; i<SIZE; i++) {
-    for(j=0; j<cat->tbl[i].size; j++)
+    for(j=0; j<cat->tbl[i].size; j++) {
       free(cat->tbl[i].list[j]);
+      cat->tbl[i].list[j] = NULL;
+    }
     free(cat->tbl[i].list);
+    cat->tbl[i].list = NULL;
   }
 
+  free(cat->tbl);
+  cat->tbl = NULL;
+  
   free(cat);
+  cat = NULL;
 }
 
 //GETTERS
-
-int getCatLinhaVal(Catalogo* cat) {
-  return cat->nValidas;
-}
-
-int getCatLinhaLida(Catalogo* cat) {
-  return cat->nLidas;
-}
 
 int getCatListSize(Catalogo* cat, int i) {
   return cat->tbl[i].size;

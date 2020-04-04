@@ -73,6 +73,7 @@ int loadFromSales(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gf
     buffer = strsep(&buffer, "\r");
     saleS(tprod, tcli, fact, gfil, buffer);
   }
+  remRepC(gfil);
 
   fclose(fsales);
 

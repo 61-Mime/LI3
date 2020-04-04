@@ -118,16 +118,75 @@ int existsGFilC(ListC* lc, char* prod) {
   return r;
 }
 
+void swapPCli(ProdCli *a, ProdCli *b)
+{
+    ProdCli aux = *a;
+    *a = *b;
+    *b = aux;
+}
+
+void quickSortbyProd(ProdCli *prods, int low, int high)
+{
+    if (low < high)
+    {
+      char* pivot = prods[high].prod;
+      int i = (low - 1);
+
+      for (int j=low; j<=high-1; j++)
+      {
+          if (strcmp(prods[j].prod, pivot) < 0)
+          {
+              i++;
+              swapPCli(&prods[i], &prods[j]);
+          }
+      }
+      swapPCli(&prods[i + 1], &prods[high]);
+
+      int pi = i + 1;
+
+      quickSortbyProd(prods, low, pi - 1);
+      quickSortbyProd(prods, pi + 1, high);
+    }
+}
+void remRepC(GFiliais *gfil) {
+  int i,i2,i3,i4,fil,r,c,size;
+  ListC* lc;
+
+  for(fil = 0;fil < 3;fil++)
+    for(i = 0;i < SIZE;i++)
+      for(i2 = 0;i2 < gfil->fil[fil].tblc[i].sizeCli;i2++){
+        lc = &gfil->fil[fil].tblc[i].list[i2];
+        if(lc->prods != NULL) {
+          size = lc->sizeProds;
+
+          quickSortbyProd(gfil->fil[fil].tblc[i].list[i2].prods,0,size-1);
+
+          for(i3 = 0,r = 1,c = 1;c < size;i3++) {
+            for(i4 = c,r = 1;i4 < size && !strcmp(lc->prods[i4].prod,lc->prods[i3].prod);i4++)
+                lc->prods[i3].uni[lc->prods[i4].mes-1] += lc->prods[i4].uni[lc->prods[i4].mes-1];
+
+            if(i4 != i3+1 && i4 < size)
+              swapPCli(&lc->prods[i3 + 1],&lc->prods[i4]);
+
+            c = i4 + 1;
+          }
+          lc->sizeProds = i3 + 1;
+        }
+      }
+}
+
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni) {
   int i, j;
   ListC* lc = &gfil->fil[branch-1].tblc[hash].list[pos];
-
+/*
   if((j = existsGFilC(lc, prod)) != 0) {
     lc->prods[j].uni[month - 1] += uni;
     lc->prods[j].fat += uni * price;
+    printf("%d %d %d\n",branch,hash,pos );
   }
 
   else {
+*/
     lc->prods = realloc(lc->prods, sizeof(ProdCli)*(lc->sizeProds + 1));
 
     for(i=0; i<12; i++)
@@ -136,9 +195,10 @@ void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int mon
     lc->prods[lc->sizeProds].prod = malloc(sizeof(char) * SMAX);
     strcpy(lc->prods[lc->sizeProds].prod, prod);
     lc->prods[lc->sizeProds].uni[month - 1] = uni;
+    lc->prods[lc->sizeProds].mes = month;
     lc->prods[lc->sizeProds].fat = uni * price;
     lc->sizeProds++;
-  }
+  //}
 }
 
 void freeGFil(GFiliais* gfil) {

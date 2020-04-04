@@ -176,7 +176,7 @@ void remRepC(GFiliais *gfil) {
 }
 
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni) {
-  int i, j;
+  int i;
   ListC* lc = &gfil->fil[branch-1].tblc[hash].list[pos];
 /*
   if((j = existsGFilC(lc, prod)) != 0) {

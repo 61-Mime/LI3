@@ -28,6 +28,7 @@ typedef struct listp{
   char* key;
   int sizeN;
   int sizeP;
+  int sizeC;
   char** cliN;
   char** cliP;
 } ListP;
@@ -54,8 +55,10 @@ void remRepC(GFiliais *gfil);
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni);
 void freeGFil(GFiliais* fil);
 void remRepC(GFiliais *gfil);
+void remRepP(GFiliais *gfil);
 
 //Getters
+int getGFilPSizeC(GFiliais* gfil, int branch, int i, int j);
 int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j);
 int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j);
 char* getGFilPCliP(GFiliais* gfil, int branch, int i, int j, int k);

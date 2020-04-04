@@ -36,6 +36,7 @@ void initListP(GFiliais* gfil, int fil, int i, int j, char* key) {
   l->cliP = NULL;
   l->sizeN = 0;
   l->sizeP = 0;
+  l->sizeC = 0;
   l->key = key;
 }
 
@@ -73,41 +74,86 @@ void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli) {
     }
 }
 
-int existsGFilP(ListP* lp, char* cli, char type) {
-  int i, r=0;
+void contaCli(GFiliais *gfil,int i,int i2,int fil) {
+  int i3;
+  ListP* lp;
 
-  if(type == 'N') {
-    for(i=0; i<lp->sizeN && r; i++)
-      if(strcmp(lp->cliN[i], cli)==0)
-        r = 1;
-  }
+  lp = &gfil->fil[fil].tblp[i].list[i2];
+  if(lp -> sizeN == 0) lp -> sizeC = lp -> sizeP;
+  if(lp -> sizeP == 0) lp -> sizeC = lp -> sizeN;
 
   else {
-    for(i=0; i<lp->sizeP && r; i++)
-      if(strcmp(lp->cliP[i], cli)==0)
-        r = 1;
+    lp -> sizeC = lp -> sizeP;
+    for(i3 = 0;i3 < lp -> sizeN;i3++)
+      if(binarySearch(lp -> cliP,lp -> cliN[i3],0,lp -> sizeP - 1)==-1)
+        lp -> sizeC++;
   }
+}
 
-  return r;
+void remRepP(GFiliais *gfil) {
+  int i,i2,i3,i4,fil,c,size;
+  ListP* lc;
+
+  for(fil = 0;fil < 3;fil++)
+    for(i = 0;i < SIZE;i++)
+      for(i2 = 0;i2 < gfil->fil[fil].tblp[i].sizeProd;i2++){
+        lc = &gfil->fil[fil].tblp[i].list[i2];
+        if(lc->sizeN != 0) {
+          size = lc->sizeN;
+          quickSort(lc->cliN,0,size-1);
+
+          for(i3 = 0,c = 1;c < size;i3++) {
+            for(i4 = c;i4 < size && !strcmp(lc->cliN[i4],lc->cliN[i3]);i4++);
+
+            if(i4 != i3+1 && i4 < size)
+              swap(&lc->cliN[i3 + 1],&lc->cliN[i4]);
+
+            c = i4 + 1;
+            if(i4 == size) i3--;
+          }
+          if(lc->sizeN != i3 + 1) {
+            lc->sizeN = i3 + 1;
+            lc->cliN = realloc(lc->cliN,sizeof(char*)*(i3 + 1));
+          }
+        }
+
+        if(lc->sizeP != 0) {
+          size = lc->sizeP;
+          quickSort(lc->cliP,0,size-1);
+
+          for(i3 = 0,c = 1;c < size;i3++) {
+            for(i4 = c;i4 < size && !strcmp(lc->cliP[i4],lc->cliP[i3]);i4++);
+
+            if(i4 != i3+1 && i4 < size)
+              swap(&lc->cliP[i3 + 1],&lc->cliP[i4]);
+
+            c = i4 + 1;
+            if(i4 == size) i3--;
+          }
+          if(lc->sizeP != i3 + 1) {
+            lc->sizeP = i3 + 1;
+            lc->cliP = realloc(lc->cliP,sizeof(char*)*(i3 + 1));
+          }
+          contaCli(gfil,i,i2,fil);
+        }
+      }
 }
 
 void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type) {
   ListP *lp = &gfil->fil[branch-1].tblp[hash].list[pos];
 
-  if(existsGFilP(lp, cli, type) == 0) {
-    if(type == 'N') {
-      lp->cliN = realloc(lp->cliN, sizeof(char*)*(lp->sizeN + 1));
-      lp->cliN[lp->sizeN] = malloc(sizeof(char) * SMAX);
-      strcpy(lp->cliN[lp->sizeN], cli);
-      lp->sizeN++;
-    }
+  if(type == 'N') {
+    lp->cliN = realloc(lp->cliN, sizeof(char*)*(lp->sizeN + 1));
+    lp->cliN[lp->sizeN] = malloc(sizeof(char) * SMAX);
+    strcpy(lp->cliN[lp->sizeN], cli);
+    lp->sizeN++;
+  }
 
-    else {
-      lp->cliP = realloc(lp->cliP, sizeof(char*)* (lp->sizeP + 1));
-      lp->cliP[lp->sizeP] = malloc(sizeof(char) * SMAX);
-      strcpy(lp->cliP[lp->sizeP], cli);
-      lp->sizeP++;
-    }
+  else {
+    lp->cliP = realloc(lp->cliP, sizeof(char*)* (lp->sizeP + 1));
+    lp->cliP[lp->sizeP] = malloc(sizeof(char) * SMAX);
+    strcpy(lp->cliP[lp->sizeP], cli);
+    lp->sizeP++;
   }
 }
 
@@ -142,7 +188,7 @@ void quickSortbyProd(ProdCli *prods, int low, int high)
     }
 }
 void remRepC(GFiliais *gfil) {
-  int i,i2,i3,i4,fil,r,c,size;
+  int i,i2,i3,i4,fil,c,size;
   ListC* lc;
 
   for(fil = 0;fil < 3;fil++)
@@ -151,20 +197,22 @@ void remRepC(GFiliais *gfil) {
         lc = &gfil->fil[fil].tblc[i].list[i2];
         if(lc->prods != NULL) {
           size = lc->sizeProds;
+          quickSortbyProd(lc->prods,0,size-1);
 
-          quickSortbyProd(gfil->fil[fil].tblc[i].list[i2].prods,0,size-1);
-
-          for(i3 = 0,r = 1,c = 1;c < size;i3++) {
-            for(i4 = c,r = 1;i4 < size && !strcmp(lc->prods[i4].prod,lc->prods[i3].prod);i4++)
+          for(i3 = 0,c = 1;c < size;i3++) {
+            for(i4 = c;i4 < size && !strcmp(lc->prods[i4].prod,lc->prods[i3].prod);i4++)
                 lc->prods[i3].uni[lc->prods[i4].mes-1] += lc->prods[i4].uni[lc->prods[i4].mes-1];
 
             if(i4 != i3+1 && i4 < size)
               swapPCli(&lc->prods[i3 + 1],&lc->prods[i4]);
 
             c = i4 + 1;
-            if(i4 == size) i--;
+            if(i4 == size) i3--;
           }
-          lc->sizeProds = i3 + 1;
+          if(lc->sizeProds != i3 + 1) {
+            lc->sizeProds = i3 + 1;
+            lc->prods = realloc(lc->prods,sizeof(ProdCli)*(i3 + 1));
+          }
         }
       }
 }
@@ -242,6 +290,10 @@ void freeGFil(GFiliais* gfil) {
 
 int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j) {
   return gfil->fil[branch].tblp[i].list[j].sizeP;
+}
+
+int getGFilPSizeC(GFiliais* gfil, int branch, int i, int j) {
+  return gfil->fil[branch].tblp[i].list[j].sizeC;
 }
 
 int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j) {

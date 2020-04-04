@@ -6,7 +6,7 @@
 
 int vendaVal(int posp, int posc, float preco, int uni, char type, int mes, int branch) {
   int r;
-  
+
   if(posp!=(-1) && posc!=(-1) && preco >= 0.0 && preco < 1000.0
     && uni > 0 && uni <= 200 && (type == 'N' || type == 'P')
     && mes > 0 && mes <= 12 && branch > 0 && branch <= 3)
@@ -79,6 +79,7 @@ int loadFromSales(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gf
     saleS(tprod, tcli, fact, gfil, buffer, val, lida);
   }
   remRepC(gfil);
+  remRepP(gfil);
 
   fclose(fsales);
 

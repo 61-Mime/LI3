@@ -167,9 +167,9 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
       for(j=0; j<3; j++)
         querie7->tabela[i][j] = 0;
 
-    for(i=0; i<12; i++)
-      for(j=0; j<3; j++)
-        for(k=0; k<getGFilCsizeProds(sgv->gfil, j, i, k); k++)
+    for(j=0; j<3; j++)
+      for(k=0; k<getGFilCsizeProds(sgv->gfil, j, hash, pos); k++)
+        for(i=0; i<12; i++)
           querie7->tabela[i][j] += getGFilCuni(sgv->gfil, j, hash, pos, k, i);
 
     return querie7;
@@ -347,6 +347,7 @@ Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
       swapP(&querie10->produtos[i + 1],&querie10->produtos[i2]);
 
     c = i2 + 1;
+    if(i2 == querie10 -> size)i--;
   }
   querie10 -> size = i + 1;
 
@@ -413,7 +414,7 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
   }
 
   quickSortbyPP(querie11->produtos, 0, querie11->size - 1);
-  
+
   if(limit < querie11->size) {
     querie11->produtos=realloc(querie11->produtos, sizeof(PP)*limit);
     querie11->size = limit;
@@ -422,9 +423,9 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
   for(i=0; i<querie11->size; i++) {
     pos = searchCat(querie11->produtos[i].prod, sgv->prod);
     hash = hashCat(querie11->produtos[i].prod[0]);
-    querie11->produtos[i].clientes[0] = getGFilPSizeP(sgv->gfil, 0, hash, pos);
-    querie11->produtos[i].clientes[1] = getGFilPSizeP(sgv->gfil, 1, hash, pos);
-    querie11->produtos[i].clientes[2] = getGFilPSizeP(sgv->gfil, 2, hash, pos);
+    querie11->produtos[i].clientes[0] = getGFilPSizeC(sgv->gfil, 0, hash, pos);
+    querie11->produtos[i].clientes[1] = getGFilPSizeC(sgv->gfil, 1, hash, pos);
+    querie11->produtos[i].clientes[2] = getGFilPSizeC(sgv->gfil, 2, hash, pos);
   }
 
   return querie11;
@@ -527,6 +528,7 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
       swapPF(&querie12->prods[i + 1],&querie12->prods[i2]);
 
     c = i2 + 1;
+    if(i2 == querie12 -> size)i--;
   }
   querie12 -> size = i + 1;
 

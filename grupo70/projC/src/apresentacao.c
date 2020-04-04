@@ -2,8 +2,7 @@
 
 void menu() {
     system("clear");
-    printf("\n- 0\n");
-    printf("- 1 <pathProd> <pathCli> <pathSales>\n");
+    printf("\n- 1 <pathProd> <pathCli> <pathSales>\n");
     printf("- 2 <letter>\n");
     printf("- 3 <prodID> <month> <type>\n");
     printf("- 4 <branchID>\n");
@@ -159,7 +158,7 @@ void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
   }
 
   for(i = 0; i < querie11 -> size;i++)
-    printf("%s %d %d %d %d %d %d %d\n", querie11->produtos[i].prod, querie11->produtos[i].unidades[0], querie11->produtos[i].unidades[1], querie11->produtos[i].unidades[2],
+    printf("%s %-4d %-4d %-4d %d %d %d %d\n", querie11->produtos[i].prod, querie11->produtos[i].unidades[0], querie11->produtos[i].unidades[1], querie11->produtos[i].unidades[2],
                         querie11->produtos[i].clientes[0], querie11->produtos[i].clientes[1], querie11->produtos[i].clientes[2], querie11->produtos[i].total);
 
   printf("\nTempo de execução da Querie 11: %.4f s\n", (end_t - start_t) * 0.000001);
@@ -180,12 +179,15 @@ void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
 }
 
 void printQ13(Q13* querie13) {
-    printf("\nNumero de Clientes Lidos: %d\n", querie13->cliL);
+    printf("\nFicheiro de Clientes usado: %s\n", querie13->pathCli);
+    printf("Numero de Clientes Lidos: %d\n", querie13->cliL);
     printf("Numero de Clientes Validados: %d\n", querie13->cliV);
 
+    printf("\nFicheiro de Produtos usado: %s\n", querie13->pathProd);
     printf("Numero de Produtos Lidos: %d\n", querie13->prodL);
     printf("Numero de Produtos Validados: %d\n", querie13->prodV);
 
-    //printf("Numero de Vendas Lidas: %d\n", querie13->salesL);
-    //printf("Numero de Vendas Validadas: %d\n", querie13->salesV);
+    printf("\nFicheiro de Vendas usado: %s\n", querie13->pathSales);
+    printf("Numero de Vendas Lidas: %d\n", querie13->salesL);
+    printf("Numero de Vendas Validadas: %d\n", querie13->salesV);
 }

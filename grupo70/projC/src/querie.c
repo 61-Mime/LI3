@@ -544,15 +544,18 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
 }
 
 // Querie 13
-Q13* getCurrentFilesInfo(SGV sgv) {
+Q13* getCurrentFilesInfo(SGV sgv, char* pathCli, char* pathProd, char* pathSales) {
     Q13* querie13 = malloc(sizeof(Q13));
 
-    querie13->cliL = getCatLinhaLida(sgv->cli);
-    querie13->cliV = getCatLinhaVal(sgv->cli);
-    querie13->prodL = getCatLinhaLida(sgv->prod);
-    querie13->prodV = getCatLinhaVal(sgv->prod);
-    //querie13->salesL = sgv->sales->nLidas;
-    //querie13->salesV = sgv->sales->nValidas;
+    querie13->cliL = getSGVcliL(sgv->info);
+    querie13->cliV = getSGVcliV(sgv->info);
+    strcpy(querie13->pathCli, pathCli);
+    querie13->prodL = getSGVprodL(sgv->info);
+    querie13->prodV = getSGVprodV(sgv->info);
+    strcpy(querie13->pathProd, pathProd);
+    querie13->salesL = getSGVsaleL(sgv->info);
+    querie13->salesV = getSGVsaleV(sgv->info);
+    strcpy(querie13->pathSales, pathSales);
 
     return querie13;
 }

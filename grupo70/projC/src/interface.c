@@ -1,4 +1,4 @@
-#include "intrepertador.h"
+#include "interface.h"
 
 #define MAX 100
 
@@ -28,12 +28,14 @@ void intrepertador(SGV sgv) {
         else if(strcmp(s,"q")==0 || strcmp(s,"Q")==0)
           r=0;
 
-        else if(atoi(s)!=1 && atoi(s)!=0 && sgv->load==0)
+        /*
+        else if(atoi(s)!=1 && atoi(s)!=0 && (*load)==0)
           printf("O SGV ainda não foi carregado\n");
+        */
 
         else switch((querie = atoi(s))) {
               case 1:
-                  runQuerie1(sgv, buffer);
+                  runQuerie1e13(sgv, buffer);
                   break;
 
               case 2:
@@ -78,10 +80,6 @@ void intrepertador(SGV sgv) {
 
               case 12:
                   runQuerie12(sgv, buffer);
-                  break;
-
-              case 13:
-                  runQuerie13(sgv, buffer, tam);
                   break;
 
               default:

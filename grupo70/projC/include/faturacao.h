@@ -15,7 +15,7 @@ typedef struct factM {
 } FMensal;
 
 typedef struct fact {
-  char *prod;
+  char* prod;
   int ocup;
   FMensal mesfilial[12][3];
 } Facturacao;
@@ -26,7 +26,7 @@ typedef struct Tfact {
 } TFacturacao;
 
 typedef struct thashfact {
-  TFacturacao tbl[26];
+  TFacturacao* tbl;
 } THashFact;
 
 THashFact* initFact();

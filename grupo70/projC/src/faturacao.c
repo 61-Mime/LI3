@@ -1,10 +1,11 @@
 #include "faturacao.h"
 
 #define SIZE 26
-#define MAX 10
+#define SMAX 10
 
 THashFact* initFact() {
   THashFact *fact = malloc(sizeof(THashFact));
+  fact->tbl = malloc(sizeof(TFacturacao) * SIZE);
 
   for(int i=0; i<SIZE; i++) {
     fact->tbl[i].size = 0;
@@ -24,7 +25,8 @@ void initTFacturacao(THashFact* fact, int i, int size) {
 void initFacturacao(THashFact* fact, int i, int j, char* key) {
   Facturacao *f = &fact->tbl[i].list[j];
 
-  f->prod = key;
+  f->prod = malloc(sizeof(char) * SMAX);
+  strcpy(f->prod, key);
   f->ocup = 0;
 
   for(i=0; i<12; i++)
@@ -68,12 +70,21 @@ void addFact(THashFact* fact, int hash, int pos, int month, int branch, char typ
 }
 
 void freeFact(THashFact* fact) {
-    int i;
+    int i, j;
 
-    for(i=0; i<SIZE; i++)
+    for(i=0; i<SIZE; i++) {
+        for(j=0; j<fact->tbl[i].size; j++) {
+          free(fact->tbl[i].list[j].prod);
+          fact->tbl[i].list[j].prod = NULL;
+        }
         free(fact->tbl[i].list);
+        fact->tbl[i].list = NULL;
+    }
+    free(fact->tbl);
+    fact->tbl = NULL;
 
     free(fact);
+    fact = NULL;
 }
 
 //GETTERS

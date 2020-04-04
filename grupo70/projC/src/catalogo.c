@@ -6,6 +6,7 @@
 Catalogo* initCat()
 {
   Catalogo* cat = malloc(sizeof(Catalogo));
+  cat->tbl = malloc(sizeof(Cat) * SIZE);
   int i;
 
   for(i=0; i<SIZE; i++) {
@@ -99,12 +100,19 @@ void freeCat(Catalogo* cat) {
   int i, j;
 
   for(i=0; i<SIZE; i++) {
-    for(j=0; j<cat->tbl[i].size; j++)
+    for(j=0; j<cat->tbl[i].size; j++) {
       free(cat->tbl[i].list[j]);
+      cat->tbl[i].list[j] = NULL;
+    }
     free(cat->tbl[i].list);
+    cat->tbl[i].list = NULL;
   }
 
+  free(cat->tbl);
+  cat->tbl = NULL;
+  
   free(cat);
+  cat = NULL;
 }
 
 //GETTERS

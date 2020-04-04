@@ -7,8 +7,8 @@
 #include "catalogo.h"
 
 typedef struct prodcli{
-  char *prod;
-  int uni[12];
+  char* prod;
+  int* uni;
   int mes;
   float fat;
 } ProdCli;
@@ -38,12 +38,12 @@ typedef struct tfilp{
 } TFilialP;
 
 typedef struct filial{
-  TFilialC tblc[26];
-  TFilialP tblp[26];
+  TFilialC* tblc;
+  TFilialP* tblp;
 } THashFilial;
 
 typedef struct gfiliais{
-  THashFilial fil[3];
+  THashFilial* fil;
 } GFiliais;
 
 //Functions

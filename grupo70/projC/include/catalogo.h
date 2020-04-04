@@ -13,7 +13,7 @@ typedef struct cat {
 } Cat;
 
 typedef struct catalogo {
-  Cat tbl[26];
+  Cat* tbl;
 } Catalogo;
 
 Catalogo* initCat();

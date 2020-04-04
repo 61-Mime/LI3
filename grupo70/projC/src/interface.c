@@ -3,9 +3,8 @@
 #define MAX 100
 
 void intrepertador(SGV sgv) {
-    int r=1, querie=-1, tam = 0;
-    char *buffer = NULL, *s = NULL;
-    buffer = malloc(MAX*sizeof(char));
+    int r=1, querie=-1, tam = 0, load=0;
+    char *buffer = malloc(MAX*sizeof(char)), *s = NULL, *aux=NULL;
 
     system("clear");
 
@@ -14,13 +13,15 @@ void intrepertador(SGV sgv) {
         printf("Introduza o seu comando: ");
         fgets(buffer, MAX, stdin);
 
-        if(!temEspaco(buffer)) {
-            s = strsep(&buffer, "\n");
-            tam = strlen(buffer);
+        aux = buffer;
+
+        if(!temEspaco(aux)) {
+            s = strsep(&aux, "\n");
+            tam = strlen(aux);
         }
 
         else
-          s = strsep(&buffer, " ");
+          s = strsep(&aux, " ");
 
         if(strcmp(s,"menu") == 0)
           menu();
@@ -28,26 +29,25 @@ void intrepertador(SGV sgv) {
         else if(strcmp(s,"q")==0 || strcmp(s,"Q")==0)
           r=0;
 
-        /*
-        else if(atoi(s)!=1 && atoi(s)!=0 && (*load)==0)
+        else if(atoi(s)!=1 && atoi(s)!=0 && load==0)
           printf("O SGV ainda não foi carregado\n");
-        */
-
+        
         else switch((querie = atoi(s))) {
               case 1:
-                  runQuerie1e13(sgv, buffer);
+                  runQuerie1e13(sgv, aux, load);
+                  load = 1;
                   break;
 
               case 2:
-                  runQuerie2(sgv, buffer);
+                  runQuerie2(sgv, aux);
                   break;
 
               case 3:
-                  runQuerie3(sgv, buffer);
+                  runQuerie3(sgv, aux);
                   break;
 
               case 4:
-                  runQuerie4(sgv, buffer);
+                  runQuerie4(sgv, aux);
                   break;
 
               case 5:
@@ -55,39 +55,41 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 6:
-                  runQuerie6(sgv, buffer, tam);
+                  runQuerie6(sgv, aux, tam);
                   break;
 
               case 7:
-                  runQuerie7(sgv, buffer);
+                  runQuerie7(sgv, aux);
                   break;
 
               case 8:
-                  runQuerie8(sgv, buffer);
+                  runQuerie8(sgv, aux);
                   break;
 
               case 9:
-                  runQuerie9(sgv, buffer);
+                  runQuerie9(sgv, aux);
                   break;
 
               case 10:
-                  runQuerie10(sgv, buffer);
+                  runQuerie10(sgv, aux);
                   break;
 
               case 11:
-                  runQuerie11(sgv, buffer);
+                  runQuerie11(sgv, aux);
                   break;
 
               case 12:
-                  runQuerie12(sgv, buffer);
+                  runQuerie12(sgv, aux);
                   break;
 
               default:
                   printf("Comando inválido\n");
                   break;
           }
-        
     }
 
     printf("\nA Sair do Programa\n");
+    
+    free(buffer);
+    buffer = NULL;
 }

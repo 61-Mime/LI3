@@ -52,6 +52,7 @@ void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli);
 void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type);
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni);
 void freeGFil(GFiliais* fil);
+void remRepC(GFiliais *gfil);
 
 //Getters
 int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j);
@@ -68,5 +69,4 @@ float getGFilCfat(GFiliais*gfil,int branch,int i,int j,int k);
 int getGFilCsizeProds(GFiliais*gfil,int branch,int i,int j);
 int getGFilComp(GFiliais*gfil);
 
-void remRep(GFiliais *gfil);
 #endif

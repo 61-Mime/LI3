@@ -169,6 +169,7 @@ void remRepC(GFiliais *gfil) {
               swapPCli(&lc->prods[i3 + 1],&lc->prods[i4]);
 
             c = i4 + 1;
+            if(i4 == size) i--;
           }
           lc->sizeProds = i3 + 1;
         }

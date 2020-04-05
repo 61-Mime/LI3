@@ -1,9 +1,25 @@
+/**
+ * @file  sales.c
+ * @brief Ficheiro que contém as funções relativas ao carregamento das vendas
+ */
+
 #include "sales.h"
 
 #define SMAX 10
 #define MAX 64
 #define SIZE 26
 
+
+/**
+ * @brief         Função verifica se a venda é válida
+ * @param posp    Inteiro com o resultado da procura de um produto
+ * @param posc    Inteiro com o resultado da procura de um cliente
+ * @param preco   Float com o preço do produto
+ * @param type    Char com o tipo de compra
+ * @param mes     Inteiro com o mes da compra
+ * @param branch  Inteiro com a filial da compra
+ * @return        Inteiro usado como booleano
+ */
 int vendaVal(int posp, int posc, float preco, int uni, char type, int mes, int branch) {
   int r;
 
@@ -17,7 +33,17 @@ int vendaVal(int posp, int posc, float preco, int uni, char type, int mes, int b
   return r;
 }
 
-// Corre uma venda, passa para a struct total e se for válida passa a struct valida
+
+/**
+ * @brief         Função separa uma venda em tokens e adiciona-os à estrutura de Faturação e Gestão de Filiais
+ * @param tprod   Apontador para Catalogo de Produtos
+ * @param tcli    Apontador para Catalogo de Clientes
+ * @param fact    Apontador para THashFact
+ * @param gfil    Apontador para GFiliais
+ * @param buffer  String com a venda
+ * @param val     Apontador para inteiro que contem o numero de vendas validadas
+ * @param lida    Apontador para inteiro que contem o numero de vendas lidas
+ */
 void saleS(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, char* buffer, int* val, int* lida) {
   char *aux = NULL, *prod = NULL, *cli = NULL, *type = NULL;
   int hashp, hashc, posp=0, posc=0;
@@ -64,7 +90,18 @@ void saleS(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, cha
   (*lida)++;
 }
 
-// Abre o array das vendas e passa-as para uma struct
+
+/**
+ * @brief           Função le um ficheiro, valida e adiciona as vendas a THashFact e GFiliais
+ * @param tprod     Apontador para Catalogo de Produtos
+ * @param tcli      Apontador para Catalogo de Clientes
+ * @param fact      Apontador para THashFact
+ * @param gfil      Apontador para GFiliais
+ * @param filePath  Caminho para o ficheiro
+ * @param val       Apontador para inteiro que contem o numero de vendas validadas
+ * @param lida      Apontador para inteiro que contem o numero de vendas lidas
+ * @return          Inteiro usado com Booleano
+ */
 int loadFromSales(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, char* filePath, int* val, int* lida) {
   FILE *fsales;
   char* buffer= malloc(sizeof(char) * MAX);

@@ -1,10 +1,19 @@
+/**
+ * @file  catalogo.c
+ * @brief Ficheiro que contém funções relativas ao módulo Catálogo 
+ */
+
 #include "catalogo.h"
 
 #define MAX 10
 #define SIZE 26
 
-Catalogo* initCat()
-{
+
+/**
+ * @brief   Função inicializa a estrutura Catalogo
+ * @return  Apontador para Catalogo 
+ */
+Catalogo* initCat() {
   Catalogo* cat = malloc(sizeof(Catalogo));
   cat->tbl = malloc(sizeof(Cat) * SIZE);
   int i;
@@ -17,6 +26,13 @@ Catalogo* initCat()
   return cat;
 }
 
+
+/**
+ * @brief     Função procura uma key num Catalogo
+ * @param key Chave a procurar
+ * @param cat Apontador para o Catalogo
+ * @return    Inteiro com a posição
+ */
 int searchCat(char* key, Catalogo* cat){
   int hash, res;
 
@@ -26,13 +42,25 @@ int searchCat(char* key, Catalogo* cat){
   return res;
 }
 
+
+/**
+ * @brief   Função calcula a posição no Catalogo
+ * @param c Char Chave
+ * @return  Inteiro com a posição
+ */
 int hashCat(char c) {
   if(c <'A' || c > 'Z') return -1;
   return (c - 65);
 }
 
-int isVal(char *key, char type)
-{
+
+/**
+ * @brief       Função verifica se a chave é válida
+ * @param key   Chave a verificar
+ * @param type  Char que indica o tipo do catálogo
+ * @return      Inteiro usado como booleano       
+ */
+int isVal(char *key, char type) {
   int i, res=1;
 
   if(type == 'c') {
@@ -56,6 +84,14 @@ int isVal(char *key, char type)
   return res;
 }
 
+
+/**
+ * @brief     Função adiciona uma chave ao Catalogo
+ * @param cat Apontador para Catalogo
+ * @param key Chave a adicionar
+ * @param i   Posicao da tabela a adicionar
+ * @param val Apontador para inteiro que contem o numero de chaves validadas
+ */
 void addKey(Catalogo* cat, char* key, int i, int* val) {
   int pos = cat->tbl[i].size;
 
@@ -67,6 +103,16 @@ void addKey(Catalogo* cat, char* key, int i, int* val) {
   (*val)++;
 }
 
+
+/**
+ * @brief           Função le um ficheiro, valida e adiciona as keys ao Catalogo
+ * @param cat       Apontador para Catalogo
+ * @param filePath  Caminho para o ficheiro
+ * @param type      Char que indica o tipo do catálogo
+ * @param val       Apontador para inteiro que contem o numero de chaves validadas
+ * @param lida      Apontador para inteiro que contem o numero de chaves lidas
+ * @return          Inteiro usado como booleano
+ */
 int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   FILE* f;
   char* buffer= malloc(sizeof(char) * MAX);
@@ -96,6 +142,11 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   return 0;
 }
 
+
+/**
+ * @brief     Função liberta o espaço de memoria ocupado pelo Catalogo
+ * @param cat Apontador para Catalogo
+ */
 void freeCat(Catalogo* cat) {
   int i, j;
 
@@ -115,12 +166,25 @@ void freeCat(Catalogo* cat) {
   cat = NULL;
 }
 
-//GETTERS
 
+/**
+ * @brief     Função devolve tamanho da Lista
+ * @param cat Apontador para Catalogo
+ * @param i   Posição na Tabela
+ * @return    Inteiro com o tamanho da Lista
+ */
 int getCatListSize(Catalogo* cat, int i) {
   return cat->tbl[i].size;
 }
 
+
+/**
+ * @brief     Função devolve a chave do Catalogo
+ * @param cat Apontador para o Catalogo
+ * @param i   Posição na Tabela
+ * @param j   Posição na Lista
+ * @return    Apontador para a Key
+ */
 char* getCatKey(Catalogo* cat, int i, int j) {
   return cat->tbl[i].list[j];
 }

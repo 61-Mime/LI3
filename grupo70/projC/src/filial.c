@@ -90,6 +90,24 @@ void contaCli(GFiliais *gfil,int i,int i2,int fil) {
   }
 }
 
+void freeRepP(GFiliais *gfil,int fil,int i,int i2,int size,int t) {
+  int i3;
+  ListP* lp = &gfil->fil[fil].tblp[i].list[i2];
+
+  if(t) i3 = lp -> sizeN;
+  else i3 = lp -> sizeP;
+  for(;i3 < size;i3++){
+    if(t){
+      free(lp->cliN[i3]);
+      lp->cliN[i3] = NULL;
+    }
+    else {
+      free(lp->cliP[i3]);
+      lp->cliP[i3] = NULL;
+    }
+  }
+}
+
 void remRepP(GFiliais *gfil) {
   int i,i2,i3,i4,fil,c,size;
   ListP* lc;
@@ -113,7 +131,7 @@ void remRepP(GFiliais *gfil) {
           }
           if(lc->sizeN != i3 + 1) {
             lc->sizeN = i3 + 1;
-            lc->cliN = realloc(lc->cliN,sizeof(char*)*(i3 + 1));
+            freeRepP(gfil,fil,i,i2,size,1);
           }
         }
 
@@ -132,7 +150,7 @@ void remRepP(GFiliais *gfil) {
           }
           if(lc->sizeP != i3 + 1) {
             lc->sizeP = i3 + 1;
-            lc->cliP = realloc(lc->cliP,sizeof(char*)*(i3 + 1));
+            freeRepP(gfil,fil,i,i2,size,0);
           }
           contaCli(gfil,i,i2,fil);
         }
@@ -187,6 +205,17 @@ void quickSortbyProd(ProdCli *prods, int low, int high)
       quickSortbyProd(prods, pi + 1, high);
     }
 }
+
+void freeRepC(GFiliais *gfil,int fil,int i,int i2,int size) {
+  ListC* lc = &gfil->fil[fil].tblc[i].list[i2];
+  for(int i3 = lc -> sizeProds; i3 < size;i3++){
+    free(lc->prods[i3].prod);
+    lc->prods[i3].prod = NULL;
+    free(lc->prods[i3].uni);
+    lc->prods[i3].uni = NULL;
+  }
+}
+
 void remRepC(GFiliais *gfil) {
   int i,i2,i3,i4,fil,c,size;
   ListC* lc;
@@ -211,7 +240,7 @@ void remRepC(GFiliais *gfil) {
           }
           if(lc->sizeProds != i3 + 1) {
             lc->sizeProds = i3 + 1;
-            lc->prods = realloc(lc->prods,sizeof(ProdCli)*(i3 + 1));
+            freeRepC(gfil,fil,i,i2,size);
           }
         }
       }
@@ -237,36 +266,40 @@ void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int mon
 
 void freeGFil(GFiliais* gfil) {
   int fil, i, j, k;
+  ListC *lc;
+  ListP *lp;
 
   for(fil=0; fil<3; fil++) {
     for(i=0; i<SIZE; i++) {
       for(j=0; j<gfil->fil[fil].tblc[i].sizeCli; j++) {
-        for(k=0; k<gfil->fil[fil].tblc[i].list[j].sizeProds; k++) {
-          free(gfil->fil[fil].tblc[i].list[j].prods[k].prod);
-          gfil->fil[fil].tblc[i].list[j].prods[k].prod = NULL;
-          free(gfil->fil[fil].tblc[i].list[j].prods[k].uni);
-          gfil->fil[fil].tblc[i].list[j].prods[k].uni = NULL;
+        lc = &gfil->fil[fil].tblc[i].list[j];
+        for(k=0; k<lc->sizeProds; k++) {
+          free(lc->prods[k].prod);
+          lc->prods[k].prod = NULL;
+          free(lc->prods[k].uni);
+          lc->prods[k].uni = NULL;
         }
-        free(gfil->fil[fil].tblc[i].list[j].prods);
-        gfil->fil[fil].tblc[i].list[j].prods = NULL;
+        free(lc->prods);
+        lc->prods = NULL;
       }
 
       for(j=0; j<gfil->fil[fil].tblp[i].sizeProd; j++) {
-        for(k=0; k<gfil->fil[fil].tblp[i].list[j].sizeN; k++) {
-          free(gfil->fil[fil].tblp[i].list[j].cliN[k]);
-          gfil->fil[fil].tblp[i].list[j].cliN[k] = NULL;
+        lp = &gfil->fil[fil].tblp[i].list[j];
+        for(k=0; k<lp->sizeN; k++) {
+          free(lp->cliN[k]);
+          lp->cliN[k] = NULL;
         }
 
-        for(k=0; k<gfil->fil[fil].tblp[i].list[j].sizeP; k++) {
-          free(gfil->fil[fil].tblp[i].list[j].cliP[k]);
-          gfil->fil[fil].tblp[i].list[j].cliP[k] = NULL;
+        for(k=0; k<lp->sizeP; k++) {
+          free(lp->cliP[k]);
+          lp->cliP[k] = NULL;
         }
 
-        free(gfil->fil[fil].tblp[i].list[j].cliN);
-        free(gfil->fil[fil].tblp[i].list[j].cliP);
+        free(lp->cliN);
+        free(lp->cliP);
 
-        gfil->fil[fil].tblp[i].list[j].cliN = NULL;
-        gfil->fil[fil].tblp[i].list[j].cliP = NULL;
+        lp->cliN = NULL;
+        lp->cliP = NULL;
       }
 
       free(gfil->fil[fil].tblc[i].list);

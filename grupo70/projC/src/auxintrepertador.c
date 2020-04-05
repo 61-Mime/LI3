@@ -13,9 +13,9 @@ void runQuerie1e13(SGV sgv, char* buffer, int load) {
   clock_t start_t, end_t;
 
   if(!temEspaco(buffer)) {
-    c1 = "../files/Clientes.txt";
-    c2 = "../files/Produtos.txt";
-    c3 = "../files/Vendas_1M.txt";
+    c1 = "/Users/luissobral/grupo70/grupo70/projC/files/Clientes.txt";
+    c2 = "/Users/luissobral/grupo70/grupo70/projC/files/Produtos.txt";
+    c3 = "/Users/luissobral/grupo70/grupo70/projC/files/Vendas_1M.txt";
     }
   else {
     c1 = strsep(&buffer, " ");
@@ -62,12 +62,12 @@ void runQuerie2(SGV sgv, char* buffer) {
 
       Q2* querie2 = getProductsStartedByLetter(sgv, c1[0]);
       printQ2(querie2, c1[0]);
-    
+
       for(int i=0; i<querie2->size; i++) {
         free(querie2->prods[i]);
         querie2->prods[i] = NULL;
       }
-    
+
       free(querie2);
       querie2 = NULL;
     }
@@ -120,7 +120,7 @@ void runQuerie4(SGV sgv, char* buffer) {
         free(querie4->prods[i]);
         querie4->prods[i] = NULL;
     }
-    
+
     free(querie4);
     querie4 = NULL;
   }
@@ -139,7 +139,7 @@ void runQuerie5(SGV sgv, int tam) {
       free(querie5->cli[i]);
       querie5 = NULL;
     }
-    
+
     free(querie5);
     querie5 = NULL;
   }

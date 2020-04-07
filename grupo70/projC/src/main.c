@@ -5,13 +5,11 @@
 SGV sgv;
 
 int main() {
-
-  sgv = initSGV();
-
   //intrepertador(sgv);
-runQuerie1e13(sgv,"1",0);
-printf("%s\n", getGFilPCliN(sgv->gfil,0,0,0,0));
-  destroySGV(sgv);
+
+  sgv = loadSGVFromFiles(sgv, "../files/Clientes.txt", "../files/Produtos.txt", "../files/Vendas_1M.txt");
+
+  //printf("%d\n", getGFilPListSize(sgv->gfil, 0, 1));
 
   return 0;
 }

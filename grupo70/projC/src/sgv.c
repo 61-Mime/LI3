@@ -5,6 +5,23 @@
 
 #include "sgv.h"
 
+typedef struct filesinfo {
+    int prodV;
+    int prodL;
+    int cliV;
+    int cliL;
+    int saleV;
+    int saleL;
+} FileInfo;
+
+typedef struct sgv {
+    Catalogo* cli;
+    Catalogo* prod;
+    THashFact* fact;
+    GFiliais* gfil;
+    FileInfo* info;
+}*SGV;
+
 /**
  * @brief   Função que inicializa a estrutura FileInfo
  * @return  Apontador para FileInfo 
@@ -47,6 +64,8 @@ SGV initSGV() {
  * @return                  SGV carregado
  */
 SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, char* salesFilePath) {
+    sgv = initSGV();
+
     tblCat(sgv->prod, productsFilePath, 'p', &sgv->info->prodV, &sgv->info->prodL);
     tblCat(sgv->cli, clientsFilePath, 'c', &sgv->info->cliV, &sgv->info->cliL);
     loadFactFromCat(sgv->fact, sgv->prod);
@@ -122,3 +141,4 @@ int getSGVsaleV(FileInfo* info) {
 int getSGVsaleL(FileInfo* info) {
     return info->saleL;
 }
+

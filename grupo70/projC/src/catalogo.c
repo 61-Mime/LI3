@@ -8,6 +8,14 @@
 #define MAX 10
 #define SIZE 26
 
+typedef struct cat {
+  int size;
+  char** list;
+} Cat;
+
+typedef struct catalogo {
+  Cat* tbl;
+} Catalogo;
 
 /**
  * @brief   Função inicializa a estrutura Catalogo

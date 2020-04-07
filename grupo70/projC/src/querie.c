@@ -1,9 +1,19 @@
+/**
+ * @file  querie.c
+ * @brief Ficheiro que contém funções relativas ao módulo Querie
+ */
+
 #include "querie.h"
 
 #define SIZE 26
 #define SMAX 10
 
-// Querie 2
+/**
+ *@brief        função que devolve os produtos começados por um determinado char
+ *@param sgv    estrutura de sistema e gestão de vendas
+ *@param letter char que começa o nome dos produtos
+ *@return       apontador para Q2
+ */
 Q2* getProductsStartedByLetter(SGV sgv, char letter) {
   int i, hash;
   Q2* querie2 = malloc(sizeof(Q2));
@@ -24,7 +34,14 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
   return querie2;
 }
 
-// Querie 3
+/**
+ *@brief           função que devolve a faturação de um determinado produto, por filial e mês
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param productID String que representa o produto
+ *@param month     mês do qual se pretende obter a faturação
+ *@param type      inteiro que indica se os resultados são globais ou por filial
+ *@return          apontador para Q3
+ */
 Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
   int i, pos, hash;
   Q3* querie3 = malloc(sizeof(Q3));
@@ -68,7 +85,12 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
   return querie3;
 }
 
-// Querie 4
+/**
+ *@brief           função que devolve o número de produtos não comprados
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param branch    inteiro que indica se os resultados são globais ou por filial
+ *@return          apontador para Q4
+ */
 Q4* getProductsNeverBough(SGV sgv,int branch) {
   int i,i2, size;
 
@@ -105,7 +127,10 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   return querie4;
 }
 
-// Querie 5
+/**
+ *@brief           função que devolve os clientes que fizeram compras em todas as filiais
+ *@return          apontador para Q5
+ */
 Q5* getClientsOfAllBranches(SGV sgv) {
     int i, j, size1, size2, size3;
     Q5* querie5 = malloc(sizeof(Q5));
@@ -129,7 +154,11 @@ Q5* getClientsOfAllBranches(SGV sgv) {
     return querie5;
 }
 
-// Querie 6
+/**
+ *@brief           função que devolve os cliente que não compraram e os produtos não comprados
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@return          apontador para Q6
+ */
 Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
     int i, j;
     Q6* querie6 = malloc(sizeof(Q6));
@@ -152,7 +181,12 @@ Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
     return querie6;
 }
 
-// Querie 7
+/**
+ *@brief           função que devolve os produtos comprados por um determinado cliente
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param clientID  String que representa o cliente
+ *@return          apontador para Q7
+ */
 Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
     int i, j, k, hash, pos;
     Q7* querie7 = malloc(sizeof(Q7));
@@ -175,7 +209,13 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
     return querie7;
 }
 
-// Querie 8
+/**
+ *@brief           função que devolve o total de vendas e o total faturado num determinado espaço de tempo
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param minMonth  mês que representa o limite inferior do espaço temporal
+ *@param maxMonth  mês que representa o limite superior do espaço temporal
+ *@return          apontador para Q8
+ */
 Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
   int i,i2,i3,i4;
   Q8* querie8 = malloc(sizeof(Q8));
@@ -196,8 +236,13 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
   return querie8;
 }
 
-// Querie 9
-
+/**
+ *@brief           função que devolve a lista de clientes para um determinado produto numa determinada filial
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param prodID    String que representa o produto
+ *@param branch    inteiro que representa a filial
+ *@return          apontador para Q9
+ */
 Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
     int pos, hash, n, r, c, i;
     char *cliN = NULL, *cliN1 = NULL;
@@ -249,7 +294,11 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
     return querie9;
 }
 
-// Querie 10
+/**
+ * @brief   Função troca o apontador de duas Structs P
+ * @param a Apontador para P
+ * @param b Apontador para P
+ */
 void swapP(P *a, P *b)
 {
     P aux = *a;
@@ -257,6 +306,12 @@ void swapP(P *a, P *b)
     *b = aux;
 }
 
+/**
+ * @brief       Função de ordenação por produto pelo algoritmo Quicksort
+ * @param prods Estrutura P a ordenar
+ * @param low   Inteiro com o incio do P
+ * @param high  Interio com o fim do P
+ */
 void quickSortbyP(P *prods, int low, int high)
 {
     if (low < high)
@@ -281,6 +336,12 @@ void quickSortbyP(P *prods, int low, int high)
     }
 }
 
+/**
+ * @brief       Função de ordenação por quantidade de produto pelo algoritmo Quicksort
+ * @param prods Estrutura QP a ordenar
+ * @param low   Inteiro com o incio do QP
+ * @param high  Interio com o fim do QP
+ */
 void quickSortbyQP(P *prods, int low, int high)
 {
     if (low < high)
@@ -305,6 +366,13 @@ void quickSortbyQP(P *prods, int low, int high)
     }
 }
 
+/**
+ *@brief           função que devolve por ordem decrescente de quantidade os produtos que um determinado cliente comprou
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param cliID     String que representa o cliente
+ *@param month     String que representa o mês
+ *@return          apontador para Q10
+ */
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
   int pos = searchCat(cliID, sgv->cli),hash = hashCat(cliID[0]),i,i2,c;
 
@@ -356,7 +424,11 @@ Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month) {
   return querie10;
 }
 
-// Querie 11
+/**
+ * @brief   Função troca o apontador de duas Structs PP
+ * @param a Apontador para PP
+ * @param b Apontador para PP
+ */
 void swapPP(PP *a, PP *b)
 {
     PP aux = *a;
@@ -364,6 +436,12 @@ void swapPP(PP *a, PP *b)
     *b = aux;
 }
 
+/**
+ * @brief       Função de ordenação por total de unidades pelo algoritmo Quicksort
+ * @param prods Estrutura PP a ordenar
+ * @param low   Inteiro com o incio do PP
+ * @param high  Interio com o fim do PP
+ */
 void quickSortbyPP(PP *prods, int low, int high)
 {
     if (low < high)
@@ -388,6 +466,12 @@ void quickSortbyPP(PP *prods, int low, int high)
     }
 }
 
+/**
+ *@brief           função que devolve por ordem decrescente o número de produtos mais vendido em todo o ano, indicando o número total de clientes e unidades vendidas por filial
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param limit     inteiro que representa o limite de produtos a serem devolvidos
+ *@return          apontador para Q11
+ */
 Q11* getTopSelledProducts(SGV sgv, int limit) {
   int i, j, k, l, hash, pos;
   Q11* querie11 = malloc(sizeof(Q11));
@@ -431,7 +515,11 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
   return querie11;
 }
 
-// Querie 12
+/**
+ * @brief   Função troca o apontador de duas Structs PF
+ * @param a Apontador para PF
+ * @param b Apontador para PF
+ */
 void swapPF(PF *a, PF *b)
 {
     PF aux = *a;
@@ -439,6 +527,12 @@ void swapPF(PF *a, PF *b)
     *b = aux;
 }
 
+/**
+ * @brief       Função de ordenação por produto pelo algoritmo Quicksort
+ * @param prods Estrutura PF a ordenar
+ * @param low   Inteiro com o incio do PF
+ * @param high  Interio com o fim do PF
+ */
 void quickSortbyPF(PF *prods, int low, int high)
 {
     if (low < high)
@@ -463,6 +557,12 @@ void quickSortbyPF(PF *prods, int low, int high)
     }
 }
 
+/**
+ * @brief       Função de ordenação por faturação de um produto pelo algoritmo Quicksort
+ * @param prods Estrutura FP a ordenar
+ * @param low   Inteiro com o incio do FP
+ * @param high  Interio com o fim do FP
+ */
 void quickSortbyFP(PF *prods, int low, int high)
 {
     if (low < high)
@@ -487,6 +587,13 @@ void quickSortbyFP(PF *prods, int low, int high)
     }
 }
 
+/**
+ *@brief           função que devolve os n produtos mais comprados por um determinado cliente durante o ano
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param clientID  String que representa o cliente
+ *@param limit     inteiro que representa o limite de produtos a serem devolvidos
+ *@return          apontador para Q12
+ */
 Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
   int pos = searchCat(clientID, sgv->cli),hash = hashCat(clientID[0]),i,i2,c;
 
@@ -542,7 +649,14 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
   return querie12;
 }
 
-// Querie 13
+/**
+ *@brief           função que devolve os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas
+ *@param sgv       estrutura de sistema e gestão de vendas
+ *@param pathCli   String que representa o caminho para o ficheiro de Clientes
+ *@param pathProd  String que representa o caminho para o ficheiro de Produtos
+ *@param pathSales String que representa o caminho para o ficheiro de Vendas
+ *@return          apontador para Q13
+ */
 Q13* getCurrentFilesInfo(SGV sgv, char* pathCli, char* pathProd, char* pathSales) {
     Q13* querie13 = malloc(sizeof(Q13));
 

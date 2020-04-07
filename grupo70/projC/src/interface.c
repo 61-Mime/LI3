@@ -1,3 +1,8 @@
+/**
+ * @file  interface.c
+ * @brief Ficheiro que contém funções relativas ao módulo Interface
+ */
+
 #include "interface.h"
 
 #define MAX 100

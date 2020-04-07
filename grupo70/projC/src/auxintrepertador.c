@@ -1,3 +1,8 @@
+/**
+ * @file  auxintrepertador.c
+ * @brief Ficheiro que contém funções relativas ao módulo Auxinterpretador
+ */
+
 #include "auxintrepertador.h"
 
 /**

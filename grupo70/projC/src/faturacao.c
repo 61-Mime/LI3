@@ -1,3 +1,8 @@
+/**
+ * @file  faturacao.c
+ * @brief Ficheiro que contém funções relativas ao módulo Faturacao
+ */
+
 #include "faturacao.h"
 
 #define SIZE 26

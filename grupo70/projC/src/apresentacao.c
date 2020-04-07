@@ -1,3 +1,8 @@
+/**
+ * @file  apresentacao.c
+ * @brief Ficheiro que contém funções relativas ao módulo Apresentacao
+ */
+
 #include "apresentacao.h"
 
 /**
@@ -45,8 +50,9 @@ void printQ1(clock_t start_t, clock_t end_t) {
 }
 
 /**
- *@brief        função que imprime o número de produtos começados por um determinado char
- *@param letter char que começa o nome dos produtos
+ *@brief         função que imprime o número de produtos começados por um determinado char
+ *@param querie2 apontador para Q2
+ *@param letter  char que começa o nome dos produtos
  */
 void printQ2(Q2* querie2, char letter) {
     if(querie2 == NULL) {
@@ -60,9 +66,10 @@ void printQ2(Q2* querie2, char letter) {
 }
 
 /**
- *@brief        função que imprime a faturação de um determinado produto, por filial e mês
- *@param prodID String que representa o produto
- *@param month  mês do qual se pretende obter a faturação
+ *@brief         função que imprime a faturação de um determinado produto, por filial e mês
+ *@param querie3 apontador para Q3
+ *@param prodID  String que representa o produto
+ *@param month   mês do qual se pretende obter a faturação
  */
 void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
@@ -92,7 +99,8 @@ void printQ3(Q3* querie3, char* prodID, int month) {
 }
 
 /**
- *@brief função que imprime o número de produtos não comprados
+ *@brief         função que imprime o número de produtos não comprados
+ *@param querie4 apontador para Q4
  */
 void printQ4(Q4* querie4) {
 
@@ -102,7 +110,8 @@ void printQ4(Q4* querie4) {
 }
 
 /**
- *@brief função que imprime o número de clientes que realizaram compras em todas as Filiais
+ *@brief         função que imprime o número de clientes que realizaram compras em todas as Filiais
+ *@param querie5 apontador para Q5
  */
 void printQ5(Q5* querie5) {
     printArray(querie5->cli, querie5->size);

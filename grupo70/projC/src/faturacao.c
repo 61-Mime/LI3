@@ -38,7 +38,7 @@ void initTFacturacao(THashFact* fact, int i, int size) {
  *@param fact apontador para THash
  *@param i    posição da Tabela
  *@param j    posição da Lista
- *@param key  chave ... inicializar --------------------------------------------------------------------------------
+ *@param key  String com o produto
  */
 void initFacturacao(THashFact* fact, int i, int j, char* key) {
   Facturacao *f = &fact->tbl[i].list[j];
@@ -57,6 +57,11 @@ void initFacturacao(THashFact* fact, int i, int j, char* key) {
     }
 }
 
+/**
+ *@brief      função que carrega as estrutura faturacao com todos os produtos
+ *@param fact apontador para THashFact
+ *@param prod apontador para catálogo de produtos
+ */
 void loadFactFromCat(THashFact* fact, Catalogo* prod) {
   int i, j, size;
 

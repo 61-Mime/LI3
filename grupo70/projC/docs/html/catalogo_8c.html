@@ -1,0 +1,625 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sistema de Gestão de Vendas: Referência ao ficheiro catalogo.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sistema de Gestão de Vendas
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Componentes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência ao ficheiro catalogo.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Ficheiro que contém funções relativas ao módulo Catálogo.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &quot;catalogo.h&quot;</code><br />
+</div>
+<p><a href="catalogo_8c_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Componentes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcat.html">cat</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcatalogo.html">catalogo</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a392fb874e547e582e9c66a08a1f23326"><td class="memItemLeft" align="right" valign="top"><a id="a392fb874e547e582e9c66a08a1f23326"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX</b>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a392fb874e547e582e9c66a08a1f23326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70ed59adcb4159ac551058053e649640"><td class="memItemLeft" align="right" valign="top"><a id="a70ed59adcb4159ac551058053e649640"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SIZE</b>&#160;&#160;&#160;26</td></tr>
+<tr class="separator:a70ed59adcb4159ac551058053e649640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:a029e0ff984b8b5ed05f54f966e2b04a7"><td class="memItemLeft" align="right" valign="top"><a id="a029e0ff984b8b5ed05f54f966e2b04a7"></a>
+typedef struct <a class="el" href="structcat.html">cat</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Cat</b></td></tr>
+<tr class="separator:a029e0ff984b8b5ed05f54f966e2b04a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c28097f6030ce211416f6d0820ee009"><td class="memItemLeft" align="right" valign="top"><a id="a7c28097f6030ce211416f6d0820ee009"></a>
+typedef struct <a class="el" href="structcatalogo.html">catalogo</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Catalogo</b></td></tr>
+<tr class="separator:a7c28097f6030ce211416f6d0820ee009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a4739d26cdc2b081ade2b0729f1a33ef2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#a4739d26cdc2b081ade2b0729f1a33ef2">initCat</a> ()</td></tr>
+<tr class="memdesc:a4739d26cdc2b081ade2b0729f1a33ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função inicializa a estrutura Catalogo.  <a href="catalogo_8c.html#a4739d26cdc2b081ade2b0729f1a33ef2">Mais...</a><br /></td></tr>
+<tr class="separator:a4739d26cdc2b081ade2b0729f1a33ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90eb6bfc54c9e1e1df6d142447af770b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#a90eb6bfc54c9e1e1df6d142447af770b">searchCat</a> (char *key, <a class="el" href="structcatalogo.html">Catalogo</a> *<a class="el" href="structcat.html">cat</a>)</td></tr>
+<tr class="memdesc:a90eb6bfc54c9e1e1df6d142447af770b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função procura uma key num Catalogo.  <a href="catalogo_8c.html#a90eb6bfc54c9e1e1df6d142447af770b">Mais...</a><br /></td></tr>
+<tr class="separator:a90eb6bfc54c9e1e1df6d142447af770b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65df18a97df6196f2cd6778d71e2d49b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a> (char c)</td></tr>
+<tr class="memdesc:a65df18a97df6196f2cd6778d71e2d49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função calcula a posição no Catalogo.  <a href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">Mais...</a><br /></td></tr>
+<tr class="separator:a65df18a97df6196f2cd6778d71e2d49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a674f2930015072612f0c9c334c086268"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#a674f2930015072612f0c9c334c086268">isVal</a> (char *key, char type)</td></tr>
+<tr class="memdesc:a674f2930015072612f0c9c334c086268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função verifica se a chave é válida.  <a href="catalogo_8c.html#a674f2930015072612f0c9c334c086268">Mais...</a><br /></td></tr>
+<tr class="separator:a674f2930015072612f0c9c334c086268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe95c41128e4c900479881e3017a441f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#abe95c41128e4c900479881e3017a441f">addKey</a> (<a class="el" href="structcatalogo.html">Catalogo</a> *<a class="el" href="structcat.html">cat</a>, char *key, int i, int *val)</td></tr>
+<tr class="memdesc:abe95c41128e4c900479881e3017a441f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função adiciona uma chave ao Catalogo.  <a href="catalogo_8c.html#abe95c41128e4c900479881e3017a441f">Mais...</a><br /></td></tr>
+<tr class="separator:abe95c41128e4c900479881e3017a441f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e40a6b2652c6db01075d07bfb41619"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#aa5e40a6b2652c6db01075d07bfb41619">tblCat</a> (<a class="el" href="structcatalogo.html">Catalogo</a> *<a class="el" href="structcat.html">cat</a>, char *filePath, char type, int *val, int *lida)</td></tr>
+<tr class="memdesc:aa5e40a6b2652c6db01075d07bfb41619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função le um ficheiro, valida e adiciona as keys ao Catalogo.  <a href="catalogo_8c.html#aa5e40a6b2652c6db01075d07bfb41619">Mais...</a><br /></td></tr>
+<tr class="separator:aa5e40a6b2652c6db01075d07bfb41619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a552be9c5ee3d0368a532bce640603a45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#a552be9c5ee3d0368a532bce640603a45">freeCat</a> (<a class="el" href="structcatalogo.html">Catalogo</a> *<a class="el" href="structcat.html">cat</a>)</td></tr>
+<tr class="memdesc:a552be9c5ee3d0368a532bce640603a45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função liberta o espaço de memoria ocupado pelo Catalogo.  <a href="catalogo_8c.html#a552be9c5ee3d0368a532bce640603a45">Mais...</a><br /></td></tr>
+<tr class="separator:a552be9c5ee3d0368a532bce640603a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaed6f7752ead3fa889b3ba880717f2ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#aaed6f7752ead3fa889b3ba880717f2ed">getCatListSize</a> (<a class="el" href="structcatalogo.html">Catalogo</a> *<a class="el" href="structcat.html">cat</a>, int i)</td></tr>
+<tr class="memdesc:aaed6f7752ead3fa889b3ba880717f2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função devolve tamanho da Lista.  <a href="catalogo_8c.html#aaed6f7752ead3fa889b3ba880717f2ed">Mais...</a><br /></td></tr>
+<tr class="separator:aaed6f7752ead3fa889b3ba880717f2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19c06bab35d4e1a61bb91d0d9e65728"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#ac19c06bab35d4e1a61bb91d0d9e65728">getCatKey</a> (<a class="el" href="structcatalogo.html">Catalogo</a> *<a class="el" href="structcat.html">cat</a>, int i, int j)</td></tr>
+<tr class="memdesc:ac19c06bab35d4e1a61bb91d0d9e65728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função devolve a chave do Catalogo.  <a href="catalogo_8c.html#ac19c06bab35d4e1a61bb91d0d9e65728">Mais...</a><br /></td></tr>
+<tr class="separator:ac19c06bab35d4e1a61bb91d0d9e65728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Ficheiro que contém funções relativas ao módulo Catálogo. </p>
+
+<p class="definition">Definido no ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+</div><h2 class="groupheader">Documentação das funções</h2>
+<a id="abe95c41128e4c900479881e3017a441f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe95c41128e4c900479881e3017a441f">&#9670;&nbsp;</a></span>addKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addKey </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td>
+          <td class="paramname"><em>cat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função adiciona uma chave ao Catalogo. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cat</td><td>Apontador para Catalogo </td></tr>
+    <tr><td class="paramname">key</td><td>Chave a adicionar </td></tr>
+    <tr><td class="paramname">i</td><td>Posicao da tabela a adicionar </td></tr>
+    <tr><td class="paramname">val</td><td>Apontador para inteiro que contem o numero de chaves validadas </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00103">103</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                                       {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keywordtype">int</span> pos = <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list = realloc(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list,<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>*) * (<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size + 1));</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[pos] = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * MAX);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  strcpy(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[pos], key);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size ++;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  (*val)++;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a552be9c5ee3d0368a532bce640603a45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a552be9c5ee3d0368a532bce640603a45">&#9670;&nbsp;</a></span>freeCat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeCat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td>
+          <td class="paramname"><em>cat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função liberta o espaço de memoria ocupado pelo Catalogo. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cat</td><td>Apontador para Catalogo </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00158">158</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                            {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  <span class="keywordtype">int</span> i, j;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++) {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">for</span>(j=0; j&lt;<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size; j++) {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;      free(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j]);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j] = NULL;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    free(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list = NULL;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  free(<a class="code" href="structcat.html">cat</a>-&gt;tbl);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl = NULL;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  free(<a class="code" href="structcat.html">cat</a>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <a class="code" href="structcat.html">cat</a> = NULL;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ac19c06bab35d4e1a61bb91d0d9e65728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19c06bab35d4e1a61bb91d0d9e65728">&#9670;&nbsp;</a></span>getCatKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* getCatKey </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td>
+          <td class="paramname"><em>cat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função devolve a chave do Catalogo. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cat</td><td>Apontador para o Catalogo </td></tr>
+    <tr><td class="paramname">i</td><td>Posição na Tabela </td></tr>
+    <tr><td class="paramname">j</td><td>Posição na Lista </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Apontador para a Key </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00196">196</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                                             {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j];</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aaed6f7752ead3fa889b3ba880717f2ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaed6f7752ead3fa889b3ba880717f2ed">&#9670;&nbsp;</a></span>getCatListSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getCatListSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td>
+          <td class="paramname"><em>cat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função devolve tamanho da Lista. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cat</td><td>Apontador para Catalogo </td></tr>
+    <tr><td class="paramname">i</td><td>Posição na Tabela </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Inteiro com o tamanho da Lista </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00184">184</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                                         {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a65df18a97df6196f2cd6778d71e2d49b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65df18a97df6196f2cd6778d71e2d49b">&#9670;&nbsp;</a></span>hashCat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int hashCat </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função calcula a posição no Catalogo. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>Char Chave </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Inteiro com a posição </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00059">59</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keywordflow">if</span>(c &lt;&#39;A&#39; || c &gt; <span class="charliteral">&#39;Z&#39;</span>) <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordflow">return</span> (c - 65);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a4739d26cdc2b081ade2b0729f1a33ef2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4739d26cdc2b081ade2b0729f1a33ef2">&#9670;&nbsp;</a></span>initCat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcatalogo.html">Catalogo</a>* initCat </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função inicializa a estrutura Catalogo. </p>
+<dl class="section return"><dt>Retorna</dt><dd>Apontador para Catalogo </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00024">24</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                    {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <a class="code" href="structcatalogo.html">Catalogo</a>* <a class="code" href="structcat.html">cat</a> = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structcatalogo.html">Catalogo</a>));</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structcat.html">Cat</a>) * SIZE);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++) {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size = 0;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list = NULL;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structcat.html">cat</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a674f2930015072612f0c9c334c086268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a674f2930015072612f0c9c334c086268">&#9670;&nbsp;</a></span>isVal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isVal </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função verifica se a chave é válida. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Chave a verificar </td></tr>
+    <tr><td class="paramname">type</td><td>Char que indica o tipo do catálogo </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Inteiro usado como booleano <br  />
+ </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00071">71</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keywordtype">int</span> i, res=1;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordflow">if</span>(type == <span class="charliteral">&#39;c&#39;</span>) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span>(strlen(key) &lt; 5 || key[0] &lt; <span class="charliteral">&#39;A&#39;</span> || key[0] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[1] &lt; <span class="charliteral">&#39;1&#39;</span> || key[1] &gt; <span class="charliteral">&#39;5&#39;</span>)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      res = 0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span>(i = 2; i &lt; 5; i++)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keywordflow">if</span>(key[i] &lt; <span class="charliteral">&#39;0&#39;</span> || key[i] &gt; <span class="charliteral">&#39;9&#39;</span>)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        res = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span>(strlen(key) &lt; 5 || key[0] &lt; <span class="charliteral">&#39;A&#39;</span> || key[0] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[1] &lt; <span class="charliteral">&#39;A&#39;</span> || key[1] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[2] &lt; <span class="charliteral">&#39;1&#39;</span>)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      res = 0;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">for</span>(i = 2; i &lt; 6; i++)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="keywordflow">if</span>(key[i] &lt; <span class="charliteral">&#39;0&#39;</span> || key[i] &gt; <span class="charliteral">&#39;9&#39;</span>)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        res = 0;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a90eb6bfc54c9e1e1df6d142447af770b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90eb6bfc54c9e1e1df6d142447af770b">&#9670;&nbsp;</a></span>searchCat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int searchCat </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td>
+          <td class="paramname"><em>cat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função procura uma key num Catalogo. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Chave a procurar </td></tr>
+    <tr><td class="paramname">cat</td><td>Apontador para o Catalogo </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Inteiro com a posição </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00044">44</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                       {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordtype">int</span> hash, res;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  hash = <a class="code" href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a>(key[0]);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  res = <a class="code" href="sort_8c.html#ae2757fc04cfaabcc6fb36c0a641e4bd9">binarySearch</a>(<a class="code" href="structcat.html">cat</a>-&gt;tbl[hash].list, key, 0, <a class="code" href="structcat.html">cat</a>-&gt;tbl[hash].size-1);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa5e40a6b2652c6db01075d07bfb41619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5e40a6b2652c6db01075d07bfb41619">&#9670;&nbsp;</a></span>tblCat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int tblCat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td>
+          <td class="paramname"><em>cat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>lida</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função le um ficheiro, valida e adiciona as keys ao Catalogo. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cat</td><td>Apontador para Catalogo </td></tr>
+    <tr><td class="paramname">filePath</td><td>Caminho para o ficheiro </td></tr>
+    <tr><td class="paramname">type</td><td>Char que indica o tipo do catálogo </td></tr>
+    <tr><td class="paramname">val</td><td>Apontador para inteiro que contem o numero de chaves validadas </td></tr>
+    <tr><td class="paramname">lida</td><td>Apontador para inteiro que contem o numero de chaves lidas </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Inteiro usado como booleano </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00124">124</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                                                                          {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  FILE* f;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="keywordtype">char</span>* buffer= malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * MAX);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordflow">if</span>((f = fopen(filePath, <span class="stringliteral">&quot;r&quot;</span>)) == NULL) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    perror(filePath);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keywordflow">while</span>(fgets(buffer,MAX,f)) {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    buffer = strsep(&amp;buffer, <span class="stringliteral">&quot;\r&quot;</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="catalogo_8c.html#a674f2930015072612f0c9c334c086268">isVal</a>(buffer, type))</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      <a class="code" href="catalogo_8c.html#abe95c41128e4c900479881e3017a441f">addKey</a>(<a class="code" href="structcat.html">cat</a>, buffer, <a class="code" href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a>(buffer[0]), val);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    (*lida)++;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  fclose(f);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++)</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="sort_8c.html#a12dc00968988b668861e6a580848a5db">quickSort</a>(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list, 0, <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size - 1);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  free(buffer);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<div class="ttc" id="acatalogo_8c_html_a65df18a97df6196f2cd6778d71e2d49b"><div class="ttname"><a href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a></div><div class="ttdeci">int hashCat(char c)</div><div class="ttdoc">Função calcula a posição no Catalogo.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00059">catalogo.c:59</a></div></div>
+<div class="ttc" id="asort_8c_html_ae2757fc04cfaabcc6fb36c0a641e4bd9"><div class="ttname"><a href="sort_8c.html#ae2757fc04cfaabcc6fb36c0a641e4bd9">binarySearch</a></div><div class="ttdeci">int binarySearch(char **arr, char *code, int left, int right)</div><div class="ttdoc">Função de Procura Binária.</div><div class="ttdef"><b>Definition:</b> <a href="sort_8c_source.html#l00060">sort.c:60</a></div></div>
+<div class="ttc" id="acatalogo_8c_html_a674f2930015072612f0c9c334c086268"><div class="ttname"><a href="catalogo_8c.html#a674f2930015072612f0c9c334c086268">isVal</a></div><div class="ttdeci">int isVal(char *key, char type)</div><div class="ttdoc">Função verifica se a chave é válida.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00071">catalogo.c:71</a></div></div>
+<div class="ttc" id="acatalogo_8c_html_abe95c41128e4c900479881e3017a441f"><div class="ttname"><a href="catalogo_8c.html#abe95c41128e4c900479881e3017a441f">addKey</a></div><div class="ttdeci">void addKey(Catalogo *cat, char *key, int i, int *val)</div><div class="ttdoc">Função adiciona uma chave ao Catalogo.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00103">catalogo.c:103</a></div></div>
+<div class="ttc" id="asort_8c_html_a12dc00968988b668861e6a580848a5db"><div class="ttname"><a href="sort_8c.html#a12dc00968988b668861e6a580848a5db">quickSort</a></div><div class="ttdeci">void quickSort(char **arr, int low, int high)</div><div class="ttdoc">Função de ordenação pelo algoritmo Quicksort.</div><div class="ttdef"><b>Definition:</b> <a href="sort_8c_source.html#l00028">sort.c:28</a></div></div>
+<div class="ttc" id="astructcat_html"><div class="ttname"><a href="structcat.html">cat</a></div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00011">catalogo.c:11</a></div></div>
+<div class="ttc" id="astructcatalogo_html"><div class="ttname"><a href="structcatalogo.html">catalogo</a></div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00016">catalogo.c:16</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

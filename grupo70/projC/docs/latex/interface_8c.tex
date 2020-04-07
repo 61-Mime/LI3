@@ -1,0 +1,141 @@
+\hypertarget{interface_8c}{}\doxysection{Referência ao ficheiro interface.\+c}
+\label{interface_8c}\index{interface.c@{interface.c}}
+
+
+Ficheiro que contém funções relativas ao módulo Interface.  
+
+
+{\ttfamily \#include \char`\"{}interface.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interface_8c_a392fb874e547e582e9c66a08a1f23326}\label{interface_8c_a392fb874e547e582e9c66a08a1f23326}} 
+\#define {\bfseries M\+AX}~100
+\end{DoxyCompactItemize}
+\doxysubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface_8c_a535d00c1f839f08fa7ff739914a2bd5a}{intrepertador}} (\mbox{\hyperlink{structsgv}{S\+GV}} \mbox{\hyperlink{structsgv}{sgv}})
+\begin{DoxyCompactList}\small\item\em função que define o interpretador \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Ficheiro que contém funções relativas ao módulo Interface. 
+
+
+
+\doxysubsection{Documentação das funções}
+\mbox{\Hypertarget{interface_8c_a535d00c1f839f08fa7ff739914a2bd5a}\label{interface_8c_a535d00c1f839f08fa7ff739914a2bd5a}} 
+\index{interface.c@{interface.c}!intrepertador@{intrepertador}}
+\index{intrepertador@{intrepertador}!interface.c@{interface.c}}
+\doxysubsubsection{\texorpdfstring{intrepertador()}{intrepertador()}}
+{\footnotesize\ttfamily void intrepertador (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsgv}{S\+GV}}}]{sgv }\end{DoxyParamCaption})}
+
+
+
+função que define o interpretador 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & sistema de gestão de vendas a ser interpretado \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 15 do ficheiro interface.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15                             \{}
+\DoxyCodeLine{16     \textcolor{keywordtype}{int} r=1, querie=-\/1, tam = 0, load=0;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{char} *buffer = malloc(MAX*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})), *s = NULL, *aux=NULL;}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     system(\textcolor{stringliteral}{"clear"});}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keywordflow}{while}(r) \{}
+\DoxyCodeLine{22         printf(\textcolor{stringliteral}{"\(\backslash\)nIntroduza menu, um comando para executar uma querie ou 'Q' para sair\(\backslash\)n"});}
+\DoxyCodeLine{23         printf(\textcolor{stringliteral}{"Introduza o seu comando: "});}
+\DoxyCodeLine{24         fgets(buffer, MAX, stdin);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         aux = buffer;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28         \textcolor{keywordflow}{if}(!\mbox{\hyperlink{auxintrepertador_8c_a7c72122313ba18a6cd7d98e856f2bb55}{temEspaco}}(aux)) \{}
+\DoxyCodeLine{29             s = strsep(\&aux, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{30             tam = strlen(aux);}
+\DoxyCodeLine{31         \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{34           s = strsep(\&aux, \textcolor{stringliteral}{" "});}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36         \textcolor{keywordflow}{if}(strcmp(s,\textcolor{stringliteral}{"menu"}) == 0)}
+\DoxyCodeLine{37           \mbox{\hyperlink{apresentacao_8c_a2a0e843767aeea4f433a28b9c54f573a}{menu}}();}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(strcmp(s,\textcolor{stringliteral}{"q"})==0 || strcmp(s,\textcolor{stringliteral}{"Q"})==0)}
+\DoxyCodeLine{40           r=0;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(atoi(s)!=1 \&\& atoi(s)!=0 \&\& load==0)}
+\DoxyCodeLine{43           printf(\textcolor{stringliteral}{"O SGV ainda não foi carregado\(\backslash\)n"});}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45         \textcolor{keywordflow}{else} \textcolor{keywordflow}{switch}((querie = atoi(s))) \{}
+\DoxyCodeLine{46               \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{47                   \mbox{\hyperlink{auxintrepertador_8c_a8bfee71c1656fd47d5d00ffec5be8700}{runQuerie1e13}}(\mbox{\hyperlink{structsgv}{sgv}}, aux, load);}
+\DoxyCodeLine{48                   load = 1;}
+\DoxyCodeLine{49                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51               \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{52                   \mbox{\hyperlink{auxintrepertador_8c_a4b51cb4fe3388332624d0055cafd923e}{runQuerie2}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{53                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55               \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{56                   \mbox{\hyperlink{auxintrepertador_8c_ae0cf2fafaafc4d4c254d957b8c2ff5ef}{runQuerie3}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{57                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59               \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{60                   \mbox{\hyperlink{auxintrepertador_8c_a8dd22f8a7d44702c95fedb2516e16bd5}{runQuerie4}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{61                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63               \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{64                   \mbox{\hyperlink{auxintrepertador_8c_a6de4f0f0cfb949127eeaac76626a05b4}{runQuerie5}}(\mbox{\hyperlink{structsgv}{sgv}}, tam);}
+\DoxyCodeLine{65                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67               \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{68                   \mbox{\hyperlink{auxintrepertador_8c_aca3a8ba4c28ca8c3cb3fe7f7f599ac72}{runQuerie6}}(\mbox{\hyperlink{structsgv}{sgv}}, tam);}
+\DoxyCodeLine{69                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71               \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{72                   \mbox{\hyperlink{auxintrepertador_8c_a755fb8e0a3db96c90c4fcbf8bed8e0ba}{runQuerie7}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{73                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75               \textcolor{keywordflow}{case} 8:}
+\DoxyCodeLine{76                   \mbox{\hyperlink{auxintrepertador_8c_a3d47af4d4d6f447d56be9b3c9a1c0371}{runQuerie8}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{77                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79               \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{80                   \mbox{\hyperlink{auxintrepertador_8c_a1602ef9668734faf4691a36a7a7fddbc}{runQuerie9}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{81                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83               \textcolor{keywordflow}{case} 10:}
+\DoxyCodeLine{84                   \mbox{\hyperlink{auxintrepertador_8c_ac1a000a7378cad09125c5f6fcb4d2c6d}{runQuerie10}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{85                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87               \textcolor{keywordflow}{case} 11:}
+\DoxyCodeLine{88                   \mbox{\hyperlink{auxintrepertador_8c_af63136c403d457a4da4c545a2e220075}{runQuerie11}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{89                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91               \textcolor{keywordflow}{case} 12:}
+\DoxyCodeLine{92                   \mbox{\hyperlink{auxintrepertador_8c_a2fae5aa7faddad2276c8adaf88b1bef6}{runQuerie12}}(\mbox{\hyperlink{structsgv}{sgv}}, aux);}
+\DoxyCodeLine{93                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95               \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{96                   printf(\textcolor{stringliteral}{"Comando inválido\(\backslash\)n"});}
+\DoxyCodeLine{97                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{98           \}}
+\DoxyCodeLine{99     \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101     printf(\textcolor{stringliteral}{"\(\backslash\)nA Sair do Programa\(\backslash\)n"});}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     free(buffer);}
+\DoxyCodeLine{104     buffer = NULL;}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}

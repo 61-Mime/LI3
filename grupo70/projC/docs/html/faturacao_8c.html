@@ -1,0 +1,938 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sistema de Gestão de Vendas: Referência ao ficheiro faturacao.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sistema de Gestão de Vendas
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Componentes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência ao ficheiro faturacao.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Ficheiro que contém funções relativas ao módulo Faturacao.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &quot;faturacao.h&quot;</code><br />
+</div>
+<p><a href="faturacao_8c_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Componentes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfact_m.html">factM</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfact.html">fact</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tfact.html">Tfact</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structthashfact.html">thashfact</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a70ed59adcb4159ac551058053e649640"><td class="memItemLeft" align="right" valign="top"><a id="a70ed59adcb4159ac551058053e649640"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SIZE</b>&#160;&#160;&#160;26</td></tr>
+<tr class="separator:a70ed59adcb4159ac551058053e649640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a217878fa84ef5b04d2455a05f58cf8fc"><td class="memItemLeft" align="right" valign="top"><a id="a217878fa84ef5b04d2455a05f58cf8fc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMAX</b>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a217878fa84ef5b04d2455a05f58cf8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:afc9989b0b26ed99359827a66bafea669"><td class="memItemLeft" align="right" valign="top"><a id="afc9989b0b26ed99359827a66bafea669"></a>
+typedef struct <a class="el" href="structfact_m.html">factM</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FMensal</b></td></tr>
+<tr class="separator:afc9989b0b26ed99359827a66bafea669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf9a67ac3a46919d028dfa6d8ccbf23"><td class="memItemLeft" align="right" valign="top"><a id="aebf9a67ac3a46919d028dfa6d8ccbf23"></a>
+typedef struct <a class="el" href="structfact.html">fact</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Facturacao</b></td></tr>
+<tr class="separator:aebf9a67ac3a46919d028dfa6d8ccbf23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a6b089fe6cf70a551f2ec307f248f69"><td class="memItemLeft" align="right" valign="top"><a id="a0a6b089fe6cf70a551f2ec307f248f69"></a>
+typedef struct <a class="el" href="struct_tfact.html">Tfact</a>&#160;</td><td class="memItemRight" valign="bottom"><b>TFacturacao</b></td></tr>
+<tr class="separator:a0a6b089fe6cf70a551f2ec307f248f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a105203a903edbefcd82116842d973f4f"><td class="memItemLeft" align="right" valign="top"><a id="a105203a903edbefcd82116842d973f4f"></a>
+typedef struct <a class="el" href="structthashfact.html">thashfact</a>&#160;</td><td class="memItemRight" valign="bottom"><b>THashFact</b></td></tr>
+<tr class="separator:a105203a903edbefcd82116842d973f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a3554a4544a3b5bbfa45ff0263cd0a5f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#a3554a4544a3b5bbfa45ff0263cd0a5f6">initFact</a> ()</td></tr>
+<tr class="memdesc:a3554a4544a3b5bbfa45ff0263cd0a5f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que inicializa a estrutura THashFact  <a href="faturacao_8c.html#a3554a4544a3b5bbfa45ff0263cd0a5f6">Mais...</a><br /></td></tr>
+<tr class="separator:a3554a4544a3b5bbfa45ff0263cd0a5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4902a78fc6443ff45c04b20e8da9b9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#af4902a78fc6443ff45c04b20e8da9b9f">initTFacturacao</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int size)</td></tr>
+<tr class="memdesc:af4902a78fc6443ff45c04b20e8da9b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que inicializa a estrutura TFacturacao  <a href="faturacao_8c.html#af4902a78fc6443ff45c04b20e8da9b9f">Mais...</a><br /></td></tr>
+<tr class="separator:af4902a78fc6443ff45c04b20e8da9b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4bf17c130f6bb77d23e01dcf18f5ede"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#aa4bf17c130f6bb77d23e01dcf18f5ede">initFacturacao</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int j, char *key)</td></tr>
+<tr class="memdesc:aa4bf17c130f6bb77d23e01dcf18f5ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que inicializa a estrutura Facturacao e a estrutura Fmensal para cada filial  <a href="faturacao_8c.html#aa4bf17c130f6bb77d23e01dcf18f5ede">Mais...</a><br /></td></tr>
+<tr class="separator:aa4bf17c130f6bb77d23e01dcf18f5ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b2855b22c38fe41fdddc85ae91824cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#a3b2855b22c38fe41fdddc85ae91824cc">loadFactFromCat</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, <a class="el" href="structcatalogo.html">Catalogo</a> *prod)</td></tr>
+<tr class="memdesc:a3b2855b22c38fe41fdddc85ae91824cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que carrega as estrutura faturacao com todos os produtos  <a href="faturacao_8c.html#a3b2855b22c38fe41fdddc85ae91824cc">Mais...</a><br /></td></tr>
+<tr class="separator:a3b2855b22c38fe41fdddc85ae91824cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c78193b51013941b9d6df86f45cc8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#ae4c78193b51013941b9d6df86f45cc8b">addFact</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int hash, int pos, int month, int branch, char type, float price, int uni)</td></tr>
+<tr class="memdesc:ae4c78193b51013941b9d6df86f45cc8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função adiciona uma venda a THashFact.  <a href="faturacao_8c.html#ae4c78193b51013941b9d6df86f45cc8b">Mais...</a><br /></td></tr>
+<tr class="separator:ae4c78193b51013941b9d6df86f45cc8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ea6b00968e8cda40683ee7e62dc5e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#a82ea6b00968e8cda40683ee7e62dc5e4">freeFact</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>)</td></tr>
+<tr class="memdesc:a82ea6b00968e8cda40683ee7e62dc5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que liberta o espaço ocupado pela THashFact  <a href="faturacao_8c.html#a82ea6b00968e8cda40683ee7e62dc5e4">Mais...</a><br /></td></tr>
+<tr class="separator:a82ea6b00968e8cda40683ee7e62dc5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4d16ad1e06360f64005dcf2513bcf29"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#ab4d16ad1e06360f64005dcf2513bcf29">getFatVendasN</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int j, int month, int branch)</td></tr>
+<tr class="memdesc:ab4d16ad1e06360f64005dcf2513bcf29"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que devolve o número de vendas em regime normal de uma determinada filial num determinado mês  <a href="faturacao_8c.html#ab4d16ad1e06360f64005dcf2513bcf29">Mais...</a><br /></td></tr>
+<tr class="separator:ab4d16ad1e06360f64005dcf2513bcf29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f8d679f8de01e45359276882078388"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#ae9f8d679f8de01e45359276882078388">getFatVendasP</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int j, int month, int branch)</td></tr>
+<tr class="memdesc:ae9f8d679f8de01e45359276882078388"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que devolve o número de vendas em regime de promoção de uma determinada filial num determinado mês  <a href="faturacao_8c.html#ae9f8d679f8de01e45359276882078388">Mais...</a><br /></td></tr>
+<tr class="separator:ae9f8d679f8de01e45359276882078388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6158534e34e0ad58a0b1eb9e8721770f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#a6158534e34e0ad58a0b1eb9e8721770f">getFatFaturacaoN</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int j, int month, int branch)</td></tr>
+<tr class="memdesc:a6158534e34e0ad58a0b1eb9e8721770f"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que devolve a faturação de vendas em regime normal de uma determinada filial num determinado mês  <a href="faturacao_8c.html#a6158534e34e0ad58a0b1eb9e8721770f">Mais...</a><br /></td></tr>
+<tr class="separator:a6158534e34e0ad58a0b1eb9e8721770f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a119236cac4925f9840718fae004830f0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#a119236cac4925f9840718fae004830f0">getFatFaturacaoP</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int j, int month, int branch)</td></tr>
+<tr class="memdesc:a119236cac4925f9840718fae004830f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que devolve a faturação de vendas em regime de promoção de uma determinada filial num determinado mês  <a href="faturacao_8c.html#a119236cac4925f9840718fae004830f0">Mais...</a><br /></td></tr>
+<tr class="separator:a119236cac4925f9840718fae004830f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a957c5785e855180689d71666ff304af2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#a957c5785e855180689d71666ff304af2">getFatUnidades</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int j, int month, int branch)</td></tr>
+<tr class="memdesc:a957c5785e855180689d71666ff304af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que devolve o número de unidades vendidas de uma determinada filial num determinado mês  <a href="faturacao_8c.html#a957c5785e855180689d71666ff304af2">Mais...</a><br /></td></tr>
+<tr class="separator:a957c5785e855180689d71666ff304af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadb09df2547eea072b899a5828071cd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#aadb09df2547eea072b899a5828071cd8">getFatListSize</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i)</td></tr>
+<tr class="memdesc:aadb09df2547eea072b899a5828071cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que devolve o tamanho da lista de Facturacao  <a href="faturacao_8c.html#aadb09df2547eea072b899a5828071cd8">Mais...</a><br /></td></tr>
+<tr class="separator:aadb09df2547eea072b899a5828071cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e071f80c904f822e7a39c15f073d581"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="faturacao_8c.html#a1e071f80c904f822e7a39c15f073d581">getFatOcup</a> (<a class="el" href="structthashfact.html">THashFact</a> *<a class="el" href="structfact.html">fact</a>, int i, int j)</td></tr>
+<tr class="memdesc:a1e071f80c904f822e7a39c15f073d581"><td class="mdescLeft">&#160;</td><td class="mdescRight">função que devolve o número de ocupados da lista  <a href="faturacao_8c.html#a1e071f80c904f822e7a39c15f073d581">Mais...</a><br /></td></tr>
+<tr class="separator:a1e071f80c904f822e7a39c15f073d581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Ficheiro que contém funções relativas ao módulo Faturacao. </p>
+
+<p class="definition">Definido no ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+</div><h2 class="groupheader">Documentação das funções</h2>
+<a id="ae4c78193b51013941b9d6df86f45cc8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c78193b51013941b9d6df86f45cc8b">&#9670;&nbsp;</a></span>addFact()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addFact </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hash</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>branch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>price</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>uni</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função adiciona uma venda a THashFact. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>Apontador para THashFact </td></tr>
+    <tr><td class="paramname">hash</td><td>Posição da tabela a adicionar </td></tr>
+    <tr><td class="paramname">pos</td><td>Posicao da lista a adicionar </td></tr>
+    <tr><td class="paramname">month</td><td>mês ao qual vai ser adicionado a venda </td></tr>
+    <tr><td class="paramname">branch</td><td>filial à qual vai ser adicionada a venda </td></tr>
+    <tr><td class="paramname">type</td><td>tipo da venda </td></tr>
+    <tr><td class="paramname">price</td><td>preço do produto da venda </td></tr>
+    <tr><td class="paramname">uni</td><td>quantidade de produtos da venda </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00115">115</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                                                                                                         {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <a class="code" href="structfact_m.html">FMensal</a>* f = &amp;<a class="code" href="structfact.html">fact</a>-&gt;tbl[hash].list[pos].mesfilial[month-1][branch-1];</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="keywordflow">if</span>(type == <span class="charliteral">&#39;N&#39;</span>) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    f-&gt;vendasN ++;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    f-&gt;facturacaoN += (price * uni);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    f-&gt;vendasP ++;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    f-&gt;facturacaoP += (price * uni);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  f-&gt;unidades += uni;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  <span class="keywordflow">if</span>(<a class="code" href="structfact.html">fact</a>-&gt;tbl[hash].list[pos].ocup == 0) <a class="code" href="structfact.html">fact</a>-&gt;tbl[hash].list[pos].ocup = 1;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a82ea6b00968e8cda40683ee7e62dc5e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ea6b00968e8cda40683ee7e62dc5e4">&#9670;&nbsp;</a></span>freeFact()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeFact </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que liberta o espaço ocupado pela THashFact </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00137">137</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                               {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">int</span> i, j;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++) {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">for</span>(j=0; j&lt;<a class="code" href="structfact.html">fact</a>-&gt;tbl[i].size; j++) {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;          free(<a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].prod);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;          <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].prod = NULL;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        free(<a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list = NULL;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    free(<a class="code" href="structfact.html">fact</a>-&gt;tbl);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="structfact.html">fact</a>-&gt;tbl = NULL;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    free(<a class="code" href="structfact.html">fact</a>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <a class="code" href="structfact.html">fact</a> = NULL;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6158534e34e0ad58a0b1eb9e8721770f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6158534e34e0ad58a0b1eb9e8721770f">&#9670;&nbsp;</a></span>getFatFaturacaoN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getFatFaturacaoN </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>branch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que devolve a faturação de vendas em regime normal de uma determinada filial num determinado mês </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da tabela a obter </td></tr>
+    <tr><td class="paramname">j</td><td>posição da lista a obter </td></tr>
+    <tr><td class="paramname">month</td><td>mês a obter </td></tr>
+    <tr><td class="paramname">branch</td><td>filial a obter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>float que representa a faturação de vendas N de uma filial num mês </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00192">192</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                                                                             {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].mesfilial[month][branch].facturacaoN;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a119236cac4925f9840718fae004830f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a119236cac4925f9840718fae004830f0">&#9670;&nbsp;</a></span>getFatFaturacaoP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getFatFaturacaoP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>branch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que devolve a faturação de vendas em regime de promoção de uma determinada filial num determinado mês </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da tabela a obter </td></tr>
+    <tr><td class="paramname">j</td><td>posição da lista a obter </td></tr>
+    <tr><td class="paramname">month</td><td>mês a obter </td></tr>
+    <tr><td class="paramname">branch</td><td>filial a obter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>float que representa a faturação de vendas P de uma filial num mês </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00205">205</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                                                                             {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].mesfilial[month][branch].facturacaoP;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aadb09df2547eea072b899a5828071cd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadb09df2547eea072b899a5828071cd8">&#9670;&nbsp;</a></span>getFatListSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getFatListSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que devolve o tamanho da lista de Facturacao </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da tabela a obter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>inteiro que representa o tamanho da lista de Facturacao </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00228">228</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                                           {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].size;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a1e071f80c904f822e7a39c15f073d581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e071f80c904f822e7a39c15f073d581">&#9670;&nbsp;</a></span>getFatOcup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getFatOcup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que devolve o número de ocupados da lista </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador +ara THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da Tabela </td></tr>
+    <tr><td class="paramname">j</td><td>posição da Lista </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>inteiro que representa o número de ocupados da lista </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00239">239</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                                              {</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].ocup;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a957c5785e855180689d71666ff304af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a957c5785e855180689d71666ff304af2">&#9670;&nbsp;</a></span>getFatUnidades()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getFatUnidades </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>branch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que devolve o número de unidades vendidas de uma determinada filial num determinado mês </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da tabela a obter </td></tr>
+    <tr><td class="paramname">j</td><td>posição da lista a obter </td></tr>
+    <tr><td class="paramname">month</td><td>mês a obter </td></tr>
+    <tr><td class="paramname">branch</td><td>filial a obter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>inteiro que representa as unidades vendidas de uma filial num mês </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00218">218</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                                                                         {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].mesfilial[month][branch].unidades;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab4d16ad1e06360f64005dcf2513bcf29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4d16ad1e06360f64005dcf2513bcf29">&#9670;&nbsp;</a></span>getFatVendasN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getFatVendasN </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>branch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que devolve o número de vendas em regime normal de uma determinada filial num determinado mês </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da tabela a obter </td></tr>
+    <tr><td class="paramname">j</td><td>posição da lista a obter </td></tr>
+    <tr><td class="paramname">month</td><td>mês a obter </td></tr>
+    <tr><td class="paramname">branch</td><td>filial a obter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>inteiro que representa o número de vendas N de uma filial num mês </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00166">166</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                                                                        {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].mesfilial[month][branch].vendasN;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae9f8d679f8de01e45359276882078388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f8d679f8de01e45359276882078388">&#9670;&nbsp;</a></span>getFatVendasP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getFatVendasP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>branch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que devolve o número de vendas em regime de promoção de uma determinada filial num determinado mês </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da tabela a obter </td></tr>
+    <tr><td class="paramname">j</td><td>posição da lista a obter </td></tr>
+    <tr><td class="paramname">month</td><td>mês a obter </td></tr>
+    <tr><td class="paramname">branch</td><td>filial a obter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>inteiro que representa o número de vendas P de uma filial num mês </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00179">179</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                                                                        {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j].mesfilial[month][branch].vendasP;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3554a4544a3b5bbfa45ff0263cd0a5f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3554a4544a3b5bbfa45ff0263cd0a5f6">&#9670;&nbsp;</a></span>initFact()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structthashfact.html">THashFact</a>* initFact </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que inicializa a estrutura THashFact </p>
+<dl class="section return"><dt>Retorna</dt><dd>apontador para THashFact </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00038">38</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                      {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <a class="code" href="structthashfact.html">THashFact</a> *<a class="code" href="structfact.html">fact</a> = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structthashfact.html">THashFact</a>));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <a class="code" href="structfact.html">fact</a>-&gt;tbl = malloc(<span class="keyword">sizeof</span>(<a class="code" href="struct_tfact.html">TFacturacao</a>) * SIZE);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;SIZE; i++) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].size = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list = NULL;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structfact.html">fact</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa4bf17c130f6bb77d23e01dcf18f5ede"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4bf17c130f6bb77d23e01dcf18f5ede">&#9670;&nbsp;</a></span>initFacturacao()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initFacturacao </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que inicializa a estrutura Facturacao e a estrutura Fmensal para cada filial </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THash </td></tr>
+    <tr><td class="paramname">i</td><td>posição da Tabela </td></tr>
+    <tr><td class="paramname">j</td><td>posição da Lista </td></tr>
+    <tr><td class="paramname">key</td><td>String com o produto </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00070">70</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                                              {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <a class="code" href="structfact.html">Facturacao</a> *f = &amp;<a class="code" href="structfact.html">fact</a>-&gt;tbl[i].list[j];</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  f-&gt;prod = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * SMAX);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  strcpy(f-&gt;prod, key);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  f-&gt;ocup = 0;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;12; i++)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span>(j=0 ; j&lt;3; j++) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      f-&gt;mesfilial[i][j].vendasN = 0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      f-&gt;mesfilial[i][j].vendasP = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      f-&gt;mesfilial[i][j].facturacaoN = 0;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      f-&gt;mesfilial[i][j].facturacaoP = 0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      f-&gt;mesfilial[i][j].unidades = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af4902a78fc6443ff45c04b20e8da9b9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4902a78fc6443ff45c04b20e8da9b9f">&#9670;&nbsp;</a></span>initTFacturacao()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initTFacturacao </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que inicializa a estrutura TFacturacao </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">i</td><td>posição da tabela a inicializar </td></tr>
+    <tr><td class="paramname">size</td><td>tamanho TFacturacao </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00056">56</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                                       {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <a class="code" href="struct_tfact.html">TFacturacao</a>* f = &amp;<a class="code" href="structfact.html">fact</a>-&gt;tbl[i];</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  f-&gt;list = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structfact.html">Facturacao</a>)*size);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  f-&gt;size = size;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3b2855b22c38fe41fdddc85ae91824cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b2855b22c38fe41fdddc85ae91824cc">&#9670;&nbsp;</a></span>loadFactFromCat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loadFactFromCat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structthashfact.html">THashFact</a> *&#160;</td>
+          <td class="paramname"><em>fact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td>
+          <td class="paramname"><em>prod</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>função que carrega as estrutura faturacao com todos os produtos </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fact</td><td>apontador para THashFact </td></tr>
+    <tr><td class="paramname">prod</td><td>apontador para catálogo de produtos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="faturacao_8c_source.html#l00092">92</a> do ficheiro <a class="el" href="faturacao_8c_source.html">faturacao.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                                      {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordtype">int</span> i, j, size;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    size = <a class="code" href="catalogo_8c.html#aaed6f7752ead3fa889b3ba880717f2ed">getCatListSize</a>(prod, i);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="faturacao_8c.html#af4902a78fc6443ff45c04b20e8da9b9f">initTFacturacao</a>(<a class="code" href="structfact.html">fact</a>, i, size);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">for</span>(j=0; j&lt;size; j++)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;      <a class="code" href="faturacao_8c.html#aa4bf17c130f6bb77d23e01dcf18f5ede">initFacturacao</a>(<a class="code" href="structfact.html">fact</a>, i, j, <a class="code" href="catalogo_8c.html#ac19c06bab35d4e1a61bb91d0d9e65728">getCatKey</a>(prod, i, j));</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<div class="ttc" id="acatalogo_8c_html_ac19c06bab35d4e1a61bb91d0d9e65728"><div class="ttname"><a href="catalogo_8c.html#ac19c06bab35d4e1a61bb91d0d9e65728">getCatKey</a></div><div class="ttdeci">char * getCatKey(Catalogo *cat, int i, int j)</div><div class="ttdoc">Função devolve a chave do Catalogo.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00196">catalogo.c:196</a></div></div>
+<div class="ttc" id="astructfact_m_html"><div class="ttname"><a href="structfact_m.html">factM</a></div><div class="ttdef"><b>Definition:</b> <a href="faturacao_8c_source.html#l00011">faturacao.c:11</a></div></div>
+<div class="ttc" id="afaturacao_8c_html_af4902a78fc6443ff45c04b20e8da9b9f"><div class="ttname"><a href="faturacao_8c.html#af4902a78fc6443ff45c04b20e8da9b9f">initTFacturacao</a></div><div class="ttdeci">void initTFacturacao(THashFact *fact, int i, int size)</div><div class="ttdoc">função que inicializa a estrutura TFacturacao</div><div class="ttdef"><b>Definition:</b> <a href="faturacao_8c_source.html#l00056">faturacao.c:56</a></div></div>
+<div class="ttc" id="astructthashfact_html"><div class="ttname"><a href="structthashfact.html">thashfact</a></div><div class="ttdef"><b>Definition:</b> <a href="faturacao_8c_source.html#l00030">faturacao.c:30</a></div></div>
+<div class="ttc" id="astructfact_html"><div class="ttname"><a href="structfact.html">fact</a></div><div class="ttdef"><b>Definition:</b> <a href="faturacao_8c_source.html#l00019">faturacao.c:19</a></div></div>
+<div class="ttc" id="afaturacao_8c_html_aa4bf17c130f6bb77d23e01dcf18f5ede"><div class="ttname"><a href="faturacao_8c.html#aa4bf17c130f6bb77d23e01dcf18f5ede">initFacturacao</a></div><div class="ttdeci">void initFacturacao(THashFact *fact, int i, int j, char *key)</div><div class="ttdoc">função que inicializa a estrutura Facturacao e a estrutura Fmensal para cada filial</div><div class="ttdef"><b>Definition:</b> <a href="faturacao_8c_source.html#l00070">faturacao.c:70</a></div></div>
+<div class="ttc" id="astruct_tfact_html"><div class="ttname"><a href="struct_tfact.html">Tfact</a></div><div class="ttdef"><b>Definition:</b> <a href="faturacao_8c_source.html#l00025">faturacao.c:25</a></div></div>
+<div class="ttc" id="acatalogo_8c_html_aaed6f7752ead3fa889b3ba880717f2ed"><div class="ttname"><a href="catalogo_8c.html#aaed6f7752ead3fa889b3ba880717f2ed">getCatListSize</a></div><div class="ttdeci">int getCatListSize(Catalogo *cat, int i)</div><div class="ttdoc">Função devolve tamanho da Lista.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00184">catalogo.c:184</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

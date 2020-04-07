@@ -1,0 +1,538 @@
+\hypertarget{apresentacao_8c}{}\doxysection{Referência ao ficheiro apresentacao.\+c}
+\label{apresentacao_8c}\index{apresentacao.c@{apresentacao.c}}
+
+
+Ficheiro que contém funções relativas ao módulo Apresentacao.  
+
+
+{\ttfamily \#include \char`\"{}apresentacao.\+h\char`\"{}}\newline
+\doxysubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{apresentacao_8c_a2a0e843767aeea4f433a28b9c54f573a}\label{apresentacao_8c_a2a0e843767aeea4f433a28b9c54f573a}} 
+void \mbox{\hyperlink{apresentacao_8c_a2a0e843767aeea4f433a28b9c54f573a}{menu}} ()
+\begin{DoxyCompactList}\small\item\em função que mostra o menu dos comandos que o utilizador pode usar \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{apresentacao_8c_a91d20b35fed48a05ce56e72b2505d06b}\label{apresentacao_8c_a91d20b35fed48a05ce56e72b2505d06b}} 
+void \mbox{\hyperlink{apresentacao_8c_a91d20b35fed48a05ce56e72b2505d06b}{print\+Array}} (char $\ast$$\ast$arr, int size)
+\begin{DoxyCompactList}\small\item\em função que imprime uma tabela de Strings \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_af91f995fefdc156d5b3ccfd52160a8b9}{print\+Q1}} (clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime o tempo que a querie 1 demora a executar \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a8d470c20daa4e0081c5fe864df82a1f2}{print\+Q2}} (Q2 $\ast$querie2, char letter)
+\begin{DoxyCompactList}\small\item\em função que imprime o número de produtos começados por um determinado char \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a4c5f1e2dc33df9d3fb6f0a91ae7b0c92}{print\+Q3}} (Q3 $\ast$querie3, char $\ast$prod\+ID, int month)
+\begin{DoxyCompactList}\small\item\em função que imprime a faturação de um determinado produto, por filial e mês \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a56c6883cfa30bb6e3e5a8f5d3d91fe56}{print\+Q4}} (Q4 $\ast$querie4)
+\begin{DoxyCompactList}\small\item\em função que imprime o número de produtos não comprados \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_afbe49b70a0f08eaa8e39fb4cf365d4df}{print\+Q5}} (Q5 $\ast$querie5)
+\begin{DoxyCompactList}\small\item\em função que imprime o número de clientes que realizaram compras em todas as Filiais \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a9e52080d687baf1d81b99e6569012480}{print\+Q6}} (Q6 $\ast$querie6, clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime os cliente que não compraram, os produtos não comprados e o tempo de execução desta querie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a57dd9380db0f8ef6dd595ae8a51e2707}{print\+Q7}} (Q7 $\ast$querie7, clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime os produtos comprados por um cliente e o tempo de execução desta querie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_ab92df40ed2080d0839c5cb9937b4b889}{print\+Q8}} (Q8 $\ast$querie8, clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime o total de vendas, o total faturado e o tempo de execução desta querie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_af7d452c88079daf4accb10cd0cdb6b98}{print\+Q9}} (Q9 $\ast$querie9, int \mbox{\hyperlink{structfilial}{filial}}, clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime a lista de clientes para um determinado produto numa determinada filial e o tempo de execução desta querie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a4255812b2d17bef5c92080097e64e7d5}{print\+Q10}} (Q10 $\ast$querie10, clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime por ordem decrescente de quantidade os produtos que um determinado cliente comprou e o tempo de execução desta querie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a0a7b1cc1cbeb44d55decb8dfd1905fe3}{print\+Q11}} (Q11 $\ast$querie11, clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime por ordem decrescente o número de produtos mais vendido em todo o ano, indicando o número total de clientes e unidades vendidas por filial, e o tempo de execução desta querie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a019db222eb760848fb1360ea9618179d}{print\+Q12}} (Q12 $\ast$querie12, clock\+\_\+t start\+\_\+t, clock\+\_\+t end\+\_\+t)
+\begin{DoxyCompactList}\small\item\em função que imprime os n produtos mais comprados por um determinado cliente durante o ano e o tempo de execução desta querie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{apresentacao_8c_a6e2d6f492bf977fe820dc8cc56c93392}{print\+Q13}} (Q13 $\ast$querie13)
+\begin{DoxyCompactList}\small\item\em função que imprime os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Ficheiro que contém funções relativas ao módulo Apresentacao. 
+
+
+
+\doxysubsection{Documentação das funções}
+\mbox{\Hypertarget{apresentacao_8c_af91f995fefdc156d5b3ccfd52160a8b9}\label{apresentacao_8c_af91f995fefdc156d5b3ccfd52160a8b9}} 
+\index{apresentacao.c@{apresentacao.c}!printQ1@{printQ1}}
+\index{printQ1@{printQ1}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ1()}{printQ1()}}
+{\footnotesize\ttfamily void print\+Q1 (\begin{DoxyParamCaption}\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime o tempo que a querie 1 demora a executar 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em start\+\_\+t} & momento em que a querie 1 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 1 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 48 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48                                              \{}
+\DoxyCodeLine{49     printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 1: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{50 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a4255812b2d17bef5c92080097e64e7d5}\label{apresentacao_8c_a4255812b2d17bef5c92080097e64e7d5}} 
+\index{apresentacao.c@{apresentacao.c}!printQ10@{printQ10}}
+\index{printQ10@{printQ10}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ10()}{printQ10()}}
+{\footnotesize\ttfamily void print\+Q10 (\begin{DoxyParamCaption}\item[{Q10 $\ast$}]{querie10,  }\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime por ordem decrescente de quantidade os produtos que um determinado cliente comprou e o tempo de execução desta querie 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie10} & apontador para a estrutura Q10 \\
+\hline
+{\em start\+\_\+t} & momento em que a querie 10 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 10 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 204 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{204                                                              \{}
+\DoxyCodeLine{205   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207   \textcolor{keywordflow}{if}(querie10 == NULL) \{}
+\DoxyCodeLine{208     printf(\textcolor{stringliteral}{"Cliente inválido\(\backslash\)n"});}
+\DoxyCodeLine{209     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{210   \}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212   \textcolor{keywordflow}{for}(i = 0; i < querie10 -\/> size;i++)}
+\DoxyCodeLine{213     printf(\textcolor{stringliteral}{"\%s \%d\(\backslash\)n"}, querie10-\/>produtos[i].prod,querie10-\/>produtos[i].quantidade);}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215   printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 10: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{216 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a0a7b1cc1cbeb44d55decb8dfd1905fe3}\label{apresentacao_8c_a0a7b1cc1cbeb44d55decb8dfd1905fe3}} 
+\index{apresentacao.c@{apresentacao.c}!printQ11@{printQ11}}
+\index{printQ11@{printQ11}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ11()}{printQ11()}}
+{\footnotesize\ttfamily void print\+Q11 (\begin{DoxyParamCaption}\item[{Q11 $\ast$}]{querie11,  }\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime por ordem decrescente o número de produtos mais vendido em todo o ano, indicando o número total de clientes e unidades vendidas por filial, e o tempo de execução desta querie 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie11} & apontador para a estrutura Q11 \\
+\hline
+{\em start\+\_\+t} & momento em que a querie 11 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 11 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 224 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{224                                                              \{}
+\DoxyCodeLine{225   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227   \textcolor{keywordflow}{if}(querie11 == NULL) \{}
+\DoxyCodeLine{228     printf(\textcolor{stringliteral}{"Cliente inválido\(\backslash\)n"});}
+\DoxyCodeLine{229     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{230   \}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232   \textcolor{keywordflow}{for}(i = 0; i < querie11-\/>size;i++)}
+\DoxyCodeLine{233     printf(\textcolor{stringliteral}{"\%s \%-\/4d \%-\/4d \%-\/4d \%d \%d \%d \%d\(\backslash\)n"}, querie11-\/>produtos[i].prod, querie11-\/>produtos[i].unidades[0], querie11-\/>produtos[i].unidades[1], querie11-\/>produtos[i].unidades[2],}
+\DoxyCodeLine{234                         querie11-\/>produtos[i].clientes[0], querie11-\/>produtos[i].clientes[1], querie11-\/>produtos[i].clientes[2], querie11-\/>produtos[i].total);}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236   printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 11: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{237 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a019db222eb760848fb1360ea9618179d}\label{apresentacao_8c_a019db222eb760848fb1360ea9618179d}} 
+\index{apresentacao.c@{apresentacao.c}!printQ12@{printQ12}}
+\index{printQ12@{printQ12}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ12()}{printQ12()}}
+{\footnotesize\ttfamily void print\+Q12 (\begin{DoxyParamCaption}\item[{Q12 $\ast$}]{querie12,  }\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime os n produtos mais comprados por um determinado cliente durante o ano e o tempo de execução desta querie 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie12} & apontador para a estrutura Q12 \\
+\hline
+{\em start\+\_\+t} & momento em que a querie 12 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 12 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 245 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{245                                                              \{}
+\DoxyCodeLine{246   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248   \textcolor{keywordflow}{if}(querie12 == NULL) \{}
+\DoxyCodeLine{249     printf(\textcolor{stringliteral}{"Cliente inválido\(\backslash\)n"});}
+\DoxyCodeLine{250     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{251   \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253   \textcolor{keywordflow}{for}(i = 0; i < querie12 -\/> size;i++)}
+\DoxyCodeLine{254     printf(\textcolor{stringliteral}{"\%s \%.2f\(\backslash\)n"}, querie12-\/>prods[i].prod,querie12-\/>prods[i].faturacao);}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256   printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 12: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{257 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a6e2d6f492bf977fe820dc8cc56c93392}\label{apresentacao_8c_a6e2d6f492bf977fe820dc8cc56c93392}} 
+\index{apresentacao.c@{apresentacao.c}!printQ13@{printQ13}}
+\index{printQ13@{printQ13}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ13()}{printQ13()}}
+{\footnotesize\ttfamily void print\+Q13 (\begin{DoxyParamCaption}\item[{Q13 $\ast$}]{querie13 }\end{DoxyParamCaption})}
+
+
+
+função que imprime os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie13} & apontador para a estrutura Q13 \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 263 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{263                              \{}
+\DoxyCodeLine{264     printf(\textcolor{stringliteral}{"\(\backslash\)nFicheiro de Clientes usado: \%s\(\backslash\)n"}, querie13-\/>pathCli);}
+\DoxyCodeLine{265     printf(\textcolor{stringliteral}{"Numero de Clientes Lidos: \%d\(\backslash\)n"}, querie13-\/>cliL);}
+\DoxyCodeLine{266     printf(\textcolor{stringliteral}{"Numero de Clientes Validados: \%d\(\backslash\)n"}, querie13-\/>cliV);}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268     printf(\textcolor{stringliteral}{"\(\backslash\)nFicheiro de Produtos usado: \%s\(\backslash\)n"}, querie13-\/>pathProd);}
+\DoxyCodeLine{269     printf(\textcolor{stringliteral}{"Numero de Produtos Lidos: \%d\(\backslash\)n"}, querie13-\/>prodL);}
+\DoxyCodeLine{270     printf(\textcolor{stringliteral}{"Numero de Produtos Validados: \%d\(\backslash\)n"}, querie13-\/>prodV);}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272     printf(\textcolor{stringliteral}{"\(\backslash\)nFicheiro de Vendas usado: \%s\(\backslash\)n"}, querie13-\/>pathSales);}
+\DoxyCodeLine{273     printf(\textcolor{stringliteral}{"Numero de Vendas Lidas: \%d\(\backslash\)n"}, querie13-\/>salesL);}
+\DoxyCodeLine{274     printf(\textcolor{stringliteral}{"Numero de Vendas Validadas: \%d\(\backslash\)n"}, querie13-\/>salesV);}
+\DoxyCodeLine{275 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a8d470c20daa4e0081c5fe864df82a1f2}\label{apresentacao_8c_a8d470c20daa4e0081c5fe864df82a1f2}} 
+\index{apresentacao.c@{apresentacao.c}!printQ2@{printQ2}}
+\index{printQ2@{printQ2}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ2()}{printQ2()}}
+{\footnotesize\ttfamily void print\+Q2 (\begin{DoxyParamCaption}\item[{Q2 $\ast$}]{querie2,  }\item[{char}]{letter }\end{DoxyParamCaption})}
+
+
+
+função que imprime o número de produtos começados por um determinado char 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie2} & apontador para Q2 \\
+\hline
+{\em letter} & char que começa o nome dos produtos \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 57 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57                                        \{}
+\DoxyCodeLine{58     \textcolor{keywordflow}{if}(querie2 == NULL) \{}
+\DoxyCodeLine{59         printf(\textcolor{stringliteral}{"Letra inválida\(\backslash\)n"});}
+\DoxyCodeLine{60         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \mbox{\hyperlink{apresentacao_8c_a91d20b35fed48a05ce56e72b2505d06b}{printArray}}(querie2-\/>prods, querie2-\/>size);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     printf(\textcolor{stringliteral}{"\(\backslash\)nNumero de Produtos começados por \%c: \%d\(\backslash\)n"}, letter, querie2-\/>size);}
+\DoxyCodeLine{66 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a4c5f1e2dc33df9d3fb6f0a91ae7b0c92}\label{apresentacao_8c_a4c5f1e2dc33df9d3fb6f0a91ae7b0c92}} 
+\index{apresentacao.c@{apresentacao.c}!printQ3@{printQ3}}
+\index{printQ3@{printQ3}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ3()}{printQ3()}}
+{\footnotesize\ttfamily void print\+Q3 (\begin{DoxyParamCaption}\item[{Q3 $\ast$}]{querie3,  }\item[{char $\ast$}]{prod\+ID,  }\item[{int}]{month }\end{DoxyParamCaption})}
+
+
+
+função que imprime a faturação de um determinado produto, por filial e mês 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie3} & apontador para Q3 \\
+\hline
+{\em prod\+ID} & String que representa o produto \\
+\hline
+{\em month} & mês do qual se pretende obter a faturação \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 74 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{74                                                    \{}
+\DoxyCodeLine{75     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77     \textcolor{keywordflow}{if}(querie3 == NULL) \{}
+\DoxyCodeLine{78         printf(\textcolor{stringliteral}{"Produto inválido\(\backslash\)n"});}
+\DoxyCodeLine{79         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{80     \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{keywordflow}{if}(querie3-\/>size == 1) \{}
+\DoxyCodeLine{83         printf(\textcolor{stringliteral}{"\(\backslash\)nFaturação do produto \%s no mês \%d\(\backslash\)n"}, prodID, month);}
+\DoxyCodeLine{84         printf(\textcolor{stringliteral}{"Número de vendas N: \%d\(\backslash\)n"}, querie3-\/>fat-\/>nVendasN);}
+\DoxyCodeLine{85         printf(\textcolor{stringliteral}{"Número de vendas P: \%d\(\backslash\)n"}, querie3-\/>fat-\/>nVendasP);}
+\DoxyCodeLine{86         printf(\textcolor{stringliteral}{"Total Faturado N: \%f\(\backslash\)n"}, querie3-\/>fat-\/>fatN);}
+\DoxyCodeLine{87         printf(\textcolor{stringliteral}{"Total Faturado P: \%f\(\backslash\)n"}, querie3-\/>fat-\/>fatP);}
+\DoxyCodeLine{88     \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{91         \textcolor{keywordflow}{for}(i=0; i<3; i++) \{}
+\DoxyCodeLine{92             printf(\textcolor{stringliteral}{"\(\backslash\)nFaturação do produto \%s no mês \%d para a Filial \%d\(\backslash\)n"}, prodID, month, i+1);}
+\DoxyCodeLine{93             printf(\textcolor{stringliteral}{"Número de vendas N: \%d\(\backslash\)n"}, querie3-\/>fat[i].nVendasN);}
+\DoxyCodeLine{94             printf(\textcolor{stringliteral}{"Número de vendas P: \%d\(\backslash\)n"}, querie3-\/>fat[i].nVendasP);}
+\DoxyCodeLine{95             printf(\textcolor{stringliteral}{"Total Faturado N: \%.2f\(\backslash\)n"}, querie3-\/>fat[i].fatN);}
+\DoxyCodeLine{96             printf(\textcolor{stringliteral}{"Total Faturado P: \%.2f\(\backslash\)n"}, querie3-\/>fat[i].fatP);}
+\DoxyCodeLine{97         \}}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a56c6883cfa30bb6e3e5a8f5d3d91fe56}\label{apresentacao_8c_a56c6883cfa30bb6e3e5a8f5d3d91fe56}} 
+\index{apresentacao.c@{apresentacao.c}!printQ4@{printQ4}}
+\index{printQ4@{printQ4}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ4()}{printQ4()}}
+{\footnotesize\ttfamily void print\+Q4 (\begin{DoxyParamCaption}\item[{Q4 $\ast$}]{querie4 }\end{DoxyParamCaption})}
+
+
+
+função que imprime o número de produtos não comprados 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie4} & apontador para Q4 \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 105 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{105                           \{}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107     \mbox{\hyperlink{apresentacao_8c_a91d20b35fed48a05ce56e72b2505d06b}{printArray}}(querie4-\/>prods, querie4-\/>size);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     printf(\textcolor{stringliteral}{"\(\backslash\)nProdutos não comprados:\%d\(\backslash\)n"}, querie4-\/>size);}
+\DoxyCodeLine{110 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_afbe49b70a0f08eaa8e39fb4cf365d4df}\label{apresentacao_8c_afbe49b70a0f08eaa8e39fb4cf365d4df}} 
+\index{apresentacao.c@{apresentacao.c}!printQ5@{printQ5}}
+\index{printQ5@{printQ5}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ5()}{printQ5()}}
+{\footnotesize\ttfamily void print\+Q5 (\begin{DoxyParamCaption}\item[{Q5 $\ast$}]{querie5 }\end{DoxyParamCaption})}
+
+
+
+função que imprime o número de clientes que realizaram compras em todas as Filiais 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie5} & apontador para Q5 \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 116 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{116                           \{}
+\DoxyCodeLine{117     \mbox{\hyperlink{apresentacao_8c_a91d20b35fed48a05ce56e72b2505d06b}{printArray}}(querie5-\/>cli, querie5-\/>size);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     printf(\textcolor{stringliteral}{"\(\backslash\)nClientes que realizaram compras em todas as Filiais: \%d\(\backslash\)n"}, querie5-\/>size);}
+\DoxyCodeLine{120 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a9e52080d687baf1d81b99e6569012480}\label{apresentacao_8c_a9e52080d687baf1d81b99e6569012480}} 
+\index{apresentacao.c@{apresentacao.c}!printQ6@{printQ6}}
+\index{printQ6@{printQ6}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ6()}{printQ6()}}
+{\footnotesize\ttfamily void print\+Q6 (\begin{DoxyParamCaption}\item[{Q6 $\ast$}]{querie6,  }\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime os cliente que não compraram, os produtos não comprados e o tempo de execução desta querie 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie6} & apontador para a estrutura Q6 \\
+\hline
+{\em start\+\_\+t} & momento em que a querie 6 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 6 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 128 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{128                                                           \{}
+\DoxyCodeLine{129     printf(\textcolor{stringliteral}{"\(\backslash\)nClientes não compradores: \%d\(\backslash\)n"}, querie6-\/>nCli);}
+\DoxyCodeLine{130     printf(\textcolor{stringliteral}{"Produtos não comprados: \%d\(\backslash\)n"}, querie6-\/>nProd);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 6: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{133 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_a57dd9380db0f8ef6dd595ae8a51e2707}\label{apresentacao_8c_a57dd9380db0f8ef6dd595ae8a51e2707}} 
+\index{apresentacao.c@{apresentacao.c}!printQ7@{printQ7}}
+\index{printQ7@{printQ7}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ7()}{printQ7()}}
+{\footnotesize\ttfamily void print\+Q7 (\begin{DoxyParamCaption}\item[{Q7 $\ast$}]{querie7,  }\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime os produtos comprados por um cliente e o tempo de execução desta querie 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie7} & apontador para a estrutura Q7 \\
+\hline
+{\em start\+\_\+t} & momento em que a querie 7 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 7 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 141 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{141                                                           \{}
+\DoxyCodeLine{142     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144     \textcolor{keywordflow}{if}(querie7 == NULL) \{}
+\DoxyCodeLine{145         printf(\textcolor{stringliteral}{"Cliente inválido\(\backslash\)n"});}
+\DoxyCodeLine{146         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{147     \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     printf(\textcolor{stringliteral}{"\(\backslash\)nFilial  1     2     3\(\backslash\)n"} );}
+\DoxyCodeLine{150     \textcolor{keywordflow}{for}(i=0; i<12; i++)}
+\DoxyCodeLine{151         printf(\textcolor{stringliteral}{"Mes \%02d: \%-\/4d  \%-\/4d  \%-\/4d\(\backslash\)n"}, (i+1), querie7-\/>tabela[i][0], querie7-\/>tabela[i][1], querie7-\/>tabela[i][2]);}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 7: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{154 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_ab92df40ed2080d0839c5cb9937b4b889}\label{apresentacao_8c_ab92df40ed2080d0839c5cb9937b4b889}} 
+\index{apresentacao.c@{apresentacao.c}!printQ8@{printQ8}}
+\index{printQ8@{printQ8}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ8()}{printQ8()}}
+{\footnotesize\ttfamily void print\+Q8 (\begin{DoxyParamCaption}\item[{Q8 $\ast$}]{querie8,  }\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime o total de vendas, o total faturado e o tempo de execução desta querie 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em querie8} & apontador para a estrutura Q8 \\
+\hline
+{\em start\+\_\+t} & momento em que a querie 8 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 8 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 162 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{162                                                           \{}
+\DoxyCodeLine{163     printf(\textcolor{stringliteral}{"\(\backslash\)nTotal vendas: \%d\(\backslash\)n"}, querie8-\/>vendas);}
+\DoxyCodeLine{164     printf(\textcolor{stringliteral}{"Total faturado: \%.2f\(\backslash\)n"}, querie8-\/>fact);}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 8: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{167 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{apresentacao_8c_af7d452c88079daf4accb10cd0cdb6b98}\label{apresentacao_8c_af7d452c88079daf4accb10cd0cdb6b98}} 
+\index{apresentacao.c@{apresentacao.c}!printQ9@{printQ9}}
+\index{printQ9@{printQ9}!apresentacao.c@{apresentacao.c}}
+\doxysubsubsection{\texorpdfstring{printQ9()}{printQ9()}}
+{\footnotesize\ttfamily void print\+Q9 (\begin{DoxyParamCaption}\item[{Q9 $\ast$}]{querie9,  }\item[{int}]{filial,  }\item[{clock\+\_\+t}]{start\+\_\+t,  }\item[{clock\+\_\+t}]{end\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+função que imprime a lista de clientes para um determinado produto numa determinada filial e o tempo de execução desta querie 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em filial} & filial a ser analisada \\
+\hline
+{\em querie9} & apontador para a estrutura Q9 \\
+\hline
+{\em start\+\_\+t} & momento em que a querie 9 inicia \\
+\hline
+{\em end\+\_\+t} & momento em que a querie 9 finda \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 176 do ficheiro apresentacao.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{176                                                                       \{}
+\DoxyCodeLine{177     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179     \textcolor{keywordflow}{if}(querie9 == NULL) \{}
+\DoxyCodeLine{180         printf(\textcolor{stringliteral}{"Produto inválido\(\backslash\)n"});}
+\DoxyCodeLine{181         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{182     \}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     \textcolor{keywordflow}{for}(i=0; i<querie9-\/>total; i++) \{}
+\DoxyCodeLine{185         \textcolor{keywordflow}{if}(querie9-\/>lista[i].tipocompra == 1)}
+\DoxyCodeLine{186             printf(\textcolor{stringliteral}{"\%s (N)\(\backslash\)n"}, querie9-\/>lista[i].cliente);}
+\DoxyCodeLine{187         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(querie9-\/>lista[i].tipocompra == 2)}
+\DoxyCodeLine{188             printf(\textcolor{stringliteral}{"\%s (P)\(\backslash\)n"}, querie9-\/>lista[i].cliente);}
+\DoxyCodeLine{189         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{190             printf(\textcolor{stringliteral}{"\%s (N/P)\(\backslash\)n"}, querie9-\/>lista[i].cliente);}
+\DoxyCodeLine{191     \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193     printf(\textcolor{stringliteral}{"Numero de Clientes que compraram o produto da filial \%d: \%d\(\backslash\)n"}, \mbox{\hyperlink{structfilial}{filial}}, querie9-\/>total);}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     printf(\textcolor{stringliteral}{"\(\backslash\)nTempo de execução da Querie 9: \%.4f s\(\backslash\)n"}, (\textcolor{keywordtype}{double}) (end\_t -\/ start\_t) / CLOCKS\_PER\_SEC);}
+\DoxyCodeLine{196 \}}
+
+\end{DoxyCode}

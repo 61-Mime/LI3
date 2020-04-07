@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sistema de Gestão de Vendas: Código-Fonte de apresentacao.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sistema de Gestão de Vendas
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">apresentacao.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="apresentacao_8c.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;apresentacao.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a2a0e843767aeea4f433a28b9c54f573a">   11</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a2a0e843767aeea4f433a28b9c54f573a">menu</a>() {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    system(<span class="stringliteral">&quot;clear&quot;</span>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    printf(<span class="stringliteral">&quot;\n- 1 &lt;pathProd&gt; &lt;pathCli&gt; &lt;pathSales&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    printf(<span class="stringliteral">&quot;- 2 &lt;letter&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    printf(<span class="stringliteral">&quot;- 3 &lt;prodID&gt; &lt;month&gt; &lt;type&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    printf(<span class="stringliteral">&quot;- 4 &lt;branchID&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    printf(<span class="stringliteral">&quot;- 5\n&quot;</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    printf(<span class="stringliteral">&quot;- 6\n&quot;</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    printf(<span class="stringliteral">&quot;- 7 &lt;clientID&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    printf(<span class="stringliteral">&quot;- 8 &lt;minMonth&gt; &lt;maxMonth&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    printf(<span class="stringliteral">&quot;- 9 &lt;productID&gt; &lt;branchID&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    printf(<span class="stringliteral">&quot;- 10 &lt;clientID&gt; &lt;month&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    printf(<span class="stringliteral">&quot;- 11 &lt;limit&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    printf(<span class="stringliteral">&quot;- 12 &lt;clientID&gt; &lt;limit&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    printf(<span class="stringliteral">&quot;- 13\n&quot;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a91d20b35fed48a05ce56e72b2505d06b">   31</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a91d20b35fed48a05ce56e72b2505d06b">printArray</a>(<span class="keywordtype">char</span>** arr, <span class="keywordtype">int</span> size) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">int</span> i, j;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    system(<span class="stringliteral">&quot;clear&quot;</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">for</span>(i=0; i&lt;size; i+=12) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">for</span>(j=i; (j&lt;i+11) &amp;&amp; (j&lt;size-1); j++)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            printf(<span class="stringliteral">&quot;%s - %-5d  &quot;</span>, arr[j], j+1);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        printf(<span class="stringliteral">&quot;%s - %-5d\n&quot;</span>, arr[j], j+1);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#af91f995fefdc156d5b3ccfd52160a8b9">   48</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#af91f995fefdc156d5b3ccfd52160a8b9">printQ1</a>(clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 1: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a8d470c20daa4e0081c5fe864df82a1f2">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a8d470c20daa4e0081c5fe864df82a1f2">printQ2</a>(Q2* querie2, <span class="keywordtype">char</span> letter) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span>(querie2 == NULL) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        printf(<span class="stringliteral">&quot;Letra inválida\n&quot;</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="apresentacao_8c.html#a91d20b35fed48a05ce56e72b2505d06b">printArray</a>(querie2-&gt;prods, querie2-&gt;size);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    printf(<span class="stringliteral">&quot;\nNumero de Produtos começados por %c: %d\n&quot;</span>, letter, querie2-&gt;size);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a4c5f1e2dc33df9d3fb6f0a91ae7b0c92">   74</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a4c5f1e2dc33df9d3fb6f0a91ae7b0c92">printQ3</a>(Q3* querie3, <span class="keywordtype">char</span>* prodID, <span class="keywordtype">int</span> month) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span>(querie3 == NULL) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        printf(<span class="stringliteral">&quot;Produto inválido\n&quot;</span>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">if</span>(querie3-&gt;size == 1) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        printf(<span class="stringliteral">&quot;\nFaturação do produto %s no mês %d\n&quot;</span>, prodID, month);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        printf(<span class="stringliteral">&quot;Número de vendas N: %d\n&quot;</span>, querie3-&gt;fat-&gt;nVendasN);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        printf(<span class="stringliteral">&quot;Número de vendas P: %d\n&quot;</span>, querie3-&gt;fat-&gt;nVendasP);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        printf(<span class="stringliteral">&quot;Total Faturado N: %f\n&quot;</span>, querie3-&gt;fat-&gt;fatN);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        printf(<span class="stringliteral">&quot;Total Faturado P: %f\n&quot;</span>, querie3-&gt;fat-&gt;fatP);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">for</span>(i=0; i&lt;3; i++) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            printf(<span class="stringliteral">&quot;\nFaturação do produto %s no mês %d para a Filial %d\n&quot;</span>, prodID, month, i+1);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            printf(<span class="stringliteral">&quot;Número de vendas N: %d\n&quot;</span>, querie3-&gt;fat[i].nVendasN);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            printf(<span class="stringliteral">&quot;Número de vendas P: %d\n&quot;</span>, querie3-&gt;fat[i].nVendasP);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            printf(<span class="stringliteral">&quot;Total Faturado N: %.2f\n&quot;</span>, querie3-&gt;fat[i].fatN);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            printf(<span class="stringliteral">&quot;Total Faturado P: %.2f\n&quot;</span>, querie3-&gt;fat[i].fatP);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a56c6883cfa30bb6e3e5a8f5d3d91fe56">  105</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a56c6883cfa30bb6e3e5a8f5d3d91fe56">printQ4</a>(Q4* querie4) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="apresentacao_8c.html#a91d20b35fed48a05ce56e72b2505d06b">printArray</a>(querie4-&gt;prods, querie4-&gt;size);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    printf(<span class="stringliteral">&quot;\nProdutos não comprados:%d\n&quot;</span>, querie4-&gt;size);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#afbe49b70a0f08eaa8e39fb4cf365d4df">  116</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#afbe49b70a0f08eaa8e39fb4cf365d4df">printQ5</a>(Q5* querie5) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="apresentacao_8c.html#a91d20b35fed48a05ce56e72b2505d06b">printArray</a>(querie5-&gt;cli, querie5-&gt;size);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    printf(<span class="stringliteral">&quot;\nClientes que realizaram compras em todas as Filiais: %d\n&quot;</span>, querie5-&gt;size);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a9e52080d687baf1d81b99e6569012480">  128</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a9e52080d687baf1d81b99e6569012480">printQ6</a>(Q6* querie6, clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    printf(<span class="stringliteral">&quot;\nClientes não compradores: %d\n&quot;</span>, querie6-&gt;nCli);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    printf(<span class="stringliteral">&quot;Produtos não comprados: %d\n&quot;</span>, querie6-&gt;nProd);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 6: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a57dd9380db0f8ef6dd595ae8a51e2707">  141</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a57dd9380db0f8ef6dd595ae8a51e2707">printQ7</a>(Q7* querie7, clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">if</span>(querie7 == NULL) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        printf(<span class="stringliteral">&quot;Cliente inválido\n&quot;</span>);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    printf(<span class="stringliteral">&quot;\nFilial  1     2     3\n&quot;</span> );</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">for</span>(i=0; i&lt;12; i++)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        printf(<span class="stringliteral">&quot;Mes %02d: %-4d  %-4d  %-4d\n&quot;</span>, (i+1), querie7-&gt;tabela[i][0], querie7-&gt;tabela[i][1], querie7-&gt;tabela[i][2]);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 7: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#ab92df40ed2080d0839c5cb9937b4b889">  162</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#ab92df40ed2080d0839c5cb9937b4b889">printQ8</a>(Q8* querie8, clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    printf(<span class="stringliteral">&quot;\nTotal vendas: %d\n&quot;</span>, querie8-&gt;vendas);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    printf(<span class="stringliteral">&quot;Total faturado: %.2f\n&quot;</span>, querie8-&gt;fact);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 8: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;}</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#af7d452c88079daf4accb10cd0cdb6b98">  176</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#af7d452c88079daf4accb10cd0cdb6b98">printQ9</a>(Q9* querie9, <span class="keywordtype">int</span> <a class="code" href="structfilial.html">filial</a>, clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">if</span>(querie9 == NULL) {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        printf(<span class="stringliteral">&quot;Produto inválido\n&quot;</span>);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordflow">for</span>(i=0; i&lt;querie9-&gt;total; i++) {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">if</span>(querie9-&gt;lista[i].tipocompra == 1)</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            printf(<span class="stringliteral">&quot;%s (N)\n&quot;</span>, querie9-&gt;lista[i].cliente);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(querie9-&gt;lista[i].tipocompra == 2)</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            printf(<span class="stringliteral">&quot;%s (P)\n&quot;</span>, querie9-&gt;lista[i].cliente);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            printf(<span class="stringliteral">&quot;%s (N/P)\n&quot;</span>, querie9-&gt;lista[i].cliente);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    printf(<span class="stringliteral">&quot;Numero de Clientes que compraram o produto da filial %d: %d\n&quot;</span>, <a class="code" href="structfilial.html">filial</a>, querie9-&gt;total);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 9: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a4255812b2d17bef5c92080097e64e7d5">  204</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a4255812b2d17bef5c92080097e64e7d5">printQ10</a>(Q10* querie10, clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  <span class="keywordflow">if</span>(querie10 == NULL) {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    printf(<span class="stringliteral">&quot;Cliente inválido\n&quot;</span>);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  <span class="keywordflow">for</span>(i = 0; i &lt; querie10 -&gt; size;i++)</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    printf(<span class="stringliteral">&quot;%s %d\n&quot;</span>, querie10-&gt;produtos[i].prod,querie10-&gt;produtos[i].quantidade);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;  printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 10: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;}</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a0a7b1cc1cbeb44d55decb8dfd1905fe3">  224</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a0a7b1cc1cbeb44d55decb8dfd1905fe3">printQ11</a>(Q11* querie11, clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  <span class="keywordflow">if</span>(querie11 == NULL) {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    printf(<span class="stringliteral">&quot;Cliente inválido\n&quot;</span>);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  <span class="keywordflow">for</span>(i = 0; i &lt; querie11-&gt;size;i++)</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    printf(<span class="stringliteral">&quot;%s %-4d %-4d %-4d %d %d %d %d\n&quot;</span>, querie11-&gt;produtos[i].prod, querie11-&gt;produtos[i].unidades[0], querie11-&gt;produtos[i].unidades[1], querie11-&gt;produtos[i].unidades[2],</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                        querie11-&gt;produtos[i].clientes[0], querie11-&gt;produtos[i].clientes[1], querie11-&gt;produtos[i].clientes[2], querie11-&gt;produtos[i].total);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 11: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;}</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a019db222eb760848fb1360ea9618179d">  245</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a019db222eb760848fb1360ea9618179d">printQ12</a>(Q12* querie12, clock_t start_t, clock_t end_t) {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;  <span class="keywordflow">if</span>(querie12 == NULL) {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    printf(<span class="stringliteral">&quot;Cliente inválido\n&quot;</span>);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  <span class="keywordflow">for</span>(i = 0; i &lt; querie12 -&gt; size;i++)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    printf(<span class="stringliteral">&quot;%s %.2f\n&quot;</span>, querie12-&gt;prods[i].prod,querie12-&gt;prods[i].faturacao);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  printf(<span class="stringliteral">&quot;\nTempo de execução da Querie 12: %.4f s\n&quot;</span>, (<span class="keywordtype">double</span>) (end_t - start_t) / CLOCKS_PER_SEC);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;}</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="apresentacao_8c.html#a6e2d6f492bf977fe820dc8cc56c93392">  263</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="apresentacao_8c.html#a6e2d6f492bf977fe820dc8cc56c93392">printQ13</a>(Q13* querie13) {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    printf(<span class="stringliteral">&quot;\nFicheiro de Clientes usado: %s\n&quot;</span>, querie13-&gt;pathCli);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    printf(<span class="stringliteral">&quot;Numero de Clientes Lidos: %d\n&quot;</span>, querie13-&gt;cliL);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    printf(<span class="stringliteral">&quot;Numero de Clientes Validados: %d\n&quot;</span>, querie13-&gt;cliV);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    printf(<span class="stringliteral">&quot;\nFicheiro de Produtos usado: %s\n&quot;</span>, querie13-&gt;pathProd);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    printf(<span class="stringliteral">&quot;Numero de Produtos Lidos: %d\n&quot;</span>, querie13-&gt;prodL);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    printf(<span class="stringliteral">&quot;Numero de Produtos Validados: %d\n&quot;</span>, querie13-&gt;prodV);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    printf(<span class="stringliteral">&quot;\nFicheiro de Vendas usado: %s\n&quot;</span>, querie13-&gt;pathSales);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    printf(<span class="stringliteral">&quot;Numero de Vendas Lidas: %d\n&quot;</span>, querie13-&gt;salesL);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    printf(<span class="stringliteral">&quot;Numero de Vendas Validadas: %d\n&quot;</span>, querie13-&gt;salesV);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aapresentacao_8c_html_a019db222eb760848fb1360ea9618179d"><div class="ttname"><a href="apresentacao_8c.html#a019db222eb760848fb1360ea9618179d">printQ12</a></div><div class="ttdeci">void printQ12(Q12 *querie12, clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime os n produtos mais comprados por um determinado cliente durante o ano e o tempo de...</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00245">apresentacao.c:245</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_af91f995fefdc156d5b3ccfd52160a8b9"><div class="ttname"><a href="apresentacao_8c.html#af91f995fefdc156d5b3ccfd52160a8b9">printQ1</a></div><div class="ttdeci">void printQ1(clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime o tempo que a querie 1 demora a executar</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00048">apresentacao.c:48</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a4255812b2d17bef5c92080097e64e7d5"><div class="ttname"><a href="apresentacao_8c.html#a4255812b2d17bef5c92080097e64e7d5">printQ10</a></div><div class="ttdeci">void printQ10(Q10 *querie10, clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime por ordem decrescente de quantidade os produtos que um determinado cliente comprou...</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00204">apresentacao.c:204</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a91d20b35fed48a05ce56e72b2505d06b"><div class="ttname"><a href="apresentacao_8c.html#a91d20b35fed48a05ce56e72b2505d06b">printArray</a></div><div class="ttdeci">void printArray(char **arr, int size)</div><div class="ttdoc">função que imprime uma tabela de Strings</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00031">apresentacao.c:31</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a57dd9380db0f8ef6dd595ae8a51e2707"><div class="ttname"><a href="apresentacao_8c.html#a57dd9380db0f8ef6dd595ae8a51e2707">printQ7</a></div><div class="ttdeci">void printQ7(Q7 *querie7, clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime os produtos comprados por um cliente e o tempo de execução desta querie</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00141">apresentacao.c:141</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a4c5f1e2dc33df9d3fb6f0a91ae7b0c92"><div class="ttname"><a href="apresentacao_8c.html#a4c5f1e2dc33df9d3fb6f0a91ae7b0c92">printQ3</a></div><div class="ttdeci">void printQ3(Q3 *querie3, char *prodID, int month)</div><div class="ttdoc">função que imprime a faturação de um determinado produto, por filial e mês</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00074">apresentacao.c:74</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_afbe49b70a0f08eaa8e39fb4cf365d4df"><div class="ttname"><a href="apresentacao_8c.html#afbe49b70a0f08eaa8e39fb4cf365d4df">printQ5</a></div><div class="ttdeci">void printQ5(Q5 *querie5)</div><div class="ttdoc">função que imprime o número de clientes que realizaram compras em todas as Filiais</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00116">apresentacao.c:116</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a2a0e843767aeea4f433a28b9c54f573a"><div class="ttname"><a href="apresentacao_8c.html#a2a0e843767aeea4f433a28b9c54f573a">menu</a></div><div class="ttdeci">void menu()</div><div class="ttdoc">função que mostra o menu dos comandos que o utilizador pode usar</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00011">apresentacao.c:11</a></div></div>
+<div class="ttc" id="astructfilial_html"><div class="ttname"><a href="structfilial.html">filial</a></div><div class="ttdef"><b>Definition:</b> <a href="filial_8c_source.html#l00043">filial.c:43</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_af7d452c88079daf4accb10cd0cdb6b98"><div class="ttname"><a href="apresentacao_8c.html#af7d452c88079daf4accb10cd0cdb6b98">printQ9</a></div><div class="ttdeci">void printQ9(Q9 *querie9, int filial, clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime a lista de clientes para um determinado produto numa determinada filial e o tempo ...</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00176">apresentacao.c:176</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a56c6883cfa30bb6e3e5a8f5d3d91fe56"><div class="ttname"><a href="apresentacao_8c.html#a56c6883cfa30bb6e3e5a8f5d3d91fe56">printQ4</a></div><div class="ttdeci">void printQ4(Q4 *querie4)</div><div class="ttdoc">função que imprime o número de produtos não comprados</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00105">apresentacao.c:105</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a9e52080d687baf1d81b99e6569012480"><div class="ttname"><a href="apresentacao_8c.html#a9e52080d687baf1d81b99e6569012480">printQ6</a></div><div class="ttdeci">void printQ6(Q6 *querie6, clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime os cliente que não compraram, os produtos não comprados e o tempo de execução dest...</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00128">apresentacao.c:128</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a8d470c20daa4e0081c5fe864df82a1f2"><div class="ttname"><a href="apresentacao_8c.html#a8d470c20daa4e0081c5fe864df82a1f2">printQ2</a></div><div class="ttdeci">void printQ2(Q2 *querie2, char letter)</div><div class="ttdoc">função que imprime o número de produtos começados por um determinado char</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00057">apresentacao.c:57</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a6e2d6f492bf977fe820dc8cc56c93392"><div class="ttname"><a href="apresentacao_8c.html#a6e2d6f492bf977fe820dc8cc56c93392">printQ13</a></div><div class="ttdeci">void printQ13(Q13 *querie13)</div><div class="ttdoc">função que imprime os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usa...</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00263">apresentacao.c:263</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_ab92df40ed2080d0839c5cb9937b4b889"><div class="ttname"><a href="apresentacao_8c.html#ab92df40ed2080d0839c5cb9937b4b889">printQ8</a></div><div class="ttdeci">void printQ8(Q8 *querie8, clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime o total de vendas, o total faturado e o tempo de execução desta querie</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00162">apresentacao.c:162</a></div></div>
+<div class="ttc" id="aapresentacao_8c_html_a0a7b1cc1cbeb44d55decb8dfd1905fe3"><div class="ttname"><a href="apresentacao_8c.html#a0a7b1cc1cbeb44d55decb8dfd1905fe3">printQ11</a></div><div class="ttdeci">void printQ11(Q11 *querie11, clock_t start_t, clock_t end_t)</div><div class="ttdoc">função que imprime por ordem decrescente o número de produtos mais vendido em todo o ano,...</div><div class="ttdef"><b>Definition:</b> <a href="apresentacao_8c_source.html#l00224">apresentacao.c:224</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

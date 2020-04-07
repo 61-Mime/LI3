@@ -1,0 +1,368 @@
+\hypertarget{sgv_8c}{}\doxysection{Referência ao ficheiro sgv.\+c}
+\label{sgv_8c}\index{sgv.c@{sgv.c}}
+
+
+Ficheiro que contém funções relativas ao módulo S\+GV.  
+
+
+{\ttfamily \#include \char`\"{}sgv.\+h\char`\"{}}\newline
+\doxysubsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfilesinfo}{filesinfo}}
+\item 
+struct \mbox{\hyperlink{structsgv}{sgv}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sgv_8c_a38cdb5bef87b8db72f6a0057bdcc8acf}\label{sgv_8c_a38cdb5bef87b8db72f6a0057bdcc8acf}} 
+typedef struct \mbox{\hyperlink{structfilesinfo}{filesinfo}} {\bfseries File\+Info}
+\item 
+\mbox{\Hypertarget{sgv_8c_a22f90d0d3126acbfb367c7d5dedbd6b7}\label{sgv_8c_a22f90d0d3126acbfb367c7d5dedbd6b7}} 
+typedef struct \mbox{\hyperlink{structsgv}{sgv}} $\ast$ {\bfseries S\+GV}
+\end{DoxyCompactItemize}
+\doxysubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$ \mbox{\hyperlink{sgv_8c_abcefb18137b15b5b389c55ecb79b34c2}{init\+File\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Função que inicializa a estrutura File\+Info. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structsgv}{S\+GV}} \mbox{\hyperlink{sgv_8c_a14c3840c38c574667ca887b40c5250bb}{init\+S\+GV}} ()
+\begin{DoxyCompactList}\small\item\em Função que inicializa a estrutura S\+GV. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structsgv}{S\+GV}} \mbox{\hyperlink{sgv_8c_a0e5d092c192d7f1643bf2a93e564e4a5}{load\+S\+G\+V\+From\+Files}} (\mbox{\hyperlink{structsgv}{S\+GV}} \mbox{\hyperlink{structsgv}{sgv}}, char $\ast$clients\+File\+Path, char $\ast$products\+File\+Path, char $\ast$sales\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Função carrega a estrutura S\+GV a partir de ficheiros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sgv_8c_a7527694a42981c525dade1439705c706}{destroy\+S\+GV}} (\mbox{\hyperlink{structsgv}{S\+GV}} \mbox{\hyperlink{structsgv}{sgv}})
+\begin{DoxyCompactList}\small\item\em Função que liberta o espaço de memória ocupado pelo S\+GV. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sgv_8c_aa4858952f6cc77c2043268b1ef67ada7}{get\+S\+G\+VprodV}} (\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Função que retorna o numero de Produtos Validados. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sgv_8c_a48b5a6e4d3d6e483f610aeb108bb51e0}{get\+S\+G\+VprodL}} (\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Função que retorna o numero de Produtos Lidos. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sgv_8c_aa8502ffd8f864bb0eafac9bca1fd2de8}{get\+S\+G\+VcliV}} (\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Função que retorna o numero de Clientes Validados. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sgv_8c_a2f2cacf731f8c19d45b143118582db46}{get\+S\+G\+VcliL}} (\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Função que retorna o numero de Clientes Lidos. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sgv_8c_a7c7cdbc3c03ac3605909c280dd24a35a}{get\+S\+G\+VsaleV}} (\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Função que retorna o numero de Vendas Validadas. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sgv_8c_a42b0efbacab32913738f1ba0a61dcd16}{get\+S\+G\+VsaleL}} (\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Função que retorna o numero de Vendas Lidas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Ficheiro que contém funções relativas ao módulo S\+GV. 
+
+
+
+\doxysubsection{Documentação das funções}
+\mbox{\Hypertarget{sgv_8c_a7527694a42981c525dade1439705c706}\label{sgv_8c_a7527694a42981c525dade1439705c706}} 
+\index{sgv.c@{sgv.c}!destroySGV@{destroySGV}}
+\index{destroySGV@{destroySGV}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{destroySGV()}{destroySGV()}}
+{\footnotesize\ttfamily void destroy\+S\+GV (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsgv}{S\+GV}}}]{sgv }\end{DoxyParamCaption})}
+
+
+
+Função que liberta o espaço de memória ocupado pelo S\+GV. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & S\+GV a destruir \\
+\hline
+\end{DoxyParams}
+
+
+Definido na linha 82 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{82                          \{}
+\DoxyCodeLine{83     \mbox{\hyperlink{catalogo_8c_a552be9c5ee3d0368a532bce640603a45}{freeCat}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod);}
+\DoxyCodeLine{84     \mbox{\hyperlink{catalogo_8c_a552be9c5ee3d0368a532bce640603a45}{freeCat}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>cli);}
+\DoxyCodeLine{85     \mbox{\hyperlink{faturacao_8c_a82ea6b00968e8cda40683ee7e62dc5e4}{freeFact}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact);}
+\DoxyCodeLine{86     \mbox{\hyperlink{filial_8c_af6b43d00ba685d76de8cb2da35a5c14e}{freeGFil}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil);}
+\DoxyCodeLine{87     free(\mbox{\hyperlink{structsgv}{sgv}}-\/>info);}
+\DoxyCodeLine{88     free(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{89 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_a2f2cacf731f8c19d45b143118582db46}\label{sgv_8c_a2f2cacf731f8c19d45b143118582db46}} 
+\index{sgv.c@{sgv.c}!getSGVcliL@{getSGVcliL}}
+\index{getSGVcliL@{getSGVcliL}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{getSGVcliL()}{getSGVcliL()}}
+{\footnotesize\ttfamily int get\+S\+G\+VcliL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o numero de Clientes Lidos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Apontador para File\+Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Inteiro com o numero de Clientes Lidos 
+\end{DoxyReturn}
+
+
+Definido na linha 123 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{123                                \{}
+\DoxyCodeLine{124     \textcolor{keywordflow}{return} info-\/>cliL;}
+\DoxyCodeLine{125 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_aa8502ffd8f864bb0eafac9bca1fd2de8}\label{sgv_8c_aa8502ffd8f864bb0eafac9bca1fd2de8}} 
+\index{sgv.c@{sgv.c}!getSGVcliV@{getSGVcliV}}
+\index{getSGVcliV@{getSGVcliV}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{getSGVcliV()}{getSGVcliV()}}
+{\footnotesize\ttfamily int get\+S\+G\+VcliV (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o numero de Clientes Validados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Apontador para File\+Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Inteiro com o numero de Clientes Validados 
+\end{DoxyReturn}
+
+
+Definido na linha 114 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{114                                \{}
+\DoxyCodeLine{115     \textcolor{keywordflow}{return} info-\/>cliV;}
+\DoxyCodeLine{116 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_a48b5a6e4d3d6e483f610aeb108bb51e0}\label{sgv_8c_a48b5a6e4d3d6e483f610aeb108bb51e0}} 
+\index{sgv.c@{sgv.c}!getSGVprodL@{getSGVprodL}}
+\index{getSGVprodL@{getSGVprodL}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{getSGVprodL()}{getSGVprodL()}}
+{\footnotesize\ttfamily int get\+S\+G\+VprodL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o numero de Produtos Lidos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Apontador para File\+Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Inteiro com o numero de Produtos Lidos 
+\end{DoxyReturn}
+
+
+Definido na linha 105 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{105                                 \{}
+\DoxyCodeLine{106     \textcolor{keywordflow}{return} info-\/>prodL;}
+\DoxyCodeLine{107 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_aa4858952f6cc77c2043268b1ef67ada7}\label{sgv_8c_aa4858952f6cc77c2043268b1ef67ada7}} 
+\index{sgv.c@{sgv.c}!getSGVprodV@{getSGVprodV}}
+\index{getSGVprodV@{getSGVprodV}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{getSGVprodV()}{getSGVprodV()}}
+{\footnotesize\ttfamily int get\+S\+G\+VprodV (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o numero de Produtos Validados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Apontador para File\+Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Inteiro com o numero de Produtos Validados 
+\end{DoxyReturn}
+
+
+Definido na linha 96 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{96                                 \{}
+\DoxyCodeLine{97     \textcolor{keywordflow}{return} info-\/>prodV;}
+\DoxyCodeLine{98 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_a42b0efbacab32913738f1ba0a61dcd16}\label{sgv_8c_a42b0efbacab32913738f1ba0a61dcd16}} 
+\index{sgv.c@{sgv.c}!getSGVsaleL@{getSGVsaleL}}
+\index{getSGVsaleL@{getSGVsaleL}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{getSGVsaleL()}{getSGVsaleL()}}
+{\footnotesize\ttfamily int get\+S\+G\+VsaleL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o numero de Vendas Lidas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Apontador para File\+Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Inteiro com o numero de Vendas Lidas 
+\end{DoxyReturn}
+
+
+Definido na linha 141 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{141                                 \{}
+\DoxyCodeLine{142     \textcolor{keywordflow}{return} info-\/>saleL;}
+\DoxyCodeLine{143 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_a7c7cdbc3c03ac3605909c280dd24a35a}\label{sgv_8c_a7c7cdbc3c03ac3605909c280dd24a35a}} 
+\index{sgv.c@{sgv.c}!getSGVsaleV@{getSGVsaleV}}
+\index{getSGVsaleV@{getSGVsaleV}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{getSGVsaleV()}{getSGVsaleV()}}
+{\footnotesize\ttfamily int get\+S\+G\+VsaleV (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfilesinfo}{File\+Info}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o numero de Vendas Validadas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Apontador para File\+Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Inteiro com o numero de Vendas Validadas 
+\end{DoxyReturn}
+
+
+Definido na linha 132 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{132                                 \{}
+\DoxyCodeLine{133     \textcolor{keywordflow}{return} info-\/>saleV;}
+\DoxyCodeLine{134 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_abcefb18137b15b5b389c55ecb79b34c2}\label{sgv_8c_abcefb18137b15b5b389c55ecb79b34c2}} 
+\index{sgv.c@{sgv.c}!initFileInfo@{initFileInfo}}
+\index{initFileInfo@{initFileInfo}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{initFileInfo()}{initFileInfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structfilesinfo}{File\+Info}}$\ast$ init\+File\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Função que inicializa a estrutura File\+Info. 
+
+\begin{DoxyReturn}{Retorna}
+Apontador para File\+Info 
+\end{DoxyReturn}
+
+
+Definido na linha 29 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29                          \{}
+\DoxyCodeLine{30     \mbox{\hyperlink{structfilesinfo}{FileInfo}}* f = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structfilesinfo}{FileInfo}}));}
+\DoxyCodeLine{31     }
+\DoxyCodeLine{32     f-\/>prodV = 0;}
+\DoxyCodeLine{33     f-\/>prodL = 0;}
+\DoxyCodeLine{34     f-\/>cliV = 0;}
+\DoxyCodeLine{35     f-\/>cliL = 0;}
+\DoxyCodeLine{36     f-\/>saleV = 0;}
+\DoxyCodeLine{37     f-\/>saleL = 0;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordflow}{return} f;}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_a14c3840c38c574667ca887b40c5250bb}\label{sgv_8c_a14c3840c38c574667ca887b40c5250bb}} 
+\index{sgv.c@{sgv.c}!initSGV@{initSGV}}
+\index{initSGV@{initSGV}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{initSGV()}{initSGV()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsgv}{S\+GV}} init\+S\+GV (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Função que inicializa a estrutura S\+GV. 
+
+\begin{DoxyReturn}{Retorna}
+S\+GV inicializado 
+\end{DoxyReturn}
+
+
+Definido na linha 46 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46               \{}
+\DoxyCodeLine{47     \mbox{\hyperlink{structsgv}{SGV}} \mbox{\hyperlink{structsgv}{sgv}} = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsgv}{sgv}}));}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \mbox{\hyperlink{structsgv}{sgv}}-\/>prod = \mbox{\hyperlink{catalogo_8c_a4739d26cdc2b081ade2b0729f1a33ef2}{initCat}}();}
+\DoxyCodeLine{50     \mbox{\hyperlink{structsgv}{sgv}}-\/>cli = \mbox{\hyperlink{catalogo_8c_a4739d26cdc2b081ade2b0729f1a33ef2}{initCat}}();}
+\DoxyCodeLine{51     \mbox{\hyperlink{structsgv}{sgv}}-\/>fact = \mbox{\hyperlink{faturacao_8c_a3554a4544a3b5bbfa45ff0263cd0a5f6}{initFact}}();}
+\DoxyCodeLine{52     \mbox{\hyperlink{structsgv}{sgv}}-\/>gfil = \mbox{\hyperlink{filial_8c_a8d7e42b5a35217abe677ee6cd5b7c4ac}{initGFil}}();}
+\DoxyCodeLine{53     \mbox{\hyperlink{structsgv}{sgv}}-\/>info = \mbox{\hyperlink{sgv_8c_abcefb18137b15b5b389c55ecb79b34c2}{initFileInfo}}();}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} \mbox{\hyperlink{structsgv}{sgv}};}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sgv_8c_a0e5d092c192d7f1643bf2a93e564e4a5}\label{sgv_8c_a0e5d092c192d7f1643bf2a93e564e4a5}} 
+\index{sgv.c@{sgv.c}!loadSGVFromFiles@{loadSGVFromFiles}}
+\index{loadSGVFromFiles@{loadSGVFromFiles}!sgv.c@{sgv.c}}
+\doxysubsubsection{\texorpdfstring{loadSGVFromFiles()}{loadSGVFromFiles()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsgv}{S\+GV}} load\+S\+G\+V\+From\+Files (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsgv}{S\+GV}}}]{sgv,  }\item[{char $\ast$}]{clients\+File\+Path,  }\item[{char $\ast$}]{products\+File\+Path,  }\item[{char $\ast$}]{sales\+File\+Path }\end{DoxyParamCaption})}
+
+
+
+Função carrega a estrutura S\+GV a partir de ficheiros. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & S\+GV a carregar \\
+\hline
+{\em clients\+File\+Path} & Caminho para o ficheiro de Clientes \\
+\hline
+{\em products\+File\+Path} & Caminho para o ficheiro de Produtos \\
+\hline
+{\em sales\+File\+Path} & Caminho para o ficheiro de Vendas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+S\+GV carregado 
+\end{DoxyReturn}
+
+
+Definido na linha 66 do ficheiro sgv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66                                                                                                   \{}
+\DoxyCodeLine{67     \mbox{\hyperlink{structsgv}{sgv}} = \mbox{\hyperlink{sgv_8c_a14c3840c38c574667ca887b40c5250bb}{initSGV}}();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \mbox{\hyperlink{catalogo_8c_aa5e40a6b2652c6db01075d07bfb41619}{tblCat}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, productsFilePath, \textcolor{charliteral}{'p'}, \&\mbox{\hyperlink{structsgv}{sgv}}-\/>info-\/>prodV, \&\mbox{\hyperlink{structsgv}{sgv}}-\/>info-\/>prodL);}
+\DoxyCodeLine{70     \mbox{\hyperlink{catalogo_8c_aa5e40a6b2652c6db01075d07bfb41619}{tblCat}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>cli, clientsFilePath, \textcolor{charliteral}{'c'}, \&\mbox{\hyperlink{structsgv}{sgv}}-\/>info-\/>cliV, \&\mbox{\hyperlink{structsgv}{sgv}}-\/>info-\/>cliL);}
+\DoxyCodeLine{71     \mbox{\hyperlink{faturacao_8c_a3b2855b22c38fe41fdddc85ae91824cc}{loadFactFromCat}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact, \mbox{\hyperlink{structsgv}{sgv}}-\/>prod);}
+\DoxyCodeLine{72     \mbox{\hyperlink{filial_8c_a5794127e6e558eee31684fc5cb5e6aff}{loadGFilFromCat}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, \mbox{\hyperlink{structsgv}{sgv}}-\/>prod, \mbox{\hyperlink{structsgv}{sgv}}-\/>cli);}
+\DoxyCodeLine{73     \mbox{\hyperlink{sales_8c_a48b457392109e50f8a9bf91aa7c3d2c1}{loadFromSales}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, \mbox{\hyperlink{structsgv}{sgv}}-\/>cli, \mbox{\hyperlink{structsgv}{sgv}}-\/>fact, \mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, salesFilePath, \&\mbox{\hyperlink{structsgv}{sgv}}-\/>info-\/>saleV, \&\mbox{\hyperlink{structsgv}{sgv}}-\/>info-\/>saleL);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keywordflow}{return} \mbox{\hyperlink{structsgv}{sgv}};}
+\DoxyCodeLine{76 \}}
+
+\end{DoxyCode}

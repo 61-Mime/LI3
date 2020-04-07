@@ -75,8 +75,8 @@ GFiliais* initGFil() {
 /**
  * @brief       Função inicializa a estrutura TFilialP
  * @param gfil  Apontador para GFiliais
- * @param fil   Inteiro com posição no array fil
- * @param i     Inteiro com posição no array tblp
+ * @param fil   Posição no array fil
+ * @param i     Posição no array tblp
  * @param size  Inteiro com o tamanho para a estrutura
  */
 void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
@@ -89,9 +89,9 @@ void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
 /**
  * @brief       Função inicializa a estrutura ListP
  * @param gfil  Apontador para GFiliais
- * @param fil   Inteiro com posição no array fil
- * @param i     Inteiro com posição no array tblp
- * @param j     Inteiro com posição no array list
+ * @param fil   Posição no array fil
+ * @param i     Posição no array tblp
+ * @param j     Posição no array list
  * @param prod  String com o produto
  */
 void initListP(GFiliais* gfil, int fil, int i, int j, char* prod) {
@@ -110,8 +110,8 @@ void initListP(GFiliais* gfil, int fil, int i, int j, char* prod) {
 /**
  * @brief       Função inicializa a estrutura TFilialC
  * @param gfil  Apontador para GFiliais
- * @param fil   Inteiro com posição no array fil
- * @param i     Inteiro com posição no array tblc
+ * @param fil   Posição no array fil
+ * @param i     Posição no array tblc
  * @param size  Inteiro com o tamanho para a estrutura
  */
 void initTFilialC(GFiliais* gfil, int fil, int i, int size) {
@@ -124,9 +124,9 @@ void initTFilialC(GFiliais* gfil, int fil, int i, int size) {
 /**
  * @brief       Função inicializa a estrutura ListC
  * @param gfil  Apontador para GFiliais
- * @param fil   Inteiro com posição no array fil
- * @param i     Inteiro com posição no array tblc
- * @param j     Inteiro com posição no array list
+ * @param fil   Posição no array fil
+ * @param i     Posição no array tblc
+ * @param j     Posição no array list
  * @param prod  String com o cliente
  */
 void initListC(GFiliais* gfil, int fil, int i, int j, char* cli) {
@@ -164,6 +164,13 @@ void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli) {
     }
 }
 
+/**
+ * @brief       Função conta clientes diferentes de um produto
+ * @param gfil  Apontador para GFiliais
+ * @param fil   Posição no array fil
+ * @param i     Posição no array tblp
+ * @param i2    Posição no array list
+ */
 void contaCli(GFiliais *gfil,int i,int i2,int fil) {
   int i3;
   ListP* lp;
@@ -180,6 +187,15 @@ void contaCli(GFiliais *gfil,int i,int i2,int fil) {
   }
 }
 
+/**
+ * @brief       Função da free dos clientes repetidos de um produto
+ * @param gfil  Apontador para GFiliais
+ * @param fil   Posição no array fil
+ * @param i     Posição no array tblp
+ * @param i2    Posição no array list
+ * @param size  Tamanho lista cliente com repetidos
+ * @param t     destinge cliente N(1) de cliente P(0)
+ */
 void freeRepP(GFiliais *gfil,int fil,int i,int i2,int size,int t) {
   int i3;
   ListP* lp = &gfil->fil[fil].tblp[i].list[i2];
@@ -198,6 +214,9 @@ void freeRepP(GFiliais *gfil,int fil,int i,int i2,int size,int t) {
   }
 }
 
+/**
+ * @brief       Função remove para cada produto os clientes repetidos
+ */
 void remRepP(GFiliais *gfil) {
   int i,i2,i3,i4,fil,c,size;
   ListP* lc;
@@ -305,6 +324,14 @@ void quickSortbyProd(ProdCli *prods, int low, int high)
     }
 }
 
+/**
+ * @brief       Função da free dos produtos repetidos de um cliente
+ * @param gfil  Apontador para GFiliais
+ * @param fil   Posição no array fil
+ * @param i     Posição no array tblc
+ * @param i2    Posição no array list
+ * @param size  Tamanho lista produtos com repetidos
+ */
 void freeRepC(GFiliais *gfil,int fil,int i,int i2,int size) {
   ListC* lc = &gfil->fil[fil].tblc[i].list[i2];
   for(int i3 = lc -> sizeProds; i3 < size;i3++){
@@ -315,6 +342,9 @@ void freeRepC(GFiliais *gfil,int fil,int i,int i2,int size) {
   }
 }
 
+/**
+ * @brief       Função remove para cada cliente os produtos repetidos
+ */
 void remRepC(GFiliais *gfil) {
   int i,i2,i3,i4,fil,c,size;
   ListC* lc;
@@ -348,8 +378,8 @@ void remRepC(GFiliais *gfil) {
 /**
  * @brief         Função adiciona venda à parte da GFiliais organizada por clientes
  * @param gfil    Apontador para GFiliais
- * @param hash    Inteiro com posição no array tblc
- * @param pos     Inteiro com posição no array list
+ * @param hash    Posição no array tblc
+ * @param pos     Posição no array list
  * @param prod    String com Produto da venda
  * @param branch  Inteiro com Filial da venda
  * @param month   Inteiro com Mes da venda
@@ -411,9 +441,11 @@ void freeGFil(GFiliais* gfil) {
 
         free(lp->cliN);
         free(lp->cliP);
+        free(lp->key);
 
         lp->cliN = NULL;
         lp->cliP = NULL;
+        lp->key = NULL;
       }
 
       free(gfil->fil[fil].tblc[i].list);
@@ -436,9 +468,9 @@ void freeGFil(GFiliais* gfil) {
 /**
  * @brief         Função retorna o tamanho da array cliN e cliP da estrutura ListP
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
- * @param j       Inteiro com posição no array list
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
+ * @param j       Posição no array list
  * @return        Inteiro com o tamanho
  */
 int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j) {
@@ -448,9 +480,9 @@ int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j) {
 /**
  * @brief         Função retorna o tamanho da array cliP da estrutura ListP
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
- * @param j       Inteiro com posição no array list
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
+ * @param j       Posição no array list
  * @return        Inteiro com o tamanho
  */
 int getGFilPSizeC(GFiliais* gfil, int branch, int i, int j) {
@@ -460,9 +492,9 @@ int getGFilPSizeC(GFiliais* gfil, int branch, int i, int j) {
 /**
  * @brief         Função retorna o tamanho da array cliN da estrutura ListP
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
- * @param j       Inteiro com posição no array list
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
+ * @param j       Posição no array list
  * @return        Inteiro com o tamanho
  */
 int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j) {
@@ -472,10 +504,10 @@ int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j) {
 /**
  * @brief         Função retorna o cliente da array cliP
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
- * @param j       Inteiro com posição no array list
- * @param k       Inteiro com posição no array cliP
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
+ * @param j       Posição no array list
+ * @param k       Posição no array cliP
  * @return        String com o cliente
  */
 char* getGFilPCliP(GFiliais* gfil, int branch, int i, int j, int k) {
@@ -485,10 +517,10 @@ char* getGFilPCliP(GFiliais* gfil, int branch, int i, int j, int k) {
 /**
  * @brief         Função retorna o cliente da array cliN
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
- * @param j       Inteiro com posição no array list
- * @param k       Inteiro com posição no array cliN
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
+ * @param j       Posição no array list
+ * @param k       Posição no array cliN
  * @return        String com o cliente
  */
 char* getGFilPCliN(GFiliais* gfil, int branch, int i, int j, int k) {
@@ -498,9 +530,9 @@ char* getGFilPCliN(GFiliais* gfil, int branch, int i, int j, int k) {
 /**
  * @brief         Função retorna o endereço da estrutura ListP
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
- * @param j       Inteiro com posição no array list
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
+ * @param j       Posição no array list
  * @return        Apontador para estrutura ListP
  */
 ListP* getGFilPList(GFiliais* gfil, int branch, int i, int j) {
@@ -510,8 +542,8 @@ ListP* getGFilPList(GFiliais* gfil, int branch, int i, int j) {
 /**
  * @brief         Função retorna o tamanho do array de ListP
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
  * @return        Inteiro com o tamanho
  */
 int getGFilPListSize(GFiliais* gfil, int branch, int i) {
@@ -521,9 +553,9 @@ int getGFilPListSize(GFiliais* gfil, int branch, int i) {
 /**
  * @brief         Função retorna o endereço da estrutura ListC
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
- * @param j       Inteiro com posição no array list
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblp
+ * @param j       Posição no array list
  * @return        Apontador para estrutura ListC
  */
 ListC* getGFilCList(GFiliais* gfil, int branch, int i, int j) {
@@ -533,8 +565,8 @@ ListC* getGFilCList(GFiliais* gfil, int branch, int i, int j) {
 /**
  * @brief         Função retorna o tamanho do array de ListC
  * @param gfil    Apontador para GFiliais
- * @param branch  Inteiro com posição no array fil
- * @param i       Inteiro com posição no array tblp
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblc
  * @return        Inteiro com o tamanho
  */
 int getGFilCListSize(GFiliais* gfil, int branch, int i) {

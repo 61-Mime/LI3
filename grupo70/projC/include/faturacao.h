@@ -6,28 +6,7 @@
 #include <string.h>
 #include "catalogo.h"
 
-typedef struct factM {
-  int vendasN;
-  int vendasP;
-  float facturacaoN;
-  float facturacaoP;
-  int unidades;
-} FMensal;
-
-typedef struct fact {
-  char* prod;
-  int ocup;
-  FMensal mesfilial[12][3];
-} Facturacao;
-
-typedef struct Tfact {
-  int size;
-  Facturacao *list;
-} TFacturacao;
-
-typedef struct thashfact {
-  TFacturacao* tbl;
-} THashFact;
+typedef struct thashfact THashFact;
 
 THashFact* initFact();
 void loadFactFromCat(THashFact* fact, Catalogo* prod);

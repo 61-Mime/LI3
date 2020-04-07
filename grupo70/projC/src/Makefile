@@ -4,10 +4,10 @@ ODIR=obj
 CC = gcc
 CFLAGS = -O3 -Wall -g -I$(IDIR)
 
-_DEPS = catalogo.h sales.h faturacao.h filial.h sort.h sgv.h querie.h interface.h auxintrepertador.h apresentacao.h
+_DEPS = catalogo.h sales.h faturacao.h filial.h sort.h sgv.h interface.h auxintrepertador.h querie.h apresentacao.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o catalogo.o sales.o faturacao.o filial.o sort.o sgv.o querie.o interface.o auxintrepertador.o apresentacao.o
+_OBJ = main.o catalogo.o sales.o faturacao.o filial.o sort.o sgv.o interface.o auxintrepertador.o querie.o apresentacao.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)
@@ -15,6 +15,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 
 program: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
+	doxygen Doxyfile
 
 clean:
 	rm -f obj/*.o

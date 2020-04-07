@@ -9,22 +9,7 @@
 #include "faturacao.h"
 #include "filial.h"
 
-typedef struct filesinfo {
-    int prodV;
-    int prodL;
-    int cliV;
-    int cliL;
-    int saleV;
-    int saleL;
-} FileInfo;
-
-typedef struct sgv {
-    Catalogo* cli;
-    Catalogo* prod;
-    THashFact* fact;
-    GFiliais* gfil;
-    FileInfo* info;
-}*SGV;
+typedef struct sgv *SGV;
 
 // Functions
 SGV initSGV();
@@ -33,11 +18,15 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath,
                               char* salesFilePath
                               );
 void destroySGV(SGV sgv);
-int getSGVprodV(FileInfo* info);
-int getSGVprodL(FileInfo* info);
-int getSGVcliV(FileInfo* info);
-int getSGVcliL(FileInfo* info);
-int getSGVsaleV(FileInfo* info);
-int getSGVsaleL(FileInfo* info);
+int getSGVprodV(SGV sgv);
+int getSGVprodL(SGV sgv);
+int getSGVcliV(SGV sgv);
+int getSGVcliL(SGV sgv);
+int getSGVsaleV(SGV sgv);
+int getSGVsaleL(SGV sgv);
+void* getSGVProd(SGV sgv);
+void* getSGVCli(SGV sgv);
+void* getSGVGFiliais(SGV sgv);
+void* getSGVFact(SGV sgv);
 
 #endif

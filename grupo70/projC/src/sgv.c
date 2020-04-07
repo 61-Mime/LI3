@@ -5,6 +5,23 @@
 
 #include "sgv.h"
 
+typedef struct filesinfo {
+    int prodV;
+    int prodL;
+    int cliV;
+    int cliL;
+    int saleV;
+    int saleL;
+} FileInfo;
+
+typedef struct sgv {
+    Catalogo* cli;
+    Catalogo* prod;
+    THashFact* fact;
+    GFiliais* gfil;
+    FileInfo* info;
+}*SGV;
+
 /**
  * @brief   Função que inicializa a estrutura FileInfo
  * @return  Apontador para FileInfo 
@@ -47,6 +64,8 @@ SGV initSGV() {
  * @return                  SGV carregado
  */
 SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, char* salesFilePath) {
+    sgv = initSGV();
+
     tblCat(sgv->prod, productsFilePath, 'p', &sgv->info->prodV, &sgv->info->prodL);
     tblCat(sgv->cli, clientsFilePath, 'c', &sgv->info->cliV, &sgv->info->cliL);
     loadFactFromCat(sgv->fact, sgv->prod);
@@ -71,54 +90,90 @@ void destroySGV(SGV sgv) {
 
 /**
  * @brief       Função que retorna o numero de Produtos Validados
- * @param info  Apontador para FileInfo
+ * @param sgv   Estrutura SGV
  * @return      Inteiro com o numero de Produtos Validados
  */
-int getSGVprodV(FileInfo* info) {
-    return info->prodV;
+int getSGVprodV(SGV sgv) {
+    return sgv->info->prodV;
 }
 
 /**
  * @brief       Função que retorna o numero de Produtos Lidos
- * @param info  Apontador para FileInfo
+ * @param sgv   Estrutura SGV
  * @return      Inteiro com o numero de Produtos Lidos
  */
-int getSGVprodL(FileInfo* info) {
-    return info->prodL;
+int getSGVprodL(SGV sgv) {
+    return sgv->info->prodL;
 }
 
 /**
  * @brief       Função que retorna o numero de Clientes Validados
- * @param info  Apontador para FileInfo
+ * @param sgv   Estrutura SGV
  * @return      Inteiro com o numero de Clientes Validados
  */
-int getSGVcliV(FileInfo* info) {
-    return info->cliV;
+int getSGVcliV(SGV sgv) {
+    return sgv->info->cliV;
 }
 
 /**
  * @brief       Função que retorna o numero de Clientes Lidos
- * @param info  Apontador para FileInfo
+ * @param sgv   Estrutura SGV
  * @return      Inteiro com o numero de Clientes Lidos
  */
-int getSGVcliL(FileInfo* info) {
-    return info->cliL;
+int getSGVcliL(SGV sgv) {
+    return sgv->info->cliL;
 }
 
 /**
  * @brief       Função que retorna o numero de Vendas Validadas
- * @param info  Apontador para FileInfo
+ * @param sgv   Estrutura SGV
  * @return      Inteiro com o numero de Vendas Validadas
  */
-int getSGVsaleV(FileInfo* info) {
-    return info->saleV;
+int getSGVsaleV(SGV sgv) {
+    return sgv->info->saleV;
 }
 
 /**
  * @brief       Função que retorna o numero de Vendas Lidas
- * @param info  Apontador para FileInfo
+ * @param sgv   Estrutura SGV
  * @return      Inteiro com o numero de Vendas Lidas
  */
-int getSGVsaleL(FileInfo* info) {
-    return info->saleL;
+int getSGVsaleL(SGV sgv) {
+    return sgv->info->saleL;
+}
+
+/**
+ * @brief       Função que retorna um apontador para Catalogo de Produtos
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para Catalogo de Produtos
+ */
+void* getSGVProd(SGV sgv) {
+    return sgv->prod;
+}
+
+/**
+ * @brief       Função que retorna um apontador para Catalogo de Clientes
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para Catalogo de Clientes
+ */
+void* getSGVCli(SGV sgv) {
+    return sgv->cli;
+}
+
+/**
+ * @brief       Função que retorna um apontador para GFiliais
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para GFiliais
+ */
+void* getSGVGFiliais(SGV sgv) {
+    return sgv->gfil;
+}
+
+/**
+ * @brief       Função que retorna um apontador para THashFact
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para THashFact
+ */
+void* getSGVFact(SGV sgv) {
+    return sgv->fact;
 }

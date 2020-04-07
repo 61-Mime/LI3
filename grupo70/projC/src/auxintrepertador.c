@@ -30,9 +30,9 @@ void runQuerie1e13(SGV sgv, char* buffer, int load) {
   clock_t start_t, end_t;
 
   if(!temEspaco(buffer)) {
-    c1 = "/Users/luissobral/grupo70/grupo70/projC/files/Clientes.txt";
-    c2 = "/Users/luissobral/grupo70/grupo70/projC/files/Produtos.txt";
-    c3 = "/Users/luissobral/grupo70/grupo70/projC/files/Vendas_1M.txt";
+    c1 = "../files/Clientes.txt";
+    c2 = "../files/Produtos.txt";
+    c3 = "../files/Vendas_1M.txt";
     }
   else {
     c1 = strsep(&buffer, " ");
@@ -50,10 +50,8 @@ void runQuerie1e13(SGV sgv, char* buffer, int load) {
     }
   }
 
-  if(load==1) {
+  if(load==1)
     destroySGV(sgv);
-    sgv = initSGV();
-  }
 
   start_t = clock();
   sgv = loadSGVFromFiles(sgv, c1, c2, c3);

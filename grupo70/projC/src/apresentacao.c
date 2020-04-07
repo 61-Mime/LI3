@@ -186,8 +186,6 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
             printf("%s (N)\n", querie9->lista[i].cliente);
         else if(querie9->lista[i].tipocompra == 2)
             printf("%s (P)\n", querie9->lista[i].cliente);
-        else
-            printf("%s (N/P)\n", querie9->lista[i].cliente);
     }
 
     printf("Numero de Clientes que compraram o produto da filial %d: %d\n", filial, querie9->total);

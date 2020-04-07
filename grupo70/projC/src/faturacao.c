@@ -21,7 +21,10 @@ THashFact* initFact() {
 }
 
 /**
- *@brief função que inicializa a estrutura TFacturacao
+ *@brief      função que inicializa a estrutura TFacturacao
+ *@param fact apontador para THashFact
+ *@param i    posição da tabela a inicializar
+ *@param size tamanho TFacturacao
  */
 void initTFacturacao(THashFact* fact, int i, int size) {
   TFacturacao* f = &fact->tbl[i];
@@ -31,7 +34,11 @@ void initTFacturacao(THashFact* fact, int i, int size) {
 }
 
 /**
- *@brief função que inicializa a estrutura Facturacao e a estrutura Fmensal para cada filial
+ *@brief      função que inicializa a estrutura Facturacao e a estrutura Fmensal para cada filial
+ *@param fact apontador para THash
+ *@param i    posição da Tabela
+ *@param j    posição da Lista
+ *@param key  chave ... inicializar --------------------------------------------------------------------------------
  */
 void initFacturacao(THashFact* fact, int i, int j, char* key) {
   Facturacao *f = &fact->tbl[i].list[j];
@@ -190,7 +197,13 @@ int getFatListSize(THashFact* fact, int i) {
   return fact->tbl[i].size;
 }
 
-
+/**
+ *@brief      função que devolve o número de ocupados da lista
+ *@param fact apontador +ara THashFact
+ *@param i    posição da Tabela
+ *@param j    posição da Lista
+ *@return     inteiro que representa o número de ocupados da lista
+ */
 int getFatOcup(THashFact* fact, int i, int j) {
   return fact->tbl[i].list[j].ocup;
 }

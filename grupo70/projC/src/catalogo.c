@@ -8,8 +8,6 @@
 #define MAX 10
 #define SIZE 26
 
-<<<<<<< HEAD
-=======
 typedef struct cat {
   int size;
   char** list;
@@ -19,7 +17,6 @@ typedef struct catalogo {
   Cat* tbl;
 } Catalogo;
 
->>>>>>> 0b377ade31ed0bc4460aef0383920e93c8763151
 /**
  * @brief   Função inicializa a estrutura Catalogo
  * @return  Apontador para Catalogo
@@ -108,6 +105,11 @@ void addKey(Catalogo* cat, char* key, int i, int* val) {
 
   cat->tbl[i].size ++;
   (*val)++;
+}
+
+int comparatorC(const void *p,const void *q) {
+  int r = strcmp((char *)p,(char *)q);
+  return r;
 }
 
 /**

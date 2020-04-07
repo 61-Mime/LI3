@@ -9,22 +9,8 @@
 #include "faturacao.h"
 #include "filial.h"
 
-typedef struct filesinfo {
-    int prodV;
-    int prodL;
-    int cliV;
-    int cliL;
-    int saleV;
-    int saleL;
-} FileInfo;
-
-typedef struct sgv {
-    Catalogo* cli;
-    Catalogo* prod;
-    THashFact* fact;
-    GFiliais* gfil;
-    FileInfo* info;
-}*SGV;
+typedef struct filesinfo FileInfo;
+typedef struct sgv *SGV;
 
 // Functions
 SGV initSGV();

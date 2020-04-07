@@ -6,15 +6,7 @@
 #include <string.h>
 #include "sort.h"
 
-//STRUCTS CLIENTES
-typedef struct cat {
-  int size;
-  char** list;
-} Cat;
-
-typedef struct catalogo {
-  Cat* tbl;
-} Catalogo;
+typedef struct catalogo Catalogo;
 
 Catalogo* initCat();
 int searchCat(char* key, Catalogo* cat);

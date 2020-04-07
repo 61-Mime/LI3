@@ -3,6 +3,10 @@
 #define SIZE 26
 #define SMAX 10
 
+/**
+ * @brief função que inicializa a estrutura GFiliais, a estrutura THashFilial e as estruturas TFilialC e TFilialP
+ *@return apontador para GFiliais
+ */
 GFiliais* initGFil() {
   GFiliais* gfil = malloc(sizeof(GFiliais));
   gfil->fil = malloc(sizeof(THashFilial) * 3);
@@ -21,6 +25,7 @@ GFiliais* initGFil() {
 
   return gfil;
 }
+
 
 void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
   TFilialP* f = &gfil->fil[fil].tblp[i];

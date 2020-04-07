@@ -35,6 +35,34 @@ Catalogo* initCat() {
 }
 
 /**
+ * @brief       Função de Procura Binária
+ * @param arr   Array de Strings onde procurar
+ * @param code  String a procurar
+ * @param left  Inteiro com o inicio do array
+ * @param right Inteiro com o fim do array
+ * @return      Inteiro com a posição da String no array
+ */
+int binarySearch(char** arr, char* code, int left, int right)
+{
+  int mid, res=(-1);
+
+  while (left<=right && res==(-1))
+  {
+    mid = left + (right-left)/2;
+
+    if (strcmp(arr[mid], code) == 0)
+        res = mid;
+
+    if (strcmp(arr[mid], code) < 0)
+        left = mid + 1;
+
+    else right = mid - 1;
+  }
+
+  return res;
+}
+
+/**
  * @brief     Função procura uma key num Catalogo
  * @param key Chave a procurar
  * @param cat Apontador para o Catalogo
@@ -44,6 +72,7 @@ int searchCat(char* key, Catalogo* cat){
   int hash, res;
 
   hash = hashCat(key[0]);
+  
   res = binarySearch(cat->tbl[hash].list, key, 0, cat->tbl[hash].size-1);
 
   return res;
@@ -108,8 +137,7 @@ void addKey(Catalogo* cat, char* key, int i, int* val) {
 }
 
 int comparatorC(const void *p,const void *q) {
-  int r = strcmp((char *)p,(char *)q);
-  return r;
+  return strcmp(*(const char **)p, *(const char **)q);
 }
 
 /**
@@ -143,8 +171,7 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   fclose(f);
 
   for(i=0; i<SIZE; i++)
-    qsort(cat->tbl[i].list, 0, cat->tbl[i].size - 1,comparatorC);
-    //quickSort(cat->tbl[i].list, 0, cat->tbl[i].size - 1);
+    qsort(cat->tbl[i].list, cat->tbl[i].size, sizeof(char*), comparatorC);
 
   free(buffer);
 

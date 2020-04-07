@@ -2,6 +2,11 @@
 
 #define MAX 100
 
+
+/**
+ *@brief função que define o interpretador
+ *@param sgv sistema de gestão de vendas a ser interpretado
+ */
 void intrepertador(SGV sgv) {
     int r=1, querie=-1, tam = 0, load=0;
     char *buffer = malloc(MAX*sizeof(char)), *s = NULL, *aux=NULL;
@@ -31,7 +36,7 @@ void intrepertador(SGV sgv) {
 
         else if(atoi(s)!=1 && atoi(s)!=0 && load==0)
           printf("O SGV ainda não foi carregado\n");
-        
+
         else switch((querie = atoi(s))) {
               case 1:
                   runQuerie1e13(sgv, aux, load);
@@ -55,7 +60,7 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 6:
-                  runQuerie6(sgv, aux, tam);
+                  runQuerie6(sgv, tam);
                   break;
 
               case 7:
@@ -89,7 +94,7 @@ void intrepertador(SGV sgv) {
     }
 
     printf("\nA Sair do Programa\n");
-    
+
     free(buffer);
     buffer = NULL;
 }

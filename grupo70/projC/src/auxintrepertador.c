@@ -1,5 +1,10 @@
 #include "auxintrepertador.h"
 
+/**
+ *@brief   função que verifica se uma String tem ou nao o carater espaço
+ *@param s String a ser verificada
+ *@return  inteiro booleano que representa a existência ou não do carater espaço na String
+ */
 int temEspaco(char* s) {
   int r = 0, i;
   for(i=0; s[i] && !r; i++)
@@ -8,6 +13,13 @@ int temEspaco(char* s) {
   return r;
 }
 
+
+/**
+ *@brief        função que aplica as querie 1 e 13
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas as queries 1 e 13
+ *@param buffer argumentos do comando utilizado para correr as queries 1 e 13
+ *@param load   flag que indica se o sgv ja foi inicializado
+ */
 void runQuerie1e13(SGV sgv, char* buffer, int load) {
   char *c1 = NULL, *c2 = NULL, *c3 = NULL;
   clock_t start_t, end_t;
@@ -51,6 +63,11 @@ void runQuerie1e13(SGV sgv, char* buffer, int load) {
   querie13 = NULL;
 }
 
+/**
+ *@brief        função que aplica a querie 2
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 2
+ *@param buffer argumento do comando utilizado para correr a querie 2
+ */
 void runQuerie2(SGV sgv, char* buffer) {
     char *c1 = NULL;
 
@@ -73,6 +90,11 @@ void runQuerie2(SGV sgv, char* buffer) {
     }
 }
 
+/**
+ *@brief        função que aplica a querie 3
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 3
+ *@param buffer argumentos do comando utilizado para correr a querie 3
+ */
 void runQuerie3(SGV sgv, char* buffer){
     char *c1 = NULL, *c2 = NULL, *c3 = NULL;
 
@@ -104,6 +126,11 @@ void runQuerie3(SGV sgv, char* buffer){
     }
 }
 
+/**
+ *@brief        função que aplica a querie 4
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 4
+ *@param buffer argumento do comando utilizado para correr a querie 4
+ */
 void runQuerie4(SGV sgv, char* buffer) {
   char *c1 = NULL;
 
@@ -126,6 +153,11 @@ void runQuerie4(SGV sgv, char* buffer) {
   }
 }
 
+/**
+ *@brief        função que aplica a querie 5
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 5
+ *@param tam    tamanho a partir do qual o comando é inválido
+ */
 void runQuerie5(SGV sgv, int tam) {
   if(tam>2)
     printf("Querie inválida\n");
@@ -145,7 +177,12 @@ void runQuerie5(SGV sgv, int tam) {
   }
 }
 
-void runQuerie6(SGV sgv, char* buffer, int tam) {
+/**
+ *@brief        função que aplica a querie 6
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 6
+ *@param tam    tamanho a partir do qual o comando é inválido
+ */
+void runQuerie6(SGV sgv, int tam) {
     clock_t start_t, end_t;
 
     if(tam>2)
@@ -163,6 +200,11 @@ void runQuerie6(SGV sgv, char* buffer, int tam) {
     }
 }
 
+/**
+ *@brief        função que aplica a querie 7
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 7
+ *@param buffer argumento do comando utilizado para correr a querie 7
+ */
 void runQuerie7(SGV sgv, char* buffer) {
     char *c1 = NULL;
     clock_t start_t, end_t;
@@ -184,6 +226,11 @@ void runQuerie7(SGV sgv, char* buffer) {
     }
 }
 
+/**
+ *@brief        função que aplica a querie 8
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 8
+ *@param buffer argumentos do comando utilizado para correr a querie 8
+ */
 void runQuerie8(SGV sgv, char* buffer) {
     char *c1 = NULL, *c2 = NULL;
     clock_t start_t, end_t;
@@ -211,6 +258,11 @@ void runQuerie8(SGV sgv, char* buffer) {
     }
 }
 
+/**
+ *@brief        função que aplica a querie 9
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 9
+ *@param buffer argumentos do comando utilizado para correr a querie 9
+ */
 void runQuerie9(SGV sgv, char* buffer) {
     char *c1 = NULL, *c2 = NULL;
     clock_t start_t, end_t;
@@ -241,6 +293,11 @@ void runQuerie9(SGV sgv, char* buffer) {
     }
 }
 
+/**
+ *@brief        função que aplica a querie 10
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 10
+ *@param buffer argumentos do comando utilizado para correr a querie 10
+ */
 void runQuerie10(SGV sgv, char* buffer) {
   char *c1 = NULL,*c2 = NULL;
   clock_t start_t, end_t;
@@ -269,6 +326,11 @@ void runQuerie10(SGV sgv, char* buffer) {
   }
 }
 
+/**
+ *@brief        função que aplica a querie 11
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 11
+ *@param buffer argumento do comando utilizado para correr a querie 11
+ */
 void runQuerie11(SGV sgv, char* buffer) {
   clock_t start_t, end_t;
 
@@ -290,6 +352,11 @@ void runQuerie11(SGV sgv, char* buffer) {
   }
 }
 
+/**
+ *@brief        função que aplica a querie 12
+ *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 12
+ *@param buffer argumentos do comando utilizado para correr a querie 12
+ */
 void runQuerie12(SGV sgv, char* buffer) {
   char *c1 = NULL, *c2 = NULL;
   clock_t start_t, end_t;

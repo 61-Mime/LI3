@@ -1,5 +1,8 @@
 #include "apresentacao.h"
 
+/**
+ *@brief função que mostra o menu dos comandos que o utilizador pode usar
+ */
 void menu() {
     system("clear");
     printf("\n- 1 <pathProd> <pathCli> <pathSales>\n");
@@ -17,6 +20,9 @@ void menu() {
     printf("- 13\n");
 }
 
+/**
+ *@brief função que imprime uma tabela de Strings
+ */
 void printArray(char** arr, int size) {
     int i, j;
 
@@ -29,10 +35,19 @@ void printArray(char** arr, int size) {
     }
 }
 
+/**
+ *@brief         função que imprime o tempo que a querie 1 demora a executar
+ *@param start_t momento em que a querie 1 inicia
+ *@param end_t   momento em que a querie 1 finda
+ */
 void printQ1(clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 1: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief        função que imprime o número de produtos começados por um determinado char
+ *@param letter char que começa o nome dos produtos
+ */
 void printQ2(Q2* querie2, char letter) {
     if(querie2 == NULL) {
         printf("Letra inválida\n");
@@ -44,6 +59,11 @@ void printQ2(Q2* querie2, char letter) {
     printf("\nNumero de Produtos começados por %c: %d\n", letter, querie2->size);
 }
 
+/**
+ *@brief        função que imprime a faturação de um determinado produto, por filial e mês
+ *@param prodID String que representa o produto
+ *@param month  mês do qual se pretende obter a faturação
+ */
 void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
 
@@ -71,6 +91,9 @@ void printQ3(Q3* querie3, char* prodID, int month) {
     }
 }
 
+/**
+ *@brief função que imprime o número de produtos não comprados
+ */
 void printQ4(Q4* querie4) {
 
     printArray(querie4->prods, querie4->size);
@@ -78,12 +101,21 @@ void printQ4(Q4* querie4) {
     printf("\nProdutos não comprados:%d\n", querie4->size);
 }
 
+/**
+ *@brief função que imprime o número de clientes que realizaram compras em todas as Filiais
+ */
 void printQ5(Q5* querie5) {
     printArray(querie5->cli, querie5->size);
 
     printf("\nClientes que realizaram compras em todas as Filiais: %d\n", querie5->size);
 }
 
+/**
+ *@brief         função que imprime os cliente que não compraram, os produtos não comprados e o tempo de execução desta querie
+ *@param querie6 apontador para a estrutura Q6
+ *@param start_t momento em que a querie 6 inicia
+ *@param end_t   momento em que a querie 6 finda
+ */
 void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
     printf("\nClientes não compradores: %d\n", querie6->nCli);
     printf("Produtos não comprados: %d\n", querie6->nProd);
@@ -91,6 +123,12 @@ void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 6: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief         função que imprime os produtos comprados por um cliente e o tempo de execução desta querie
+ *@param querie7 apontador para a estrutura Q7
+ *@param start_t momento em que a querie 7 inicia
+ *@param end_t   momento em que a querie 7 finda
+ */
 void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     int i;
 
@@ -106,6 +144,12 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 7: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief         função que imprime o total de vendas, o total faturado e o tempo de execução desta querie
+ *@param querie8 apontador para a estrutura Q8
+ *@param start_t momento em que a querie 8 inicia
+ *@param end_t   momento em que a querie 8 finda
+ */
 void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
     printf("\nTotal vendas: %d\n", querie8->vendas);
     printf("Total faturado: %.2f\n", querie8->fact);
@@ -113,6 +157,13 @@ void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 8: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief         função que imprime a lista de clientes para um determinado produto numa determinada filial e o tempo de execução desta querie
+ *@param filial  filial a ser analisada
+ *@param querie9 apontador para a estrutura Q9
+ *@param start_t momento em que a querie 9 inicia
+ *@param end_t   momento em que a querie 9 finda
+ */
 void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     int i;
 
@@ -130,11 +181,17 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
             printf("%s (N/P)\n", querie9->lista[i].cliente);
     }
 
-    printf("Numero de Clientes que comraram o produto da filial %d: %d\n", filial, querie9->total);
+    printf("Numero de Clientes que compraram o produto da filial %d: %d\n", filial, querie9->total);
 
     printf("\nTempo de execução da Querie 9: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief          função que imprime por ordem decrescente de quantidade os produtos que um determinado cliente comprou e o tempo de execução desta querie
+ *@param querie10 apontador para a estrutura Q10
+ *@param start_t  momento em que a querie 10 inicia
+ *@param end_t    momento em que a querie 10 finda
+ */
 void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   int i;
 
@@ -149,6 +206,12 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   printf("\nTempo de execução da Querie 10: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief          função que imprime por ordem decrescente o número de produtos mais vendido em todo o ano, indicando o número total de clientes e unidades vendidas por filial, e o tempo de execução desta querie
+ *@param querie11 apontador para a estrutura Q11
+ *@param start_t  momento em que a querie 11 inicia
+ *@param end_t    momento em que a querie 11 finda
+ */
 void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
   int i;
 
@@ -164,6 +227,12 @@ void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
   printf("\nTempo de execução da Querie 11: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief          função que imprime os n produtos mais comprados por um determinado cliente durante o ano e o tempo de execução desta querie
+ *@param querie12 apontador para a estrutura Q12
+ *@param start_t  momento em que a querie 12 inicia
+ *@param end_t    momento em que a querie 12 finda
+ */
 void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
   int i;
 
@@ -178,6 +247,10 @@ void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
   printf("\nTempo de execução da Querie 12: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+/**
+ *@brief          função que imprime os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas
+ *@param querie13 apontador para a estrutura Q13
+ */
 void printQ13(Q13* querie13) {
     printf("\nFicheiro de Clientes usado: %s\n", querie13->pathCli);
     printf("Numero de Clientes Lidos: %d\n", querie13->cliL);

@@ -67,22 +67,20 @@ $(function() {
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;sgv.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;interface.h&quot;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;time.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<a class="code" href="structsgv.html">SGV</a> <a class="code" href="structsgv.html">sgv</a>;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">int</span> main() {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;  <span class="comment">//intrepertador(sgv);</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <a class="code" href="structsgv.html">sgv</a> = <a class="code" href="sgv_8c.html#a0e5d092c192d7f1643bf2a93e564e4a5">loadSGVFromFiles</a>(<a class="code" href="structsgv.html">sgv</a>, <span class="stringliteral">&quot;../files/Clientes.txt&quot;</span>, <span class="stringliteral">&quot;../files/Produtos.txt&quot;</span>, <span class="stringliteral">&quot;../files/Vendas_1M.txt&quot;</span>);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="comment">//printf(&quot;%d\n&quot;, getGFilPListSize(sgv-&gt;gfil, 0, 1));</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<a class="code" href="structsgv.html">SGV</a> <a class="code" href="structsgv.html">sgv</a>;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">int</span> main() {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;  <a class="code" href="interface_8c.html#a535d00c1f839f08fa7ff739914a2bd5a">intrepertador</a>(<a class="code" href="structsgv.html">sgv</a>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  <a class="code" href="sgv_8c.html#a7527694a42981c525dade1439705c706">destroySGV</a>(<a class="code" href="structsgv.html">sgv</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructsgv_html"><div class="ttname"><a href="structsgv.html">sgv</a></div><div class="ttdef"><b>Definition:</b> <a href="sgv_8c_source.html#l00017">sgv.c:17</a></div></div>
-<div class="ttc" id="asgv_8c_html_a0e5d092c192d7f1643bf2a93e564e4a5"><div class="ttname"><a href="sgv_8c.html#a0e5d092c192d7f1643bf2a93e564e4a5">loadSGVFromFiles</a></div><div class="ttdeci">SGV loadSGVFromFiles(SGV sgv, char *clientsFilePath, char *productsFilePath, char *salesFilePath)</div><div class="ttdoc">Função carrega a estrutura SGV a partir de ficheiros.</div><div class="ttdef"><b>Definition:</b> <a href="sgv_8c_source.html#l00066">sgv.c:66</a></div></div>
+<div class="ttc" id="asgv_8c_html_a7527694a42981c525dade1439705c706"><div class="ttname"><a href="sgv_8c.html#a7527694a42981c525dade1439705c706">destroySGV</a></div><div class="ttdeci">void destroySGV(SGV sgv)</div><div class="ttdoc">Função que liberta o espaço de memória ocupado pelo SGV.</div><div class="ttdef"><b>Definition:</b> <a href="sgv_8c_source.html#l00082">sgv.c:82</a></div></div>
+<div class="ttc" id="ainterface_8c_html_a535d00c1f839f08fa7ff739914a2bd5a"><div class="ttname"><a href="interface_8c.html#a535d00c1f839f08fa7ff739914a2bd5a">intrepertador</a></div><div class="ttdeci">void intrepertador(SGV sgv)</div><div class="ttdoc">função que define o interpretador</div><div class="ttdef"><b>Definition:</b> <a href="interface_8c_source.html#l00015">interface.c:15</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Gerado por &#160;<a href="http://www.doxygen.org/index.html">

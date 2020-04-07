@@ -90,60 +90,64 @@ apontador para Q10
 \end{DoxyReturn}
 
 
-Definido na linha 376 do ficheiro querie.\+c.
+Definido na linha 381 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{376                                                                \{}
-\DoxyCodeLine{377   \textcolor{keywordtype}{int} pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(cliID, \mbox{\hyperlink{structsgv}{sgv}}-\/>cli),hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(cliID[0]),i,i2,c;}
-\DoxyCodeLine{378 }
-\DoxyCodeLine{379   \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
-\DoxyCodeLine{380     \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{381 }
-\DoxyCodeLine{382   \mbox{\hyperlink{structlistc}{ListC}} *l1,*l2,*l3;}
-\DoxyCodeLine{383   Q10 *querie10 = malloc(\textcolor{keyword}{sizeof}(Q10));}
-\DoxyCodeLine{384   querie10 -\/> size = 0;}
-\DoxyCodeLine{385   querie10 -\/> produtos = NULL;}
+\DoxyCodeLine{381                                                                  \{}
+\DoxyCodeLine{382   \textcolor{keywordtype}{int} pos, hash, i, i2, c;}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384   \textcolor{keywordtype}{void}* cli = \mbox{\hyperlink{sgv_8c_a2a6bf71cc5e7727e2806b9759bc2307d}{getSGVCli}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{385   \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
 \DoxyCodeLine{386 }
-\DoxyCodeLine{387   l1 = \&\mbox{\hyperlink{structsgv}{sgv}} -\/> gfil -\/> fil[0].tblc[hash].list[pos];}
-\DoxyCodeLine{388   l2 = \&\mbox{\hyperlink{structsgv}{sgv}} -\/> gfil -\/> fil[1].tblc[hash].list[pos];}
-\DoxyCodeLine{389   l3 = \&\mbox{\hyperlink{structsgv}{sgv}} -\/> gfil -\/> fil[2].tblc[hash].list[pos];}
-\DoxyCodeLine{390 }
-\DoxyCodeLine{391   querie10 -\/> size = l1-\/>sizeProds + l2-\/>sizeProds + l3-\/>sizeProds;}
-\DoxyCodeLine{392   querie10 -\/> produtos = malloc(\textcolor{keyword}{sizeof}(P)*querie10-\/>size);}
-\DoxyCodeLine{393 }
-\DoxyCodeLine{394   \textcolor{keywordflow}{for}(i = 0;i < l1-\/>sizeProds;i++) \{}
-\DoxyCodeLine{395     querie10 -\/> produtos[i].quantidade = l1 -\/> prods[i].uni[month -\/ 1];}
-\DoxyCodeLine{396     strcpy(querie10 -\/> produtos[i].prod,l1 -\/> prods[i].prod);}
-\DoxyCodeLine{397   \}}
-\DoxyCodeLine{398 }
-\DoxyCodeLine{399   \textcolor{keywordflow}{for}(i2 = 0;i2 <l2-\/>sizeProds;i2++,i++) \{}
-\DoxyCodeLine{400     querie10 -\/> produtos[i].quantidade = l2 -\/> prods[i2].uni[month -\/ 1];}
-\DoxyCodeLine{401     strcpy(querie10 -\/> produtos[i].prod,l2 -\/> prods[i2].prod);}
-\DoxyCodeLine{402   \}}
-\DoxyCodeLine{403   \textcolor{keywordflow}{for}(i2 = 0;i2 < l3-\/>sizeProds;i++,i2++) \{}
-\DoxyCodeLine{404     querie10 -\/> produtos[i].quantidade = l3 -\/> prods[i2].uni[month -\/ 1];}
-\DoxyCodeLine{405     strcpy(querie10 -\/> produtos[i].prod,l3 -\/> prods[i2].prod);}
-\DoxyCodeLine{406   \}}
-\DoxyCodeLine{407 }
-\DoxyCodeLine{408   \mbox{\hyperlink{querie_8c_a19b74a6357b3d71184fc358045f6494f}{quickSortbyP}}(querie10-\/>produtos,0,querie10-\/>size -\/ 1);}
-\DoxyCodeLine{409 }
-\DoxyCodeLine{410   \textcolor{keywordflow}{for}(i = 0,c = 1;c < querie10-\/>size;i++) \{}
-\DoxyCodeLine{411     \textcolor{keywordflow}{for}(i2 = c;i2 < querie10-\/>size \&\& !strcmp(querie10-\/>produtos[i2].prod,querie10-\/>produtos[i].prod);i2++)}
-\DoxyCodeLine{412       querie10-\/>produtos[i].quantidade += querie10-\/>produtos[i2].quantidade;}
-\DoxyCodeLine{413 }
-\DoxyCodeLine{414     \textcolor{keywordflow}{if}(i2 != i + 1 \&\& i2 < querie10-\/>size)}
-\DoxyCodeLine{415       \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&querie10-\/>produtos[i + 1],\&querie10-\/>produtos[i2]);}
-\DoxyCodeLine{416 }
-\DoxyCodeLine{417     c = i2 + 1;}
-\DoxyCodeLine{418     \textcolor{keywordflow}{if}(i2 == querie10 -\/> size)i-\/-\/;}
-\DoxyCodeLine{419   \}}
-\DoxyCodeLine{420   querie10 -\/> size = i + 1;}
+\DoxyCodeLine{387   pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(cliID, cli);}
+\DoxyCodeLine{388   hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(cliID[0]);}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390   \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
+\DoxyCodeLine{391     \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393   Q10 *querie10 = malloc(\textcolor{keyword}{sizeof}(Q10));}
+\DoxyCodeLine{394   querie10-\/>size = 0;}
+\DoxyCodeLine{395   querie10-\/>produtos = NULL;}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397   querie10-\/>size = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 0, hash, pos) }
+\DoxyCodeLine{398                  + \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 1, hash, pos) }
+\DoxyCodeLine{399                  + \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 2, hash, pos);}
+\DoxyCodeLine{400   querie10-\/>produtos = malloc(\textcolor{keyword}{sizeof}(P) * querie10-\/>size);}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402   \textcolor{keywordflow}{for}(i = 0; i<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 0, hash, pos) ;i++) \{}
+\DoxyCodeLine{403     querie10-\/>produtos[i].quantidade = \mbox{\hyperlink{filial_8c_a9a57e88b5dd17a22baebfdffc6a16697}{getGFilCuni}}(gfil, 0, hash, pos, i, month-\/1);}
+\DoxyCodeLine{404     strcpy(querie10-\/>produtos[i].prod, \mbox{\hyperlink{filial_8c_a695454759e7f549625e2a816384e7375}{getGFilCprod}}(gfil, 0, hash, pos, i));}
+\DoxyCodeLine{405   \}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407   \textcolor{keywordflow}{for}(i2 = 0; i2<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 1, hash, pos); i2++,i++) \{}
+\DoxyCodeLine{408     querie10-\/>produtos[i].quantidade = \mbox{\hyperlink{filial_8c_a9a57e88b5dd17a22baebfdffc6a16697}{getGFilCuni}}(gfil, 1, hash, pos, i, month-\/1);}
+\DoxyCodeLine{409     strcpy(querie10-\/>produtos[i].prod, \mbox{\hyperlink{filial_8c_a695454759e7f549625e2a816384e7375}{getGFilCprod}}(gfil, 1, hash, pos, i));}
+\DoxyCodeLine{410   \}}
+\DoxyCodeLine{411   \textcolor{keywordflow}{for}(i2 = 0; i2<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 2, hash, pos) ;i++,i2++) \{}
+\DoxyCodeLine{412     querie10-\/>produtos[i].quantidade = \mbox{\hyperlink{filial_8c_a9a57e88b5dd17a22baebfdffc6a16697}{getGFilCuni}}(gfil, 2, hash, pos, i, month-\/1);}
+\DoxyCodeLine{413     strcpy(querie10-\/>produtos[i].prod, \mbox{\hyperlink{filial_8c_a695454759e7f549625e2a816384e7375}{getGFilCprod}}(gfil, 2, hash, pos, i));}
+\DoxyCodeLine{414   \}}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416   \mbox{\hyperlink{querie_8c_a19b74a6357b3d71184fc358045f6494f}{quickSortbyP}}(querie10-\/>produtos,0,querie10-\/>size -\/ 1);}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418   \textcolor{keywordflow}{for}(i = 0,c = 1;c < querie10-\/>size;i++) \{}
+\DoxyCodeLine{419     \textcolor{keywordflow}{for}(i2 = c;i2 < querie10-\/>size \&\& !strcmp(querie10-\/>produtos[i2].prod,querie10-\/>produtos[i].prod);i2++)}
+\DoxyCodeLine{420       querie10-\/>produtos[i].quantidade += querie10-\/>produtos[i2].quantidade;}
 \DoxyCodeLine{421 }
-\DoxyCodeLine{422   \mbox{\hyperlink{querie_8c_a1148042eb79432fec4de299d5fc83f5b}{quickSortbyQP}}(querie10-\/>produtos,0,querie10-\/>size -\/ 1);}
-\DoxyCodeLine{423 }
-\DoxyCodeLine{424   \textcolor{keywordflow}{return} querie10;}
-\DoxyCodeLine{425 \}}
+\DoxyCodeLine{422     \textcolor{keywordflow}{if}(i2 != i + 1 \&\& i2 < querie10-\/>size)}
+\DoxyCodeLine{423       \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&querie10-\/>produtos[i + 1],\&querie10-\/>produtos[i2]);}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425     c = i2 + 1;}
+\DoxyCodeLine{426     \textcolor{keywordflow}{if}(i2 == querie10 -\/> size)i-\/-\/;}
+\DoxyCodeLine{427   \}}
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429   querie10-\/>size = i + 1;}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431   \mbox{\hyperlink{querie_8c_a1148042eb79432fec4de299d5fc83f5b}{quickSortbyQP}}(querie10-\/>produtos,0,querie10-\/>size -\/ 1);}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433   \textcolor{keywordflow}{return} querie10;}
+\DoxyCodeLine{434 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a0fcdb1d82b62a91f80b76fe3ebdfe5f4}\label{querie_8c_a0fcdb1d82b62a91f80b76fe3ebdfe5f4}} 
@@ -166,31 +170,34 @@ apontador para Q6
 \end{DoxyReturn}
 
 
-Definido na linha 162 do ficheiro querie.\+c.
+Definido na linha 174 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{162                                                    \{}
-\DoxyCodeLine{163     \textcolor{keywordtype}{int} i, j;}
-\DoxyCodeLine{164     Q6* querie6 = malloc(\textcolor{keyword}{sizeof}(Q6));}
-\DoxyCodeLine{165 }
-\DoxyCodeLine{166     querie6-\/>nCli = 0;}
-\DoxyCodeLine{167     querie6-\/>nProd = 0;}
-\DoxyCodeLine{168 }
-\DoxyCodeLine{169     \textcolor{keywordflow}{for}(i=0; i<SIZE; i++)}
-\DoxyCodeLine{170       \textcolor{keywordflow}{for}(j=0; j<\mbox{\hyperlink{filial_8c_af1be0314dddc1b50bddc9459acf792ac}{getGFilCListSize}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 0, i); j++)}
-\DoxyCodeLine{171         \textcolor{keywordflow}{if}(\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 0, i, j)==0 \&\&}
-\DoxyCodeLine{172            \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 1, i, j)==0 \&\&}
-\DoxyCodeLine{173            \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 2, i, j)==0)}
-\DoxyCodeLine{174            querie6-\/>nCli++;}
-\DoxyCodeLine{175 }
-\DoxyCodeLine{176     \textcolor{keywordflow}{for}(i=0; i<SIZE; i++)}
-\DoxyCodeLine{177       \textcolor{keywordflow}{for}(j=0; j<\mbox{\hyperlink{faturacao_8c_aadb09df2547eea072b899a5828071cd8}{getFatListSize}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact, i); j++)}
-\DoxyCodeLine{178         \textcolor{keywordflow}{if}(!\mbox{\hyperlink{faturacao_8c_a1e071f80c904f822e7a39c15f073d581}{getFatOcup}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact, i, j))}
-\DoxyCodeLine{179           querie6-\/>nProd++;}
-\DoxyCodeLine{180 }
-\DoxyCodeLine{181     \textcolor{keywordflow}{return} querie6;}
-\DoxyCodeLine{182 \}}
+\DoxyCodeLine{174                                                    \{}
+\DoxyCodeLine{175     \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{178     \textcolor{keywordtype}{void}* \mbox{\hyperlink{structfact}{fact}} = \mbox{\hyperlink{sgv_8c_a0d0637a2667d157d147ae8bf5a3f38ee}{getSGVFact}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     Q6* querie6 = malloc(\textcolor{keyword}{sizeof}(Q6));}
+\DoxyCodeLine{181     querie6-\/>nCli = 0;}
+\DoxyCodeLine{182     querie6-\/>nProd = 0;}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     \textcolor{keywordflow}{for}(i=0; i<SIZE; i++)}
+\DoxyCodeLine{185       \textcolor{keywordflow}{for}(j=0; j<\mbox{\hyperlink{filial_8c_af1be0314dddc1b50bddc9459acf792ac}{getGFilCListSize}}(gfil, 0, i); j++)}
+\DoxyCodeLine{186         \textcolor{keywordflow}{if}(\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 0, i, j)==0 \&\&}
+\DoxyCodeLine{187            \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 1, i, j)==0 \&\&}
+\DoxyCodeLine{188            \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 2, i, j)==0)}
+\DoxyCodeLine{189            querie6-\/>nCli++;}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{keywordflow}{for}(i=0; i<SIZE; i++)}
+\DoxyCodeLine{192       \textcolor{keywordflow}{for}(j=0; j<\mbox{\hyperlink{faturacao_8c_aadb09df2547eea072b899a5828071cd8}{getFatListSize}}(\mbox{\hyperlink{structfact}{fact}}, i); j++)}
+\DoxyCodeLine{193         \textcolor{keywordflow}{if}(!\mbox{\hyperlink{faturacao_8c_a1e071f80c904f822e7a39c15f073d581}{getFatOcup}}(\mbox{\hyperlink{structfact}{fact}}, i, j))}
+\DoxyCodeLine{194           querie6-\/>nProd++;}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{keywordflow}{return} querie6;}
+\DoxyCodeLine{197 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_ac3e399b970638e8d66b0a2203be5a0f6}\label{querie_8c_ac3e399b970638e8d66b0a2203be5a0f6}} 
@@ -208,32 +215,35 @@ apontador para Q5
 \end{DoxyReturn}
 
 
-Definido na linha 134 do ficheiro querie.\+c.
+Definido na linha 143 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{134                                      \{}
-\DoxyCodeLine{135     \textcolor{keywordtype}{int} i, j, size1, size2, size3;}
-\DoxyCodeLine{136     Q5* querie5 = malloc(\textcolor{keyword}{sizeof}(Q5));}
-\DoxyCodeLine{137 }
-\DoxyCodeLine{138     querie5-\/>cli = NULL;}
-\DoxyCodeLine{139     querie5-\/>size = 0;}
-\DoxyCodeLine{140 }
-\DoxyCodeLine{141     \textcolor{keywordflow}{for}(i=0; i<SIZE; i++)}
-\DoxyCodeLine{142       \textcolor{keywordflow}{for}(j=0; j<\mbox{\hyperlink{filial_8c_af1be0314dddc1b50bddc9459acf792ac}{getGFilCListSize}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil,0,i); j++) \{}
-\DoxyCodeLine{143         size1 = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 0, i, j);}
-\DoxyCodeLine{144         size2 = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 1, i, j);}
-\DoxyCodeLine{145         size3 = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 2, i, j);}
-\DoxyCodeLine{146 }
-\DoxyCodeLine{147         \textcolor{keywordflow}{if}(size1>0 \&\& size2>0 \&\& size3>0)\{}
-\DoxyCodeLine{148           querie5-\/>cli = realloc(querie5-\/>cli, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*) * (querie5-\/>size + 1));}
-\DoxyCodeLine{149           querie5-\/>cli[querie5-\/>size] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})*SMAX);}
-\DoxyCodeLine{150           strcpy(querie5-\/>cli[querie5-\/>size], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, i, j));}
-\DoxyCodeLine{151           querie5-\/>size++;}
-\DoxyCodeLine{152         \}}
-\DoxyCodeLine{153       \}}
-\DoxyCodeLine{154     \textcolor{keywordflow}{return} querie5;}
-\DoxyCodeLine{155 \}}
+\DoxyCodeLine{143                                      \{}
+\DoxyCodeLine{144     \textcolor{keywordtype}{int} i, j, size1, size2, size3;}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{147     \textcolor{keywordtype}{void}* prod = \mbox{\hyperlink{sgv_8c_a2284fa6b582684650980af4ed87f497b}{getSGVProd}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     Q5* querie5 = malloc(\textcolor{keyword}{sizeof}(Q5));}
+\DoxyCodeLine{150     querie5-\/>cli = NULL;}
+\DoxyCodeLine{151     querie5-\/>size = 0;}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \textcolor{keywordflow}{for}(i=0; i<SIZE; i++)}
+\DoxyCodeLine{154       \textcolor{keywordflow}{for}(j=0; j<\mbox{\hyperlink{filial_8c_af1be0314dddc1b50bddc9459acf792ac}{getGFilCListSize}}(gfil,0,i); j++) \{}
+\DoxyCodeLine{155         size1 = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 0, i, j);}
+\DoxyCodeLine{156         size2 = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 1, i, j);}
+\DoxyCodeLine{157         size3 = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 2, i, j);}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159         \textcolor{keywordflow}{if}(size1>0 \&\& size2>0 \&\& size3>0)\{}
+\DoxyCodeLine{160           querie5-\/>cli = realloc(querie5-\/>cli, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*) * (querie5-\/>size + 1));}
+\DoxyCodeLine{161           querie5-\/>cli[querie5-\/>size] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})*SMAX);}
+\DoxyCodeLine{162           strcpy(querie5-\/>cli[querie5-\/>size], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(prod, i, j));}
+\DoxyCodeLine{163           querie5-\/>size++;}
+\DoxyCodeLine{164         \}}
+\DoxyCodeLine{165       \}}
+\DoxyCodeLine{166     \textcolor{keywordflow}{return} querie5;}
+\DoxyCodeLine{167 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a1132fd4d3fa4f34037c4e01245d54178}\label{querie_8c_a1132fd4d3fa4f34037c4e01245d54178}} 
@@ -260,64 +270,68 @@ apontador para Q12
 \end{DoxyReturn}
 
 
-Definido na linha 597 do ficheiro querie.\+c.
+Definido na linha 611 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{597                                                                     \{}
-\DoxyCodeLine{598   \textcolor{keywordtype}{int} pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(clientID, \mbox{\hyperlink{structsgv}{sgv}}-\/>cli),hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(clientID[0]),i,i2,c;}
-\DoxyCodeLine{599 }
-\DoxyCodeLine{600   \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
-\DoxyCodeLine{601     \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{602 }
-\DoxyCodeLine{603   \mbox{\hyperlink{structlistc}{ListC}} *l1,*l2,*l3;}
-\DoxyCodeLine{604   Q12 *querie12 = malloc(\textcolor{keyword}{sizeof}(Q12));}
-\DoxyCodeLine{605   querie12 -\/> size = 0;}
-\DoxyCodeLine{606   querie12 -\/> prods = NULL;}
-\DoxyCodeLine{607 }
-\DoxyCodeLine{608   l1 = \mbox{\hyperlink{filial_8c_a1ef943c453b909b3bdb80a3a5b57eb76}{getGFilCList}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 0, hash, pos);}
-\DoxyCodeLine{609   l2 = \mbox{\hyperlink{filial_8c_a1ef943c453b909b3bdb80a3a5b57eb76}{getGFilCList}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 1, hash, pos);}
-\DoxyCodeLine{610   l3 = \mbox{\hyperlink{filial_8c_a1ef943c453b909b3bdb80a3a5b57eb76}{getGFilCList}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 2, hash, pos);}
-\DoxyCodeLine{611 }
-\DoxyCodeLine{612   querie12 -\/> size = l1-\/>sizeProds + l2-\/>sizeProds + l3-\/>sizeProds;}
-\DoxyCodeLine{613   querie12 -\/> prods = malloc(\textcolor{keyword}{sizeof}(PF)*querie12-\/>size);}
-\DoxyCodeLine{614 }
-\DoxyCodeLine{615   \textcolor{keywordflow}{for}(i = 0;i < l1-\/>sizeProds;i++) \{}
-\DoxyCodeLine{616     querie12 -\/> prods[i].faturacao = l1 -\/> prods[i].fat;}
-\DoxyCodeLine{617     strcpy(querie12 -\/> prods[i].prod,l1 -\/> prods[i].prod);}
-\DoxyCodeLine{618   \}}
+\DoxyCodeLine{611                                                                     \{}
+\DoxyCodeLine{612   \textcolor{keywordtype}{int} pos, hash, i, i2, c;}
+\DoxyCodeLine{613 }
+\DoxyCodeLine{614   \textcolor{keywordtype}{void}* cli = \mbox{\hyperlink{sgv_8c_a2a6bf71cc5e7727e2806b9759bc2307d}{getSGVCli}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{615   \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{616 }
+\DoxyCodeLine{617   pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(clientID, cli);}
+\DoxyCodeLine{618   hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(clientID[0]);}
 \DoxyCodeLine{619 }
-\DoxyCodeLine{620   \textcolor{keywordflow}{for}(i2 = 0;i2 <l2-\/>sizeProds;i2++,i++) \{}
-\DoxyCodeLine{621     querie12 -\/> prods[i].faturacao = l2 -\/> prods[i2].fat;}
-\DoxyCodeLine{622     strcpy(querie12 -\/> prods[i].prod,l2 -\/> prods[i2].prod);}
-\DoxyCodeLine{623   \}}
-\DoxyCodeLine{624   \textcolor{keywordflow}{for}(i2 = 0;i2 < l3-\/>sizeProds;i++,i2++) \{}
-\DoxyCodeLine{625     querie12 -\/> prods[i].faturacao = l3 -\/> prods[i2].fat;}
-\DoxyCodeLine{626     strcpy(querie12 -\/> prods[i].prod,l3 -\/> prods[i2].prod);}
-\DoxyCodeLine{627   \}}
-\DoxyCodeLine{628 }
-\DoxyCodeLine{629   \mbox{\hyperlink{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}{quickSortbyPF}}(querie12-\/>prods,0,querie12-\/>size -\/ 1);}
-\DoxyCodeLine{630 }
-\DoxyCodeLine{631   \textcolor{keywordflow}{for}(i = 0,c = 1;c < querie12 -\/> size;i++) \{}
-\DoxyCodeLine{632     \textcolor{keywordflow}{for}(i2 = c;i2 < querie12 -\/> size \&\& !strcmp(querie12-\/>prods[i2].prod,querie12-\/>prods[i].prod);i2++)}
-\DoxyCodeLine{633         querie12-\/>prods[i].faturacao += querie12-\/>prods[i2].faturacao;}
-\DoxyCodeLine{634     \textcolor{keywordflow}{if}(i2 != i + 1 \&\& i2 < querie12 -\/> size)}
-\DoxyCodeLine{635       \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&querie12-\/>prods[i + 1],\&querie12-\/>prods[i2]);}
+\DoxyCodeLine{620   \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
+\DoxyCodeLine{621     \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{622 }
+\DoxyCodeLine{623   Q12 *querie12 = malloc(\textcolor{keyword}{sizeof}(Q12));}
+\DoxyCodeLine{624   querie12-\/>size = 0;}
+\DoxyCodeLine{625   querie12-\/>prods = NULL;}
+\DoxyCodeLine{626 }
+\DoxyCodeLine{627   querie12-\/>size = \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 0, hash, pos) }
+\DoxyCodeLine{628                  + \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 1, hash, pos) }
+\DoxyCodeLine{629                  + \mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 2, hash, pos);}
+\DoxyCodeLine{630   querie12-\/>prods = malloc(\textcolor{keyword}{sizeof}(P) * querie12-\/>size);}
+\DoxyCodeLine{631 }
+\DoxyCodeLine{632   \textcolor{keywordflow}{for}(i = 0; i<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 0, hash, pos) ;i++) \{}
+\DoxyCodeLine{633     querie12-\/>prods[i].faturacao = \mbox{\hyperlink{filial_8c_a4ec0ce0fed47ab0ce8d744c0694b5714}{getGFilCfat}}(gfil, 0, hash, pos, i);}
+\DoxyCodeLine{634     strcpy(querie12-\/>prods[i].prod, \mbox{\hyperlink{filial_8c_a695454759e7f549625e2a816384e7375}{getGFilCprod}}(gfil, 0, hash, pos, i));}
+\DoxyCodeLine{635   \}}
 \DoxyCodeLine{636 }
-\DoxyCodeLine{637     c = i2 + 1;}
-\DoxyCodeLine{638     \textcolor{keywordflow}{if}(i2 == querie12 -\/> size)i-\/-\/;}
-\DoxyCodeLine{639   \}}
-\DoxyCodeLine{640   querie12 -\/> size = i + 1;}
+\DoxyCodeLine{637   \textcolor{keywordflow}{for}(i2 = 0; i2<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 1, hash, pos); i2++,i++) \{}
+\DoxyCodeLine{638     querie12-\/>prods[i].faturacao = \mbox{\hyperlink{filial_8c_a4ec0ce0fed47ab0ce8d744c0694b5714}{getGFilCfat}}(gfil, 1, hash, pos, i);}
+\DoxyCodeLine{639     strcpy(querie12-\/>prods[i].prod, \mbox{\hyperlink{filial_8c_a695454759e7f549625e2a816384e7375}{getGFilCprod}}(gfil, 1, hash, pos, i));}
+\DoxyCodeLine{640   \}}
 \DoxyCodeLine{641 }
-\DoxyCodeLine{642   \mbox{\hyperlink{querie_8c_af91c44b016d305f1659a9b51d0eda961}{quickSortbyFP}}(querie12-\/>prods,0,querie12-\/>size -\/ 1);}
-\DoxyCodeLine{643 }
-\DoxyCodeLine{644   \textcolor{keywordflow}{if}(limit < i) \{}
-\DoxyCodeLine{645     querie12-\/>prods = realloc(querie12-\/>prods, \textcolor{keyword}{sizeof}(PF)*limit);}
-\DoxyCodeLine{646     querie12-\/>size = limit;}
-\DoxyCodeLine{647   \}}
+\DoxyCodeLine{642   \textcolor{keywordflow}{for}(i2 = 0; i2<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, 2, hash, pos) ;i++,i2++) \{}
+\DoxyCodeLine{643     querie12-\/>prods[i].faturacao = \mbox{\hyperlink{filial_8c_a4ec0ce0fed47ab0ce8d744c0694b5714}{getGFilCfat}}(gfil, 2, hash, pos, i);}
+\DoxyCodeLine{644     strcpy(querie12-\/>prods[i].prod, \mbox{\hyperlink{filial_8c_a695454759e7f549625e2a816384e7375}{getGFilCprod}}(gfil, 2, hash, pos, i));}
+\DoxyCodeLine{645   \}}
+\DoxyCodeLine{646 }
+\DoxyCodeLine{647   \mbox{\hyperlink{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}{quickSortbyPF}}(querie12-\/>prods,0,querie12-\/>size -\/ 1);}
 \DoxyCodeLine{648 }
-\DoxyCodeLine{649   \textcolor{keywordflow}{return} querie12;}
-\DoxyCodeLine{650 \}}
+\DoxyCodeLine{649   \textcolor{keywordflow}{for}(i = 0,c = 1;c < querie12 -\/> size;i++) \{}
+\DoxyCodeLine{650     \textcolor{keywordflow}{for}(i2 = c;i2 < querie12 -\/> size \&\& !strcmp(querie12-\/>prods[i2].prod,querie12-\/>prods[i].prod);i2++)}
+\DoxyCodeLine{651         querie12-\/>prods[i].faturacao += querie12-\/>prods[i2].faturacao;}
+\DoxyCodeLine{652     \textcolor{keywordflow}{if}(i2 != i + 1 \&\& i2 < querie12 -\/> size)}
+\DoxyCodeLine{653       \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&querie12-\/>prods[i + 1],\&querie12-\/>prods[i2]);}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{655     c = i2 + 1;}
+\DoxyCodeLine{656     \textcolor{keywordflow}{if}(i2 == querie12 -\/> size)i-\/-\/;}
+\DoxyCodeLine{657   \}}
+\DoxyCodeLine{658   querie12 -\/> size = i + 1;}
+\DoxyCodeLine{659 }
+\DoxyCodeLine{660   \mbox{\hyperlink{querie_8c_af91c44b016d305f1659a9b51d0eda961}{quickSortbyFP}}(querie12-\/>prods,0,querie12-\/>size -\/ 1);}
+\DoxyCodeLine{661 }
+\DoxyCodeLine{662   \textcolor{keywordflow}{if}(limit < i) \{}
+\DoxyCodeLine{663     querie12-\/>prods = realloc(querie12-\/>prods, \textcolor{keyword}{sizeof}(PF)*limit);}
+\DoxyCodeLine{664     querie12-\/>size = limit;}
+\DoxyCodeLine{665   \}}
+\DoxyCodeLine{666 }
+\DoxyCodeLine{667   \textcolor{keywordflow}{return} querie12;}
+\DoxyCodeLine{668 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a21e484298911b78a81537ac5ad473339}\label{querie_8c_a21e484298911b78a81537ac5ad473339}} 
@@ -346,25 +360,25 @@ apontador para Q13
 \end{DoxyReturn}
 
 
-Definido na linha 660 do ficheiro querie.\+c.
+Definido na linha 678 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{660                                                                                   \{}
-\DoxyCodeLine{661     Q13* querie13 = malloc(\textcolor{keyword}{sizeof}(Q13));}
-\DoxyCodeLine{662 }
-\DoxyCodeLine{663     querie13-\/>cliL = \mbox{\hyperlink{sgv_8c_a2f2cacf731f8c19d45b143118582db46}{getSGVcliL}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>info);}
-\DoxyCodeLine{664     querie13-\/>cliV = \mbox{\hyperlink{sgv_8c_aa8502ffd8f864bb0eafac9bca1fd2de8}{getSGVcliV}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>info);}
-\DoxyCodeLine{665     strcpy(querie13-\/>pathCli, pathCli);}
-\DoxyCodeLine{666     querie13-\/>prodL = \mbox{\hyperlink{sgv_8c_a48b5a6e4d3d6e483f610aeb108bb51e0}{getSGVprodL}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>info);}
-\DoxyCodeLine{667     querie13-\/>prodV = \mbox{\hyperlink{sgv_8c_aa4858952f6cc77c2043268b1ef67ada7}{getSGVprodV}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>info);}
-\DoxyCodeLine{668     strcpy(querie13-\/>pathProd, pathProd);}
-\DoxyCodeLine{669     querie13-\/>salesL = \mbox{\hyperlink{sgv_8c_a42b0efbacab32913738f1ba0a61dcd16}{getSGVsaleL}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>info);}
-\DoxyCodeLine{670     querie13-\/>salesV = \mbox{\hyperlink{sgv_8c_a7c7cdbc3c03ac3605909c280dd24a35a}{getSGVsaleV}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>info);}
-\DoxyCodeLine{671     strcpy(querie13-\/>pathSales, pathSales);}
-\DoxyCodeLine{672 }
-\DoxyCodeLine{673     \textcolor{keywordflow}{return} querie13;}
-\DoxyCodeLine{674 \}}
+\DoxyCodeLine{678                                                                                   \{}
+\DoxyCodeLine{679     Q13* querie13 = malloc(\textcolor{keyword}{sizeof}(Q13));}
+\DoxyCodeLine{680 }
+\DoxyCodeLine{681     querie13-\/>cliL = \mbox{\hyperlink{sgv_8c_aa3c8b33f37c618e60d7d7864d544a864}{getSGVcliL}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{682     querie13-\/>cliV = \mbox{\hyperlink{sgv_8c_af892a5b4208a35be9783e8e9ba2bffc3}{getSGVcliV}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{683     strcpy(querie13-\/>pathCli, pathCli);}
+\DoxyCodeLine{684     querie13-\/>prodL = \mbox{\hyperlink{sgv_8c_abc11939ba1a3b9be4007fc56d85a3dcb}{getSGVprodL}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{685     querie13-\/>prodV = \mbox{\hyperlink{sgv_8c_af415bc106a0d365683f2255c6227b6ca}{getSGVprodV}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{686     strcpy(querie13-\/>pathProd, pathProd);}
+\DoxyCodeLine{687     querie13-\/>salesL = \mbox{\hyperlink{sgv_8c_a710c285f81405421bf069307a454f673}{getSGVsaleL}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{688     querie13-\/>salesV = \mbox{\hyperlink{sgv_8c_a6caf870bb6e7c6a8aae042bb61bcf344}{getSGVsaleV}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{689     strcpy(querie13-\/>pathSales, pathSales);}
+\DoxyCodeLine{690 }
+\DoxyCodeLine{691     \textcolor{keywordflow}{return} querie13;}
+\DoxyCodeLine{692 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_ad9be04574bff2153624b1f0d6ba23be3}\label{querie_8c_ad9be04574bff2153624b1f0d6ba23be3}} 
@@ -391,60 +405,44 @@ apontador para Q9
 \end{DoxyReturn}
 
 
-Definido na linha 246 do ficheiro querie.\+c.
+Definido na linha 267 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{246                                                       \{}
-\DoxyCodeLine{247     \textcolor{keywordtype}{int} pos, hash, n, r, c, i;}
-\DoxyCodeLine{248     \textcolor{keywordtype}{char} *cliN = NULL, *cliN1 = NULL;}
-\DoxyCodeLine{249     Q9* querie9 = malloc(\textcolor{keyword}{sizeof}(Q9));}
-\DoxyCodeLine{250 }
-\DoxyCodeLine{251     hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(prodID[0]);}
-\DoxyCodeLine{252     pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(prodID, \mbox{\hyperlink{structsgv}{sgv}}-\/>prod);}
-\DoxyCodeLine{253 }
-\DoxyCodeLine{254     \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
-\DoxyCodeLine{255       \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{256 }
-\DoxyCodeLine{257     \mbox{\hyperlink{structlistp}{ListP}} *prod;}
-\DoxyCodeLine{258     querie9-\/>total = 0;}
-\DoxyCodeLine{259     querie9-\/>lista = NULL;}
-\DoxyCodeLine{260 }
-\DoxyCodeLine{261     prod = \mbox{\hyperlink{filial_8c_a40cb8aef81c7271080c85379976ff505}{getGFilPList}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, branch-\/1, hash, pos);}
-\DoxyCodeLine{262 }
-\DoxyCodeLine{263     \mbox{\hyperlink{sort_8c_a12dc00968988b668861e6a580848a5db}{quickSort}}(prod-\/>cliN,0,prod-\/>sizeN-\/1);}
-\DoxyCodeLine{264     \mbox{\hyperlink{sort_8c_a12dc00968988b668861e6a580848a5db}{quickSort}}(prod-\/>cliP,0,prod-\/>sizeP-\/1);}
-\DoxyCodeLine{265 }
-\DoxyCodeLine{266 }
-\DoxyCodeLine{267     \textcolor{keywordflow}{for}(i = 0;i < prod-\/>sizeN;i++) \{}
-\DoxyCodeLine{268       cliN = \mbox{\hyperlink{filial_8c_a35df68ff2e0d86542fcb9b4564276c0a}{getGFilPCliN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, branch-\/1, hash, pos, i);}
-\DoxyCodeLine{269       cliN1 = \mbox{\hyperlink{filial_8c_a35df68ff2e0d86542fcb9b4564276c0a}{getGFilPCliN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, branch-\/1, hash, pos, i-\/1);}
-\DoxyCodeLine{270       \textcolor{keywordflow}{if}(i == 0 || strcmp(cliN, cliN1)) \{}
-\DoxyCodeLine{271         querie9-\/>lista = realloc(querie9-\/>lista,\textcolor{keyword}{sizeof}(Cl)*(querie9-\/>total+1));}
-\DoxyCodeLine{272         querie9-\/>lista[querie9-\/>total].tipocompra = 1;}
-\DoxyCodeLine{273         strcpy(querie9-\/>lista[querie9-\/>total].cliente, prod-\/>cliN[i]);}
-\DoxyCodeLine{274         querie9-\/>total++;}
-\DoxyCodeLine{275       \}}
-\DoxyCodeLine{276     \}}
-\DoxyCodeLine{277 }
-\DoxyCodeLine{278     c = querie9-\/>total;}
-\DoxyCodeLine{279     \textcolor{keywordflow}{for}(i = 0;i < prod-\/>sizeP;i++) \{}
-\DoxyCodeLine{280       \textcolor{keywordflow}{for}(n = 0;n < c \&\& r < 0;n++) \{}
-\DoxyCodeLine{281         r = strcmp(prod-\/>cliP[i],querie9-\/>lista[n].cliente);}
-\DoxyCodeLine{282         \textcolor{keywordflow}{if}(n == 0) \{}
-\DoxyCodeLine{283           querie9-\/>lista[n].tipocompra = 3;}
-\DoxyCodeLine{284         \}}
-\DoxyCodeLine{285       \}}
-\DoxyCodeLine{286       \textcolor{keywordflow}{if}(!r \&\& (!i || strcmp(prod-\/>cliN[i],prod-\/>cliN[i-\/1]))) \{}
-\DoxyCodeLine{287         querie9-\/>lista = realloc(querie9-\/>lista,\textcolor{keyword}{sizeof}(Cl)*(querie9-\/>total+1));}
-\DoxyCodeLine{288         querie9-\/>lista[querie9-\/>total].tipocompra = 2;}
-\DoxyCodeLine{289         strcpy(querie9-\/>lista[querie9-\/>total].cliente,prod-\/>cliN[i]);}
-\DoxyCodeLine{290         querie9-\/>total++;}
-\DoxyCodeLine{291       \}}
-\DoxyCodeLine{292     \}}
-\DoxyCodeLine{293 }
-\DoxyCodeLine{294     \textcolor{keywordflow}{return} querie9;}
-\DoxyCodeLine{295 \}}
+\DoxyCodeLine{267                                                       \{}
+\DoxyCodeLine{268     \textcolor{keywordtype}{int} pos, hash, i;}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270     \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{271     \textcolor{keywordtype}{void}* prod = \mbox{\hyperlink{sgv_8c_a2284fa6b582684650980af4ed87f497b}{getSGVProd}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273     Q9* querie9 = malloc(\textcolor{keyword}{sizeof}(Q9));}
+\DoxyCodeLine{274     querie9-\/>sizeList = 0;}
+\DoxyCodeLine{275     querie9-\/>lista = NULL;}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277     hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(prodID[0]);}
+\DoxyCodeLine{278     pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(prodID, prod);}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280     \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
+\DoxyCodeLine{281       \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283     \textcolor{keywordflow}{for}(i = 0; i<\mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(gfil, branch-\/1, hash, pos) ;i++) \{}
+\DoxyCodeLine{284       querie9-\/>lista = realloc(querie9-\/>lista,\textcolor{keyword}{sizeof}(Cl)*(querie9-\/>sizeList+1));}
+\DoxyCodeLine{285       querie9-\/>lista[querie9-\/>sizeList].tipocompra = 1;}
+\DoxyCodeLine{286       strcpy(querie9-\/>lista[querie9-\/>sizeList].cliente, \mbox{\hyperlink{filial_8c_a35df68ff2e0d86542fcb9b4564276c0a}{getGFilPCliN}}(gfil, branch-\/1, hash, pos, i));}
+\DoxyCodeLine{287       querie9-\/>sizeList++;}
+\DoxyCodeLine{288     \}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290     \textcolor{keywordflow}{for}(i = 0; i<\mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(gfil, branch-\/1, hash, pos) ;i++) \{}
+\DoxyCodeLine{291       querie9-\/>lista = realloc(querie9-\/>lista,\textcolor{keyword}{sizeof}(Cl)*(querie9-\/>sizeList+1));}
+\DoxyCodeLine{292       querie9-\/>lista[querie9-\/>sizeList].tipocompra = 2;}
+\DoxyCodeLine{293       strcpy(querie9-\/>lista[querie9-\/>sizeList].cliente, \mbox{\hyperlink{filial_8c_ac90c3ba2dfa864ce090cf48bbd4f94e1}{getGFilPCliP}}(gfil, branch-\/1, hash, pos, i));}
+\DoxyCodeLine{294       querie9-\/>sizeList++;}
+\DoxyCodeLine{295     \}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297     querie9-\/>total = \mbox{\hyperlink{filial_8c_a5fabb2d1fd539a460d1f9a0cca75973e}{getGFilPSizeC}}(gfil, branch-\/1, hash, pos);}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299     \textcolor{keywordflow}{return} querie9;}
+\DoxyCodeLine{300 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_adc8da7b1eabde67959b0fdcb0acc2bbc}\label{querie_8c_adc8da7b1eabde67959b0fdcb0acc2bbc}} 
@@ -473,52 +471,55 @@ apontador para Q3
 \end{DoxyReturn}
 
 
-Definido na linha 45 do ficheiro querie.\+c.
+Definido na linha 48 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{45                                                                             \{}
-\DoxyCodeLine{46   \textcolor{keywordtype}{int} i, pos, hash;}
-\DoxyCodeLine{47   Q3* querie3 = malloc(\textcolor{keyword}{sizeof}(Q3));}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{49   hash=\mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(productID[0]);}
-\DoxyCodeLine{50   pos=\mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(productID, \mbox{\hyperlink{structsgv}{sgv}}-\/>prod);}
-\DoxyCodeLine{51 }
-\DoxyCodeLine{52   \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
-\DoxyCodeLine{53     \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{54 }
-\DoxyCodeLine{55   \textcolor{keywordflow}{if}(type == 0) \{}
-\DoxyCodeLine{56     querie3-\/>size = 1;}
-\DoxyCodeLine{57     querie3-\/>fat = malloc(\textcolor{keyword}{sizeof}(Q3fat));}
+\DoxyCodeLine{48                                                                             \{}
+\DoxyCodeLine{49   \textcolor{keywordtype}{int} i, pos, hash;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{keywordtype}{void}* prod = \mbox{\hyperlink{sgv_8c_a2284fa6b582684650980af4ed87f497b}{getSGVProd}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{52   \textcolor{keywordtype}{void}* \mbox{\hyperlink{structfact}{fact}} = \mbox{\hyperlink{sgv_8c_a0d0637a2667d157d147ae8bf5a3f38ee}{getSGVFact}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   Q3* querie3 = malloc(\textcolor{keyword}{sizeof}(Q3));}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   hash=\mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(productID[0]);}
+\DoxyCodeLine{57   pos=\mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(productID, prod);}
 \DoxyCodeLine{58 }
-\DoxyCodeLine{59     querie3-\/>fat-\/>fatN = 0;}
-\DoxyCodeLine{60     querie3-\/>fat-\/>fatP = 0;}
-\DoxyCodeLine{61     querie3-\/>fat-\/>nVendasN = 0;}
-\DoxyCodeLine{62     querie3-\/>fat-\/>nVendasP = 0;}
-\DoxyCodeLine{63 }
-\DoxyCodeLine{64 }
-\DoxyCodeLine{65     \textcolor{keywordflow}{for}(i=0; i<3; i++) \{}
-\DoxyCodeLine{66       querie3-\/>fat-\/>fatN += \mbox{\hyperlink{faturacao_8c_a6158534e34e0ad58a0b1eb9e8721770f}{getFatFaturacaoN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{67       querie3-\/>fat-\/>fatP += \mbox{\hyperlink{faturacao_8c_a119236cac4925f9840718fae004830f0}{getFatFaturacaoP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{68       querie3-\/>fat-\/>nVendasN += \mbox{\hyperlink{faturacao_8c_ab4d16ad1e06360f64005dcf2513bcf29}{getFatVendasN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{69       querie3-\/>fat-\/>nVendasP += \mbox{\hyperlink{faturacao_8c_ae9f8d679f8de01e45359276882078388}{getFatVendasP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{70     \}}
-\DoxyCodeLine{71   \}}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{73   \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{74     querie3-\/>size = 3;}
-\DoxyCodeLine{75     querie3-\/>fat = malloc(\textcolor{keyword}{sizeof}(Q3fat) * querie3-\/>size);}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77     \textcolor{keywordflow}{for}(i=0; i<3; i++) \{}
-\DoxyCodeLine{78       querie3-\/>fat[i].fatN = \mbox{\hyperlink{faturacao_8c_a6158534e34e0ad58a0b1eb9e8721770f}{getFatFaturacaoN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{79       querie3-\/>fat[i].fatP = \mbox{\hyperlink{faturacao_8c_a119236cac4925f9840718fae004830f0}{getFatFaturacaoP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{80       querie3-\/>fat[i].nVendasN = \mbox{\hyperlink{faturacao_8c_ab4d16ad1e06360f64005dcf2513bcf29}{getFatVendasN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{81       querie3-\/>fat[i].nVendasP = \mbox{\hyperlink{faturacao_8c_ae9f8d679f8de01e45359276882078388}{getFatVendasP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,hash,pos,month-\/1,i);}
-\DoxyCodeLine{82     \}}
-\DoxyCodeLine{83   \}}
-\DoxyCodeLine{84 }
-\DoxyCodeLine{85   \textcolor{keywordflow}{return} querie3;}
-\DoxyCodeLine{86 \}}
+\DoxyCodeLine{59   \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
+\DoxyCodeLine{60     \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   \textcolor{keywordflow}{if}(type == 0) \{}
+\DoxyCodeLine{63     querie3-\/>size = 1;}
+\DoxyCodeLine{64     querie3-\/>fat = malloc(\textcolor{keyword}{sizeof}(Q3fat));}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     querie3-\/>fat-\/>fatN = 0;}
+\DoxyCodeLine{67     querie3-\/>fat-\/>fatP = 0;}
+\DoxyCodeLine{68     querie3-\/>fat-\/>nVendasN = 0;}
+\DoxyCodeLine{69     querie3-\/>fat-\/>nVendasP = 0;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{keywordflow}{for}(i=0; i<3; i++) \{}
+\DoxyCodeLine{72       querie3-\/>fat-\/>fatN += \mbox{\hyperlink{faturacao_8c_a6158534e34e0ad58a0b1eb9e8721770f}{getFatFaturacaoN}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{73       querie3-\/>fat-\/>fatP += \mbox{\hyperlink{faturacao_8c_a119236cac4925f9840718fae004830f0}{getFatFaturacaoP}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{74       querie3-\/>fat-\/>nVendasN += \mbox{\hyperlink{faturacao_8c_ab4d16ad1e06360f64005dcf2513bcf29}{getFatVendasN}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{75       querie3-\/>fat-\/>nVendasP += \mbox{\hyperlink{faturacao_8c_ae9f8d679f8de01e45359276882078388}{getFatVendasP}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{76     \}}
+\DoxyCodeLine{77   \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{80     querie3-\/>size = 3;}
+\DoxyCodeLine{81     querie3-\/>fat = malloc(\textcolor{keyword}{sizeof}(Q3fat) * querie3-\/>size);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{keywordflow}{for}(i=0; i<3; i++) \{}
+\DoxyCodeLine{84       querie3-\/>fat[i].fatN = \mbox{\hyperlink{faturacao_8c_a6158534e34e0ad58a0b1eb9e8721770f}{getFatFaturacaoN}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{85       querie3-\/>fat[i].fatP = \mbox{\hyperlink{faturacao_8c_a119236cac4925f9840718fae004830f0}{getFatFaturacaoP}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{86       querie3-\/>fat[i].nVendasN = \mbox{\hyperlink{faturacao_8c_ab4d16ad1e06360f64005dcf2513bcf29}{getFatVendasN}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{87       querie3-\/>fat[i].nVendasP = \mbox{\hyperlink{faturacao_8c_ae9f8d679f8de01e45359276882078388}{getFatVendasP}}(\mbox{\hyperlink{structfact}{fact}},hash,pos,month-\/1,i);}
+\DoxyCodeLine{88     \}}
+\DoxyCodeLine{89   \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91   \textcolor{keywordflow}{return} querie3;}
+\DoxyCodeLine{92 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a4caf5a35fe03a43562ed5c05ccdea89f}\label{querie_8c_a4caf5a35fe03a43562ed5c05ccdea89f}} 
@@ -543,31 +544,35 @@ apontador para Q7
 \end{DoxyReturn}
 
 
-Definido na linha 190 do ficheiro querie.\+c.
+Definido na linha 205 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{190                                                        \{}
-\DoxyCodeLine{191     \textcolor{keywordtype}{int} i, j, k, hash, pos;}
-\DoxyCodeLine{192     Q7* querie7 = malloc(\textcolor{keyword}{sizeof}(Q7));}
-\DoxyCodeLine{193 }
-\DoxyCodeLine{194     hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(clientID[0]);}
-\DoxyCodeLine{195     pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(clientID, \mbox{\hyperlink{structsgv}{sgv}}-\/>cli);}
-\DoxyCodeLine{196 }
-\DoxyCodeLine{197     \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
-\DoxyCodeLine{198       \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{199 }
-\DoxyCodeLine{200     \textcolor{keywordflow}{for}(i=0; i<12; i++)}
-\DoxyCodeLine{201       \textcolor{keywordflow}{for}(j=0; j<3; j++)}
-\DoxyCodeLine{202         querie7-\/>tabela[i][j] = 0;}
-\DoxyCodeLine{203 }
-\DoxyCodeLine{204     \textcolor{keywordflow}{for}(j=0; j<3; j++)}
-\DoxyCodeLine{205       \textcolor{keywordflow}{for}(k=0; k<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, j, hash, pos); k++)}
-\DoxyCodeLine{206         \textcolor{keywordflow}{for}(i=0; i<12; i++)}
-\DoxyCodeLine{207           querie7-\/>tabela[i][j] += \mbox{\hyperlink{filial_8c_a9a57e88b5dd17a22baebfdffc6a16697}{getGFilCuni}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, j, hash, pos, k, i);}
-\DoxyCodeLine{208 }
-\DoxyCodeLine{209     \textcolor{keywordflow}{return} querie7;}
-\DoxyCodeLine{210 \}}
+\DoxyCodeLine{205                                                        \{}
+\DoxyCodeLine{206     \textcolor{keywordtype}{int} i, j, k, hash, pos;}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     \textcolor{keywordtype}{void}* cli = \mbox{\hyperlink{sgv_8c_a2a6bf71cc5e7727e2806b9759bc2307d}{getSGVCli}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{209     \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211     Q7* querie7 = malloc(\textcolor{keyword}{sizeof}(Q7));}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213     hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(clientID[0]);}
+\DoxyCodeLine{214     pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(clientID, cli);}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     \textcolor{keywordflow}{if}(hash == -\/1 || pos == -\/1)}
+\DoxyCodeLine{217       \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219     \textcolor{keywordflow}{for}(i=0; i<12; i++)}
+\DoxyCodeLine{220       \textcolor{keywordflow}{for}(j=0; j<3; j++)}
+\DoxyCodeLine{221         querie7-\/>tabela[i][j] = 0;}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223     \textcolor{keywordflow}{for}(j=0; j<3; j++)}
+\DoxyCodeLine{224       \textcolor{keywordflow}{for}(k=0; k<\mbox{\hyperlink{filial_8c_acf887fd15fa13330ab23dff584d695ae}{getGFilCsizeProds}}(gfil, j, hash, pos); k++)}
+\DoxyCodeLine{225         \textcolor{keywordflow}{for}(i=0; i<12; i++)}
+\DoxyCodeLine{226           querie7-\/>tabela[i][j] += \mbox{\hyperlink{filial_8c_a9a57e88b5dd17a22baebfdffc6a16697}{getGFilCuni}}(gfil, j, hash, pos, k, i);}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{keywordflow}{return} querie7;}
+\DoxyCodeLine{229 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a01665c4920ab78d8fb7fe26bb60c9e69}\label{querie_8c_a01665c4920ab78d8fb7fe26bb60c9e69}} 
@@ -592,45 +597,48 @@ apontador para Q4
 \end{DoxyReturn}
 
 
-Definido na linha 94 do ficheiro querie.\+c.
+Definido na linha 100 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{94                                               \{}
-\DoxyCodeLine{95   \textcolor{keywordtype}{int} i,i2, size;}
-\DoxyCodeLine{96 }
-\DoxyCodeLine{97   Q4 *querie4 = malloc(\textcolor{keyword}{sizeof}(Q4));}
-\DoxyCodeLine{98   querie4-\/>size = 0;}
-\DoxyCodeLine{99   querie4-\/>prods = NULL;}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{101   \textcolor{keywordflow}{if}(branch == 0)}
-\DoxyCodeLine{102     \textcolor{keywordflow}{for}(i = 0;i < SIZE;i++)}
-\DoxyCodeLine{103       \textcolor{keywordflow}{for}(i2 = 0;i2 < \mbox{\hyperlink{filial_8c_aa2afa3d275066d2deedf38eef5df69ee}{getGFilPListSize}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil,0,i);i2++) \{}
-\DoxyCodeLine{104         size = \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 0, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 0, i, i2) +}
-\DoxyCodeLine{105                \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 1, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 1, i, i2) +}
-\DoxyCodeLine{106                \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 2, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 2, i, i2);}
-\DoxyCodeLine{107         \textcolor{keywordflow}{if}(size == 0) \{}
-\DoxyCodeLine{108           querie4-\/>prods = realloc(querie4-\/>prods,\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*)*(querie4-\/>size+1));}
-\DoxyCodeLine{109           querie4-\/>prods[querie4-\/>size] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 10);}
-\DoxyCodeLine{110           strcpy(querie4-\/>prods[querie4-\/>size], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, i, i2));}
-\DoxyCodeLine{111           querie4-\/>size++;}
-\DoxyCodeLine{112         \}}
-\DoxyCodeLine{113       \}}
-\DoxyCodeLine{114 }
-\DoxyCodeLine{115   \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{116     \textcolor{keywordflow}{for}(i = 0;i < SIZE;i++)}
-\DoxyCodeLine{117       \textcolor{keywordflow}{for}(i2 = 0;i2 < \mbox{\hyperlink{filial_8c_aa2afa3d275066d2deedf38eef5df69ee}{getGFilPListSize}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil,branch-\/1,i);i2++) \{}
-\DoxyCodeLine{118         size = \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, branch-\/1, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, branch-\/1, i, i2);}
-\DoxyCodeLine{119         \textcolor{keywordflow}{if}(size == 0) \{}
-\DoxyCodeLine{120           querie4-\/>prods = realloc(querie4-\/>prods,\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*)*(querie4-\/>size+1));}
-\DoxyCodeLine{121           querie4-\/>prods[querie4-\/>size] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 10);}
-\DoxyCodeLine{122           strcpy(querie4-\/>prods[querie4-\/>size], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, i, i2));}
-\DoxyCodeLine{123           querie4-\/>size++;}
-\DoxyCodeLine{124         \}}
-\DoxyCodeLine{125       \}}
-\DoxyCodeLine{126   \}}
-\DoxyCodeLine{127   \textcolor{keywordflow}{return} querie4;}
-\DoxyCodeLine{128 \}}
+\DoxyCodeLine{100                                               \{}
+\DoxyCodeLine{101   \textcolor{keywordtype}{int} i,i2, size;}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103   \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{104   \textcolor{keywordtype}{void}* prod = \mbox{\hyperlink{sgv_8c_a2284fa6b582684650980af4ed87f497b}{getSGVProd}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106   Q4 *querie4 = malloc(\textcolor{keyword}{sizeof}(Q4));}
+\DoxyCodeLine{107   querie4-\/>size = 0;}
+\DoxyCodeLine{108   querie4-\/>prods = NULL;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110   \textcolor{keywordflow}{if}(branch == 0)}
+\DoxyCodeLine{111     \textcolor{keywordflow}{for}(i = 0;i < SIZE;i++)}
+\DoxyCodeLine{112       \textcolor{keywordflow}{for}(i2 = 0;i2 < \mbox{\hyperlink{filial_8c_aa2afa3d275066d2deedf38eef5df69ee}{getGFilPListSize}}(gfil,0,i);i2++) \{}
+\DoxyCodeLine{113         size = \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(gfil, 0, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(gfil, 0, i, i2) +}
+\DoxyCodeLine{114                \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(gfil, 1, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(gfil, 1, i, i2) +}
+\DoxyCodeLine{115                \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(gfil, 2, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(gfil, 2, i, i2);}
+\DoxyCodeLine{116         \textcolor{keywordflow}{if}(size == 0) \{}
+\DoxyCodeLine{117           querie4-\/>prods = realloc(querie4-\/>prods,\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*)*(querie4-\/>size+1));}
+\DoxyCodeLine{118           querie4-\/>prods[querie4-\/>size] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 10);}
+\DoxyCodeLine{119           strcpy(querie4-\/>prods[querie4-\/>size], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(prod, i, i2));}
+\DoxyCodeLine{120           querie4-\/>size++;}
+\DoxyCodeLine{121         \}}
+\DoxyCodeLine{122       \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124   \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{125     \textcolor{keywordflow}{for}(i = 0;i < SIZE;i++)}
+\DoxyCodeLine{126       \textcolor{keywordflow}{for}(i2 = 0;i2 < \mbox{\hyperlink{filial_8c_aa2afa3d275066d2deedf38eef5df69ee}{getGFilPListSize}}(gfil,branch-\/1,i);i2++) \{}
+\DoxyCodeLine{127         size = \mbox{\hyperlink{filial_8c_ac6344ed3d0d4809f9902e18435889489}{getGFilPSizeN}}(gfil, branch-\/1, i, i2) + \mbox{\hyperlink{filial_8c_a7ee7bddccb0954b4674c1b3eaad26fb4}{getGFilPSizeP}}(gfil, branch-\/1, i, i2);}
+\DoxyCodeLine{128         \textcolor{keywordflow}{if}(size == 0) \{}
+\DoxyCodeLine{129           querie4-\/>prods = realloc(querie4-\/>prods,\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*)*(querie4-\/>size+1));}
+\DoxyCodeLine{130           querie4-\/>prods[querie4-\/>size] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 10);}
+\DoxyCodeLine{131           strcpy(querie4-\/>prods[querie4-\/>size], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(prod, i, i2));}
+\DoxyCodeLine{132           querie4-\/>size++;}
+\DoxyCodeLine{133         \}}
+\DoxyCodeLine{134       \}}
+\DoxyCodeLine{135   \}}
+\DoxyCodeLine{136   \textcolor{keywordflow}{return} querie4;}
+\DoxyCodeLine{137 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a39b6b54cbebb3ab64771a66d658fbe93}\label{querie_8c_a39b6b54cbebb3ab64771a66d658fbe93}} 
@@ -661,23 +669,26 @@ Definido na linha 17 do ficheiro querie.\+c.
 \begin{DoxyCode}{0}
 \DoxyCodeLine{17                                                      \{}
 \DoxyCodeLine{18   \textcolor{keywordtype}{int} i, hash;}
-\DoxyCodeLine{19   Q2* querie2 = malloc(\textcolor{keyword}{sizeof}(Q2));}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21   hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(letter);}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23   \textcolor{keywordflow}{if}(hash == -\/1)}
-\DoxyCodeLine{24     \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20   \textcolor{keywordtype}{void}* prod = \mbox{\hyperlink{sgv_8c_a2284fa6b582684650980af4ed87f497b}{getSGVProd}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22   Q2* querie2 = malloc(\textcolor{keyword}{sizeof}(Q2));}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24   hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(letter);}
 \DoxyCodeLine{25 }
-\DoxyCodeLine{26   querie2-\/>size = \mbox{\hyperlink{catalogo_8c_aaed6f7752ead3fa889b3ba880717f2ed}{getCatListSize}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, hash);}
-\DoxyCodeLine{27   querie2-\/>prods = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*)*querie2-\/>size);}
+\DoxyCodeLine{26   \textcolor{keywordflow}{if}(hash == -\/1)}
+\DoxyCodeLine{27     \textcolor{keywordflow}{return} NULL;}
 \DoxyCodeLine{28 }
-\DoxyCodeLine{29   \textcolor{keywordflow}{for}(i=0; i<querie2-\/>size; i++) \{}
-\DoxyCodeLine{30     querie2-\/>prods[i] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})*SMAX);}
-\DoxyCodeLine{31     strcpy(querie2-\/>prods[i], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, hash, i));}
-\DoxyCodeLine{32   \}}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{34   \textcolor{keywordflow}{return} querie2;}
-\DoxyCodeLine{35 \}}
+\DoxyCodeLine{29   querie2-\/>size = \mbox{\hyperlink{catalogo_8c_aaed6f7752ead3fa889b3ba880717f2ed}{getCatListSize}}(prod, hash);}
+\DoxyCodeLine{30   querie2-\/>prods = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*)*querie2-\/>size);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{keywordflow}{for}(i=0; i<querie2-\/>size; i++) \{}
+\DoxyCodeLine{33     querie2-\/>prods[i] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})*SMAX);}
+\DoxyCodeLine{34     strcpy(querie2-\/>prods[i], \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(prod, hash, i));}
+\DoxyCodeLine{35   \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{keywordflow}{return} querie2;}
+\DoxyCodeLine{38 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a328fda41b957321233e268b96f7bcf2a}\label{querie_8c_a328fda41b957321233e268b96f7bcf2a}} 
@@ -704,29 +715,31 @@ apontador para Q8
 \end{DoxyReturn}
 
 
-Definido na linha 219 do ficheiro querie.\+c.
+Definido na linha 238 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{219                                                          \{}
-\DoxyCodeLine{220   \textcolor{keywordtype}{int} i,i2,i3,i4;}
-\DoxyCodeLine{221   Q8* querie8 = malloc(\textcolor{keyword}{sizeof}(Q8));}
-\DoxyCodeLine{222 }
-\DoxyCodeLine{223   querie8-\/>vendas = 0;}
-\DoxyCodeLine{224   querie8-\/>fact = 0.0;}
-\DoxyCodeLine{225 }
-\DoxyCodeLine{226   \textcolor{keywordflow}{for}(i = 0;i < SIZE;i++)}
-\DoxyCodeLine{227     \textcolor{keywordflow}{for}(i2 = 0;i2 < \mbox{\hyperlink{faturacao_8c_aadb09df2547eea072b899a5828071cd8}{getFatListSize}}(\mbox{\hyperlink{structsgv}{sgv}} -\/> \mbox{\hyperlink{structfact}{fact}},i);i2++)}
-\DoxyCodeLine{228       \textcolor{keywordflow}{for}(i3 = minMonth-\/1;i3 < maxMonth;i3++)}
-\DoxyCodeLine{229         \textcolor{keywordflow}{for}(i4 = 0;i4 < 3;i4++) \{}
-\DoxyCodeLine{230           querie8-\/>vendas += \mbox{\hyperlink{faturacao_8c_ab4d16ad1e06360f64005dcf2513bcf29}{getFatVendasN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,i,i2,i3,i4) +}
-\DoxyCodeLine{231                              \mbox{\hyperlink{faturacao_8c_ae9f8d679f8de01e45359276882078388}{getFatVendasP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,i,i2,i3,i4);}
-\DoxyCodeLine{232           querie8-\/>fact += \mbox{\hyperlink{faturacao_8c_a6158534e34e0ad58a0b1eb9e8721770f}{getFatFaturacaoN}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,i,i2,i3,i4) +}
-\DoxyCodeLine{233                            \mbox{\hyperlink{faturacao_8c_a119236cac4925f9840718fae004830f0}{getFatFaturacaoP}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact,i,i2,i3,i4);}
-\DoxyCodeLine{234         \}}
-\DoxyCodeLine{235 }
-\DoxyCodeLine{236   \textcolor{keywordflow}{return} querie8;}
-\DoxyCodeLine{237 \}}
+\DoxyCodeLine{238                                                          \{}
+\DoxyCodeLine{239   \textcolor{keywordtype}{int} i,i2,i3,i4;}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241   \textcolor{keywordtype}{void}* \mbox{\hyperlink{structfact}{fact}} = \mbox{\hyperlink{sgv_8c_a0d0637a2667d157d147ae8bf5a3f38ee}{getSGVFact}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243   Q8* querie8 = malloc(\textcolor{keyword}{sizeof}(Q8));}
+\DoxyCodeLine{244   querie8-\/>vendas = 0;}
+\DoxyCodeLine{245   querie8-\/>fact = 0.0;}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247   \textcolor{keywordflow}{for}(i = 0;i < SIZE;i++)}
+\DoxyCodeLine{248     \textcolor{keywordflow}{for}(i2 = 0;i2 < \mbox{\hyperlink{faturacao_8c_aadb09df2547eea072b899a5828071cd8}{getFatListSize}}(\mbox{\hyperlink{structfact}{fact}},i);i2++)}
+\DoxyCodeLine{249       \textcolor{keywordflow}{for}(i3 = minMonth-\/1;i3 < maxMonth;i3++)}
+\DoxyCodeLine{250         \textcolor{keywordflow}{for}(i4 = 0;i4 < 3;i4++) \{}
+\DoxyCodeLine{251           querie8-\/>vendas += \mbox{\hyperlink{faturacao_8c_ab4d16ad1e06360f64005dcf2513bcf29}{getFatVendasN}}(\mbox{\hyperlink{structfact}{fact}},i,i2,i3,i4) +}
+\DoxyCodeLine{252                              \mbox{\hyperlink{faturacao_8c_ae9f8d679f8de01e45359276882078388}{getFatVendasP}}(\mbox{\hyperlink{structfact}{fact}},i,i2,i3,i4);}
+\DoxyCodeLine{253           querie8-\/>fact += \mbox{\hyperlink{faturacao_8c_a6158534e34e0ad58a0b1eb9e8721770f}{getFatFaturacaoN}}(\mbox{\hyperlink{structfact}{fact}},i,i2,i3,i4) +}
+\DoxyCodeLine{254                            \mbox{\hyperlink{faturacao_8c_a119236cac4925f9840718fae004830f0}{getFatFaturacaoP}}(\mbox{\hyperlink{structfact}{fact}},i,i2,i3,i4);}
+\DoxyCodeLine{255         \}}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257   \textcolor{keywordflow}{return} querie8;}
+\DoxyCodeLine{258 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_add4bf586c1e564246a4ae9f57d3b6d45}\label{querie_8c_add4bf586c1e564246a4ae9f57d3b6d45}} 
@@ -751,52 +764,57 @@ apontador para Q11
 \end{DoxyReturn}
 
 
-Definido na linha 475 do ficheiro querie.\+c.
+Definido na linha 484 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{475                                               \{}
-\DoxyCodeLine{476   \textcolor{keywordtype}{int} i, j, k, l, hash, pos;}
-\DoxyCodeLine{477   Q11* querie11 = malloc(\textcolor{keyword}{sizeof}(Q11));}
-\DoxyCodeLine{478   querie11-\/>produtos = NULL;}
-\DoxyCodeLine{479   querie11-\/>size = 0;}
-\DoxyCodeLine{480 }
-\DoxyCodeLine{481   \textcolor{keywordflow}{for}(i=0; i < SIZE; i++) \{}
-\DoxyCodeLine{482     \textcolor{keywordflow}{for}(j=0; j < \mbox{\hyperlink{faturacao_8c_aadb09df2547eea072b899a5828071cd8}{getFatListSize}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact, i); j++) \{}
-\DoxyCodeLine{483       \textcolor{keywordflow}{if}(\mbox{\hyperlink{faturacao_8c_a1e071f80c904f822e7a39c15f073d581}{getFatOcup}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact, i, j)) \{}
-\DoxyCodeLine{484         querie11-\/>produtos = realloc(querie11-\/>produtos, \textcolor{keyword}{sizeof}(PP)*(querie11-\/>size+1));}
-\DoxyCodeLine{485         querie11-\/>produtos[querie11-\/>size].total = 0;}
-\DoxyCodeLine{486         strcpy(querie11-\/>produtos[querie11-\/>size].prod, \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>prod, i, j));}
-\DoxyCodeLine{487 }
-\DoxyCodeLine{488         \textcolor{keywordflow}{for}(k=0; k<3; k++) \{}
-\DoxyCodeLine{489           querie11-\/>produtos[querie11-\/>size].unidades[k] = 0;}
-\DoxyCodeLine{490           \textcolor{keywordflow}{for}(l=0; l<12; l++) \{}
-\DoxyCodeLine{491             querie11-\/>produtos[querie11-\/>size].unidades[k] += \mbox{\hyperlink{faturacao_8c_a957c5785e855180689d71666ff304af2}{getFatUnidades}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>fact, i, j, l, k);}
-\DoxyCodeLine{492           \}}
-\DoxyCodeLine{493           querie11-\/>produtos[querie11-\/>size].total += querie11-\/>produtos[querie11-\/>size].unidades[k];}
-\DoxyCodeLine{494         \}}
-\DoxyCodeLine{495         querie11-\/>size++;}
-\DoxyCodeLine{496       \}}
-\DoxyCodeLine{497     \}}
-\DoxyCodeLine{498   \}}
-\DoxyCodeLine{499 }
-\DoxyCodeLine{500   \mbox{\hyperlink{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}{quickSortbyPP}}(querie11-\/>produtos, 0, querie11-\/>size -\/ 1);}
+\DoxyCodeLine{484                                               \{}
+\DoxyCodeLine{485   \textcolor{keywordtype}{int} i, j, k, l, hash, pos;}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487   \textcolor{keywordtype}{void}* \mbox{\hyperlink{structfact}{fact}} = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{488   \textcolor{keywordtype}{void}* prod = \mbox{\hyperlink{sgv_8c_a2284fa6b582684650980af4ed87f497b}{getSGVProd}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{489   \textcolor{keywordtype}{void}* gfil = \mbox{\hyperlink{sgv_8c_a23158bb4dc3ac58ddb55d145fd728d33}{getSGVGFiliais}}(\mbox{\hyperlink{structsgv}{sgv}});}
+\DoxyCodeLine{490   }
+\DoxyCodeLine{491   Q11* querie11 = malloc(\textcolor{keyword}{sizeof}(Q11));}
+\DoxyCodeLine{492   querie11-\/>produtos = NULL;}
+\DoxyCodeLine{493   querie11-\/>size = 0;}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495   \textcolor{keywordflow}{for}(i=0; i < SIZE; i++) \{}
+\DoxyCodeLine{496     \textcolor{keywordflow}{for}(j=0; j < \mbox{\hyperlink{faturacao_8c_aadb09df2547eea072b899a5828071cd8}{getFatListSize}}(\mbox{\hyperlink{structfact}{fact}}, i); j++) \{}
+\DoxyCodeLine{497       \textcolor{keywordflow}{if}(\mbox{\hyperlink{faturacao_8c_a1e071f80c904f822e7a39c15f073d581}{getFatOcup}}(\mbox{\hyperlink{structfact}{fact}}, i, j)) \{}
+\DoxyCodeLine{498         querie11-\/>produtos = realloc(querie11-\/>produtos, \textcolor{keyword}{sizeof}(PP)*(querie11-\/>size+1));}
+\DoxyCodeLine{499         querie11-\/>produtos[querie11-\/>size].total = 0;}
+\DoxyCodeLine{500         strcpy(querie11-\/>produtos[querie11-\/>size].prod, \mbox{\hyperlink{catalogo_8c_ac19c06bab35d4e1a61bb91d0d9e65728}{getCatKey}}(prod, i, j));}
 \DoxyCodeLine{501 }
-\DoxyCodeLine{502   \textcolor{keywordflow}{if}(limit < querie11-\/>size) \{}
-\DoxyCodeLine{503     querie11-\/>produtos=realloc(querie11-\/>produtos, \textcolor{keyword}{sizeof}(PP)*limit);}
-\DoxyCodeLine{504     querie11-\/>size = limit;}
-\DoxyCodeLine{505   \}}
-\DoxyCodeLine{506 }
-\DoxyCodeLine{507   \textcolor{keywordflow}{for}(i=0; i<querie11-\/>size; i++) \{}
-\DoxyCodeLine{508     pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(querie11-\/>produtos[i].prod, \mbox{\hyperlink{structsgv}{sgv}}-\/>prod);}
-\DoxyCodeLine{509     hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(querie11-\/>produtos[i].prod[0]);}
-\DoxyCodeLine{510     querie11-\/>produtos[i].clientes[0] = \mbox{\hyperlink{filial_8c_a5fabb2d1fd539a460d1f9a0cca75973e}{getGFilPSizeC}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 0, hash, pos);}
-\DoxyCodeLine{511     querie11-\/>produtos[i].clientes[1] = \mbox{\hyperlink{filial_8c_a5fabb2d1fd539a460d1f9a0cca75973e}{getGFilPSizeC}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 1, hash, pos);}
-\DoxyCodeLine{512     querie11-\/>produtos[i].clientes[2] = \mbox{\hyperlink{filial_8c_a5fabb2d1fd539a460d1f9a0cca75973e}{getGFilPSizeC}}(\mbox{\hyperlink{structsgv}{sgv}}-\/>gfil, 2, hash, pos);}
-\DoxyCodeLine{513   \}}
-\DoxyCodeLine{514 }
-\DoxyCodeLine{515   \textcolor{keywordflow}{return} querie11;}
-\DoxyCodeLine{516 \}}
+\DoxyCodeLine{502         \textcolor{keywordflow}{for}(k=0; k<3; k++) \{}
+\DoxyCodeLine{503           querie11-\/>produtos[querie11-\/>size].unidades[k] = 0;}
+\DoxyCodeLine{504           \textcolor{keywordflow}{for}(l=0; l<12; l++) \{}
+\DoxyCodeLine{505             querie11-\/>produtos[querie11-\/>size].unidades[k] += \mbox{\hyperlink{faturacao_8c_a957c5785e855180689d71666ff304af2}{getFatUnidades}}(\mbox{\hyperlink{structfact}{fact}}, i, j, l, k);}
+\DoxyCodeLine{506           \}}
+\DoxyCodeLine{507           querie11-\/>produtos[querie11-\/>size].total += querie11-\/>produtos[querie11-\/>size].unidades[k];}
+\DoxyCodeLine{508         \}}
+\DoxyCodeLine{509         querie11-\/>size++;}
+\DoxyCodeLine{510       \}}
+\DoxyCodeLine{511     \}}
+\DoxyCodeLine{512   \}}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514   \mbox{\hyperlink{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}{quickSortbyPP}}(querie11-\/>produtos, 0, querie11-\/>size -\/ 1);}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516   \textcolor{keywordflow}{if}(limit < querie11-\/>size) \{}
+\DoxyCodeLine{517     querie11-\/>produtos=realloc(querie11-\/>produtos, \textcolor{keyword}{sizeof}(PP)*limit);}
+\DoxyCodeLine{518     querie11-\/>size = limit;}
+\DoxyCodeLine{519   \}}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521   \textcolor{keywordflow}{for}(i=0; i<querie11-\/>size; i++) \{}
+\DoxyCodeLine{522     pos = \mbox{\hyperlink{catalogo_8c_a90eb6bfc54c9e1e1df6d142447af770b}{searchCat}}(querie11-\/>produtos[i].prod, prod);}
+\DoxyCodeLine{523     hash = \mbox{\hyperlink{catalogo_8c_a65df18a97df6196f2cd6778d71e2d49b}{hashCat}}(querie11-\/>produtos[i].prod[0]);}
+\DoxyCodeLine{524     querie11-\/>produtos[i].clientes[0] = \mbox{\hyperlink{filial_8c_a5fabb2d1fd539a460d1f9a0cca75973e}{getGFilPSizeC}}(gfil, 0, hash, pos);}
+\DoxyCodeLine{525     querie11-\/>produtos[i].clientes[1] = \mbox{\hyperlink{filial_8c_a5fabb2d1fd539a460d1f9a0cca75973e}{getGFilPSizeC}}(gfil, 1, hash, pos);}
+\DoxyCodeLine{526     querie11-\/>produtos[i].clientes[2] = \mbox{\hyperlink{filial_8c_a5fabb2d1fd539a460d1f9a0cca75973e}{getGFilPSizeC}}(gfil, 2, hash, pos);}
+\DoxyCodeLine{527   \}}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{529   \textcolor{keywordflow}{return} querie11;}
+\DoxyCodeLine{530 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_af91c44b016d305f1659a9b51d0eda961}\label{querie_8c_af91c44b016d305f1659a9b51d0eda961}} 
@@ -820,32 +838,32 @@ Função de ordenação por faturação de um produto pelo algoritmo Quicksort.
 \end{DoxyParams}
 
 
-Definido na linha 566 do ficheiro querie.\+c.
+Definido na linha 580 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{567 \{}
-\DoxyCodeLine{568     \textcolor{keywordflow}{if} (low < high)}
-\DoxyCodeLine{569     \{}
-\DoxyCodeLine{570       \textcolor{keywordtype}{float} pivot = prods[high].faturacao;}
-\DoxyCodeLine{571       \textcolor{keywordtype}{int} i = (low -\/ 1);}
-\DoxyCodeLine{572 }
-\DoxyCodeLine{573       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
-\DoxyCodeLine{574       \{}
-\DoxyCodeLine{575           \textcolor{keywordflow}{if} (prods[j].faturacao > pivot)}
-\DoxyCodeLine{576           \{}
-\DoxyCodeLine{577               i++;}
-\DoxyCodeLine{578               \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i], \&prods[j]);}
-\DoxyCodeLine{579           \}}
-\DoxyCodeLine{580       \}}
-\DoxyCodeLine{581       \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i + 1], \&prods[high]);}
-\DoxyCodeLine{582 }
-\DoxyCodeLine{583       \textcolor{keywordtype}{int} pi = i + 1;}
-\DoxyCodeLine{584 }
-\DoxyCodeLine{585       \mbox{\hyperlink{querie_8c_af91c44b016d305f1659a9b51d0eda961}{quickSortbyFP}}(prods, low, pi -\/ 1);}
-\DoxyCodeLine{586       \mbox{\hyperlink{querie_8c_af91c44b016d305f1659a9b51d0eda961}{quickSortbyFP}}(prods, pi + 1, high);}
-\DoxyCodeLine{587     \}}
-\DoxyCodeLine{588 \}}
+\DoxyCodeLine{581 \{}
+\DoxyCodeLine{582     \textcolor{keywordflow}{if} (low < high)}
+\DoxyCodeLine{583     \{}
+\DoxyCodeLine{584       \textcolor{keywordtype}{float} pivot = prods[high].faturacao;}
+\DoxyCodeLine{585       \textcolor{keywordtype}{int} i = (low -\/ 1);}
+\DoxyCodeLine{586 }
+\DoxyCodeLine{587       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
+\DoxyCodeLine{588       \{}
+\DoxyCodeLine{589           \textcolor{keywordflow}{if} (prods[j].faturacao > pivot)}
+\DoxyCodeLine{590           \{}
+\DoxyCodeLine{591               i++;}
+\DoxyCodeLine{592               \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i], \&prods[j]);}
+\DoxyCodeLine{593           \}}
+\DoxyCodeLine{594       \}}
+\DoxyCodeLine{595       \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i + 1], \&prods[high]);}
+\DoxyCodeLine{596 }
+\DoxyCodeLine{597       \textcolor{keywordtype}{int} pi = i + 1;}
+\DoxyCodeLine{598 }
+\DoxyCodeLine{599       \mbox{\hyperlink{querie_8c_af91c44b016d305f1659a9b51d0eda961}{quickSortbyFP}}(prods, low, pi -\/ 1);}
+\DoxyCodeLine{600       \mbox{\hyperlink{querie_8c_af91c44b016d305f1659a9b51d0eda961}{quickSortbyFP}}(prods, pi + 1, high);}
+\DoxyCodeLine{601     \}}
+\DoxyCodeLine{602 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a19b74a6357b3d71184fc358045f6494f}\label{querie_8c_a19b74a6357b3d71184fc358045f6494f}} 
@@ -869,32 +887,32 @@ Função de ordenação por produto pelo algoritmo Quicksort.
 \end{DoxyParams}
 
 
-Definido na linha 315 do ficheiro querie.\+c.
+Definido na linha 320 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{316 \{}
-\DoxyCodeLine{317     \textcolor{keywordflow}{if} (low < high)}
-\DoxyCodeLine{318     \{}
-\DoxyCodeLine{319       \textcolor{keywordtype}{char}* pivot = prods[high].prod;}
-\DoxyCodeLine{320       \textcolor{keywordtype}{int} i = (low -\/ 1);}
-\DoxyCodeLine{321 }
-\DoxyCodeLine{322       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
-\DoxyCodeLine{323       \{}
-\DoxyCodeLine{324           \textcolor{keywordflow}{if} (strcmp(prods[j].prod, pivot) < 0)}
-\DoxyCodeLine{325           \{}
-\DoxyCodeLine{326               i++;}
-\DoxyCodeLine{327               \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i], \&prods[j]);}
-\DoxyCodeLine{328           \}}
-\DoxyCodeLine{329       \}}
-\DoxyCodeLine{330       \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i + 1], \&prods[high]);}
-\DoxyCodeLine{331 }
-\DoxyCodeLine{332       \textcolor{keywordtype}{int} pi = i + 1;}
-\DoxyCodeLine{333 }
-\DoxyCodeLine{334       \mbox{\hyperlink{querie_8c_a19b74a6357b3d71184fc358045f6494f}{quickSortbyP}}(prods, low, pi -\/ 1);}
-\DoxyCodeLine{335       \mbox{\hyperlink{querie_8c_a19b74a6357b3d71184fc358045f6494f}{quickSortbyP}}(prods, pi + 1, high);}
-\DoxyCodeLine{336     \}}
-\DoxyCodeLine{337 \}}
+\DoxyCodeLine{321 \{}
+\DoxyCodeLine{322     \textcolor{keywordflow}{if} (low < high)}
+\DoxyCodeLine{323     \{}
+\DoxyCodeLine{324       \textcolor{keywordtype}{char}* pivot = prods[high].prod;}
+\DoxyCodeLine{325       \textcolor{keywordtype}{int} i = (low -\/ 1);}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
+\DoxyCodeLine{328       \{}
+\DoxyCodeLine{329           \textcolor{keywordflow}{if} (strcmp(prods[j].prod, pivot) < 0)}
+\DoxyCodeLine{330           \{}
+\DoxyCodeLine{331               i++;}
+\DoxyCodeLine{332               \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i], \&prods[j]);}
+\DoxyCodeLine{333           \}}
+\DoxyCodeLine{334       \}}
+\DoxyCodeLine{335       \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i + 1], \&prods[high]);}
+\DoxyCodeLine{336 }
+\DoxyCodeLine{337       \textcolor{keywordtype}{int} pi = i + 1;}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339       \mbox{\hyperlink{querie_8c_a19b74a6357b3d71184fc358045f6494f}{quickSortbyP}}(prods, low, pi -\/ 1);}
+\DoxyCodeLine{340       \mbox{\hyperlink{querie_8c_a19b74a6357b3d71184fc358045f6494f}{quickSortbyP}}(prods, pi + 1, high);}
+\DoxyCodeLine{341     \}}
+\DoxyCodeLine{342 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}\label{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}} 
@@ -918,32 +936,32 @@ Função de ordenação por produto pelo algoritmo Quicksort.
 \end{DoxyParams}
 
 
-Definido na linha 536 do ficheiro querie.\+c.
+Definido na linha 550 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{537 \{}
-\DoxyCodeLine{538     \textcolor{keywordflow}{if} (low < high)}
-\DoxyCodeLine{539     \{}
-\DoxyCodeLine{540       \textcolor{keywordtype}{char}* pivot = prods[high].prod;}
-\DoxyCodeLine{541       \textcolor{keywordtype}{int} i = (low -\/ 1);}
-\DoxyCodeLine{542 }
-\DoxyCodeLine{543       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
-\DoxyCodeLine{544       \{}
-\DoxyCodeLine{545           \textcolor{keywordflow}{if} (strcmp(prods[j].prod, pivot) < 0)}
-\DoxyCodeLine{546           \{}
-\DoxyCodeLine{547               i++;}
-\DoxyCodeLine{548               \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i], \&prods[j]);}
-\DoxyCodeLine{549           \}}
-\DoxyCodeLine{550       \}}
-\DoxyCodeLine{551       \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i + 1], \&prods[high]);}
-\DoxyCodeLine{552 }
-\DoxyCodeLine{553       \textcolor{keywordtype}{int} pi = i + 1;}
-\DoxyCodeLine{554 }
-\DoxyCodeLine{555       \mbox{\hyperlink{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}{quickSortbyPF}}(prods, low, pi -\/ 1);}
-\DoxyCodeLine{556       \mbox{\hyperlink{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}{quickSortbyPF}}(prods, pi + 1, high);}
-\DoxyCodeLine{557     \}}
-\DoxyCodeLine{558 \}}
+\DoxyCodeLine{551 \{}
+\DoxyCodeLine{552     \textcolor{keywordflow}{if} (low < high)}
+\DoxyCodeLine{553     \{}
+\DoxyCodeLine{554       \textcolor{keywordtype}{char}* pivot = prods[high].prod;}
+\DoxyCodeLine{555       \textcolor{keywordtype}{int} i = (low -\/ 1);}
+\DoxyCodeLine{556 }
+\DoxyCodeLine{557       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
+\DoxyCodeLine{558       \{}
+\DoxyCodeLine{559           \textcolor{keywordflow}{if} (strcmp(prods[j].prod, pivot) < 0)}
+\DoxyCodeLine{560           \{}
+\DoxyCodeLine{561               i++;}
+\DoxyCodeLine{562               \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i], \&prods[j]);}
+\DoxyCodeLine{563           \}}
+\DoxyCodeLine{564       \}}
+\DoxyCodeLine{565       \mbox{\hyperlink{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}{swapPF}}(\&prods[i + 1], \&prods[high]);}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567       \textcolor{keywordtype}{int} pi = i + 1;}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{569       \mbox{\hyperlink{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}{quickSortbyPF}}(prods, low, pi -\/ 1);}
+\DoxyCodeLine{570       \mbox{\hyperlink{querie_8c_a09bf0b5797368ee4ce89b98817a9e7b0}{quickSortbyPF}}(prods, pi + 1, high);}
+\DoxyCodeLine{571     \}}
+\DoxyCodeLine{572 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}\label{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}} 
@@ -967,32 +985,32 @@ Função de ordenação por total de unidades pelo algoritmo Quicksort.
 \end{DoxyParams}
 
 
-Definido na linha 445 do ficheiro querie.\+c.
+Definido na linha 454 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{446 \{}
-\DoxyCodeLine{447     \textcolor{keywordflow}{if} (low < high)}
-\DoxyCodeLine{448     \{}
-\DoxyCodeLine{449       \textcolor{keywordtype}{int} pivot = prods[high].total;}
-\DoxyCodeLine{450       \textcolor{keywordtype}{int} i = (low -\/ 1);}
-\DoxyCodeLine{451 }
-\DoxyCodeLine{452       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
-\DoxyCodeLine{453       \{}
-\DoxyCodeLine{454           \textcolor{keywordflow}{if} (prods[j].total > pivot)}
-\DoxyCodeLine{455           \{}
-\DoxyCodeLine{456               i++;}
-\DoxyCodeLine{457               \mbox{\hyperlink{querie_8c_a73ab28f162c302ecdfb0cf95e819fac1}{swapPP}}(\&prods[i], \&prods[j]);}
-\DoxyCodeLine{458           \}}
-\DoxyCodeLine{459       \}}
-\DoxyCodeLine{460       \mbox{\hyperlink{querie_8c_a73ab28f162c302ecdfb0cf95e819fac1}{swapPP}}(\&prods[i + 1], \&prods[high]);}
-\DoxyCodeLine{461 }
-\DoxyCodeLine{462       \textcolor{keywordtype}{int} pi = i + 1;}
-\DoxyCodeLine{463 }
-\DoxyCodeLine{464       \mbox{\hyperlink{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}{quickSortbyPP}}(prods, low, pi -\/ 1);}
-\DoxyCodeLine{465       \mbox{\hyperlink{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}{quickSortbyPP}}(prods, pi + 1, high);}
-\DoxyCodeLine{466     \}}
-\DoxyCodeLine{467 \}}
+\DoxyCodeLine{455 \{}
+\DoxyCodeLine{456     \textcolor{keywordflow}{if} (low < high)}
+\DoxyCodeLine{457     \{}
+\DoxyCodeLine{458       \textcolor{keywordtype}{int} pivot = prods[high].total;}
+\DoxyCodeLine{459       \textcolor{keywordtype}{int} i = (low -\/ 1);}
+\DoxyCodeLine{460 }
+\DoxyCodeLine{461       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
+\DoxyCodeLine{462       \{}
+\DoxyCodeLine{463           \textcolor{keywordflow}{if} (prods[j].total > pivot)}
+\DoxyCodeLine{464           \{}
+\DoxyCodeLine{465               i++;}
+\DoxyCodeLine{466               \mbox{\hyperlink{querie_8c_a73ab28f162c302ecdfb0cf95e819fac1}{swapPP}}(\&prods[i], \&prods[j]);}
+\DoxyCodeLine{467           \}}
+\DoxyCodeLine{468       \}}
+\DoxyCodeLine{469       \mbox{\hyperlink{querie_8c_a73ab28f162c302ecdfb0cf95e819fac1}{swapPP}}(\&prods[i + 1], \&prods[high]);}
+\DoxyCodeLine{470 }
+\DoxyCodeLine{471       \textcolor{keywordtype}{int} pi = i + 1;}
+\DoxyCodeLine{472 }
+\DoxyCodeLine{473       \mbox{\hyperlink{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}{quickSortbyPP}}(prods, low, pi -\/ 1);}
+\DoxyCodeLine{474       \mbox{\hyperlink{querie_8c_aa12a2ea6f7b9ee94a53f4db86b3d5266}{quickSortbyPP}}(prods, pi + 1, high);}
+\DoxyCodeLine{475     \}}
+\DoxyCodeLine{476 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a1148042eb79432fec4de299d5fc83f5b}\label{querie_8c_a1148042eb79432fec4de299d5fc83f5b}} 
@@ -1016,32 +1034,32 @@ Função de ordenação por quantidade de produto pelo algoritmo Quicksort.
 \end{DoxyParams}
 
 
-Definido na linha 345 do ficheiro querie.\+c.
+Definido na linha 350 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{346 \{}
-\DoxyCodeLine{347     \textcolor{keywordflow}{if} (low < high)}
-\DoxyCodeLine{348     \{}
-\DoxyCodeLine{349       \textcolor{keywordtype}{int} pivot = prods[high].quantidade;}
-\DoxyCodeLine{350       \textcolor{keywordtype}{int} i = (low -\/ 1);}
-\DoxyCodeLine{351 }
-\DoxyCodeLine{352       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
-\DoxyCodeLine{353       \{}
-\DoxyCodeLine{354           \textcolor{keywordflow}{if} (prods[j].quantidade > pivot)}
-\DoxyCodeLine{355           \{}
-\DoxyCodeLine{356               i++;}
-\DoxyCodeLine{357               \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i], \&prods[j]);}
-\DoxyCodeLine{358           \}}
-\DoxyCodeLine{359       \}}
-\DoxyCodeLine{360       \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i + 1], \&prods[high]);}
-\DoxyCodeLine{361 }
-\DoxyCodeLine{362       \textcolor{keywordtype}{int} pi = i + 1;}
-\DoxyCodeLine{363 }
-\DoxyCodeLine{364       \mbox{\hyperlink{querie_8c_a1148042eb79432fec4de299d5fc83f5b}{quickSortbyQP}}(prods, low, pi -\/ 1);}
-\DoxyCodeLine{365       \mbox{\hyperlink{querie_8c_a1148042eb79432fec4de299d5fc83f5b}{quickSortbyQP}}(prods, pi + 1, high);}
-\DoxyCodeLine{366     \}}
-\DoxyCodeLine{367 \}}
+\DoxyCodeLine{351 \{}
+\DoxyCodeLine{352     \textcolor{keywordflow}{if} (low < high)}
+\DoxyCodeLine{353     \{}
+\DoxyCodeLine{354       \textcolor{keywordtype}{int} pivot = prods[high].quantidade;}
+\DoxyCodeLine{355       \textcolor{keywordtype}{int} i = (low -\/ 1);}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=low; j<=high-\/1; j++)}
+\DoxyCodeLine{358       \{}
+\DoxyCodeLine{359           \textcolor{keywordflow}{if} (prods[j].quantidade > pivot)}
+\DoxyCodeLine{360           \{}
+\DoxyCodeLine{361               i++;}
+\DoxyCodeLine{362               \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i], \&prods[j]);}
+\DoxyCodeLine{363           \}}
+\DoxyCodeLine{364       \}}
+\DoxyCodeLine{365       \mbox{\hyperlink{querie_8c_a93ed31abc94b8258f576446bfe06521f}{swapP}}(\&prods[i + 1], \&prods[high]);}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367       \textcolor{keywordtype}{int} pi = i + 1;}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{369       \mbox{\hyperlink{querie_8c_a1148042eb79432fec4de299d5fc83f5b}{quickSortbyQP}}(prods, low, pi -\/ 1);}
+\DoxyCodeLine{370       \mbox{\hyperlink{querie_8c_a1148042eb79432fec4de299d5fc83f5b}{quickSortbyQP}}(prods, pi + 1, high);}
+\DoxyCodeLine{371     \}}
+\DoxyCodeLine{372 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a93ed31abc94b8258f576446bfe06521f}\label{querie_8c_a93ed31abc94b8258f576446bfe06521f}} 
@@ -1063,15 +1081,15 @@ Função troca o apontador de duas Structs P.
 \end{DoxyParams}
 
 
-Definido na linha 302 do ficheiro querie.\+c.
+Definido na linha 307 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{303 \{}
-\DoxyCodeLine{304     P aux = *a;}
-\DoxyCodeLine{305     *a = *b;}
-\DoxyCodeLine{306     *b = aux;}
-\DoxyCodeLine{307 \}}
+\DoxyCodeLine{308 \{}
+\DoxyCodeLine{309     P aux = *a;}
+\DoxyCodeLine{310     *a = *b;}
+\DoxyCodeLine{311     *b = aux;}
+\DoxyCodeLine{312 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}\label{querie_8c_a857d39c189f3d8eb3cc27d30f61d46f3}} 
@@ -1093,15 +1111,15 @@ Função troca o apontador de duas Structs PF.
 \end{DoxyParams}
 
 
-Definido na linha 523 do ficheiro querie.\+c.
+Definido na linha 537 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{524 \{}
-\DoxyCodeLine{525     PF aux = *a;}
-\DoxyCodeLine{526     *a = *b;}
-\DoxyCodeLine{527     *b = aux;}
-\DoxyCodeLine{528 \}}
+\DoxyCodeLine{538 \{}
+\DoxyCodeLine{539     PF aux = *a;}
+\DoxyCodeLine{540     *a = *b;}
+\DoxyCodeLine{541     *b = aux;}
+\DoxyCodeLine{542 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{querie_8c_a73ab28f162c302ecdfb0cf95e819fac1}\label{querie_8c_a73ab28f162c302ecdfb0cf95e819fac1}} 
@@ -1123,14 +1141,14 @@ Função troca o apontador de duas Structs PP.
 \end{DoxyParams}
 
 
-Definido na linha 432 do ficheiro querie.\+c.
+Definido na linha 441 do ficheiro querie.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{433 \{}
-\DoxyCodeLine{434     PP aux = *a;}
-\DoxyCodeLine{435     *a = *b;}
-\DoxyCodeLine{436     *b = aux;}
-\DoxyCodeLine{437 \}}
+\DoxyCodeLine{442 \{}
+\DoxyCodeLine{443     PP aux = *a;}
+\DoxyCodeLine{444     *a = *b;}
+\DoxyCodeLine{445     *b = aux;}
+\DoxyCodeLine{446 \}}
 
 \end{DoxyCode}

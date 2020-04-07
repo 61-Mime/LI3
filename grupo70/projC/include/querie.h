@@ -50,11 +50,12 @@ typedef struct q8 {
 
 typedef struct cl9
 {
-    int tipocompra; //1-N 2-P 3-NeP
+    int tipocompra; //1-N 2-P
     char cliente[10];
 } Cl;
 
 typedef struct q9 {
+    int sizeList;
     int total;
     Cl *lista;
 } Q9;

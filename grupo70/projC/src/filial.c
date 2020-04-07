@@ -31,7 +31,6 @@ GFiliais* initGFil() {
   return gfil;
 }
 
-<<<<<<< HEAD
 /**
  * @brief       Função inicializa a estrutura TFilialP
  * @param gfil  Apontador para GFiliais
@@ -39,9 +38,6 @@ GFiliais* initGFil() {
  * @param i     Inteiro com posição no array tblp
  * @param size  Inteiro com o tamanho para a estrutura
  */
-=======
-
->>>>>>> 2e81acdb5939140d7cd7c6cd98cde89f545f5d90
 void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
   TFilialP* f = &gfil->fil[fil].tblp[i];
 

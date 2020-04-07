@@ -6,46 +6,7 @@
 #include <string.h>
 #include "catalogo.h"
 
-typedef struct prodcli{
-  char* prod;
-  int* uni;
-  int mes;
-  float fat;
-} ProdCli;
-
-typedef struct listc{
-  char* key;
-  int sizeProds;
-  ProdCli* prods;
-} ListC;
-
-typedef struct tfilc{
-  int sizeCli;
-  ListC* list;
-} TFilialC;
-
-typedef struct listp{
-  char* key;
-  int sizeN;
-  int sizeP;
-  int sizeC;
-  char** cliN;
-  char** cliP;
-} ListP;
-
-typedef struct tfilp{
-  int sizeProd;
-  ListP* list;
-} TFilialP;
-
-typedef struct filial{
-  TFilialC* tblc;
-  TFilialP* tblp;
-} THashFilial;
-
-typedef struct gfiliais{
-  THashFilial* fil;
-} GFiliais;
+typedef struct gfiliais GFiliais;
 
 //Functions
 GFiliais* initGFil();
@@ -63,9 +24,9 @@ int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j);
 int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j);
 char* getGFilPCliP(GFiliais* gfil, int branch, int i, int j, int k);
 char* getGFilPCliN(GFiliais* gfil, int branch, int i, int j, int k);
-ListP* getGFilPList(GFiliais* gfil, int branch, int i, int j);
+//ListP* getGFilPList(GFiliais* gfil, int branch, int i, int j);
 int getGFilPListSize(GFiliais* gfil, int branch, int i);
-ListC* getGFilCList(GFiliais* gfil, int branch, int i, int j);
+//ListC* getGFilCList(GFiliais* gfil, int branch, int i, int j);
 int getGFilCListSize(GFiliais* gfil, int branch, int i);
 char* getGFilCprod(GFiliais*gfil,int branch,int i,int j,int k);
 int getGFilCuni(GFiliais*gfil,int branch,int i,int j,int k,int m);

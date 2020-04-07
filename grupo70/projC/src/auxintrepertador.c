@@ -182,7 +182,7 @@ void runQuerie5(SGV sgv, int tam) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 6
  *@param tam    tamanho a partir do qual o comando é inválido
  */
-void runQuerie6(SGV sgv, int tam) {
+void runQuerie6(SGV sgv,int tam) {
     clock_t start_t, end_t;
 
     if(tam>2)

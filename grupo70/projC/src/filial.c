@@ -1,6 +1,6 @@
 /**
  * @file  filial.c
- * @brief Ficheiro que contém funções relativas ao módulo Filial 
+ * @brief Ficheiro que contém funções relativas ao módulo Filial
  */
 
 #include "filial.h"
@@ -8,9 +8,50 @@
 #define SIZE 26
 #define SMAX 10
 
+typedef struct prodcli{
+  char* prod;
+  int* uni;
+  int mes;
+  float fat;
+} ProdCli;
+
+typedef struct listc{
+  char* key;
+  int sizeProds;
+  ProdCli* prods;
+} ListC;
+
+typedef struct tfilc{
+  int sizeCli;
+  ListC* list;
+} TFilialC;
+
+typedef struct listp{
+  char* key;
+  int sizeN;
+  int sizeP;
+  int sizeC;
+  char** cliN;
+  char** cliP;
+} ListP;
+
+typedef struct tfilp{
+  int sizeProd;
+  ListP* list;
+} TFilialP;
+
+typedef struct filial{
+  TFilialC* tblc;
+  TFilialP* tblp;
+} THashFilial;
+
+typedef struct gfiliais{
+  THashFilial* fil;
+} GFiliais;
+
 /**
  * @brief   Função inicializa a estrutura GFiliais
- * @return  Apontador para GFiliais 
+ * @return  Apontador para GFiliais
  */
 GFiliais* initGFil() {
   GFiliais* gfil = malloc(sizeof(GFiliais));

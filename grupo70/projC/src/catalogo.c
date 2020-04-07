@@ -1,6 +1,6 @@
 /**
  * @file  catalogo.c
- * @brief Ficheiro que contém funções relativas ao módulo Catálogo 
+ * @brief Ficheiro que contém funções relativas ao módulo Catálogo
  */
 
 #include "catalogo.h"
@@ -8,10 +8,9 @@
 #define MAX 10
 #define SIZE 26
 
-
 /**
  * @brief   Função inicializa a estrutura Catalogo
- * @return  Apontador para Catalogo 
+ * @return  Apontador para Catalogo
  */
 Catalogo* initCat() {
   Catalogo* cat = malloc(sizeof(Catalogo));
@@ -25,7 +24,6 @@ Catalogo* initCat() {
 
   return cat;
 }
-
 
 /**
  * @brief     Função procura uma key num Catalogo
@@ -42,7 +40,6 @@ int searchCat(char* key, Catalogo* cat){
   return res;
 }
 
-
 /**
  * @brief   Função calcula a posição no Catalogo
  * @param c Char Chave
@@ -53,12 +50,11 @@ int hashCat(char c) {
   return (c - 65);
 }
 
-
 /**
  * @brief       Função verifica se a chave é válida
  * @param key   Chave a verificar
  * @param type  Char que indica o tipo do catálogo
- * @return      Inteiro usado como booleano       
+ * @return      Inteiro usado como booleano
  */
 int isVal(char *key, char type) {
   int i, res=1;
@@ -84,7 +80,6 @@ int isVal(char *key, char type) {
   return res;
 }
 
-
 /**
  * @brief     Função adiciona uma chave ao Catalogo
  * @param cat Apontador para Catalogo
@@ -103,6 +98,10 @@ void addKey(Catalogo* cat, char* key, int i, int* val) {
   (*val)++;
 }
 
+int comparatorC(const void *p,const void *q) {
+  int r = strcmp((char *)p,(char *)q);
+  return r;
+}
 
 /**
  * @brief           Função le um ficheiro, valida e adiciona as keys ao Catalogo
@@ -135,13 +134,13 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   fclose(f);
 
   for(i=0; i<SIZE; i++)
-    quickSort(cat->tbl[i].list, 0, cat->tbl[i].size - 1);
+    qsort(cat->tbl[i].list, 0, cat->tbl[i].size - 1,comparatorC);
+    //quickSort(cat->tbl[i].list, 0, cat->tbl[i].size - 1);
 
   free(buffer);
 
   return 0;
 }
-
 
 /**
  * @brief     Função liberta o espaço de memoria ocupado pelo Catalogo
@@ -161,11 +160,10 @@ void freeCat(Catalogo* cat) {
 
   free(cat->tbl);
   cat->tbl = NULL;
-  
+
   free(cat);
   cat = NULL;
 }
-
 
 /**
  * @brief     Função devolve tamanho da Lista
@@ -176,7 +174,6 @@ void freeCat(Catalogo* cat) {
 int getCatListSize(Catalogo* cat, int i) {
   return cat->tbl[i].size;
 }
-
 
 /**
  * @brief     Função devolve a chave do Catalogo

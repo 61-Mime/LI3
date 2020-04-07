@@ -1,7 +1,17 @@
+/**
+ * @file  sort.c
+ * @brief Ficheiro que contém funções relativas a ordenação e procura
+ */
+
+
 #include "sort.h"
 #include <string.h>
 
-// Troca duas posições de um array
+/**
+ * @brief   Função troca duas Strings de apontadores
+ * @param a Apontador para String
+ * @param b Apontador para String
+ */
 void swap(char** a, char** b)
 {
     void* aux = *a;
@@ -9,7 +19,12 @@ void swap(char** a, char** b)
     *b = aux;
 }
 
-// Algoritmo de ordenação quicksort para os arrays de produtos e clientes
+/**
+ * @brief       Função de ordenação pelo algoritmo Quicksort
+ * @param arr   Array de Strings a ordenar
+ * @param low   Inteiro com o incio do array 
+ * @param high  Interio com o fim do array
+ */
 void quickSort(char** arr, int low, int high)
 {
     if (low < high)
@@ -34,7 +49,14 @@ void quickSort(char** arr, int low, int high)
     }
 }
 
-// Procura binária para um produto ou cliente
+/**
+ * @brief       Função de Procura Binária
+ * @param arr   Array de Strings onde procurar
+ * @param code  String a procurar
+ * @param left  Inteiro com o inicio do array
+ * @param right Inteiro com o fim do array
+ * @return      Inteiro com a posição da String no array
+ */
 int binarySearch(char** arr, char* code, int left, int right)
 {
   int mid, res=(-1);

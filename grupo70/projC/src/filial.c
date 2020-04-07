@@ -1,8 +1,17 @@
+/**
+ * @file  filial.c
+ * @brief Ficheiro que contém funções relativas ao módulo Filial 
+ */
+
 #include "filial.h"
 
 #define SIZE 26
 #define SMAX 10
 
+/**
+ * @brief   Função inicializa a estrutura GFiliais
+ * @return  Apontador para GFiliais 
+ */
 GFiliais* initGFil() {
   GFiliais* gfil = malloc(sizeof(GFiliais));
   gfil->fil = malloc(sizeof(THashFilial) * 3);
@@ -22,6 +31,13 @@ GFiliais* initGFil() {
   return gfil;
 }
 
+/**
+ * @brief       Função inicializa a estrutura TFilialP
+ * @param gfil  Apontador para GFiliais
+ * @param fil   Inteiro com posição no array fil
+ * @param i     Inteiro com posição no array tblp
+ * @param size  Inteiro com o tamanho para a estrutura
+ */
 void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
   TFilialP* f = &gfil->fil[fil].tblp[i];
 
@@ -29,7 +45,15 @@ void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
   f->list = malloc(sizeof(ListP)*size);
 }
 
-void initListP(GFiliais* gfil, int fil, int i, int j, char* key) {
+/**
+ * @brief       Função inicializa a estrutura ListP
+ * @param gfil  Apontador para GFiliais
+ * @param fil   Inteiro com posição no array fil
+ * @param i     Inteiro com posição no array tblp
+ * @param j     Inteiro com posição no array list
+ * @param prod  String com o produto
+ */
+void initListP(GFiliais* gfil, int fil, int i, int j, char* prod) {
   ListP* l = &gfil->fil[fil].tblp[i].list[j];
 
   l->cliN = NULL;
@@ -37,9 +61,18 @@ void initListP(GFiliais* gfil, int fil, int i, int j, char* key) {
   l->sizeN = 0;
   l->sizeP = 0;
   l->sizeC = 0;
-  l->key = key;
+  // FAZER FREE DO KEY
+  l->key = malloc(sizeof(char)*SMAX);
+  strcpy(l->key, prod);
 }
 
+/**
+ * @brief       Função inicializa a estrutura TFilialC
+ * @param gfil  Apontador para GFiliais
+ * @param fil   Inteiro com posição no array fil
+ * @param i     Inteiro com posição no array tblc
+ * @param size  Inteiro com o tamanho para a estrutura
+ */
 void initTFilialC(GFiliais* gfil, int fil, int i, int size) {
   TFilialC* f = &gfil->fil[fil].tblc[i];
 
@@ -47,14 +80,30 @@ void initTFilialC(GFiliais* gfil, int fil, int i, int size) {
   f->list = malloc(sizeof(ListC)*size);
 }
 
-void initListC(GFiliais* gfil, int fil, int i, int j, char* key) {
+/**
+ * @brief       Função inicializa a estrutura ListC
+ * @param gfil  Apontador para GFiliais
+ * @param fil   Inteiro com posição no array fil
+ * @param i     Inteiro com posição no array tblc
+ * @param j     Inteiro com posição no array list
+ * @param prod  String com o cliente
+ */
+void initListC(GFiliais* gfil, int fil, int i, int j, char* cli) {
   ListC* l = &gfil->fil[fil].tblc[i].list[j];
 
   l->prods = NULL;
   l->sizeProds = 0;
-  l->key = key;
+  //FAZER FREE DO KEY
+  l->key = malloc(sizeof(char)*SMAX);
+  strcpy(l->key, cli);
 }
 
+/**
+ * @brief       Função carrega a estrutura GFiliais com todos os Produtos e Clientes
+ * @param gfil  Apontador para GFiliais
+ * @param prod  Apontador para Catalogo de Produtos
+ * @param cli   Apontador para Catalogo de Clientes
+ */
 void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli) {
   int i, j, fil, size;
 
@@ -157,6 +206,15 @@ void remRepP(GFiliais *gfil) {
       }
 }
 
+/**
+ * @brief         Função adiciona venda à parte da GFiliais organizada por produtos
+ * @param gfil    Apontador para GFiliais
+ * @param hash    Inteiro com posição no array tblp
+ * @param pos     Inteiro com posição no array list
+ * @param cli     String com Cliente da venda
+ * @param branch  Inteiro com Filial da venda
+ * @param type    Char com o tipo de venda
+ */
 void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type) {
   ListP *lp = &gfil->fil[branch-1].tblp[hash].list[pos];
 
@@ -246,6 +304,17 @@ void remRepC(GFiliais *gfil) {
       }
 }
 
+/**
+ * @brief         Função adiciona venda à parte da GFiliais organizada por clientes
+ * @param gfil    Apontador para GFiliais
+ * @param hash    Inteiro com posição no array tblc
+ * @param pos     Inteiro com posição no array list
+ * @param prod    String com Produto da venda
+ * @param branch  Inteiro com Filial da venda
+ * @param month   Inteiro com Mes da venda
+ * @param price   Float com Preço do produto da venda
+ * @param uni     Inteiro com numero de unidades da venda
+ */
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni) {
   int i;
   ListC* lc = &gfil->fil[branch-1].tblc[hash].list[pos];
@@ -264,6 +333,10 @@ void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int mon
   lc->sizeProds++;
 }
 
+/**
+ * @brief       Função liberta o espaço de memoria ocupado pela GFiliais
+ * @param gfil  Apontador para GFiliais
+ */
 void freeGFil(GFiliais* gfil) {
   int fil, i, j, k;
   ListC *lc;
@@ -319,56 +392,162 @@ void freeGFil(GFiliais* gfil) {
   gfil = NULL;
 }
 
-// GETTERS
-
+/**
+ * @brief         Função retorna o tamanho da array cliN e cliP da estrutura ListP
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @param j       Inteiro com posição no array list
+ * @return        Inteiro com o tamanho
+ */
 int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j) {
   return gfil->fil[branch].tblp[i].list[j].sizeP;
 }
 
+/**
+ * @brief         Função retorna o tamanho da array cliP da estrutura ListP
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @param j       Inteiro com posição no array list
+ * @return        Inteiro com o tamanho
+ */
 int getGFilPSizeC(GFiliais* gfil, int branch, int i, int j) {
   return gfil->fil[branch].tblp[i].list[j].sizeC;
 }
 
+/**
+ * @brief         Função retorna o tamanho da array cliN da estrutura ListP
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @param j       Inteiro com posição no array list
+ * @return        Inteiro com o tamanho
+ */
 int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j) {
   return gfil->fil[branch].tblp[i].list[j].sizeN;
 }
 
+/**
+ * @brief         Função retorna o cliente da array cliP
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @param j       Inteiro com posição no array list
+ * @param k       Inteiro com posição no array cliP
+ * @return        String com o cliente
+ */
 char* getGFilPCliP(GFiliais* gfil, int branch, int i, int j, int k) {
   return gfil->fil[branch].tblp[i].list[j].cliP[k];
 }
 
+/**
+ * @brief         Função retorna o cliente da array cliN
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @param j       Inteiro com posição no array list
+ * @param k       Inteiro com posição no array cliN
+ * @return        String com o cliente
+ */
 char* getGFilPCliN(GFiliais* gfil, int branch, int i, int j, int k) {
   return gfil->fil[branch].tblp[i].list[j].cliN[k];
 }
 
+/**
+ * @brief         Função retorna o endereço da estrutura ListP
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @param j       Inteiro com posição no array list
+ * @return        Apontador para estrutura ListP
+ */
 ListP* getGFilPList(GFiliais* gfil, int branch, int i, int j) {
   return &(gfil->fil[branch].tblp[i].list[j]);
 }
 
+/**
+ * @brief         Função retorna o tamanho do array de ListP
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @return        Inteiro com o tamanho
+ */
 int getGFilPListSize(GFiliais* gfil, int branch, int i) {
   return gfil->fil[branch].tblp[i].sizeProd;
 }
 
+/**
+ * @brief         Função retorna o endereço da estrutura ListC
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @param j       Inteiro com posição no array list
+ * @return        Apontador para estrutura ListC
+ */
 ListC* getGFilCList(GFiliais* gfil, int branch, int i, int j) {
   return &(gfil->fil[branch].tblc[i].list[j]);
 }
 
+/**
+ * @brief         Função retorna o tamanho do array de ListC
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Inteiro com posição no array fil
+ * @param i       Inteiro com posição no array tblp
+ * @return        Inteiro com o tamanho
+ */
 int getGFilCListSize(GFiliais* gfil, int branch, int i) {
   return gfil->fil[branch].tblc[i].sizeCli;
 }
 
+/**
+ * @brief         Função retorna produto da estrutura ProdCli
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblc
+ * @param j       Posição no array list
+ * @param k       Posição no array prods
+ * @return        String com o produto
+ */
 char* getGFilCprod(GFiliais*gfil,int branch,int i,int j,int k) {
   return gfil->fil[branch].tblc[i].list[j].prods[k].prod;
 }
 
+/**
+ * @brief         Função retorna unidades da estrutura ProdCli
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblc
+ * @param j       Posição no array list
+ * @param k       Posição no array prods
+ * @param m       Posição no array uni
+ * @return        Inteiro com a unidade
+ */
 int getGFilCuni(GFiliais*gfil,int branch,int i,int j,int k,int m) {
   return gfil->fil[branch].tblc[i].list[j].prods[k].uni[m];
 }
 
+/**
+ * @brief         Função retorna faturação da estrutura ProdCli
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblc
+ * @param j       Posição no array list
+ * @param k       Posição no array prods
+ * @return        Float com a faturação
+ */
 float getGFilCfat(GFiliais*gfil,int branch,int i,int j,int k) {
   return gfil->fil[branch].tblc[i].list[j].prods[k].fat;
 }
 
+/**
+ * @brief         Função retorna tamanho do array de ProdCli
+ * @param gfil    Apontador para GFiliais
+ * @param branch  Posição no array fil
+ * @param i       Posição no array tblc
+ * @param j       Posição no array list
+ * @return        Inteiro com o tamanho
+ */
 int getGFilCsizeProds(GFiliais*gfil,int branch,int i,int j) {
   return gfil->fil[branch].tblc[i].list[j].sizeProds;
 }

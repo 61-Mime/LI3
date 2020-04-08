@@ -176,7 +176,6 @@ void runQuerie5(SGV sgv, int tam) {
     printQ5(querie5);
 
     for(i=0; i<querie5->size; i++) {
-      printf(".\n");
       free(querie5->cli[i]);
     }
 

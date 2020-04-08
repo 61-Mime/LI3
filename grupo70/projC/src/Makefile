@@ -15,10 +15,9 @@ $(ODIR)/%.o: %.c $(DEPS)
 
 program: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
-	#doxygen Doxyfile
+	doxygen Doxyfile &> /dev/null
 
 clean:
 	rm -f obj/*.o
 	rm -f program
 	rm -rf ../docs/html
-	rm -rf ../docs/latex

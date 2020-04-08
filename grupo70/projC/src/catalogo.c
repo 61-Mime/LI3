@@ -108,8 +108,7 @@ void addKey(Catalogo* cat, char* key, int i, int* val) {
 }
 
 int comparatorC(const void *p,const void *q) {
-  int r = strcmp((char *)p,(char *)q);
-  return r;
+   return strcmp(*(char **)p,*(char **)q);
 }
 
 /**
@@ -143,11 +142,12 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   fclose(f);
 
   for(i=0; i<SIZE; i++)
-    qsort(cat->tbl[i].list, 0, cat->tbl[i].size - 1,comparatorC);
+    qsort(cat->tbl[i].list, cat->tbl[i].size, sizeof(char *),comparatorC);
     //quickSort(cat->tbl[i].list, 0, cat->tbl[i].size - 1);
 
   free(buffer);
-
+  //for(i=0; i<cat->tbl[0].size; i++)
+//printf("%s\n",cat->tbl[0].list[i]);
   return 0;
 }
 

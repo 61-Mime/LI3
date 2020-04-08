@@ -293,6 +293,12 @@ void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char typ
   }
 }
 
+int comparatorP(const void *p,const void *q) {
+  char *a = (*(ProdCli **)p)->prod;
+  char *b = (*(ProdCli **)q)->prod;
+  return strcmp(a,b);
+}
+
 void swapPCli(ProdCli *a, ProdCli *b)
 {
     ProdCli aux = *a;
@@ -355,7 +361,8 @@ void remRepC(GFiliais *gfil) {
         lc = &gfil->fil[fil].tblc[i].list[i2];
         if(lc->prods != NULL) {
           size = lc->sizeProds;
-          quickSortbyProd(lc->prods,0,size-1);
+          //quickSortbyProd(lc->prods,0,size-1);
+          qsort(lc->prods,size, sizeof(ProdCli *),comparatorP);
 
           for(i3 = 0,c = 1;c < size;i3++) {
             for(i4 = c;i4 < size && !strcmp(lc->prods[i4].prod,lc->prods[i3].prod);i4++)

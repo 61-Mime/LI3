@@ -394,8 +394,8 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
   querie10->size = 0;
   querie10->produtos = NULL;
 
-  querie10->size = getGFilCsizeProds(gfil, 0, hash, pos) 
-                 + getGFilCsizeProds(gfil, 1, hash, pos) 
+  querie10->size = getGFilCsizeProds(gfil, 0, hash, pos)
+                 + getGFilCsizeProds(gfil, 1, hash, pos)
                  + getGFilCsizeProds(gfil, 2, hash, pos);
   querie10->produtos = malloc(sizeof(P) * querie10->size);
 
@@ -487,7 +487,7 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
   void* fact = getSGVGFiliais(sgv);
   void* prod = getSGVProd(sgv);
   void* gfil = getSGVGFiliais(sgv);
-  
+
   Q11* querie11 = malloc(sizeof(Q11));
   querie11->produtos = NULL;
   querie11->size = 0;
@@ -624,8 +624,8 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
   querie12->size = 0;
   querie12->prods = NULL;
 
-  querie12->size = getGFilCsizeProds(gfil, 0, hash, pos) 
-                 + getGFilCsizeProds(gfil, 1, hash, pos) 
+  querie12->size = getGFilCsizeProds(gfil, 0, hash, pos)
+                 + getGFilCsizeProds(gfil, 1, hash, pos)
                  + getGFilCsizeProds(gfil, 2, hash, pos);
   querie12->prods = malloc(sizeof(P) * querie12->size);
 

@@ -13,27 +13,27 @@
  */
 void intrepertador(SGV sgv) {
     int r=1, querie=-1, tam = 0, load=0;
-    char *buffer = malloc(MAX*sizeof(char)), *s = NULL, *aux=NULL;
+    char *buffer = malloc(MAX*sizeof(char)), *s = NULL;
 
     system("clear");
-    
+
     welcome();
     menu();
 
     while(r) {
         printf("\n\nIntroduza o seu comando: ");
         fgets(buffer, MAX, stdin);
-        aux = buffer;
 
-        if(!temEspaco(aux)) {
-            s = strsep(&aux, "\n");
-            tam = strlen(aux);
+        if(!temEspaco(buffer)) {
+            s = strtok(buffer, "\n");
+            tam = strlen(buffer);
         }
 
         else
-          s = strsep(&aux, " ");
+          s = strtok(buffer, " ");
 
-        if(strcmp(s,"menu") == 0)
+        printf("%s\n", s);
+       if(strcmp(s,"menu") == 0)
           menu();
 
         else if(strcmp(s,"q")==0 || strcmp(s,"Q")==0)
@@ -44,7 +44,7 @@ void intrepertador(SGV sgv) {
 
         else switch((querie = atoi(s))) {
               case 1:
-                  sgv = runQuerie1e13(sgv, buffer, aux, load);
+                  sgv = runQuerie1e13(sgv, load);
                   if(sgv != NULL)
                     load = 1;
                   else
@@ -56,11 +56,11 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 3:
-                  runQuerie3(sgv, aux);
+                  runQuerie3(sgv, buffer);
                   break;
 
               case 4:
-                  runQuerie4(sgv, aux);
+                  runQuerie4(sgv, buffer);
                   break;
 
               case 5:
@@ -72,27 +72,27 @@ void intrepertador(SGV sgv) {
                   break;
 
               case 7:
-                  runQuerie7(sgv, aux);
+                  runQuerie7(sgv, buffer);
                   break;
 
               case 8:
-                  runQuerie8(sgv, aux);
+                  runQuerie8(sgv, buffer);
                   break;
 
               case 9:
-                  runQuerie9(sgv, aux);
+                  runQuerie9(sgv, buffer);
                   break;
 
               case 10:
-                  runQuerie10(sgv, aux);
+                  runQuerie10(sgv, buffer);
                   break;
 
               case 11:
-                  runQuerie11(sgv, aux);
+                  runQuerie11(sgv, buffer);
                   break;
 
               case 12:
-                  runQuerie12(sgv, aux);
+                  runQuerie12(sgv, buffer);
                   break;
 
               default:

@@ -150,12 +150,12 @@ int comparatorC(const void *p,const void *q) {
  * @return          Inteiro usado como booleano
  */
 int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
-  FILE* f;
+  FILE* f = fopen(filePath, "r");
   char* buffer= malloc(sizeof(char) * MAX);
   int i;
 
   while(fgets(buffer,MAX,f)) {
-    buffer = strsep(&buffer, "\r");
+    buffer = strtok(buffer, "\r");
 
     if(isVal(buffer, type))
       addKey(cat, buffer, hashCat(buffer[0]), val);

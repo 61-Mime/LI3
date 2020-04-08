@@ -26,13 +26,13 @@ int temEspaco(char* s) {
  *@param buffer argumentos do comando utilizado para correr as queries 1 e 13
  *@param load   flag que indica se o sgv ja foi inicializado
  */
-SGV runQuerie1e13(SGV sgv, char* buffer, char*aux, int load) {
+SGV runQuerie1e13(SGV sgv, int load) {
   char *c1 = NULL, *c2 = NULL, *c3 = NULL;
   clock_t start_t, end_t;
+  char buffer[MAX];
 
   printf("\nIntroduza o caminho para os três ficheiros:\n");
   fgets(buffer, MAX, stdin);
-  aux = buffer;
 
   if(!temEspaco(buffer)) {
     c1 = "../files/Clientes.txt";
@@ -40,21 +40,21 @@ SGV runQuerie1e13(SGV sgv, char* buffer, char*aux, int load) {
     c3 = "../files/Vendas_1M.txt";
     }
   else {
-    c1 = strsep(&buffer, " ");
+    c1 = strtok(buffer, " ");
     if(!temEspaco(buffer)){
       c2 = "../files/Produtos.txt";
       c3 = "../files/Vendas_1M.txt";
     }
     else {
-      c2 = strsep(&buffer, " ");
+      c2 = strtok(buffer, " ");
       if(temEspaco(buffer))
         c3 = "../files/Vendas_1M.txt";
 
       else
-        c3 = strsep(&buffer, "\n");
+        c3 = strtok(buffer, "\n");
     }
   }
-
+/*
   if(fopen(c1, "r")==NULL) {
     perror(c1);
     return NULL;
@@ -68,7 +68,7 @@ SGV runQuerie1e13(SGV sgv, char* buffer, char*aux, int load) {
   else if(fopen(c3, "r")==NULL) {
     perror(c3);
     return NULL;
-  }
+  }*/
 
   if(load==1)
     destroySGV(sgv);

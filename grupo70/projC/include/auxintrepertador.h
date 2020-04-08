@@ -10,7 +10,7 @@
 #include "apresentacao.h"
 
 int temEspaco(char* s);
-SGV runQuerie1e13(SGV sgv, char* buffer, char*aux, int load);
+SGV runQuerie1e13(SGV sgv, int load);
 void runQuerie2(SGV sgv);
 void runQuerie3(SGV sgv, char* buffer);
 void runQuerie4(SGV sgv, char* buffer);

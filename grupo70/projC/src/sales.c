@@ -50,25 +50,25 @@ void saleS(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, cha
   int uni, month, branch;
   float price;
 
-  aux = strsep(&buffer, " ");
+  aux = strtok(buffer, " ");
   prod = aux;
 
-  aux = strsep(&buffer, " ");
+  aux = strtok(NULL, " ");
   price = atof(aux);
 
-  aux = strsep(&buffer, " ");
+  aux = strtok(NULL, " ");
   uni = atoi(aux);
 
-  aux = strsep(&buffer, " ");
+  aux = strtok(NULL, " ");
   type = aux;
 
-  aux = strsep(&buffer, " ");
+  aux = strtok(NULL, " ");
   cli = aux;
 
-  aux = strsep(&buffer, " ");
+  aux = strtok(NULL, " ");
   month = atoi(aux);
 
-  aux = strsep(&buffer, " ");
+  aux = strtok(NULL, "\r\n");
   branch = atoi(aux);
 
   hashc = hashCat(cli[0]);
@@ -103,11 +103,10 @@ void saleS(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, cha
  * @return          Inteiro usado com Booleano
  */
 int loadFromSales(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gfil, char* filePath, int* val, int* lida) {
-  FILE *fsales;
+  FILE *fsales = fopen(filePath, "r");
   char* buffer= malloc(sizeof(char) * MAX);
 
   while(fgets(buffer,MAX,fsales)) {
-    buffer = strsep(&buffer, "\r");
     saleS(tprod, tcli, fact, gfil, buffer, val, lida);
   }
   remRepC(gfil);

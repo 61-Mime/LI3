@@ -75,7 +75,7 @@ void runQuerie2(SGV sgv) {
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s", c1);
 
-    if(res == 0) {
+    if(res != 1) {
       printf("Argumento inválido\n");
       return;
     }
@@ -87,9 +87,10 @@ void runQuerie2(SGV sgv) {
       free(querie2->prods[i]);
       querie2->prods[i] = NULL;
     }
-
-    free(querie2);
-    querie2 = NULL;
+    if(querie2 != NULL) {
+      free(querie2);
+      querie2 = NULL;
+    }
 }
 
 /**
@@ -105,7 +106,7 @@ void runQuerie3(SGV sgv){
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d %d", c, &mes, &type);
 
-    if(res == 0) {
+    if(res != 3) {
       printf("Argumentos inválidos\n");
       return;
     }
@@ -113,9 +114,10 @@ void runQuerie3(SGV sgv){
     Q3* querie3 = getProductSalesAndProfit(sgv, c, mes, type);
     printQ3(querie3, c, mes);
 
-    free(querie3);
-    querie3 = NULL;
-
+    if(querie3 != NULL) {
+      free(querie3);
+      querie3 = NULL;
+    }
 }
 
 /**
@@ -130,7 +132,7 @@ void runQuerie4(SGV sgv) {
   s = fgets(buffer, MAX, stdin);
   res = sscanf(s, "%d", &filial);
 
-  if(res == 0) {
+  if(res != 1) {
       printf("Argumento inválido\n");
       return;
     }
@@ -143,8 +145,10 @@ void runQuerie4(SGV sgv) {
       querie4->prods[i] = NULL;
   }
 
-  free(querie4);
-  querie4 = NULL;
+  if(querie4 != NULL) {
+    free(querie4);
+    querie4 = NULL;
+  }
 }
 
 /**
@@ -195,7 +199,7 @@ void runQuerie7(SGV sgv) {
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s", c1);
 
-    if(res == 0) {
+    if(res != 1) {
       printf("Argumento inválido\n");
       return;
     }
@@ -206,8 +210,10 @@ void runQuerie7(SGV sgv) {
 
     printQ7(querie7, start_t, end_t);
 
-    free(querie7);
-    querie7 = NULL;
+    if(querie7 != NULL) {
+      free(querie7);
+      querie7 = NULL;
+    }
 
 }
 
@@ -224,7 +230,7 @@ void runQuerie8(SGV sgv) {
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%d %d", &minMonth, &maxMonth);
 
-    if(res == 0) {
+    if(res != 2) {
       printf("Argumento inválido\n");
       return;
     }
@@ -235,8 +241,10 @@ void runQuerie8(SGV sgv) {
 
     printQ8(querie8, start_t, end_t);
 
-    free(querie8);
-    querie8 = NULL;
+    if(querie8 != NULL) {
+      free(querie8);
+      querie8 = NULL;
+    }
 }
 
 /**
@@ -252,7 +260,7 @@ void runQuerie9(SGV sgv) {
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d", c1, &filial);
 
-    if(res == 0) {
+    if(res != 2) {
       printf("Argumentos inválidos\n");
       return;
     }
@@ -263,10 +271,12 @@ void runQuerie9(SGV sgv) {
 
     printQ9(querie9, filial, start_t, end_t);
 
-    free(querie9->lista);
-    querie9->lista = NULL;
-    free(querie9);
-    querie9 = NULL;
+    if(querie9 != NULL) {
+      free(querie9->lista);
+      querie9->lista = NULL;
+      free(querie9);
+      querie9 = NULL;
+    }
 }
 
 /**
@@ -282,8 +292,8 @@ void runQuerie10(SGV sgv) {
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d", c1, &mes);
 
-    if(res == 0) {
-      printf("Argumento inválido\n");
+    if(res != 2) {
+      printf("Argumentos inválidos\n");
       return;
     }
 
@@ -293,10 +303,12 @@ void runQuerie10(SGV sgv) {
 
     printQ10(querie10, start_t, end_t);
 
-    free(querie10->produtos);
-    querie10->produtos = NULL;
-    free(querie10);
-    querie10 = NULL;
+    if(querie10 != NULL) {
+      free(querie10->produtos);
+      querie10->produtos = NULL;
+      free(querie10);
+      querie10 = NULL;
+    }
 }
 
 /**
@@ -312,7 +324,7 @@ void runQuerie11(SGV sgv) {
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%d", &limit);
 
-    if(res == 0) {
+    if(res != 1) {
       printf("Argumento inválido\n");
       return;
     }
@@ -323,10 +335,12 @@ void runQuerie11(SGV sgv) {
 
     printQ11(querie11, start_t, end_t);
 
-    free(querie11->produtos);
-    querie11->produtos = NULL;
-    free(querie11);
-    querie11 = NULL;
+    if(querie11 != NULL){
+      free(querie11->produtos);
+      querie11->produtos = NULL;
+      free(querie11);
+      querie11 = NULL;
+    }
 }
 
 /**
@@ -342,7 +356,7 @@ void runQuerie12(SGV sgv) {
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d", c1, &limit);
 
-    if(res == 0) {
+    if(res != 2) {
       printf("Argumento inválido\n");
       return;
     }
@@ -352,8 +366,10 @@ void runQuerie12(SGV sgv) {
     end_t = clock();
     printQ12(querie12, start_t, end_t);
 
-    free(querie12->prods);
-    querie12->prods = NULL;
-    free(querie12);
-    querie12 = NULL;
+    if(querie12 != NULL){
+      free(querie12->prods);
+      querie12->prods = NULL;
+      free(querie12);
+      querie12 = NULL;
+    }
 }

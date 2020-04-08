@@ -185,14 +185,13 @@ void contaCli(GFiliais *gfil,int i,int i2,int fil) {
   ListP* lp;
 
   lp = &gfil->fil[fil].tblp[i].list[i2];
-  if(lp -> sizeN == 0) lp -> sizeC = lp -> sizeP;
-  if(lp -> sizeP == 0) lp -> sizeC = lp -> sizeN;
-
+  if(lp -> sizeN == 0) lp->sizeC = lp -> sizeP;
+  else if(lp -> sizeP == 0) lp->sizeC = lp -> sizeN;
   else {
-    lp -> sizeC = lp -> sizeP;
+    lp->sizeC = lp -> sizeP;
     for(i3 = 0;i3 < lp -> sizeN;i3++)
       if(binarySearch(lp -> cliP,lp -> cliN[i3],0,lp -> sizeP - 1)==-1)
-        lp -> sizeC++;
+        lp->sizeC++;
   }
 }
 
@@ -270,8 +269,8 @@ void remRepP(GFiliais *gfil) {
             lc->sizeP = i3 + 1;
             freeRepP(gfil,fil,i,i2,size,0);
           }
-          contaCli(gfil,i,i2,fil);
         }
+        contaCli(gfil,i,i2,fil);
       }
 }
 

@@ -24,15 +24,6 @@ int getSGVcliV(SGV sgv);
 int getSGVcliL(SGV sgv);
 int getSGVsaleV(SGV sgv);
 int getSGVsaleL(SGV sgv);
-
-int getCListsize(SGV sgv,int hash,int type);
-char* getCKey(SGV sgv,int type,int i,int j);
-int getFVendasN(SGV sgv,int hash,int pos,int branch,int mes);
-int getFVendasP(SGV sgv,int hash,int pos,int branch,int mes);
-float getFFaturacaoP(SGV sgv,int hash,int pos,int branch,int mes);
-float getFFaturacaoN(SGV sgv,int hash,int pos,int branch,int mes);
-int getPos(SGV sgv,int type,char *buffer);
-
 void* getSGVGFiliais(SGV sgv);
 void* getSGVCli(SGV sgv);
 void* getSGVProd(SGV sgv);

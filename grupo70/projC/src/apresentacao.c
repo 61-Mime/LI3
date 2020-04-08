@@ -97,7 +97,7 @@ void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
 
     if(querie3 == NULL) {
-        printf("Produto inválido\n");
+        printf("Produto ou mês inválido\n");
         return;
     }
 
@@ -182,6 +182,11 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
  *@param end_t   momento em que a querie 8 finda
  */
 void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
+    if(querie8 == NULL) {
+        printf("Mês inválido\n");
+        return;
+    }
+
     printf("\nTotal vendas: %d\n", querie8->vendas);
     printf("Total faturado: %.2f\n", querie8->fact);
 
@@ -199,7 +204,7 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     int i;
 
     if(querie9 == NULL) {
-        printf("Produto inválido\n");
+        printf("Produto ou filial inválido\n");
         return;
     }
 
@@ -225,7 +230,7 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   int i;
 
   if(querie10 == NULL) {
-    printf("Cliente inválido\n");
+    printf("Cliente ou mês inválido\n");
     return;
   }
 
@@ -245,7 +250,7 @@ void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
   int i;
 
   if(querie11 == NULL) {
-    printf("Cliente inválido\n");
+    printf("Limite inválido\n");
     return;
   }
 
@@ -266,7 +271,7 @@ void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
   int i;
 
   if(querie12 == NULL) {
-    printf("Cliente inválido\n");
+    printf("Cliente ou limite inválido\n");
     return;
   }
 

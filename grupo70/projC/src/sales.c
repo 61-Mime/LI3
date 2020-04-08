@@ -106,11 +106,6 @@ int loadFromSales(Catalogo* tprod, Catalogo* tcli, THashFact* fact, GFiliais* gf
   FILE *fsales;
   char* buffer= malloc(sizeof(char) * MAX);
 
-  if((fsales = fopen(filePath, "r")) == NULL) {
-    perror(filePath);
-    return -1;
-  }
-
   while(fgets(buffer,MAX,fsales)) {
     buffer = strsep(&buffer, "\r");
     saleS(tprod, tcli, fact, gfil, buffer, val, lida);

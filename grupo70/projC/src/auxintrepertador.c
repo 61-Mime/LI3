@@ -5,6 +5,8 @@
 
 #include "auxintrepertador.h"
 
+#define MAX 100
+
 /**
  *@brief   função que verifica se uma String tem ou nao o carater espaço
  *@param s String a ser verificada
@@ -18,16 +20,19 @@ int temEspaco(char* s) {
   return r;
 }
 
-
 /**
  *@brief        função que aplica as querie 1 e 13
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas as queries 1 e 13
  *@param buffer argumentos do comando utilizado para correr as queries 1 e 13
  *@param load   flag que indica se o sgv ja foi inicializado
  */
-SGV runQuerie1e13(SGV sgv, char* buffer, int load) {
+SGV runQuerie1e13(SGV sgv, char* buffer, char*aux, int load) {
   char *c1 = NULL, *c2 = NULL, *c3 = NULL;
   clock_t start_t, end_t;
+
+  printf("\nIntroduza o caminho para os três ficheiros:\n");
+  fgets(buffer, MAX, stdin);
+  aux = buffer;
 
   if(!temEspaco(buffer)) {
     c1 = "../files/Clientes.txt";
@@ -48,6 +53,21 @@ SGV runQuerie1e13(SGV sgv, char* buffer, int load) {
       else
         c3 = strsep(&buffer, "\n");
     }
+  }
+
+  if(fopen(c1, "r")==NULL) {
+    perror(c1);
+    return NULL;
+  }
+
+  else if(fopen(c2, "r")==NULL) {
+    perror(c2);
+    return NULL;
+  }
+
+  else if(fopen(c3, "r")==NULL) {
+    perror(c3);
+    return NULL;
   }
 
   if(load==1)
@@ -73,27 +93,23 @@ SGV runQuerie1e13(SGV sgv, char* buffer, int load) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 2
  *@param buffer argumento do comando utilizado para correr a querie 2
  */
-void runQuerie2(SGV sgv, char* buffer) {
-    char *c1 = NULL;
+void runQuerie2(SGV sgv) {
+    char c1;
+    int i;
 
-    if(temEspaco(buffer))
-      printf("Querie inválida\n");
+    printf("\nIntroduza o carater inicial do Produto (Maiúsculo):\n");
+    c1 = getchar();
 
-    else {
-      c1 = strsep(&buffer, "\n");
+    Q2* querie2 = getProductsStartedByLetter(sgv, c1);
+    printQ2(querie2, c1);
 
-      Q2* querie2 = getProductsStartedByLetter(sgv, c1[0]);
-      printQ2(querie2, c1[0]);
-      int i;
-
-      for(i=0; i<querie2->size; i++) {
-        free(querie2->prods[i]);
-        querie2->prods[i] = NULL;
-      }
-
-      free(querie2);
-      querie2 = NULL;
+    for(i=0; i<querie2->size; i++) {
+      free(querie2->prods[i]);
+      querie2->prods[i] = NULL;
     }
+
+    free(querie2);
+    querie2 = NULL;
 }
 
 /**

@@ -154,11 +154,6 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   char* buffer= malloc(sizeof(char) * MAX);
   int i;
 
-  if((f = fopen(filePath, "r")) == NULL) {
-    perror(filePath);
-    return -1;
-  }
-
   while(fgets(buffer,MAX,f)) {
     buffer = strsep(&buffer, "\r");
 
@@ -171,15 +166,11 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   fclose(f);
 
   for(i=0; i<SIZE; i++)
-
     qsort(cat->tbl[i].list, cat->tbl[i].size, sizeof(char *),comparatorC);
-
 
   free(buffer);
   return 0;
 }
-/*for(i=0; i<cat->tbl[0].size; i++)
-//printf("%s\n",cat->tbl[0].list[i]); (entre free e return)*/
 
 
 /**

@@ -5,24 +5,47 @@
 
 #include "apresentacao.h"
 
+void welcome() {
+    printf("   SSSSSSSSSSSSSSS           GGGGGGGGGGGG   VVVVVVVV           VVVVVVVV\n");
+    printf(" SS:::::::::::::::S       GGG::::::::::::G  V::::::V           V::::::V\n");
+    printf("S:::::SSSSSS::::::S     GG:::::::::::::::G  V::::::V           V::::::V\n");
+    printf("S:::::S     SSSSSSS    G:::::GGGGGGGG::::G  V::::::V           V::::::V\n");
+    printf("S:::::S               G:::::G       GGGGGG   V:::::V           V:::::V \n");
+    printf("S:::::S              G:::::G                  V:::::V         V:::::V  \n");
+    printf(" S::::SSSS           G:::::G                   V:::::V       V:::::V   \n");
+    printf("  SS::::::SSSSS      G:::::G    GGGGGGGGGG      V:::::V     V:::::V    \n");
+    printf("    SSS::::::::SS    G:::::G    G::::::::G       V:::::V   V:::::V     \n");
+    printf("       SSSSSS::::S   G:::::G    GGGGG::::G        V:::::V V:::::V      \n");
+    printf("            S:::::S  G:::::G        G::::G         V:::::V:::::V       \n");
+    printf("            S:::::S   G:::::G       G::::G          V:::::::::V        \n");
+    printf("SSSSSSS     S:::::S    G:::::GGGGGGGG::::G           V:::::::V         \n");
+    printf("S::::::SSSSSS:::::S     GG:::::::::::::::G            V:::::V          \n");
+    printf("S:::::::::::::::SS        GGG::::::::::::G             V:::V           \n");
+    printf(" SSSSSSSSSSSSSSS             GGGGGGGGGGGG               VVV            \n");
+    printf("\nBem Vindo ao Sistema de Gestão de Vendas. Durante a execução do programa\n");
+    printf("pode executar qualquer dos comandos do menu, tendo em atenção que o com-\n");
+    printf("ando 1 tem de ser executado antes de qualquer outro.\n");
+    printf("Pode também usar o comando menu, para voltar a exibir o menu, ou Q, para\n");
+    printf("sair do programa.\n\n");
+}
+
 /**
  *@brief função que mostra o menu dos comandos que o utilizador pode usar
  */
 void menu() {
-    system("clear");
-    printf("\n- 1 <pathProd> <pathCli> <pathSales>\n");
-    printf("- 2 <letter>\n");
-    printf("- 3 <prodID> <month> <type>\n");
-    printf("- 4 <branchID>\n");
-    printf("- 5\n");
-    printf("- 6\n");
-    printf("- 7 <clientID>\n");
-    printf("- 8 <minMonth> <maxMonth>\n");
-    printf("- 9 <productID> <branchID>\n");
-    printf("- 10 <clientID> <month>\n");
-    printf("- 11 <limit>\n");
-    printf("- 12 <clientID> <limit>\n");
-    printf("- 13\n");
+    printf("\n MENU \n");
+    printf("  [1] | Iniciar o SGV\n");
+    printf("  [2] | Produtos começados por uma letra\n");
+    printf("  [3] | Informação de um produto por mês\n");
+    printf("  [4] | Códigos de produto que ninguém comprou\n");
+    printf("  [5] | Códigos de cliente que realizaram compras em todas as filiais\n");
+    printf("  [6] | Número de Clientes e número de Produtos nunca utilizados\n");
+    printf("  [7] | Informação das compras de um cliente\n");
+    printf("  [8] | Número de Vendas para um intervalo de meses\n");
+    printf("  [9] | Códigos de cliente que compraram um produto\n");
+    printf(" [10] | Códigos de produto que um cliente comprou num mês\n");
+    printf(" [11] | Códigos de produto mais vendidos\n");
+    printf(" [12] | Códigos de produto em que um cliente gastou mais dinheiro\n");
 }
 
 /**

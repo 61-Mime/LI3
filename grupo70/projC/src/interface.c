@@ -7,7 +7,6 @@
 
 #define MAX 100
 
-
 /**
  *@brief função que define o interpretador
  *@param sgv sistema de gestão de vendas a ser interpretado
@@ -17,12 +16,13 @@ void intrepertador(SGV sgv) {
     char *buffer = malloc(MAX*sizeof(char)), *s = NULL, *aux=NULL;
 
     system("clear");
+    
+    welcome();
+    menu();
 
     while(r) {
-        printf("\nIntroduza menu, um comando para executar uma querie ou 'Q' para sair\n");
-        printf("Introduza o seu comando: ");
+        printf("\n\nIntroduza o seu comando: ");
         fgets(buffer, MAX, stdin);
-
         aux = buffer;
 
         if(!temEspaco(aux)) {
@@ -44,12 +44,15 @@ void intrepertador(SGV sgv) {
 
         else switch((querie = atoi(s))) {
               case 1:
-                  sgv = runQuerie1e13(sgv, aux, load);
-                  load = 1;
+                  sgv = runQuerie1e13(sgv, buffer, aux, load);
+                  if(sgv != NULL)
+                    load = 1;
+                  else
+                    load = 0;
                   break;
 
               case 2:
-                  runQuerie2(sgv, aux);
+                  runQuerie2(sgv);
                   break;
 
               case 3:

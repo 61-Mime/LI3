@@ -24,11 +24,11 @@ typedef struct sgv {
 
 /**
  * @brief   Função que inicializa a estrutura FileInfo
- * @return  Apontador para FileInfo 
+ * @return  Apontador para FileInfo
  */
 FileInfo* initFileInfo() {
     FileInfo* f = malloc(sizeof(FileInfo));
-    
+
     f->prodV = 0;
     f->prodL = 0;
     f->cliV = 0;
@@ -142,38 +142,55 @@ int getSGVsaleL(SGV sgv) {
     return sgv->info->saleL;
 }
 
-/**
- * @brief       Função que retorna um apontador para Catalogo de Produtos
- * @param sgv   Estrutura SGV
- * @return      Apontador para Catalogo de Produtos
- */
-void* getSGVProd(SGV sgv) {
-    return sgv->prod;
+int getCListsize(SGV sgv,int hash,int type) {
+  if(type == 0)
+    return getCatListSize(sgv->prod,hash);
+
+  return getCatListSize(sgv->cli,hash);
 }
 
-/**
- * @brief       Função que retorna um apontador para Catalogo de Clientes
- * @param sgv   Estrutura SGV
- * @return      Apontador para Catalogo de Clientes
- */
-void* getSGVCli(SGV sgv) {
-    return sgv->cli;
+char* getCKey(SGV sgv,int type,int i,int j) {
+  if(type == 0)
+    return getCatKey(sgv->prod,i,j);
+
+  return getCatKey(sgv->cli,i,j);
 }
 
-/**
- * @brief       Função que retorna um apontador para GFiliais
- * @param sgv   Estrutura SGV
- * @return      Apontador para GFiliais
- */
+int getPos(SGV sgv,int type,char *buffer) {
+  if(type == 0)
+    return searchCat(buffer,sgv->prod);
+
+  return searchCat(buffer,sgv->cli);
+}
+
+int getFVendasN(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatVendasN(sgv->fact,hash,pos,branch,mes);
+}
+
+int getFVendasP(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatVendasP(sgv->fact,hash,pos,branch,mes);
+}
+
+float getFFaturacaoN(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatFaturacaoN(sgv->fact,hash,pos,branch,mes);
+}
+
+float getFFaturacaoP(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatFaturacaoP(sgv->fact,hash,pos,branch,mes);
+}
+
 void* getSGVGFiliais(SGV sgv) {
-    return sgv->gfil;
+  return sgv->gfil;
 }
 
-/**
- * @brief       Função que retorna um apontador para THashFact
- * @param sgv   Estrutura SGV
- * @return      Apontador para THashFact
- */
+void* getSGVCli(SGV sgv) {
+  return sgv->cli;
+}
+
 void* getSGVFact(SGV sgv) {
-    return sgv->fact;
+  return sgv->fact;
+}
+
+void* getSGVProd(SGV sgv) {
+  return sgv->prod;
 }

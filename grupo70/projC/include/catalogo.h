@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "sort.h"
 
 typedef struct catalogo Catalogo;
 
@@ -15,5 +14,7 @@ int tblCat(Catalogo* tcli, char* filePath, char type, int* val, int* lida);
 void freeCat(Catalogo* cli);
 int getCatListSize(Catalogo* cat, int i);
 char* getCatKey(Catalogo* cat, int i, int j);
+int comparatorC(const void *p,const void *q);
+int binarySearch(char** arr, char* code, int left, int right);
 
 #endif

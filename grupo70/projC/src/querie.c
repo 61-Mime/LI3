@@ -16,8 +16,8 @@
  */
 Q2* getProductsStartedByLetter(SGV sgv, char letter) {
   int i, hash;
-
-  void* prod = getSGVProd(sgv);
+  if(sgv == NULL)
+    return NULL;
 
   Q2* querie2 = malloc(sizeof(Q2));
 
@@ -26,12 +26,12 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
   if(hash == -1)
     return NULL;
 
-  querie2->size = getCatListSize(prod, hash);
+  querie2->size = getCListsize(sgv,0,hash);
   querie2->prods = malloc(sizeof(char*)*querie2->size);
 
   for(i=0; i<querie2->size; i++) {
     querie2->prods[i] = malloc(sizeof(char)*SMAX);
-    strcpy(querie2->prods[i], getCatKey(prod, hash, i));
+    strcpy(querie2->prods[i], getCKey(sgv,0,hash,i));
   }
 
   return querie2;
@@ -48,13 +48,13 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
 Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
   int i, pos, hash;
 
-  void* prod = getSGVProd(sgv);
-  void* fact = getSGVFact(sgv);
+  //void* prod = getSGVProd(sgv);
+  //void* fact = getSGVFact(sgv);
 
   Q3* querie3 = malloc(sizeof(Q3));
 
   hash=hashCat(productID[0]);
-  pos=searchCat(productID, prod);
+  pos=getPos(sgv,0,productID);
 
   if(hash == -1 || pos == -1)
     return NULL;
@@ -69,10 +69,10 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
     querie3->fat->nVendasP = 0;
 
     for(i=0; i<3; i++) {
-      querie3->fat->fatN += getFatFaturacaoN(fact,hash,pos,month-1,i);
-      querie3->fat->fatP += getFatFaturacaoP(fact,hash,pos,month-1,i);
-      querie3->fat->nVendasN += getFatVendasN(fact,hash,pos,month-1,i);
-      querie3->fat->nVendasP += getFatVendasP(fact,hash,pos,month-1,i);
+      querie3->fat->fatN += getFFaturacaoN(sgv,hash,pos,month-1,i);
+      querie3->fat->fatP += getFFaturacaoP(sgv,hash,pos,month-1,i);
+      querie3->fat->nVendasN += getFVendasN(sgv,hash,pos,month-1,i);
+      querie3->fat->nVendasP += getFVendasP(sgv,hash,pos,month-1,i);
     }
   }
 
@@ -81,10 +81,10 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
     querie3->fat = malloc(sizeof(Q3fat) * querie3->size);
 
     for(i=0; i<3; i++) {
-      querie3->fat[i].fatN = getFatFaturacaoN(fact,hash,pos,month-1,i);
-      querie3->fat[i].fatP = getFatFaturacaoP(fact,hash,pos,month-1,i);
-      querie3->fat[i].nVendasN = getFatVendasN(fact,hash,pos,month-1,i);
-      querie3->fat[i].nVendasP = getFatVendasP(fact,hash,pos,month-1,i);
+      querie3->fat[i].fatN = getFFaturacaoN(sgv,hash,pos,month-1,i);
+      querie3->fat[i].fatP = getFFaturacaoP(sgv,hash,pos,month-1,i);
+      querie3->fat[i].nVendasN = getFVendasN(sgv,hash,pos,month-1,i);
+      querie3->fat[i].nVendasP = getFVendasP(sgv,hash,pos,month-1,i);
     }
   }
 
@@ -101,7 +101,7 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   int i,i2, size;
 
   void* gfil = getSGVGFiliais(sgv);
-  void* prod = getSGVProd(sgv);
+  //void* prod = getSGVProd(sgv);
 
   Q4 *querie4 = malloc(sizeof(Q4));
   querie4->size = 0;
@@ -110,13 +110,12 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   if(branch == 0)
     for(i = 0;i < SIZE;i++)
       for(i2 = 0;i2 < getGFilPListSize(gfil,0,i);i2++) {
-        size = getGFilPSizeN(gfil, 0, i, i2) + getGFilPSizeP(gfil, 0, i, i2) +
-               getGFilPSizeN(gfil, 1, i, i2) + getGFilPSizeP(gfil, 1, i, i2) +
-               getGFilPSizeN(gfil, 2, i, i2) + getGFilPSizeP(gfil, 2, i, i2);
+        size = getGFilPSizeC(gfil, 0, i, i2) + getGFilPSizeC(gfil, 1, i, i2) +
+               getGFilPSizeC(gfil, 2, i, i2);
         if(size == 0) {
           querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
           querie4->prods[querie4->size] = malloc(sizeof(char) * 10);
-          strcpy(querie4->prods[querie4->size], getCatKey(prod, i, i2));
+          strcpy(querie4->prods[querie4->size], getCKey(sgv,0, i, i2));
           querie4->size++;
         }
       }
@@ -124,11 +123,11 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   else {
     for(i = 0;i < SIZE;i++)
       for(i2 = 0;i2 < getGFilPListSize(gfil,branch-1,i);i2++) {
-        size = getGFilPSizeN(gfil, branch-1, i, i2) + getGFilPSizeP(gfil, branch-1, i, i2);
+        size = getGFilPSizeC(gfil, branch-1, i, i2);
         if(size == 0) {
           querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
           querie4->prods[querie4->size] = malloc(sizeof(char) * 10);
-          strcpy(querie4->prods[querie4->size], getCatKey(prod, i, i2));
+          strcpy(querie4->prods[querie4->size], getCKey(sgv,0, i, i2));
           querie4->size++;
         }
       }
@@ -311,65 +310,18 @@ void swapP(P *a, P *b)
     *b = aux;
 }
 
-/**
- * @brief       Função de ordenação por produto pelo algoritmo Quicksort
- * @param prods Estrutura P a ordenar
- * @param low   Inteiro com o incio do P
- * @param high  Interio com o fim do P
- */
-void quickSortbyP(P *prods, int low, int high)
-{
-    if (low < high)
-    {
-      char* pivot = prods[high].prod;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (strcmp(prods[j].prod, pivot) < 0)
-          {
-              i++;
-              swapP(&prods[i], &prods[j]);
-          }
-      }
-      swapP(&prods[i + 1], &prods[high]);
-
-      int pi = i + 1;
-
-      quickSortbyP(prods, low, pi - 1);
-      quickSortbyP(prods, pi + 1, high);
-    }
+int comparatorPL(const void *p,const void *q) {
+  P *a = (P *)p;
+  P *b = (P *)q;
+  return strcmp(a->prod,b->prod);
 }
 
-/**
- * @brief       Função de ordenação por quantidade de produto pelo algoritmo Quicksort
- * @param prods Estrutura QP a ordenar
- * @param low   Inteiro com o incio do QP
- * @param high  Interio com o fim do QP
- */
-void quickSortbyQP(P *prods, int low, int high)
-{
-    if (low < high)
-    {
-      int pivot = prods[high].quantidade;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (prods[j].quantidade > pivot)
-          {
-              i++;
-              swapP(&prods[i], &prods[j]);
-          }
-      }
-      swapP(&prods[i + 1], &prods[high]);
-
-      int pi = i + 1;
-
-      quickSortbyQP(prods, low, pi - 1);
-      quickSortbyQP(prods, pi + 1, high);
-    }
+int comparatorQP(const void *p,const void *q) {
+  P *a = (P *)p;
+  P *b = (P *)q;
+  return (b->quantidade - a->quantidade);
 }
+
 
 /**
  *@brief           função que devolve por ordem decrescente de quantidade os produtos que um determinado cliente comprou
@@ -383,7 +335,7 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
 
   void* cli = getSGVCli(sgv);
   void* gfil = getSGVGFiliais(sgv);
-
+//TIRAR PRODUTOS COM 0
   pos = searchCat(cliID, cli);
   hash = hashCat(cliID[0]);
 
@@ -403,17 +355,16 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
     querie10->produtos[i].quantidade = getGFilCuni(gfil, 0, hash, pos, i, month-1);
     strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 0, hash, pos, i));
   }
-
   for(i2 = 0; i2<getGFilCsizeProds(gfil, 1, hash, pos); i2++,i++) {
-    querie10->produtos[i].quantidade = getGFilCuni(gfil, 1, hash, pos, i, month-1);
-    strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 1, hash, pos, i));
+    querie10->produtos[i].quantidade = getGFilCuni(gfil, 1, hash, pos, i2, month-1);
+    strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 1, hash, pos, i2));
   }
   for(i2 = 0; i2<getGFilCsizeProds(gfil, 2, hash, pos) ;i++,i2++) {
-    querie10->produtos[i].quantidade = getGFilCuni(gfil, 2, hash, pos, i, month-1);
-    strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 2, hash, pos, i));
+    querie10->produtos[i].quantidade = getGFilCuni(gfil, 2, hash, pos, i2, month-1);
+    strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 2, hash, pos, i2));
   }
 
-  quickSortbyP(querie10->produtos,0,querie10->size - 1);
+  qsort(querie10->produtos,querie10->size,sizeof(P),comparatorPL);
 
   for(i = 0,c = 1;c < querie10->size;i++) {
     for(i2 = c;i2 < querie10->size && !strcmp(querie10->produtos[i2].prod,querie10->produtos[i].prod);i2++)
@@ -428,51 +379,15 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
 
   querie10->size = i + 1;
 
-  quickSortbyQP(querie10->produtos,0,querie10->size - 1);
+  qsort(querie10->produtos,querie10->size,sizeof(P),comparatorQP);
 
   return querie10;
 }
 
-/**
- * @brief   Função troca o apontador de duas Structs PP
- * @param a Apontador para PP
- * @param b Apontador para PP
- */
-void swapPP(PP *a, PP *b)
-{
-    PP aux = *a;
-    *a = *b;
-    *b = aux;
-}
-
-/**
- * @brief       Função de ordenação por total de unidades pelo algoritmo Quicksort
- * @param prods Estrutura PP a ordenar
- * @param low   Inteiro com o incio do PP
- * @param high  Interio com o fim do PP
- */
-void quickSortbyPP(PP *prods, int low, int high)
-{
-    if (low < high)
-    {
-      int pivot = prods[high].total;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (prods[j].total > pivot)
-          {
-              i++;
-              swapPP(&prods[i], &prods[j]);
-          }
-      }
-      swapPP(&prods[i + 1], &prods[high]);
-
-      int pi = i + 1;
-
-      quickSortbyPP(prods, low, pi - 1);
-      quickSortbyPP(prods, pi + 1, high);
-    }
+int comparatorT(const void *p,const void *q) {
+  PP *a = (PP *)p;
+  PP *b = (PP *)q;
+  return (b->total - a->total);
 }
 
 /**
@@ -511,7 +426,8 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
     }
   }
 
-  quickSortbyPP(querie11->produtos, 0, querie11->size - 1);
+  //quickSortbyPP(querie11->produtos, 0, querie11->size - 1);
+  qsort(querie11->produtos,querie11->size,sizeof(PP),comparatorT);
 
   if(limit < querie11->size) {
     querie11->produtos=realloc(querie11->produtos, sizeof(PP)*limit);
@@ -541,64 +457,16 @@ void swapPF(PF *a, PF *b)
     *b = aux;
 }
 
-/**
- * @brief       Função de ordenação por produto pelo algoritmo Quicksort
- * @param prods Estrutura PF a ordenar
- * @param low   Inteiro com o incio do PF
- * @param high  Interio com o fim do PF
- */
-void quickSortbyPF(PF *prods, int low, int high)
-{
-    if (low < high)
-    {
-      char* pivot = prods[high].prod;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (strcmp(prods[j].prod, pivot) < 0)
-          {
-              i++;
-              swapPF(&prods[i], &prods[j]);
-          }
-      }
-      swapPF(&prods[i + 1], &prods[high]);
-
-      int pi = i + 1;
-
-      quickSortbyPF(prods, low, pi - 1);
-      quickSortbyPF(prods, pi + 1, high);
-    }
+int comparatorF(const void *p,const void *q) {
+  PF *a = (PF *)p;
+  PF *b = (PF *)q;
+  return (b->faturacao - a->faturacao);
 }
 
-/**
- * @brief       Função de ordenação por faturação de um produto pelo algoritmo Quicksort
- * @param prods Estrutura FP a ordenar
- * @param low   Inteiro com o incio do FP
- * @param high  Interio com o fim do FP
- */
-void quickSortbyFP(PF *prods, int low, int high)
-{
-    if (low < high)
-    {
-      float pivot = prods[high].faturacao;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (prods[j].faturacao > pivot)
-          {
-              i++;
-              swapPF(&prods[i], &prods[j]);
-          }
-      }
-      swapPF(&prods[i + 1], &prods[high]);
-
-      int pi = i + 1;
-
-      quickSortbyFP(prods, low, pi - 1);
-      quickSortbyFP(prods, pi + 1, high);
-    }
+int comparatorPF(const void *p,const void *q) {
+  PF *a = (PF *)p;
+  PF *b = (PF *)q;
+  return strcmp(a->prod,b->prod);
 }
 
 /**
@@ -635,16 +503,16 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
   }
 
   for(i2 = 0; i2<getGFilCsizeProds(gfil, 1, hash, pos); i2++,i++) {
-    querie12->prods[i].faturacao = getGFilCfat(gfil, 1, hash, pos, i);
-    strcpy(querie12->prods[i].prod, getGFilCprod(gfil, 1, hash, pos, i));
+    querie12->prods[i].faturacao = getGFilCfat(gfil, 1, hash, pos, i2);
+    strcpy(querie12->prods[i].prod, getGFilCprod(gfil, 1, hash, pos, i2));
   }
 
   for(i2 = 0; i2<getGFilCsizeProds(gfil, 2, hash, pos) ;i++,i2++) {
-    querie12->prods[i].faturacao = getGFilCfat(gfil, 2, hash, pos, i);
-    strcpy(querie12->prods[i].prod, getGFilCprod(gfil, 2, hash, pos, i));
+    querie12->prods[i].faturacao = getGFilCfat(gfil, 2, hash, pos, i2);
+    strcpy(querie12->prods[i].prod, getGFilCprod(gfil, 2, hash, pos, i2));
   }
 
-  quickSortbyPF(querie12->prods,0,querie12->size - 1);
+  qsort(querie12->prods,querie12->size,sizeof(PF),comparatorPF);
 
   for(i = 0,c = 1;c < querie12 -> size;i++) {
     for(i2 = c;i2 < querie12 -> size && !strcmp(querie12->prods[i2].prod,querie12->prods[i].prod);i2++)
@@ -657,7 +525,7 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
   }
   querie12 -> size = i + 1;
 
-  quickSortbyFP(querie12->prods,0,querie12->size - 1);
+  qsort(querie12->prods,querie12->size,sizeof(PF),comparatorF);
 
   if(limit < i) {
     querie12->prods = realloc(querie12->prods, sizeof(PF)*limit);

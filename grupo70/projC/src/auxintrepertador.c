@@ -25,7 +25,7 @@ int temEspaco(char* s) {
  *@param buffer argumentos do comando utilizado para correr as queries 1 e 13
  *@param load   flag que indica se o sgv ja foi inicializado
  */
-void runQuerie1e13(SGV sgv, char* buffer, int load) {
+SGV runQuerie1e13(SGV sgv, char* buffer, int load) {
   char *c1 = NULL, *c2 = NULL, *c3 = NULL;
   clock_t start_t, end_t;
 
@@ -64,6 +64,8 @@ void runQuerie1e13(SGV sgv, char* buffer, int load) {
 
   free(querie13);
   querie13 = NULL;
+
+  return sgv;
 }
 
 /**

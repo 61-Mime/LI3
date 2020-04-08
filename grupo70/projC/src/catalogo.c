@@ -171,12 +171,9 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
   fclose(f);
 
   for(i=0; i<SIZE; i++)
-<<<<<<< HEAD
+
     qsort(cat->tbl[i].list, cat->tbl[i].size, sizeof(char *),comparatorC);
-    //quickSort(cat->tbl[i].list, 0, cat->tbl[i].size - 1);
-=======
-    qsort(cat->tbl[i].list, cat->tbl[i].size, sizeof(char*), comparatorC);
->>>>>>> 36b73f1381ca4d02ad4e2b1c8ab5c4a35825b48b
+
 
   free(buffer);
   //for(i=0; i<cat->tbl[0].size; i++)

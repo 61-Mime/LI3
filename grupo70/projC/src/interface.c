@@ -44,7 +44,7 @@ void intrepertador(SGV sgv) {
 
         else switch((querie = atoi(s))) {
               case 1:
-                  runQuerie1e13(sgv, aux, load);
+                  sgv = runQuerie1e13(sgv, aux, load);
                   load = 1;
                   break;
 

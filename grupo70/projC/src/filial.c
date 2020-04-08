@@ -49,6 +49,14 @@ typedef struct gfiliais{
   THashFilial* fil;
 } GFiliais;
 
+// Troca duas posições de um array
+void swap(char** a, char** b)
+{
+    void* aux = *a;
+    *a = *b;
+    *b = aux;
+}
+
 /**
  * @brief   Função inicializa a estrutura GFiliais
  * @return  Apontador para GFiliais
@@ -227,7 +235,7 @@ void remRepP(GFiliais *gfil) {
         lc = &gfil->fil[fil].tblp[i].list[i2];
         if(lc->sizeN != 0) {
           size = lc->sizeN;
-          quickSort(lc->cliN,0,size-1);
+          qsort(lc->cliN, size, sizeof(char *),comparatorC);
 
           for(i3 = 0,c = 1;c < size;i3++) {
             for(i4 = c;i4 < size && !strcmp(lc->cliN[i4],lc->cliN[i3]);i4++);
@@ -246,7 +254,7 @@ void remRepP(GFiliais *gfil) {
 
         if(lc->sizeP != 0) {
           size = lc->sizeP;
-          quickSort(lc->cliP,0,size-1);
+          qsort(lc->cliP, size, sizeof(char *),comparatorC);
 
           for(i3 = 0,c = 1;c < size;i3++) {
             for(i4 = c;i4 < size && !strcmp(lc->cliP[i4],lc->cliP[i3]);i4++);
@@ -294,9 +302,9 @@ void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char typ
 }
 
 int comparatorP(const void *p,const void *q) {
-  char *a = (*(ProdCli **)p)->prod;
-  char *b = (*(ProdCli **)q)->prod;
-  return strcmp(a,b);
+  ProdCli *a = (ProdCli *)p;
+  ProdCli *b = (ProdCli *)q;
+  return strcmp(a->prod,b->prod);
 }
 
 void swapPCli(ProdCli *a, ProdCli *b)
@@ -304,30 +312,6 @@ void swapPCli(ProdCli *a, ProdCli *b)
     ProdCli aux = *a;
     *a = *b;
     *b = aux;
-}
-
-void quickSortbyProd(ProdCli *prods, int low, int high)
-{
-    if (low < high)
-    {
-      char* pivot = prods[high].prod;
-      int i = (low - 1);
-
-      for (int j=low; j<=high-1; j++)
-      {
-          if (strcmp(prods[j].prod, pivot) < 0)
-          {
-              i++;
-              swapPCli(&prods[i], &prods[j]);
-          }
-      }
-      swapPCli(&prods[i + 1], &prods[high]);
-
-      int pi = i + 1;
-
-      quickSortbyProd(prods, low, pi - 1);
-      quickSortbyProd(prods, pi + 1, high);
-    }
 }
 
 /**
@@ -361,8 +345,7 @@ void remRepC(GFiliais *gfil) {
         lc = &gfil->fil[fil].tblc[i].list[i2];
         if(lc->prods != NULL) {
           size = lc->sizeProds;
-          //quickSortbyProd(lc->prods,0,size-1);
-          qsort(lc->prods,size, sizeof(ProdCli *),comparatorP);
+          qsort(lc->prods,size, sizeof(ProdCli),comparatorP);
 
           for(i3 = 0,c = 1;c < size;i3++) {
             for(i4 = c;i4 < size && !strcmp(lc->prods[i4].prod,lc->prods[i3].prod);i4++)

@@ -107,6 +107,9 @@ Funções</h2></td></tr>
 <tr class="memitem:a4739d26cdc2b081ade2b0729f1a33ef2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcatalogo.html">Catalogo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#a4739d26cdc2b081ade2b0729f1a33ef2">initCat</a> ()</td></tr>
 <tr class="memdesc:a4739d26cdc2b081ade2b0729f1a33ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função inicializa a estrutura Catalogo.  <a href="catalogo_8c.html#a4739d26cdc2b081ade2b0729f1a33ef2">Mais...</a><br /></td></tr>
 <tr class="separator:a4739d26cdc2b081ade2b0729f1a33ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eab20d7634612602dedf349486a34a2"><td class="memItemLeft" align="right" valign="top"><a id="a7eab20d7634612602dedf349486a34a2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>comparatorC</b> (const void *p, const void *q)</td></tr>
+<tr class="separator:a7eab20d7634612602dedf349486a34a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90eb6bfc54c9e1e1df6d142447af770b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="catalogo_8c.html#a90eb6bfc54c9e1e1df6d142447af770b">searchCat</a> (char *key, <a class="el" href="structcatalogo.html">Catalogo</a> *<a class="el" href="structcat.html">cat</a>)</td></tr>
 <tr class="memdesc:a90eb6bfc54c9e1e1df6d142447af770b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função procura uma key num Catalogo.  <a href="catalogo_8c.html#a90eb6bfc54c9e1e1df6d142447af770b">Mais...</a><br /></td></tr>
 <tr class="separator:a90eb6bfc54c9e1e1df6d142447af770b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,17 +189,17 @@ Funções</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00103">103</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                                       {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keywordtype">int</span> pos = <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list = realloc(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list,<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>*) * (<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size + 1));</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[pos] = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * MAX);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  strcpy(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[pos], key);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size ++;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  (*val)++;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00104">104</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                                       {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordtype">int</span> pos = <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list = realloc(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list,<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>*) * (<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size + 1));</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[pos] = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * MAX);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  strcpy(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[pos], key);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size ++;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  (*val)++;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -224,25 +227,25 @@ Funções</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00158">158</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                            {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  <span class="keywordtype">int</span> i, j;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++) {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">for</span>(j=0; j&lt;<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size; j++) {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;      free(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j]);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j] = NULL;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    free(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list = NULL;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  free(<a class="code" href="structcat.html">cat</a>-&gt;tbl);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl = NULL;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  free(<a class="code" href="structcat.html">cat</a>);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <a class="code" href="structcat.html">cat</a> = NULL;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00159">159</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                            {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  <span class="keywordtype">int</span> i, j;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++) {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">for</span>(j=0; j&lt;<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size; j++) {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      free(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j]);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j] = NULL;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    free(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list = NULL;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  free(<a class="code" href="structcat.html">cat</a>-&gt;tbl);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <a class="code" href="structcat.html">cat</a>-&gt;tbl = NULL;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  free(<a class="code" href="structcat.html">cat</a>);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <a class="code" href="structcat.html">cat</a> = NULL;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -289,10 +292,10 @@ Funções</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retorna</dt><dd>Apontador para a Key </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00196">196</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                                             {</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j];</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;}</div>
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00195">195</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                                             {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list[j];</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,11 +367,11 @@ Funções</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retorna</dt><dd>Inteiro com a posição </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00059">59</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keywordflow">if</span>(c &lt;&#39;A&#39; || c &gt; <span class="charliteral">&#39;Z&#39;</span>) <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordflow">return</span> (c - 65);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00062">62</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                    {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keywordflow">if</span>(c &lt;&#39;A&#39; || c &gt; <span class="charliteral">&#39;Z&#39;</span>) <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keywordflow">return</span> (c - 65);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -440,33 +443,32 @@ Funções</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>Inteiro usado como booleano <br  />
- </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>Inteiro usado como booleano </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00071">71</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keywordtype">int</span> i, res=1;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordflow">if</span>(type == <span class="charliteral">&#39;c&#39;</span>) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span>(strlen(key) &lt; 5 || key[0] &lt; <span class="charliteral">&#39;A&#39;</span> || key[0] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[1] &lt; <span class="charliteral">&#39;1&#39;</span> || key[1] &gt; <span class="charliteral">&#39;5&#39;</span>)</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      res = 0;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span>(i = 2; i &lt; 5; i++)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keywordflow">if</span>(key[i] &lt; <span class="charliteral">&#39;0&#39;</span> || key[i] &gt; <span class="charliteral">&#39;9&#39;</span>)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        res = 0;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span>(strlen(key) &lt; 5 || key[0] &lt; <span class="charliteral">&#39;A&#39;</span> || key[0] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[1] &lt; <span class="charliteral">&#39;A&#39;</span> || key[1] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[2] &lt; <span class="charliteral">&#39;1&#39;</span>)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      res = 0;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">for</span>(i = 2; i &lt; 6; i++)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="keywordflow">if</span>(key[i] &lt; <span class="charliteral">&#39;0&#39;</span> || key[i] &gt; <span class="charliteral">&#39;9&#39;</span>)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        res = 0;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00073">73</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordtype">int</span> i, res=1;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordflow">if</span>(type == <span class="charliteral">&#39;c&#39;</span>) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span>(strlen(key) &lt; 5 || key[0] &lt; <span class="charliteral">&#39;A&#39;</span> || key[0] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[1] &lt; <span class="charliteral">&#39;1&#39;</span> || key[1] &gt; <span class="charliteral">&#39;5&#39;</span>)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      res = 0;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">for</span>(i = 2; i &lt; 5; i++)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keywordflow">if</span>(key[i] &lt; <span class="charliteral">&#39;0&#39;</span> || key[i] &gt; <span class="charliteral">&#39;9&#39;</span>)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        res = 0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">if</span>(strlen(key) &lt; 5 || key[0] &lt; <span class="charliteral">&#39;A&#39;</span> || key[0] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[1] &lt; <span class="charliteral">&#39;A&#39;</span> || key[1] &gt; <span class="charliteral">&#39;Z&#39;</span> || key[2] &lt; <span class="charliteral">&#39;1&#39;</span>)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      res = 0;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">for</span>(i = 2; i &lt; 6; i++)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordflow">if</span>(key[i] &lt; <span class="charliteral">&#39;0&#39;</span> || key[i] &gt; <span class="charliteral">&#39;9&#39;</span>)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        res = 0;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -506,15 +508,16 @@ Funções</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retorna</dt><dd>Inteiro com a posição </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00044">44</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                       {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordtype">int</span> hash, res;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  hash = <a class="code" href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a>(key[0]);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  res = <a class="code" href="sort_8c.html#ae2757fc04cfaabcc6fb36c0a641e4bd9">binarySearch</a>(<a class="code" href="structcat.html">cat</a>-&gt;tbl[hash].list, key, 0, <a class="code" href="structcat.html">cat</a>-&gt;tbl[hash].size-1);</div>
+<p class="definition">Definido na linha <a class="el" href="catalogo_8c_source.html#l00047">47</a> do ficheiro <a class="el" href="catalogo_8c_source.html">catalogo.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                       {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordtype">int</span> hash, res;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  hash = <a class="code" href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a>(key[0]);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  res = bsearch(key, <a class="code" href="structcat.html">cat</a>-&gt;tbl[hash].list, <a class="code" href="structcat.html">cat</a>-&gt;tbl[hash].size, <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>*), comparatorC);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="comment">//res = binarySearch(cat-&gt;tbl[hash].list, key, 0, cat-&gt;tbl[hash].size-1);</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -598,21 +601,21 @@ Funções</h2></td></tr>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  fclose(f);</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <span class="keywordflow">for</span>(i=0; i&lt;SIZE; i++)</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="sort_8c.html#a12dc00968988b668861e6a580848a5db">quickSort</a>(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list, 0, <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size - 1);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    qsort(<a class="code" href="structcat.html">cat</a>-&gt;tbl[i].list, <a class="code" href="structcat.html">cat</a>-&gt;tbl[i].size, <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>*), comparatorC);</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  free(buffer);</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  printf(<span class="stringliteral">&quot;%s %s\n&quot;</span>, <a class="code" href="structcat.html">cat</a>-&gt;tbl[0].list[0], <a class="code" href="structcat.html">cat</a>-&gt;tbl[0].list[1]);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="acatalogo_8c_html_a65df18a97df6196f2cd6778d71e2d49b"><div class="ttname"><a href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a></div><div class="ttdeci">int hashCat(char c)</div><div class="ttdoc">Função calcula a posição no Catalogo.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00059">catalogo.c:59</a></div></div>
-<div class="ttc" id="asort_8c_html_ae2757fc04cfaabcc6fb36c0a641e4bd9"><div class="ttname"><a href="sort_8c.html#ae2757fc04cfaabcc6fb36c0a641e4bd9">binarySearch</a></div><div class="ttdeci">int binarySearch(char **arr, char *code, int left, int right)</div><div class="ttdoc">Função de Procura Binária.</div><div class="ttdef"><b>Definition:</b> <a href="sort_8c_source.html#l00060">sort.c:60</a></div></div>
-<div class="ttc" id="acatalogo_8c_html_a674f2930015072612f0c9c334c086268"><div class="ttname"><a href="catalogo_8c.html#a674f2930015072612f0c9c334c086268">isVal</a></div><div class="ttdeci">int isVal(char *key, char type)</div><div class="ttdoc">Função verifica se a chave é válida.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00071">catalogo.c:71</a></div></div>
-<div class="ttc" id="acatalogo_8c_html_abe95c41128e4c900479881e3017a441f"><div class="ttname"><a href="catalogo_8c.html#abe95c41128e4c900479881e3017a441f">addKey</a></div><div class="ttdeci">void addKey(Catalogo *cat, char *key, int i, int *val)</div><div class="ttdoc">Função adiciona uma chave ao Catalogo.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00103">catalogo.c:103</a></div></div>
-<div class="ttc" id="asort_8c_html_a12dc00968988b668861e6a580848a5db"><div class="ttname"><a href="sort_8c.html#a12dc00968988b668861e6a580848a5db">quickSort</a></div><div class="ttdeci">void quickSort(char **arr, int low, int high)</div><div class="ttdoc">Função de ordenação pelo algoritmo Quicksort.</div><div class="ttdef"><b>Definition:</b> <a href="sort_8c_source.html#l00028">sort.c:28</a></div></div>
+<div class="ttc" id="acatalogo_8c_html_a65df18a97df6196f2cd6778d71e2d49b"><div class="ttname"><a href="catalogo_8c.html#a65df18a97df6196f2cd6778d71e2d49b">hashCat</a></div><div class="ttdeci">int hashCat(char c)</div><div class="ttdoc">Função calcula a posição no Catalogo.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00062">catalogo.c:62</a></div></div>
+<div class="ttc" id="acatalogo_8c_html_a674f2930015072612f0c9c334c086268"><div class="ttname"><a href="catalogo_8c.html#a674f2930015072612f0c9c334c086268">isVal</a></div><div class="ttdeci">int isVal(char *key, char type)</div><div class="ttdoc">Função verifica se a chave é válida.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00073">catalogo.c:73</a></div></div>
+<div class="ttc" id="acatalogo_8c_html_abe95c41128e4c900479881e3017a441f"><div class="ttname"><a href="catalogo_8c.html#abe95c41128e4c900479881e3017a441f">addKey</a></div><div class="ttdeci">void addKey(Catalogo *cat, char *key, int i, int *val)</div><div class="ttdoc">Função adiciona uma chave ao Catalogo.</div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00104">catalogo.c:104</a></div></div>
 <div class="ttc" id="astructcat_html"><div class="ttname"><a href="structcat.html">cat</a></div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00011">catalogo.c:11</a></div></div>
 <div class="ttc" id="astructcatalogo_html"><div class="ttname"><a href="structcatalogo.html">catalogo</a></div><div class="ttdef"><b>Definition:</b> <a href="catalogo_8c_source.html#l00016">catalogo.c:16</a></div></div>
 <!-- start footer part -->

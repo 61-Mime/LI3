@@ -2,7 +2,7 @@ IDIR=../include
 ODIR=obj
 
 CC = gcc
-CFLAGS = -O3 -Wall -g -I$(IDIR)
+CFLAGS = -O3 -Wall -g -ansi -I$(IDIR)
 
 _DEPS = catalogo.h sales.h faturacao.h filial.h sgv.h interface.h auxintrepertador.h querie.h apresentacao.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
@@ -15,7 +15,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 
 program: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
-	doxygen Doxyfile
+      #doxygen Doxyfile
 
 clean:
 	rm -f obj/*.o

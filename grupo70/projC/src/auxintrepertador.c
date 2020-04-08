@@ -84,8 +84,9 @@ void runQuerie2(SGV sgv, char* buffer) {
 
       Q2* querie2 = getProductsStartedByLetter(sgv, c1[0]);
       printQ2(querie2, c1[0]);
+      int i;
 
-      for(int i=0; i<querie2->size; i++) {
+      for(i=0; i<querie2->size; i++) {
         free(querie2->prods[i]);
         querie2->prods[i] = NULL;
       }
@@ -147,8 +148,9 @@ void runQuerie4(SGV sgv, char* buffer) {
 
     Q4* querie4 = getProductsNeverBough(sgv, atoi(c1));
     printQ4(querie4);
+    int i;
 
-    for(int i=0; i<querie4->size; i++) {
+    for(i=0; i<querie4->size; i++) {
         free(querie4->prods[i]);
         querie4->prods[i] = NULL;
     }
@@ -169,12 +171,13 @@ void runQuerie5(SGV sgv, int tam) {
 
   else {
     Q5* querie5 = getClientsOfAllBranches(sgv);
+    int i;
 
     printQ5(querie5);
 
-    for(int i=0; i<querie5->size; i++) {
+    for(i=0; i<querie5->size; i++) {
+      printf(".\n");
       free(querie5->cli[i]);
-      querie5 = NULL;
     }
 
     free(querie5);

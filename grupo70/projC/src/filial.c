@@ -49,7 +49,7 @@ typedef struct gfiliais{
   THashFilial* fil;
 } GFiliais;
 
-// Troca duas posições de um array
+/* Troca duas posições de um array*/
 void swap(char** a, char** b)
 {
     void* aux = *a;
@@ -64,11 +64,12 @@ void swap(char** a, char** b)
 GFiliais* initGFil() {
   GFiliais* gfil = malloc(sizeof(GFiliais));
   gfil->fil = malloc(sizeof(THashFilial) * 3);
+  int i, j;
 
-  for(int i=0; i<3; i++) {
+  for(i=0; i<3; i++) {
     gfil->fil[i].tblc = malloc(sizeof(TFilialC)*SIZE);
     gfil->fil[i].tblp = malloc(sizeof(TFilialP)*SIZE);
-    for(int j=0; j<SIZE; j++)
+    for(j=0; j<SIZE; j++)
       {
         gfil->fil[i].tblc[i].list = NULL;
         gfil->fil[i].tblc[i].sizeCli = 0;
@@ -110,7 +111,7 @@ void initListP(GFiliais* gfil, int fil, int i, int j, char* prod) {
   l->sizeN = 0;
   l->sizeP = 0;
   l->sizeC = 0;
-  // FAZER FREE DO KEY
+  /* FAZER FREE DO KEY*/
   l->key = malloc(sizeof(char)*SMAX);
   strcpy(l->key, prod);
 }
@@ -142,7 +143,7 @@ void initListC(GFiliais* gfil, int fil, int i, int j, char* cli) {
 
   l->prods = NULL;
   l->sizeProds = 0;
-  //FAZER FREE DO KEY
+  /*FAZER FREE DO KEY*/
   l->key = malloc(sizeof(char)*SMAX);
   strcpy(l->key, cli);
 }
@@ -324,7 +325,8 @@ void swapPCli(ProdCli *a, ProdCli *b)
  */
 void freeRepC(GFiliais *gfil,int fil,int i,int i2,int size) {
   ListC* lc = &gfil->fil[fil].tblc[i].list[i2];
-  for(int i3 = lc -> sizeProds; i3 < size;i3++){
+  int i3;
+  for(i3 = lc -> sizeProds; i3 < size;i3++){
     free(lc->prods[i3].prod);
     lc->prods[i3].prod = NULL;
     free(lc->prods[i3].uni);

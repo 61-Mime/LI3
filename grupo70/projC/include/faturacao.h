@@ -13,7 +13,7 @@ void loadFactFromCat(THashFact* fact, Catalogo* prod);
 void addFact(THashFact* fact, int hash, int pos, int month, int branch, char type, float price, int uni);
 void freeFact(THashFact* fact);
 
-// GETTERS
+
 int getFatVendasN(THashFact* fact, int i, int j, int month, int branch);
 int getFatVendasP(THashFact* fact, int i, int j, int month, int branch);
 float getFatFaturacaoN(THashFact* fact, int i, int j, int month, int branch);

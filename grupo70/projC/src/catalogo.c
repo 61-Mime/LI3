@@ -176,10 +176,11 @@ int tblCat(Catalogo* cat, char* filePath, char type, int* val, int* lida) {
 
 
   free(buffer);
-  //for(i=0; i<cat->tbl[0].size; i++)
-//printf("%s\n",cat->tbl[0].list[i]);
   return 0;
 }
+/*for(i=0; i<cat->tbl[0].size; i++)
+//printf("%s\n",cat->tbl[0].list[i]); (entre free e return)*/
+
 
 /**
  * @brief     Função liberta o espaço de memoria ocupado pelo Catalogo

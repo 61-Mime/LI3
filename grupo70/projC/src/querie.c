@@ -48,8 +48,8 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
 Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
   int i, pos, hash;
 
-  //void* prod = getSGVProd(sgv);
-  //void* fact = getSGVFact(sgv);
+  /*void* prod = getSGVProd(sgv);
+  void* fact = getSGVFact(sgv);*/
 
   Q3* querie3 = malloc(sizeof(Q3));
 
@@ -101,7 +101,7 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   int i,i2, size;
 
   void* gfil = getSGVGFiliais(sgv);
-  //void* prod = getSGVProd(sgv);
+  /*void* prod = getSGVProd(sgv);*/
 
   Q4 *querie4 = malloc(sizeof(Q4));
   querie4->size = 0;
@@ -335,7 +335,7 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
 
   void* cli = getSGVCli(sgv);
   void* gfil = getSGVGFiliais(sgv);
-//TIRAR PRODUTOS COM 0
+/*TIRAR PRODUTOS COM 0*/
   pos = searchCat(cliID, cli);
   hash = hashCat(cliID[0]);
 
@@ -426,7 +426,7 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
     }
   }
 
-  //quickSortbyPP(querie11->produtos, 0, querie11->size - 1);
+  /*quickSortbyPP(querie11->produtos, 0, querie11->size - 1);*/
   qsort(querie11->produtos,querie11->size,sizeof(PP),comparatorT);
 
   if(limit < querie11->size) {

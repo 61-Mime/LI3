@@ -8,7 +8,7 @@
 
 typedef struct gfiliais GFiliais;
 
-//Functions
+
 GFiliais* initGFil();
 void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli);
 void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type);
@@ -18,7 +18,7 @@ void freeGFil(GFiliais* fil);
 void remRepC(GFiliais *gfil);
 void remRepP(GFiliais *gfil);
 
-//Getters
+
 int getGFilPSizeC(GFiliais* gfil, int branch, int i, int j);
 int getGFilPSizeP(GFiliais* gfil, int branch, int i, int j);
 int getGFilPSizeN(GFiliais* gfil, int branch, int i, int j);

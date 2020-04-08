@@ -50,7 +50,7 @@ typedef struct q8 {
 
 typedef struct cl9
 {
-    int tipocompra; //1-N 2-P
+    int tipocompra; 
     char cliente[10];
 } Cl;
 

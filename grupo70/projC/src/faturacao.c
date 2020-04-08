@@ -38,8 +38,9 @@ typedef struct thashfact {
 THashFact* initFact() {
   THashFact *fact = malloc(sizeof(THashFact));
   fact->tbl = malloc(sizeof(TFacturacao) * SIZE);
+  int i;
 
-  for(int i=0; i<SIZE; i++) {
+  for(i=0; i<SIZE; i++) {
     fact->tbl[i].size = 0;
     fact->tbl[i].list = NULL;
   }
@@ -152,7 +153,7 @@ void freeFact(THashFact* fact) {
     fact = NULL;
 }
 
-//GETTERS
+/*GETTERS*/
 
 /**
   *@brief        função que devolve o número de vendas em regime normal de uma determinada filial num determinado mês

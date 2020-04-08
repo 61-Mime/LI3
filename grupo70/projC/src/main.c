@@ -1,6 +1,6 @@
 /**
  * @file  main.c
- * @brief Ficheiro que contém a função main do projeto 
+ * @brief Ficheiro que contém a função main do projeto
  */
 
 #include "sgv.h"
@@ -9,9 +9,9 @@
 SGV sgv;
 
 int main() {
-  intrepertador(sgv);
+  sgv = NULL;
 
-  destroySGV(sgv);
+  intrepertador(sgv);
 
   return 0;
 }

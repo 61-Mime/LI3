@@ -6,6 +6,7 @@
 #include "querie.h"
 
 void menu();
+void welcome();
 void printQ1(clock_t start_t, clock_t end_t);
 void printQ2(Q2* querie2, char letter);
 void printQ3(Q3* querie3, char* prodID, int month);

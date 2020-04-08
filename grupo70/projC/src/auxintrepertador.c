@@ -15,20 +15,19 @@
  */
 SGV runQuerie1e13(SGV sgv, int load) {
     clock_t start_t, end_t;
-    char buffer[MAX], c1[SMAX], c2[SMAX], c3[SMAX];
-    int res;
+    char buffer[MAX], c1[SMAX], c2[SMAX], c3[SMAX], *s;
 
     printf("\nIntroduza o caminho para os três ficheiros:\n");
-    fgets(buffer, MAX, stdin);
+    s = fgets(buffer, MAX, stdin);
 
-    if(buffer[0]=='\0') {
+    if(s[0]=='\n') {
       strcpy(c1, "../files/Clientes.txt");
       strcpy(c2, "../files/Produtos.txt");
       strcpy(c3, "../files/Vendas_1M.txt");
-    }    
+    }
 
     else
-      res = sscanf(buffer, "%s %s %s", c1, c2, c3);
+      sscanf(s, "%s %s %s", c1, c2, c3);
 
     if(fopen(c1, "r")==NULL) {
       perror(c1);
@@ -68,20 +67,21 @@ SGV runQuerie1e13(SGV sgv, int load) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 2
  */
 void runQuerie2(SGV sgv) {
-    char c1, buffer[MAX], res;
+    char c1[2], buffer[MAX], *s;
+    int res;
     int i;
 
     printf("\nIntroduza o carater inicial do Produto (Maiúsculo):\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%c", c1);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%s", c1);
 
     if(res == 0) {
       printf("Argumento inválido\n");
       return;
     }
 
-    Q2* querie2 = getProductsStartedByLetter(sgv, c1);
-    printQ2(querie2, c1);
+    Q2* querie2 = getProductsStartedByLetter(sgv, c1[0]);
+    printQ2(querie2, c1[0]);
 
     for(i=0; i<querie2->size; i++) {
       free(querie2->prods[i]);
@@ -97,13 +97,13 @@ void runQuerie2(SGV sgv) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 3
  */
 void runQuerie3(SGV sgv){
-    char *c = NULL;
+    char c[SMAX];
     int mes, type, res;
-    char buffer[MAX];
+    char buffer[MAX], *s;
 
     printf("Introduza um produto, um mes e um 0/1 (0-Resultados Globais / 1-Resultados por Filial):\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%s %d %d", c, mes, type);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%s %d %d", c, &mes, &type);
 
     if(res == 0) {
       printf("Argumentos inválidos\n");
@@ -124,11 +124,11 @@ void runQuerie3(SGV sgv){
  */
 void runQuerie4(SGV sgv) {
   int i, filial, res;
-  char buffer[MAX];
+  char buffer[MAX], *s;
 
   printf("Introduza uma filial (1 a 3) ou 0 se pretender os resultados globais:\n");
-  fgets(buffer, MAX, stdin);
-  res = sscanf(buffer, "%d", filial);
+  s = fgets(buffer, MAX, stdin);
+  res = sscanf(s, "%d", &filial);
 
   if(res == 0) {
       printf("Argumento inválido\n");
@@ -187,19 +187,19 @@ void runQuerie6(SGV sgv) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 7
  */
 void runQuerie7(SGV sgv) {
-    char *c1 = NULL, buffer[MAX];
+    char c1[SMAX], buffer[MAX], *s;
     int res;
     clock_t start_t, end_t;
 
     printf("Introduza um código de Cliente:\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%s", c1);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%s", c1);
 
     if(res == 0) {
       printf("Argumento inválido\n");
       return;
     }
-    
+
     start_t = clock();
     Q7* querie7 = getProductsBoughtByClient(sgv, c1);
     end_t = clock();
@@ -208,7 +208,7 @@ void runQuerie7(SGV sgv) {
 
     free(querie7);
     querie7 = NULL;
-    
+
 }
 
 /**
@@ -216,13 +216,13 @@ void runQuerie7(SGV sgv) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 8
  */
 void runQuerie8(SGV sgv) {
-    char buffer[MAX];
-    int minMonth, maxMonth, res;
+    char buffer[MAX], *s;
+    int minMonth=0, maxMonth=0, res;
     clock_t start_t, end_t;
 
     printf("Introduza um mes mínimo e um mes máximo:\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%d %d", minMonth, maxMonth);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%d %d", &minMonth, &maxMonth);
 
     if(res == 0) {
       printf("Argumento inválido\n");
@@ -244,18 +244,18 @@ void runQuerie8(SGV sgv) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 9
  */
 void runQuerie9(SGV sgv) {
-    char *c1 = NULL, buffer[MAX];
+    char c1[SMAX], buffer[MAX], *s;
     int filial, res;
     clock_t start_t, end_t;
 
     printf("Introduza um código de Produto e uma Filial:\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%s %d", c1, filial);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%s %d", c1, &filial);
 
     if(res == 0) {
       printf("Argumentos inválidos\n");
       return;
-    }    
+    }
 
     start_t = clock();
     Q9* querie9 = getProductBuyers(sgv, c1, filial);
@@ -274,18 +274,18 @@ void runQuerie9(SGV sgv) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 10
  */
 void runQuerie10(SGV sgv) {
-    char *c1 = NULL, buffer[MAX];
+    char c1[SMAX], buffer[MAX], *s;
     int res, mes;
     clock_t start_t, end_t;
 
     printf("Introduza um código de Cliente e um mes:\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%d", c1, mes);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%s %d", c1, &mes);
 
     if(res == 0) {
       printf("Argumento inválido\n");
       return;
-    }  
+    }
 
     start_t = clock();
     Q10* querie10 = getClientFavouriteProducts(sgv,c1,mes);
@@ -305,12 +305,12 @@ void runQuerie10(SGV sgv) {
  */
 void runQuerie11(SGV sgv) {
     clock_t start_t, end_t;
-    char buffer[MAX];
+    char buffer[MAX], *s;
     int limit, res;
 
     printf("Introduza o número limite de Produtos a apresentar:\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%d", limit);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%d", &limit);
 
     if(res == 0) {
       printf("Argumento inválido\n");
@@ -334,19 +334,19 @@ void runQuerie11(SGV sgv) {
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 12
  */
 void runQuerie12(SGV sgv) {
-    char *c1 = NULL, buffer[MAX];
+    char c1[SMAX], buffer[MAX], *s;
     int res, limit;
     clock_t start_t, end_t;
 
     printf("Introduza um código de Cliente e o número máximo de produtos a apresentar:\n");
-    fgets(buffer, MAX, stdin);
-    res = sscanf(buffer, "%s %d", c1, limit);
+    s = fgets(buffer, MAX, stdin);
+    res = sscanf(s, "%s %d", c1, &limit);
 
     if(res == 0) {
       printf("Argumento inválido\n");
       return;
     }
-  
+
     start_t = clock();
     Q12* querie12 = getClientTopProfitProducts(sgv, c1, limit);
     end_t = clock();

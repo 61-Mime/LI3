@@ -15,7 +15,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 
 program: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
-	doxygen Doxyfile
+	#doxygen Doxyfile
 
 clean:
 	rm -f obj/*.o

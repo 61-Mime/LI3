@@ -26,31 +26,31 @@ int temEspaco(char* s) {
  */
 void intrepertador(SGV sgv) {
     int r=1, querie=0, load=0;
-    char *buffer = malloc(MAX*sizeof(char));
+    char *buffer = malloc(MAX*sizeof(char)), *s;
 
     welcome();
     menu();
 
     while(r) {
         printf("\n\nIntroduza o seu comando: ");
-        fgets(buffer, MAX, stdin);
+        s = fgets(buffer, MAX, stdin);
 
-        if(temEspaco(buffer))
+        if(temEspaco(s))
             printf("Comando inválido\n");
-        
-        else {
-            buffer = strtok(buffer, "\n");
 
-            if(strcmp(buffer, "menu") == 0)
+        else {
+            buffer = strtok(s, "\n");
+
+            if(strcmp(s, "menu") == 0)
               menu();
 
-            else if(strcmp(buffer, "q")==0 || strcmp(buffer, "Q")==0)
+            else if(strcmp(s, "q")==0 || strcmp(s, "Q")==0)
               r=0;
 
-            else if(atoi(buffer)!=1 && atoi(buffer)!=0 && load==0)
+            else if(atoi(s)!=1 && atoi(s)!=0 && load==0)
               printf("O SGV ainda não foi carregado\n");
 
-            else switch((querie = atoi(buffer))) {
+            else switch((querie = atoi(s))) {
                   case 1:
                       sgv = runQuerie1e13(sgv, load);
                       if(sgv == NULL)
@@ -110,7 +110,10 @@ void intrepertador(SGV sgv) {
         }
     }
 
-    printf("\nA Sair do Programa\n");
+    printf("\nA Sair do Programa\n\n");
+
+    if(load == 1)
+      destroySGV(sgv);
 
     free(buffer);
     buffer = NULL;

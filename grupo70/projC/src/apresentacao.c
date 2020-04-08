@@ -54,7 +54,6 @@ void menu() {
 void printArray(char** arr, int size) {
     int i, j;
 
-    system("clear");
 
     for(i=0; i<size; i+=12) {
         for(j=i; (j<i+11) && (j<size-1); j++)

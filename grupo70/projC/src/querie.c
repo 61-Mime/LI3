@@ -110,8 +110,9 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   if(branch == 0)
     for(i = 0;i < SIZE;i++)
       for(i2 = 0;i2 < getGFilPListSize(gfil,0,i);i2++) {
-        size = getGFilPSizeC(gfil, 0, i, i2) + getGFilPSizeC(gfil, 1, i, i2) +
-               getGFilPSizeC(gfil, 2, i, i2);
+        size = getGFilPSizeN(gfil, 0, i, i2) + getGFilPSizeN(gfil, 1, i, i2) +
+               getGFilPSizeN(gfil, 2, i, i2) + getGFilPSizeP(gfil, 0, i, i2) +
+               getGFilPSizeP(gfil, 1, i, i2) + getGFilPSizeP(gfil, 2, i, i2);
         if(size == 0) {
           querie4->prods = realloc(querie4->prods,sizeof(char*)*(querie4->size+1));
           querie4->prods[querie4->size] = malloc(sizeof(char) * 10);
@@ -346,22 +347,15 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
   querie10->size = 0;
   querie10->produtos = NULL;
 
-  querie10->size = getGFilCsizeProds(gfil, 0, hash, pos)
-                 + getGFilCsizeProds(gfil, 1, hash, pos)
-                 + getGFilCsizeProds(gfil, 2, hash, pos);
-  querie10->produtos = malloc(sizeof(P) * querie10->size);
-
-  for(i = 0; i<getGFilCsizeProds(gfil, 0, hash, pos) ;i++) {
-    querie10->produtos[i].quantidade = getGFilCuni(gfil, 0, hash, pos, i, month-1);
-    strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 0, hash, pos, i));
-  }
-  for(i2 = 0; i2<getGFilCsizeProds(gfil, 1, hash, pos); i2++,i++) {
-    querie10->produtos[i].quantidade = getGFilCuni(gfil, 1, hash, pos, i2, month-1);
-    strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 1, hash, pos, i2));
-  }
-  for(i2 = 0; i2<getGFilCsizeProds(gfil, 2, hash, pos) ;i++,i2++) {
-    querie10->produtos[i].quantidade = getGFilCuni(gfil, 2, hash, pos, i2, month-1);
-    strcpy(querie10->produtos[i].prod, getGFilCprod(gfil, 2, hash, pos, i2));
+  for(i2 = 0; i2<3; i2++){
+    for(i = 0; i<getGFilCsizeProds(gfil, i2, hash, pos) ;i++) {
+      if(getGFilCuni(gfil, i2, hash, pos, i, month-1)){
+        querie10->produtos = realloc(querie10->produtos, sizeof(P)*(querie10->size + 1));
+        querie10->produtos[querie10->size].quantidade = getGFilCuni(gfil, i2, hash, pos, i, month-1);
+        strcpy(querie10->produtos[querie10->size].prod, getGFilCprod(gfil, i2, hash, pos, i));
+        querie10->size++;
+      }
+    }
   }
 
   qsort(querie10->produtos,querie10->size,sizeof(P),comparatorPL);
@@ -426,6 +420,13 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
     }
   }
 
+  for(i=0; i<26; i++) {
+    for(j=0; j < getFatListSize(fact, i); j++){
+      printf("%d %f %d\n", getFatOcup(fact, i, j), getFatFaturacaoN(fact, i, j, 0, 0), getFatVendasN(fact, i, j, 0, 0));
+      printf("%d %f %d\n", getFatOcup(fact, i, j), getFatFaturacaoN(fact, i, j, 8, 2), getFatVendasN(fact, i, j, 8, 2));
+    }
+  }
+
   /*quickSortbyPP(querie11->produtos, 0, querie11->size - 1);*/
   qsort(querie11->produtos,querie11->size,sizeof(PP),comparatorT);
 
@@ -437,9 +438,9 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
   for(i=0; i<querie11->size; i++) {
     pos = searchCat(querie11->produtos[i].prod, prod);
     hash = hashCat(querie11->produtos[i].prod[0]);
-    querie11->produtos[i].clientes[0] = getGFilPSizeC(gfil, 0, hash, pos);
-    querie11->produtos[i].clientes[1] = getGFilPSizeC(gfil, 1, hash, pos);
-    querie11->produtos[i].clientes[2] = getGFilPSizeC(gfil, 2, hash, pos);
+    querie11->produtos[i].clientes[0] = getGFilPSizeN(gfil, 0, hash, pos);
+    querie11->produtos[i].clientes[1] = getGFilPSizeN(gfil, 1, hash, pos);
+    querie11->produtos[i].clientes[2] = getGFilPSizeN(gfil, 2, hash, pos);
   }
 
   return querie11;
@@ -477,7 +478,7 @@ int comparatorPF(const void *p,const void *q) {
  *@return          apontador para Q12
  */
 Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
-  int pos, hash, i, i2, c;
+  int pos, hash, i=0, i2, i3, c;
 
   void* cli = getSGVCli(sgv);
   void* gfil = getSGVGFiliais(sgv);
@@ -497,19 +498,11 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
                  + getGFilCsizeProds(gfil, 2, hash, pos);
   querie12->prods = malloc(sizeof(P) * querie12->size);
 
-  for(i = 0; i<getGFilCsizeProds(gfil, 0, hash, pos) ;i++) {
-    querie12->prods[i].faturacao = getGFilCfat(gfil, 0, hash, pos, i);
-    strcpy(querie12->prods[i].prod, getGFilCprod(gfil, 0, hash, pos, i));
-  }
-
-  for(i2 = 0; i2<getGFilCsizeProds(gfil, 1, hash, pos); i2++,i++) {
-    querie12->prods[i].faturacao = getGFilCfat(gfil, 1, hash, pos, i2);
-    strcpy(querie12->prods[i].prod, getGFilCprod(gfil, 1, hash, pos, i2));
-  }
-
-  for(i2 = 0; i2<getGFilCsizeProds(gfil, 2, hash, pos) ;i++,i2++) {
-    querie12->prods[i].faturacao = getGFilCfat(gfil, 2, hash, pos, i2);
-    strcpy(querie12->prods[i].prod, getGFilCprod(gfil, 2, hash, pos, i2));
+  for(i2=0; i2<3; i2++){
+    for(i3 = 0; i3<getGFilCsizeProds(gfil, i2, hash, pos) ; i++, i3++) {
+      querie12->prods[i].faturacao = getGFilCfat(gfil, i2, hash, pos, i3);
+      strcpy(querie12->prods[i].prod, getGFilCprod(gfil, i2, hash, pos, i3));
+    }
   }
 
   qsort(querie12->prods,querie12->size,sizeof(PF),comparatorPF);

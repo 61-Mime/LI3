@@ -88,7 +88,7 @@ GFiliais* initGFil() {
  * @param i     Posição no array tblp
  * @param size  Inteiro com o tamanho para a estrutura
  */
-void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
+static void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
   TFilialP* f = &gfil->fil[fil].tblp[i];
 
   f->sizeProd = size;
@@ -103,7 +103,7 @@ void initTFilialP(GFiliais* gfil, int fil, int i, int size) {
  * @param j     Posição no array list
  * @param prod  String com o produto
  */
-void initListP(GFiliais* gfil, int fil, int i, int j, char* prod) {
+static void initListP(GFiliais* gfil, int fil, int i, int j, char* prod) {
   ListP* l = &gfil->fil[fil].tblp[i].list[j];
 
   l->cliN = NULL;
@@ -123,7 +123,7 @@ void initListP(GFiliais* gfil, int fil, int i, int j, char* prod) {
  * @param i     Posição no array tblc
  * @param size  Inteiro com o tamanho para a estrutura
  */
-void initTFilialC(GFiliais* gfil, int fil, int i, int size) {
+static void initTFilialC(GFiliais* gfil, int fil, int i, int size) {
   TFilialC* f = &gfil->fil[fil].tblc[i];
 
   f->sizeCli = size;
@@ -138,7 +138,7 @@ void initTFilialC(GFiliais* gfil, int fil, int i, int size) {
  * @param j     Posição no array list
  * @param prod  String com o cliente
  */
-void initListC(GFiliais* gfil, int fil, int i, int j, char* cli) {
+static void initListC(GFiliais* gfil, int fil, int i, int j, char* cli) {
   ListC* l = &gfil->fil[fil].tblc[i].list[j];
 
   l->prods = NULL;
@@ -180,7 +180,7 @@ void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli) {
  * @param i     Posição no array tblp
  * @param i2    Posição no array list
  */
-void contaCli(GFiliais *gfil,int i,int i2,int fil) {
+static void contaCli(GFiliais *gfil,int i,int i2,int fil) {
   int i3;
   ListP* lp;
 
@@ -204,7 +204,7 @@ void contaCli(GFiliais *gfil,int i,int i2,int fil) {
  * @param size  Tamanho lista cliente com repetidos
  * @param t     destinge cliente N(1) de cliente P(0)
  */
-void freeRepP(GFiliais *gfil,int fil,int i,int i2,int size,int t) {
+static void freeRepP(GFiliais *gfil,int fil,int i,int i2,int size,int t) {
   int i3;
   ListP* lp = &gfil->fil[fil].tblp[i].list[i2];
 
@@ -283,7 +283,7 @@ void remRepP(GFiliais *gfil) {
  * @param branch  Inteiro com Filial da venda
  * @param type    Char com o tipo de venda
  */
-void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type) {
+static void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type) {
   ListP *lp = &gfil->fil[branch-1].tblp[hash].list[pos];
 
   if(type == 'N') {
@@ -301,13 +301,13 @@ void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char typ
   }
 }
 
-int comparatorP(const void *p,const void *q) {
+static int comparatorP(const void *p,const void *q) {
   ProdCli *a = (ProdCli *)p;
   ProdCli *b = (ProdCli *)q;
   return strcmp(a->prod,b->prod);
 }
 
-void swapPCli(ProdCli *a, ProdCli *b)
+static void swapPCli(ProdCli *a, ProdCli *b)
 {
     ProdCli aux = *a;
     *a = *b;
@@ -322,7 +322,7 @@ void swapPCli(ProdCli *a, ProdCli *b)
  * @param i2    Posição no array list
  * @param size  Tamanho lista produtos com repetidos
  */
-void freeRepC(GFiliais *gfil,int fil,int i,int i2,int size) {
+static void freeRepC(GFiliais *gfil,int fil,int i,int i2,int size) {
   ListC* lc = &gfil->fil[fil].tblc[i].list[i2];
   int i3;
   for(i3 = lc -> sizeProds; i3 < size;i3++){

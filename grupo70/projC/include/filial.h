@@ -12,11 +12,10 @@ typedef struct gfiliais GFiliais;
 GFiliais* initGFil();
 void loadGFilFromCat(GFiliais* gfil, Catalogo* prod, Catalogo* cli);
 void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type);
-void remRepC(GFiliais *gfil);
 void addGFilC(GFiliais* gfil, int hash, int pos, char* prod, int branch, int month, float price, int uni);
-void freeGFil(GFiliais* fil);
 void remRepC(GFiliais *gfil);
 void remRepP(GFiliais *gfil);
+void freeGFil(GFiliais* fil);
 
 
 int getGFilPSizeC(GFiliais* gfil, int branch, int i, int j);

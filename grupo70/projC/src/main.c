@@ -3,15 +3,15 @@
  * @brief Ficheiro que contém a função main do projeto
  */
 
-#include "sgv.h"
 #include "interface.h"
+#include "interpretador.h"
 
 SGV sgv;
 
 int main() {
   sgv = NULL;
 
-  intrepertador(sgv);
+  interpretador(sgv);
 
   return 0;
 }

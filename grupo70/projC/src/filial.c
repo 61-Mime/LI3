@@ -66,9 +66,9 @@ typedef struct filial{
 /**
  *@brief Tabela de Hash com três posições, em que cada posição tem um THashFilial associado a uma filial
  */
-typedef struct gfiliais{
+struct gfiliais{
   THashFilial* fil;
-} GFiliais;
+};
 
 /* Troca duas posições de um array*/
 void swap(char** a, char** b)

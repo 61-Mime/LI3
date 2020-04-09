@@ -3,7 +3,7 @@
  * @brief Ficheiro que contém funções relativas ao módulo Auxinterpretador
  */
 
-#include "auxintrepertador.h"
+#include "auxinterpretador.h"
 
 #define MAX 100
 #define SMAX 30

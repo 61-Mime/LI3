@@ -39,9 +39,9 @@ typedef struct Tfact {
 /**
  *@brief Tabela de Hash em que cada posição tem um TFacturacao associado ao primeiro char de um produto
  */
-typedef struct thashfact {
+struct thashfact {
   TFacturacao* tbl;
-} THashFact;
+};
 
 /**
  *@brief  função que inicializa a estrutura THashFact

@@ -19,9 +19,9 @@ typedef struct cat {
 /**
  *@brief Tabela de Hash que em cada posição tem um Cat de um char  
  */
-typedef struct catalogo {
+struct catalogo {
   Cat* tbl;
-} Catalogo;
+};
 
 /**
  * @brief   Função inicializa a estrutura Catalogo

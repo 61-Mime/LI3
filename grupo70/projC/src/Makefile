@@ -4,10 +4,10 @@ ODIR=obj
 CC = gcc
 CFLAGS = -O3 -Wall -g -ansi -D_GNU_SOURCE -I$(IDIR)
 
-_DEPS = catalogo.h sales.h faturacao.h filial.h sgv.h interface.h auxintrepertador.h querie.h apresentacao.h
+_DEPS = catalogo.h sales.h faturacao.h filial.h interface.h interpretador.h auxinterpretador.h querie.h apresentacao.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o catalogo.o sales.o faturacao.o filial.o sgv.o interface.o auxintrepertador.o querie.o apresentacao.o
+_OBJ = main.o catalogo.o sales.o faturacao.o filial.o interface.o interpretador.o auxinterpretador.o querie.o apresentacao.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)

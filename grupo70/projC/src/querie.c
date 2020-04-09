@@ -523,9 +523,6 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
 /**
  *@brief           função que devolve os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas
  *@param sgv       estrutura de sistema e gestão de vendas
- *@param pathCli   String que representa o caminho para o ficheiro de Clientes
- *@param pathProd  String que representa o caminho para o ficheiro de Produtos
- *@param pathSales String que representa o caminho para o ficheiro de Vendas
  *@return          apontador para Q13
  */
 Q13* getCurrentFilesInfo(SGV sgv) {

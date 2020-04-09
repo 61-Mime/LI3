@@ -1,121 +1,268 @@
 /**
- * @file  interface.c
- * @brief Ficheiro que contém funções relativas ao módulo Interface
+ * @file    interface.c
+ * @brief   Ficheiro que contém funções relativas ao módulo SGV
  */
 
 #include "interface.h"
-#include <stdlib.h>
 
-#define MAX 100
+#define MAX 60 
 
 /**
- *@brief   função que verifica se uma String tem ou nao o carater espaço
- *@param s String a ser verificada
- *@return  inteiro booleano que representa a existência ou não do carater espaço na String
+ *@brief Estrutura com a informação do carregamento dos ficheiros
  */
-int temEspaco(char* s) {
-  int r = 0, i;
-  for(i=0; s[i] && !r; i++)
-    if(s[i] == ' ') r = 1;
+typedef struct filesinfo {
+    int prodV;
+    int prodL;
+    char* fileProd;
+    int cliV;
+    int cliL;
+    char* fileCli;
+    int saleV;
+    int saleL;
+    char* fileSale;
+} FileInfo;
 
-  return r;
+/**
+ *@brief Estrutura do Sistema de Gestão de Vendas, com a informação necessária para a execução do programa
+ */
+struct sgv {
+    Catalogo* cli;
+    Catalogo* prod;
+    THashFact* fact;
+    GFiliais* gfil;
+    FileInfo* info;
+};
+
+/**
+ * @brief   Função que inicializa a estrutura FileInfo
+ * @return  Apontador para FileInfo
+ */
+static FileInfo* initFileInfo() {
+    FileInfo* f = malloc(sizeof(FileInfo));
+
+    f->prodV = 0;
+    f->prodL = 0;
+    f->cliV = 0;
+    f->cliL = 0;
+    f->saleV = 0;
+    f->saleL = 0;
+
+    return f;
 }
 
 /**
- *@brief função que define o interpretador
- *@param sgv sistema de gestão de vendas a ser interpretado
+ * @brief   Função que inicializa a estrutura SGV
+ * @return  SGV inicializado
  */
-void intrepertador(SGV sgv) {
-    int r=1, querie=0, load=0;
-    char *buffer = malloc(MAX*sizeof(char)), *s;
+static SGV initSGV() {
+    SGV sgv = malloc(sizeof(struct sgv));
 
-    welcome();
-    menu();
+    sgv->prod = initCat();
+    sgv->cli = initCat();
+    sgv->fact = initFact();
+    sgv->gfil = initGFil();
+    sgv->info = initFileInfo();
 
-    while(r) {
-        printf("\n\nIntroduza o seu comando: ");
-        s = fgets(buffer, MAX, stdin);
+    return sgv;
+}
 
-        if(temEspaco(s))
-            printf("Comando inválido\n");
+/**
+ * @brief                   Função que adiciona os caminhos dos ficheiros à estrutura FileInfo
+ * @param info              Apontador para FileInfo
+ * @param clientsFilePath   Caminho para o ficheiro de Clientes
+ * @param productsFilePath  Caminho para o ficheiro de Produtos
+ * @param salesFilePath     Caminho para o ficheiro de Vendas
+ */
+static void addInfo(FileInfo* info, char* clientsFilePath, char* productsFilePath, char* salesFilePath) {
+  info->fileCli = malloc(sizeof(char) * MAX);
+  strcpy(info->fileCli, clientsFilePath);
+  info->fileProd = malloc(sizeof(char) * MAX);
+  strcpy(info->fileProd, productsFilePath);
+  info->fileSale = malloc(sizeof(char) * MAX);
+  strcpy(info->fileSale, salesFilePath);
+}
 
-        else {
-            buffer = strtok(s, "\n");
+/**
+ * @brief                   Função carrega a estrutura SGV a partir de ficheiros
+ * @param sgv               SGV a carregar
+ * @param clientsFilePath   Caminho para o ficheiro de Clientes
+ * @param productsFilePath  Caminho para o ficheiro de Produtos
+ * @param salesFilePath     Caminho para o ficheiro de Vendas
+ * @return                  SGV carregado
+ */
+SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, char* salesFilePath) {
+    sgv = initSGV();
 
-            if(strcmp(s, "menu") == 0)
-              menu();
+    tblCat(sgv->prod, productsFilePath, 'p', &sgv->info->prodV, &sgv->info->prodL);
+    tblCat(sgv->cli, clientsFilePath, 'c', &sgv->info->cliV, &sgv->info->cliL);
+    loadFactFromCat(sgv->fact, sgv->prod);
+    loadGFilFromCat(sgv->gfil, sgv->prod, sgv->cli);
+    loadFromSales(sgv->prod, sgv->cli, sgv->fact, sgv->gfil, salesFilePath, &sgv->info->saleV, &sgv->info->saleL);
+    addInfo(sgv->info, clientsFilePath, productsFilePath, salesFilePath);
+    return sgv;
+}
 
-            else if(strcmp(s, "q")==0 || strcmp(s, "Q")==0)
-              r=0;
+/**
+ * @brief       Função que liberta o espaço de memória ocupado pelo FileInfo
+ * @param info  Apontador para FileInfo
+ */
+static void freeFileInfo(FileInfo* info) {
+  free(info->fileCli);
+  free(info->fileProd);
+  free(info->fileSale);
+  free(info);
+}
 
-            else if(atoi(s)!=1 && atoi(s)!=0 && load==0)
-              printf("O SGV ainda não foi carregado\n");
+/**
+ * @brief       Função que liberta o espaço de memória ocupado pelo SGV
+ * @param sgv   SGV a destruir
+ */
+void destroySGV(SGV sgv) {
+    freeCat(sgv->prod);
+    freeCat(sgv->cli);
+    freeFact(sgv->fact);
+    freeGFil(sgv->gfil);
+    freeFileInfo(sgv->info);
+    free(sgv);
+}
 
-            else switch((querie = atoi(s))) {
-                  case 1:
-                      sgv = runQuerie1e13(sgv, load);
-                      if(sgv == NULL)
-                        load = 0;
-                      else
-                        load = 1;
-                      break;
+/**
+ * @brief       Função que retorna o numero de Produtos Validados
+ * @param sgv   Estrutura SGV
+ * @return      Inteiro com o numero de Produtos Validados
+ */
+int getSGVprodV(SGV sgv) {
+    return sgv->info->prodV;
+}
 
-                  case 2:
-                      runQuerie2(sgv);
-                      break;
+/**
+ * @brief       Função que retorna o numero de Produtos Lidos
+ * @param sgv   Estrutura SGV
+ * @return      Inteiro com o numero de Produtos Lidos
+ */
+int getSGVprodL(SGV sgv) {
+    return sgv->info->prodL;
+}
 
-                  case 3:
-                      runQuerie3(sgv);
-                      break;
+char* getSGVprodPath(SGV sgv) {
+    return sgv->info->fileProd;
+}
 
-                  case 4:
-                      runQuerie4(sgv);
-                      break;
+/**
+ * @brief       Função que retorna o numero de Clientes Validados
+ * @param sgv   Estrutura SGV
+ * @return      Inteiro com o numero de Clientes Validados
+ */
+int getSGVcliV(SGV sgv) {
+    return sgv->info->cliV;
+}
 
-                  case 5:
-                      runQuerie5(sgv);
-                      break;
+/**
+ * @brief       Função que retorna o numero de Clientes Lidos
+ * @param sgv   Estrutura SGV
+ * @return      Inteiro com o numero de Clientes Lidos
+ */
+int getSGVcliL(SGV sgv) {
+    return sgv->info->cliL;
+}
 
-                  case 6:
-                      runQuerie6(sgv);
-                      break;
+char* getSGVcliPath(SGV sgv) {
+    return sgv->info->fileCli;
+}
 
-                  case 7:
-                      runQuerie7(sgv);
-                      break;
+/**
+ * @brief       Função que retorna o numero de Vendas Validadas
+ * @param sgv   Estrutura SGV
+ * @return      Inteiro com o numero de Vendas Validadas
+ */
+int getSGVsaleV(SGV sgv) {
+    return sgv->info->saleV;
+}
 
-                  case 8:
-                      runQuerie8(sgv);
-                      break;
+/**
+ * @brief       Função que retorna o numero de Vendas Lidas
+ * @param sgv   Estrutura SGV
+ * @return      Inteiro com o numero de Vendas Lidas
+ */
+int getSGVsaleL(SGV sgv) {
+    return sgv->info->saleL;
+}
 
-                  case 9:
-                      runQuerie9(sgv);
-                      break;
+char* getSGVsalePath(SGV sgv) {
+    return sgv->info->fileSale;
+}
 
-                  case 10:
-                      runQuerie10(sgv);
-                      break;
+/**
+ * @brief       Função que retorna o tamanho de uma lista de um catalogo, chamando a função getCatListSize
+ * @param sgv   Apontador para SGV
+ * @param hash  Argumento da função getCatListSize
+ * @param type  Flag que representa se o catálogo é de produtos ou de clientes
+ * @return      Tamanho de uma lista de um Catalogo
+ */
+int getCListsize(SGV sgv,int hash,int type) {
+  if(type == 0)
+    return getCatListSize(sgv->prod,hash);
 
-                  case 11:
-                      runQuerie11(sgv);
-                      break;
+  return getCatListSize(sgv->cli,hash);
+}
 
-                  case 12:
-                      runQuerie12(sgv);
-                      break;
+/**
+ * @brief     Função devolve uma chave do Catalogo
+ * @param sgv Apontador para o SGV
+ * @param i   Argumento da função getCatListSize
+ * @param j   Argumento da função getCatListSize
+ * @return    Apontador para a Key
+ */
+char* getCKey(SGV sgv,int type,int i,int j) {
+  if(type == 0)
+    return getCatKey(sgv->prod,i,j);
 
-                  default:
-                      printf("Comando inválido\n");
-                      break;
-              }
-        }
-    }
+  return getCatKey(sgv->cli,i,j);
+}
 
-    printf("\nA Sair do Programa\n\n");
+/**
+ * @brief Get the Pos object
+ * 
+ * @param sgv 
+ * @param type 
+ * @param buffer 
+ * @return int 
+ */
+int getPos(SGV sgv,int type,char *buffer) {
+  if(type == 0)
+    return searchCat(buffer,sgv->prod);
 
-    if(load == 1)
-      destroySGV(sgv);
+  return searchCat(buffer,sgv->cli);
+}
 
-    free(buffer);
-    buffer = NULL;
+int getFVendasN(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatVendasN(sgv->fact,hash,pos,branch,mes);
+}
+
+int getFVendasP(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatVendasP(sgv->fact,hash,pos,branch,mes);
+}
+
+float getFFaturacaoN(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatFaturacaoN(sgv->fact,hash,pos,branch,mes);
+}
+
+float getFFaturacaoP(SGV sgv,int hash,int pos,int branch,int mes) {
+  return getFatFaturacaoP(sgv->fact,hash,pos,branch,mes);
+}
+
+void* getSGVGFiliais(SGV sgv) {
+  return sgv->gfil;
+}
+
+void* getSGVCli(SGV sgv) {
+  return sgv->cli;
+}
+
+void* getSGVFact(SGV sgv) {
+  return sgv->fact;
+}
+
+void* getSGVProd(SGV sgv) {
+  return sgv->prod;
 }

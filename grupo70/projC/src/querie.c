@@ -53,7 +53,6 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
 
   hash= hashCat(productID[0]);
   pos = searchCat(productID, prod);
-
   if(hash == -1 || pos == -1 || month > 12 || month < 1)
     return NULL;
 
@@ -96,7 +95,7 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
  *@return          apontador para Q4
  */
 Q4* getProductsNeverBough(SGV sgv,int branch) {
-  if(branch < 1 || branch > 3)
+  if(branch < 0 || branch > 3)
     return NULL;
 
   int i,i2, size;

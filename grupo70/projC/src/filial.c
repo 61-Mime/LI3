@@ -435,8 +435,10 @@ void freeGFil(GFiliais* gfil) {
           free(lc->prods[k].uni);
           lc->prods[k].uni = NULL;
         }
+        free(lc->key);
         free(lc->prods);
         lc->prods = NULL;
+        lc->key = NULL;
       }
 
       for(j=0; j<gfil->fil[fil].tblp[i].sizeProd; j++) {

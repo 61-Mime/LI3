@@ -88,7 +88,8 @@ void runQuerie2(SGV sgv) {
         free(querie2->prods[i]);
         querie2->prods[i] = NULL;
       }
-
+      free(querie2->prods);
+      querie2->prods = NULL;
       free(querie2);
       querie2 = NULL;
     }
@@ -116,6 +117,8 @@ void runQuerie3(SGV sgv){
     printQ3(querie3, c, mes);
 
     if(querie3 != NULL) {
+      free(querie3->fat);
+      querie3->fat = NULL;
       free(querie3);
       querie3 = NULL;
     }
@@ -146,7 +149,8 @@ void runQuerie4(SGV sgv) {
         free(querie4->prods[i]);
         querie4->prods[i] = NULL;
     }
-
+    free(querie4->prods);
+    querie4->prods = NULL;
     free(querie4);
     querie4 = NULL;
   }
@@ -166,6 +170,8 @@ void runQuerie5(SGV sgv) {
     free(querie5->cli[i]);
     querie5->cli[i] = NULL;
   }
+  free(querie5->cli);
+  querie5->cli = NULL;
   free(querie5);
   querie5 = NULL;
 }

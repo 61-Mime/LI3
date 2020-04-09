@@ -8,6 +8,9 @@
 #define SIZE 26
 #define SMAX 10
 
+/**
+ *@brief Estrutura com informação de um produto comprado por um cliente
+ */
 typedef struct prodcli{
   char* prod;
   int* uni;
@@ -15,17 +18,26 @@ typedef struct prodcli{
   float fat;
 } ProdCli;
 
+/**
+ *@brief Estrutura com array de ProdCli, com informação dos produtos comprados por um determinado cliente
+ */
 typedef struct listc{
   char* key;
   int sizeProds;
   ProdCli* prods;
 } ListC;
 
+/**
+ *@brief Estrutura com array de ListC, com a informação dos clientes começados por um determinado char
+ */
 typedef struct tfilc{
   int sizeCli;
   ListC* list;
 } TFilialC;
 
+/**
+ *@brief Estrutura com dois arrays de Clientes que compraram o produto (em modo normal ou em promoção)
+ */
 typedef struct listp{
   char* key;
   int sizeN;
@@ -35,16 +47,25 @@ typedef struct listp{
   char** cliP;
 } ListP;
 
+/**
+ *@brief Estrutura com array de ListP, com a informação dos produtos começados por um determinado char
+ */
 typedef struct tfilp{
   int sizeProd;
   ListP* list;
 } TFilialP;
 
+/**
+ *@brief Estrutura com duas tabelas de Hash de 26 posições com informação relativa à filial, uma organizada por produtos e outra por clientes
+ */
 typedef struct filial{
   TFilialC* tblc;
   TFilialP* tblp;
 } THashFilial;
 
+/**
+ *@brief Tabela de Hash com três posições, em que cada posição tem um THashFilial associado a uma filial
+ */
 typedef struct gfiliais{
   THashFilial* fil;
 } GFiliais;

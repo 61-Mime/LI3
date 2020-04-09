@@ -8,11 +8,17 @@
 #define MAX 10
 #define SIZE 26
 
+/**
+ *@brief Estrutura com um array de keys começados por um determinado char
+ */
 typedef struct cat {
   int size;
   char** list;
 } Cat;
 
+/**
+ *@brief Tabela de Hash que em cada posição tem um Cat de um char  
+ */
 typedef struct catalogo {
   Cat* tbl;
 } Catalogo;

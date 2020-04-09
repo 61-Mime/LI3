@@ -83,11 +83,12 @@ void runQuerie2(SGV sgv) {
     Q2* querie2 = getProductsStartedByLetter(sgv, c1[0]);
     printQ2(querie2, c1[0]);
 
-    for(i=0; i<querie2->size; i++) {
-      free(querie2->prods[i]);
-      querie2->prods[i] = NULL;
-    }
     if(querie2 != NULL) {
+      for(i=0; i<querie2->size; i++) {
+        free(querie2->prods[i]);
+        querie2->prods[i] = NULL;
+      }
+
       free(querie2);
       querie2 = NULL;
     }
@@ -140,12 +141,12 @@ void runQuerie4(SGV sgv) {
   Q4* querie4 = getProductsNeverBough(sgv, filial);
   printQ4(querie4);
 
-  for(i=0; i<querie4->size; i++) {
-      free(querie4->prods[i]);
-      querie4->prods[i] = NULL;
-  }
-
   if(querie4 != NULL) {
+    for(i=0; i<querie4->size; i++) {
+        free(querie4->prods[i]);
+        querie4->prods[i] = NULL;
+    }
+
     free(querie4);
     querie4 = NULL;
   }
@@ -163,8 +164,8 @@ void runQuerie5(SGV sgv) {
 
   for(i=0; i<querie5->size; i++) {
     free(querie5->cli[i]);
+    querie5->cli[i] = NULL;
   }
-
   free(querie5);
   querie5 = NULL;
 }

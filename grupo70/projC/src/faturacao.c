@@ -8,6 +8,9 @@
 #define SIZE 26
 #define SMAX 10
 
+/**
+ *@brief Estrutura com a faturação de um produto num determinado mês e filial
+ */
 typedef struct factM {
   int vendasN;
   int vendasP;
@@ -16,17 +19,26 @@ typedef struct factM {
   int unidades;
 } FMensal;
 
+/**
+ *@brief Estrutura com uma matriz com a faturação mensal e por filial de um produto
+ */
 typedef struct fact {
   char* prod;
   int ocup;
   FMensal mesfilial[12][3];
 } Facturacao;
 
+/**
+ *@brief Estrutura com um array de Facturacao para cada produto
+ */
 typedef struct Tfact {
   int size;
   Facturacao *list;
 } TFacturacao;
 
+/**
+ *@brief Tabela de Hash em que cada posição tem um TFacturacao associado ao primeiro char de um produto
+ */
 typedef struct thashfact {
   TFacturacao* tbl;
 } THashFact;

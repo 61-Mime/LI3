@@ -5,6 +5,9 @@
 
 #include "sgv.h"
 
+/**
+ *@brief Estrutura com a informação do carregamento dos ficheiros
+ */
 typedef struct filesinfo {
     int prodV;
     int prodL;
@@ -14,6 +17,9 @@ typedef struct filesinfo {
     int saleL;
 } FileInfo;
 
+/**
+ *@brief Estrutura do Sistema de Gestão de Vendas, com a informação necessária para a execução do programa
+ */
 typedef struct sgv {
     Catalogo* cli;
     Catalogo* prod;

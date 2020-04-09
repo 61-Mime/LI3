@@ -12,7 +12,6 @@
 typedef struct sgv *SGV;
 
 
-SGV initSGV();
 SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath,
                               char* productsFilePath,
                               char* salesFilePath

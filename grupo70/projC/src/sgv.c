@@ -26,7 +26,7 @@ typedef struct sgv {
  * @brief   Função que inicializa a estrutura FileInfo
  * @return  Apontador para FileInfo
  */
-FileInfo* initFileInfo() {
+static FileInfo* initFileInfo() {
     FileInfo* f = malloc(sizeof(FileInfo));
 
     f->prodV = 0;
@@ -43,7 +43,7 @@ FileInfo* initFileInfo() {
  * @brief   Função que inicializa a estrutura SGV
  * @return  SGV inicializado
  */
-SGV initSGV() {
+static SGV initSGV() {
     SGV sgv = malloc(sizeof(struct sgv));
 
     sgv->prod = initCat();

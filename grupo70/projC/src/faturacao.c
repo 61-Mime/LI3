@@ -54,7 +54,7 @@ THashFact* initFact() {
  *@param i    posição da tabela a inicializar
  *@param size tamanho TFacturacao
  */
-void initTFacturacao(THashFact* fact, int i, int size) {
+static void initTFacturacao(THashFact* fact, int i, int size) {
   TFacturacao* f = &fact->tbl[i];
 
   f->list = malloc(sizeof(Facturacao)*size);
@@ -68,7 +68,7 @@ void initTFacturacao(THashFact* fact, int i, int size) {
  *@param j    posição da Lista
  *@param key  String com o produto
  */
-void initFacturacao(THashFact* fact, int i, int j, char* key) {
+static void initFacturacao(THashFact* fact, int i, int j, char* key) {
   Facturacao *f = &fact->tbl[i].list[j];
 
   f->prod = malloc(sizeof(char) * SMAX);

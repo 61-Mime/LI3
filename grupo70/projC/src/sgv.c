@@ -5,16 +5,21 @@
 
 #include "sgv.h"
 
+#define MAX 60 
+
 /**
  *@brief Estrutura com a informação do carregamento dos ficheiros
  */
 typedef struct filesinfo {
     int prodV;
     int prodL;
+    char* fileProd;
     int cliV;
     int cliL;
+    char* fileCli;
     int saleV;
     int saleL;
+    char* fileSale;
 } FileInfo;
 
 /**
@@ -62,6 +67,22 @@ static SGV initSGV() {
 }
 
 /**
+ * @brief                   Função que adiciona os caminhos dos ficheiros à estrutura FileInfo
+ * @param info              Apontador para FileInfo
+ * @param clientsFilePath   Caminho para o ficheiro de Clientes
+ * @param productsFilePath  Caminho para o ficheiro de Produtos
+ * @param salesFilePath     Caminho para o ficheiro de Vendas
+ */
+static void addInfo(FileInfo* info, char* clientsFilePath, char* productsFilePath, char* salesFilePath) {
+  info->fileCli = malloc(sizeof(char) * MAX);
+  strcpy(info->fileCli, clientsFilePath);
+  info->fileProd = malloc(sizeof(char) * MAX);
+  strcpy(info->fileProd, productsFilePath);
+  info->fileSale = malloc(sizeof(char) * MAX);
+  strcpy(info->fileSale, salesFilePath);
+}
+
+/**
  * @brief                   Função carrega a estrutura SGV a partir de ficheiros
  * @param sgv               SGV a carregar
  * @param clientsFilePath   Caminho para o ficheiro de Clientes
@@ -77,8 +98,19 @@ SGV loadSGVFromFiles(SGV sgv, char* clientsFilePath, char* productsFilePath, cha
     loadFactFromCat(sgv->fact, sgv->prod);
     loadGFilFromCat(sgv->gfil, sgv->prod, sgv->cli);
     loadFromSales(sgv->prod, sgv->cli, sgv->fact, sgv->gfil, salesFilePath, &sgv->info->saleV, &sgv->info->saleL);
-
+    addInfo(sgv->info, clientsFilePath, productsFilePath, salesFilePath);
     return sgv;
+}
+
+/**
+ * @brief       Função que liberta o espaço de memória ocupado pelo FileInfo
+ * @param info  Apontador para FileInfo
+ */
+static void freeFileInfo(FileInfo* info) {
+  free(info->fileCli);
+  free(info->fileProd);
+  free(info->fileSale);
+  free(info);
 }
 
 /**
@@ -90,7 +122,7 @@ void destroySGV(SGV sgv) {
     freeCat(sgv->cli);
     freeFact(sgv->fact);
     freeGFil(sgv->gfil);
-    free(sgv->info);
+    freeFileInfo(sgv->info);
     free(sgv);
 }
 
@@ -112,6 +144,10 @@ int getSGVprodL(SGV sgv) {
     return sgv->info->prodL;
 }
 
+char* getSGVprodPath(SGV sgv) {
+    return sgv->info->fileProd;
+}
+
 /**
  * @brief       Função que retorna o numero de Clientes Validados
  * @param sgv   Estrutura SGV
@@ -128,6 +164,10 @@ int getSGVcliV(SGV sgv) {
  */
 int getSGVcliL(SGV sgv) {
     return sgv->info->cliL;
+}
+
+char* getSGVcliPath(SGV sgv) {
+    return sgv->info->fileCli;
 }
 
 /**
@@ -148,6 +188,17 @@ int getSGVsaleL(SGV sgv) {
     return sgv->info->saleL;
 }
 
+char* getSGVsalePath(SGV sgv) {
+    return sgv->info->fileSale;
+}
+
+/**
+ * @brief       Função que retorna o tamanho de uma lista de um catalogo, chamando a função getCatListSize
+ * @param sgv   Apontador para SGV
+ * @param hash  Argumento da função getCatListSize
+ * @param type  Flag que representa se o catálogo é de produtos ou de clientes
+ * @return      Tamanho de uma lista de um Catalogo
+ */
 int getCListsize(SGV sgv,int hash,int type) {
   if(type == 0)
     return getCatListSize(sgv->prod,hash);
@@ -155,6 +206,13 @@ int getCListsize(SGV sgv,int hash,int type) {
   return getCatListSize(sgv->cli,hash);
 }
 
+/**
+ * @brief     Função devolve uma chave do Catalogo
+ * @param sgv Apontador para o SGV
+ * @param i   Argumento da função getCatListSize
+ * @param j   Argumento da função getCatListSize
+ * @return    Apontador para a Key
+ */
 char* getCKey(SGV sgv,int type,int i,int j) {
   if(type == 0)
     return getCatKey(sgv->prod,i,j);

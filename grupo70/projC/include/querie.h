@@ -120,6 +120,6 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch);
 Q10* getClientFavouriteProducts(SGV sgv,char *cliID,int month);
 Q11* getTopSelledProducts(SGV sgv, int limit);
 Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit);
-Q13* getCurrentFilesInfo(SGV sgv, char* pathCli, char* pathProd, char* pathSales);
+Q13* getCurrentFilesInfo(SGV sgv);
 
 #endif

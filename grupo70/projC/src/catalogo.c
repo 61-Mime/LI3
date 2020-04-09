@@ -213,7 +213,7 @@ int getCatListSize(Catalogo* cat, int i) {
 }
 
 /**
- * @brief     Função devolve a chave do Catalogo
+ * @brief     Função devolve uma chave do Catalogo
  * @param cat Apontador para o Catalogo
  * @param i   Posição na Tabela
  * @param j   Posição na Lista

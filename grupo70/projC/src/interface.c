@@ -144,6 +144,11 @@ int getSGVprodL(SGV sgv) {
     return sgv->info->prodL;
 }
 
+/**
+ * @brief     Função que retorna o caminho do Ficheiro dos Produtos
+ * @param sgv Estrutura SGV
+ * @return    Caminho do Ficheiro dos Produtos 
+ */
 char* getSGVprodPath(SGV sgv) {
     return sgv->info->fileProd;
 }
@@ -166,6 +171,11 @@ int getSGVcliL(SGV sgv) {
     return sgv->info->cliL;
 }
 
+/**
+ * @brief     Função que retorna o caminho do Ficheiro dos Clientes
+ * @param sgv Estrutura SGV
+ * @return    Caminho do Ficheiro dos Clientes 
+ */
 char* getSGVcliPath(SGV sgv) {
     return sgv->info->fileCli;
 }
@@ -188,12 +198,17 @@ int getSGVsaleL(SGV sgv) {
     return sgv->info->saleL;
 }
 
+/**
+ * @brief     Função que retorna o caminho do Ficheiro das Vendas
+ * @param sgv Estrutura SGV
+ * @return    Caminho do Ficheiro das Vendas 
+ */
 char* getSGVsalePath(SGV sgv) {
     return sgv->info->fileSale;
 }
 
 /**
- * @brief       Função que retorna o tamanho de uma lista de um catalogo, chamando a função getCatListSize
+ * @brief       Função que retorna o tamanho de uma lista de um Catalogo, chamando a função getCatListSize
  * @param sgv   Apontador para SGV
  * @param hash  Argumento da função getCatListSize
  * @param type  Flag que representa se o catálogo é de produtos ou de clientes
@@ -207,11 +222,12 @@ int getCListsize(SGV sgv,int hash,int type) {
 }
 
 /**
- * @brief     Função devolve uma chave do Catalogo
- * @param sgv Apontador para o SGV
- * @param i   Argumento da função getCatListSize
- * @param j   Argumento da função getCatListSize
- * @return    Apontador para a Key
+ * @brief       Função devolve uma chave de um Catalogo, chamando a função getCatKey
+ * @param sgv   Apontador para o SGV
+ * @param type  Flag que representa se o catálogo é de produtos ou de clientes
+ * @param i     Argumento da função getCatListSize
+ * @param j     Argumento da função getCatListSize
+ * @return      Apontador para a Key
  */
 char* getCKey(SGV sgv,int type,int i,int j) {
   if(type == 0)
@@ -221,48 +237,103 @@ char* getCKey(SGV sgv,int type,int i,int j) {
 }
 
 /**
- * @brief Get the Pos object
- * 
- * @param sgv 
- * @param type 
- * @param buffer 
- * @return int 
+ * @brief         Função procura uma key num Catalogo
+ * @param sgv     Estrutura SGV
+ * @param type    Flag que representa se o catálogo é de produtos ou de clientes
+ * @param key     Key a procurar  
+ * @return        Inteiro com posição do objeto na Lista
  */
-int getPos(SGV sgv,int type,char *buffer) {
+int getPos(SGV sgv,int type,char *key) {
   if(type == 0)
-    return searchCat(buffer,sgv->prod);
+    return searchCat(key,sgv->prod);
 
-  return searchCat(buffer,sgv->cli);
+  return searchCat(key,sgv->cli);
 }
 
+/**
+ * @brief         Função retorna o numero de vendas do tipo N
+ * @param sgv     Estrutura SGV
+ * @param hash    Posição na Tabela de Hash
+ * @param pos     Posição na Lista
+ * @param branch  Posição Filial na Matriz
+ * @param mes     Posição Mes na Matriz
+ * @return        Inteiro com o numero de vendas do tipo N
+ */
 int getFVendasN(SGV sgv,int hash,int pos,int branch,int mes) {
   return getFatVendasN(sgv->fact,hash,pos,branch,mes);
 }
 
+/**
+ * @brief         Função retorna o numero de vendas do tipo P
+ * @param sgv     Estrutura SGV
+ * @param hash    Posição na Tabela de Hash
+ * @param pos     Posição na Lista
+ * @param branch  Posição Filial na Matriz
+ * @param mes     Posição Mes na Matriz
+ * @return        Inteiro com o numero de vendas do tipo P
+ */
 int getFVendasP(SGV sgv,int hash,int pos,int branch,int mes) {
   return getFatVendasP(sgv->fact,hash,pos,branch,mes);
 }
 
+/**
+ * @brief         Função retorna a faturação do tipo N
+ * @param sgv     Estrutura SGV
+ * @param hash    Posição na Tabela de Hash
+ * @param pos     Posição na Lista
+ * @param branch  Posição Filial na Matriz
+ * @param mes     Posição Mes na Matriz
+ * @return        Float com a faturação do tipo N 
+ */
 float getFFaturacaoN(SGV sgv,int hash,int pos,int branch,int mes) {
   return getFatFaturacaoN(sgv->fact,hash,pos,branch,mes);
 }
 
+/**
+ * @brief         Função retorna a faturação do tipo P
+ * @param sgv     Estrutura SGV
+ * @param hash    Posição na Tabela de Hash
+ * @param pos     Posição na Lista
+ * @param branch  Posição Filial na Matriz
+ * @param mes     Posição Mes na Matriz
+ * @return        Float com a faturação do tipo P
+ */
 float getFFaturacaoP(SGV sgv,int hash,int pos,int branch,int mes) {
   return getFatFaturacaoP(sgv->fact,hash,pos,branch,mes);
 }
 
+/**
+ * @brief       Função devolve um apontador para GFiliais
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para GFiliais
+ */
 void* getSGVGFiliais(SGV sgv) {
   return sgv->gfil;
 }
 
+/**
+ * @brief       Função devolve um apontador para Catalogo de Clientes
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para Catalogo de Clientes
+ */
 void* getSGVCli(SGV sgv) {
   return sgv->cli;
 }
 
+/**
+ * @brief       Função devolve um apontador para Fact
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para Fact
+ */
 void* getSGVFact(SGV sgv) {
   return sgv->fact;
 }
 
+/**
+ * @brief       Função devolve um apontador para Catalogo de Produtos
+ * @param sgv   Estrutura SGV
+ * @return      Apontador para Catalogo de Produtos
+ */
 void* getSGVProd(SGV sgv) {
   return sgv->prod;
 }

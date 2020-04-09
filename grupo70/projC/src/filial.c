@@ -283,7 +283,7 @@ void remRepP(GFiliais *gfil) {
  * @param branch  Inteiro com Filial da venda
  * @param type    Char com o tipo de venda
  */
-static void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type) {
+void addGFilP(GFiliais* gfil, int hash, int pos, char* cli, int branch, char type) {
   ListP *lp = &gfil->fil[branch-1].tblp[hash].list[pos];
 
   if(type == 'N') {

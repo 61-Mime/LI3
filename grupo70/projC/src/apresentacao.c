@@ -6,6 +6,7 @@
 #include "apresentacao.h"
 
 void welcome() {
+    printf("\n\n\n");
     printf("   SSSSSSSSSSSSSSS           GGGGGGGGGGGG   VVVVVVVV           VVVVVVVV\n");
     printf(" SS:::::::::::::::S       GGG::::::::::::G  V::::::V           V::::::V\n");
     printf("S:::::SSSSSS::::::S     GG:::::::::::::::G  V::::::V           V::::::V\n");
@@ -53,7 +54,6 @@ void menu() {
  */
 void printArray(char** arr, int size) {
     int i, j;
-
 
     for(i=0; i<size; i+=12) {
         for(j=i; (j<i+11) && (j<size-1); j++)

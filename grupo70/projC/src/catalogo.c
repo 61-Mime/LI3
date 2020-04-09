@@ -94,7 +94,7 @@ int hashCat(char c) {
  * @param type  Char que indica o tipo do catálogo
  * @return      Inteiro usado como booleano
  */
-int isVal(char *key, char type) {
+static int isVal(char *key, char type) {
   int i, res=1;
 
   if(type == 'c') {
@@ -125,7 +125,7 @@ int isVal(char *key, char type) {
  * @param i   Posicao da tabela a adicionar
  * @param val Apontador para inteiro que contem o numero de chaves validadas
  */
-void addKey(Catalogo* cat, char* key, int i, int* val) {
+static void addKey(Catalogo* cat, char* key, int i, int* val) {
   int pos = cat->tbl[i].size;
 
   cat->tbl[i].list = realloc(cat->tbl[i].list,sizeof(char*) * (cat->tbl[i].size + 1));

@@ -21,9 +21,9 @@ SGV runQuerie1e13(SGV sgv, int load) {
     s = fgets(buffer, MAX, stdin);
 
     if(s[0]=='\n') {
-      strcpy(c1, "../files/Clientes.txt");
-      strcpy(c2, "../files/Produtos.txt");
-      strcpy(c3, "../files/Vendas_1M.txt");
+      strcpy(c1, "./files/Clientes.txt");
+      strcpy(c2, "./files/Produtos.txt");
+      strcpy(c3, "./files/Vendas_1M.txt");
     }
 
     else

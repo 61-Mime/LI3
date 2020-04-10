@@ -7,28 +7,58 @@ SGV sgv;
 int main() {
   char c1[SMAX], c2[SMAX], c3[SMAX];
   int i;
+  clock_t start_t, end_t;
   sgv = NULL;
 
   strcpy(c1, "/Users/luissobral/grupo70/grupo70/projC/files/Clientes.txt");
   strcpy(c2, "/Users/luissobral/grupo70/grupo70/projC/files/Produtos.txt");
   strcpy(c3, "/Users/luissobral/grupo70/grupo70/projC/files/Vendas_1M.txt");
 
-  sgv = loadSGVFromFiles(sgv, c1, c2, c3);
-  Q13* querie13 = getCurrentFilesInfo(sgv);
+  start_t = clock();
+  sgv = runQuerie1e13(sgv,0);
+  end_t = clock();
+  printf("\nTempo de execução da Querie 1: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+
   Q2* querie2 = getProductsStartedByLetter(sgv, 'A');
   Q3* querie3 = getProductSalesAndProfit(sgv, "AF1184", 5, 0);
   Q4* querie4 = getProductsNeverBough(sgv, 0);
   Q5* querie5 = getClientsOfAllBranches(sgv);
+  start_t = clock();
   Q6* querie6 = getClientsAndProductsNeverBoughtCount(sgv);
-  Q7* querie7 = getProductsBoughtByClient(sgv, "Z5000");
-  Q8* querie8 = getSalesAndProfit(sgv, 1, 12);
-  Q9* querie9 = getProductBuyers(sgv, "AF1184", 1);
-  Q10* querie10 = getClientFavouriteProducts(sgv,"Z5000",4);
-  Q11* querie11 = getTopSelledProducts(sgv, 30);
-  Q12* querie12 = getClientTopProfitProducts(sgv, "Z5000", 30);
+  end_t = clock();
+  printf("\nTempo de execução da Querie 6: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 
-  free(querie13);
-  querie13 = NULL;
+  start_t = clock();
+  Q7* querie7 = getProductsBoughtByClient(sgv, "Z5000");
+  end_t = clock();
+  printf("\nTempo de execução da Querie 7: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+
+  start_t = clock();
+  Q8* querie8 = getSalesAndProfit(sgv, 1, 12);
+  end_t = clock();
+  printf("\nTempo de execução da Querie 8: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+
+  start_t = clock();
+  Q9* querie9 = getProductBuyers(sgv, "AF1184", 1);
+  end_t = clock();
+  printf("\nTempo de execução da Querie 9: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+
+  start_t = clock();
+  Q10* querie10 = getClientFavouriteProducts(sgv,"Z5000",4);
+  end_t = clock();
+  printf("\nTempo de execução da Querie 10: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+
+  start_t = clock();
+  Q11* querie11 = getTopSelledProducts(sgv, 30);
+  end_t = clock();
+  printf("\nTempo de execução da Querie 11: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+
+  start_t = clock();
+  Q12* querie12 = getClientTopProfitProducts(sgv, "Z5000", 30);
+  end_t = clock();
+  printf("\nTempo de execução da Querie 12: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+
+  start_t = clock();
   for(i=0; i<querie2->size; i++) {
     free(querie2->prods[i]);
     querie2->prods[i] = NULL;
@@ -80,7 +110,12 @@ int main() {
   querie12->prods = NULL;
   free(querie12);
   querie12 = NULL;
+  end_t = clock();
+  printf("\nTempo de free Queries: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 
+  start_t = clock();
   destroySGV(sgv);
+  end_t = clock();
+  printf("\nTempo de free Sgv: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
   return 0;
 }

@@ -15,7 +15,9 @@ $(ODIR)/%.o: %.c $(DEPS)
 
 program: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
+	@echo Compilado sem erros
 	doxygen Doxyfile &> /dev/null
+	@echo Documentação gerada
 
 clean:
 	rm -f obj/*.o

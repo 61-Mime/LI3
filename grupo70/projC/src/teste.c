@@ -1,4 +1,4 @@
-#include "sgv.h"
+#include "interpretador.h"
 #include "interface.h"
 
 SGV sgv;
@@ -14,7 +14,7 @@ int main() {
   strcpy(c3, "/Users/luissobral/grupo70/grupo70/projC/files/Vendas_1M.txt");
 
   sgv = loadSGVFromFiles(sgv, c1, c2, c3);
-  Q13* querie13 = getCurrentFilesInfo(sgv, c1, c2, c3);
+  Q13* querie13 = getCurrentFilesInfo(sgv);
   Q2* querie2 = getProductsStartedByLetter(sgv, 'A');
   Q3* querie3 = getProductSalesAndProfit(sgv, "AF1184", 5, 0);
   Q4* querie4 = getProductsNeverBough(sgv, 0);

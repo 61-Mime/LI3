@@ -307,12 +307,24 @@ void swapP(P *a, P *b)
     *b = aux;
 }
 
+/**
+ *@brief   Função de comparação usada no qsort de P, por produto
+ *@param p Apontador para estrutura
+ *@param q Apontador para estrutura
+ *@return  Inteiro para comparação no qsort
+ */
 int comparatorPL(const void *p,const void *q) {
   P *a = (P *)p;
   P *b = (P *)q;
   return strcmp(a->prod,b->prod);
 }
 
+/**
+ *@brief   Função de comparação usada no qsort de P, por quantidade
+ *@param p Apontador para estrutura
+ *@param q Apontador para estrutura
+ *@return  Inteiro para comparação no qsort
+ */
 int comparatorQP(const void *p,const void *q) {
   P *a = (P *)p;
   P *b = (P *)q;
@@ -374,6 +386,12 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
   return querie10;
 }
 
+/**
+ *@brief   Função de comparação usada no qsort de PP, por unidades de produto globais
+ *@param p Apontador para estrutura
+ *@param q Apontador para estrutura
+ *@return  Inteiro para comparação no qsort
+ */
 int comparatorT(const void *p,const void *q) {
   PP *a = (PP *)p;
   PP *b = (PP *)q;
@@ -450,12 +468,24 @@ void swapPF(PF *a, PF *b)
     *b = aux;
 }
 
+/**
+ *@brief   Função de comparação usada no qsort de PF, por faturação
+ *@param p Apontador para estrutura
+ *@param q Apontador para estrutura
+ *@return  Inteiro para comparação no qsort
+ */
 int comparatorF(const void *p,const void *q) {
   PF *a = (PF *)p;
   PF *b = (PF *)q;
   return (b->faturacao - a->faturacao);
 }
 
+/**
+ *@brief   Função de comparação usada no qsort de PF, por produto
+ *@param p Apontador para estrutura
+ *@param q Apontador para estrutura
+ *@return  Inteiro para comparação no qsort
+ */
 int comparatorPF(const void *p,const void *q) {
   PF *a = (PF *)p;
   PF *b = (PF *)q;
@@ -523,23 +553,20 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
 /**
  *@brief           função que devolve os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas
  *@param sgv       estrutura de sistema e gestão de vendas
- *@param pathCli   String que representa o caminho para o ficheiro de Clientes
- *@param pathProd  String que representa o caminho para o ficheiro de Produtos
- *@param pathSales String que representa o caminho para o ficheiro de Vendas
  *@return          apontador para Q13
  */
-Q13* getCurrentFilesInfo(SGV sgv, char* pathCli, char* pathProd, char* pathSales) {
+Q13* getCurrentFilesInfo(SGV sgv) {
     Q13* querie13 = malloc(sizeof(Q13));
 
     querie13->cliL = getSGVcliL(sgv);
     querie13->cliV = getSGVcliV(sgv);
-    strcpy(querie13->pathCli, pathCli);
+    strcpy(querie13->pathCli, getSGVprodPath(sgv));
     querie13->prodL = getSGVprodL(sgv);
     querie13->prodV = getSGVprodV(sgv);
-    strcpy(querie13->pathProd, pathProd);
+    strcpy(querie13->pathProd, getSGVcliPath(sgv));
     querie13->salesL = getSGVsaleL(sgv);
     querie13->salesV = getSGVsaleV(sgv);
-    strcpy(querie13->pathSales, pathSales);
+    strcpy(querie13->pathSales, getSGVsalePath(sgv));
 
     return querie13;
 }

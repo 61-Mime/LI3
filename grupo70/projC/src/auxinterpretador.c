@@ -3,7 +3,7 @@
  * @brief Ficheiro que contém funções relativas ao módulo Auxinterpretador
  */
 
-#include "auxintrepertador.h"
+#include "auxinterpretador.h"
 
 #define MAX 100
 #define SMAX 30
@@ -51,7 +51,7 @@ SGV runQuerie1e13(SGV sgv, int load) {
     sgv = loadSGVFromFiles(sgv, c1, c2, c3);
     end_t = clock();
 
-    Q13* querie13 = getCurrentFilesInfo(sgv, c1, c2, c3);
+    Q13* querie13 = getCurrentFilesInfo(sgv);
 
     printQ1(start_t, end_t);
     printQ13(querie13);

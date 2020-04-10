@@ -66,9 +66,9 @@ typedef struct filial{
 /**
  *@brief Tabela de Hash com três posições, em que cada posição tem um THashFilial associado a uma filial
  */
-typedef struct gfiliais{
+struct gfiliais{
   THashFilial* fil;
-} GFiliais;
+};
 
 /* Troca duas posições de um array*/
 void swap(char** a, char** b)
@@ -245,6 +245,7 @@ static void freeRepP(GFiliais *gfil,int fil,int i,int i2,int size,int t) {
 
 /**
  * @brief       Função remove para cada produto os clientes repetidos
+ * @param       apontador para GFiliais
  */
 void remRepP(GFiliais *gfil) {
   int i,i2,i3,i4,fil,c,size;
@@ -356,6 +357,7 @@ static void freeRepC(GFiliais *gfil,int fil,int i,int i2,int size) {
 
 /**
  * @brief       Função remove para cada cliente os produtos repetidos
+ * @param       Apontador para GFiliais
  */
 void remRepC(GFiliais *gfil) {
   int i,i2,i3,i4,fil,c,size;

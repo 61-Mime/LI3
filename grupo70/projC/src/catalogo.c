@@ -17,11 +17,11 @@ typedef struct cat {
 } Cat;
 
 /**
- *@brief Tabela de Hash que em cada posição tem um Cat de um char  
+ *@brief Tabela de Hash que em cada posição tem um Cat de um char
  */
-typedef struct catalogo {
+struct catalogo {
   Cat* tbl;
-} Catalogo;
+};
 
 /**
  * @brief   Função inicializa a estrutura Catalogo
@@ -142,6 +142,12 @@ static void addKey(Catalogo* cat, char* key, int i, int* val) {
   (*val)++;
 }
 
+/**
+ *@brief   Função de comparação usada no qsort de Catalogo
+ *@param p Apontador para estrutura
+ *@param q Apontador para estrutura
+ *@return  Inteiro para comparação no qsort
+ */
 int comparatorC(const void *p,const void *q) {
   return strcmp(*(const char **)p, *(const char **)q);
 }
@@ -213,7 +219,7 @@ int getCatListSize(Catalogo* cat, int i) {
 }
 
 /**
- * @brief     Função devolve a chave do Catalogo
+ * @brief     Função devolve uma chave do Catalogo
  * @param cat Apontador para o Catalogo
  * @param i   Posição na Tabela
  * @param j   Posição na Lista

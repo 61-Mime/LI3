@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "sgv.h"
+#include "interface.h"
 #include "querie.h"
 #include "apresentacao.h"
 

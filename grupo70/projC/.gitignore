@@ -1,3 +1,5 @@
 program
 /docs/*
-/src/obj/*
+/obj/*
+/files/Vendas_3M.txt
+/files/Vendas_5M.txt

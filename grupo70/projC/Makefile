@@ -19,8 +19,9 @@ OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
 all: $(OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJECTS)
-	@echo "compiled"
-
+	@echo Compilado
+	doxygen src/Doxyfile &> /dev/null
+	@echo Documentação gerada
 
 clean:
 	rm -r $(OBJ)

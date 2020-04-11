@@ -5,6 +5,8 @@
 
 #include "apresentacao.h"
 
+#define MAX 10
+
 /**
  * @brief Função que mostra o menu do boas vindas
  */
@@ -51,18 +53,58 @@ void menu() {
     printf(" [10] | Códigos de produto que um cliente comprou num mês\n");
     printf(" [11] | Códigos de produto mais vendidos\n");
     printf(" [12] | Códigos de produto em que um cliente gastou mais dinheiro\n");
+    printf("---------------------------------------------------------------------");
 }
 
 /**
- *@brief Função que imprime uma tabela de Strings
+ *@brief Função que imprime uma página da tabela de Strings
  */
-void printArray(char** arr, int size) {
+static void printPagina(char** arr, int size, int page, int maxpage) {
     int i, j;
 
-    for(i=0; i<size; i+=12) {
-        for(j=i; (j<i+11) && (j<size-1); j++)
+    system("clear");
+
+    printf("---------------------------------------------------------------------------------------------\n");
+    printf("                                       Página %d/%d\n", page+1, maxpage+1);
+    printf("---------------------------------------------------------------------------------------------\n");
+
+    for(i=72*page; i<(72*(page+1)) && i<size; i+=6) {
+        for(j=i; (j<i+5) && (j<size-1); j++)
             printf("%s - %-5d  ", arr[j], j+1);
         printf("%s - %-5d\n", arr[j], j+1);
+    }
+
+    printf("---------------------------------------------------------------------------------------------\n");
+    printf("      [N] Next Page | [P] Previous Page | [F] First Page | [L] Last Page | [Q] Quit        \n");
+    printf("---------------------------------------------------------------------------------------------\n");
+}
+
+/**
+ *@brief Função que imprime uma tabela de Strings por páginas
+ */
+static void printArray(char** arr, int size) {
+    int page = 0, maxpage = size/72, r=1;
+    char buffer[MAX], *s;
+
+    while(r) {
+        printPagina(arr, size, page, maxpage);
+
+        s = fgets(buffer, MAX, stdin);
+
+        if((strcmp(s, "N\n") == 0 || strcmp(s, "n\n") == 0) && page<maxpage)
+            page++;
+        
+        else if((strcmp(s, "P\n") == 0 || strcmp(s, "p\n") == 0) && page>0)
+            page--;
+
+        else if((strcmp(s, "F\n") == 0 || strcmp(s, "f\n") == 0))
+            page = 0;
+        
+        else if((strcmp(s, "L\n") == 0 || strcmp(s, "l\n") == 0))
+            page = maxpage;
+
+        else if((strcmp(s, "Q\n") == 0 || strcmp(s, "q\n") == 0))
+            r=0;
     }
 }
 
@@ -72,7 +114,7 @@ void printArray(char** arr, int size) {
  *@param end_t   Momento em que a querie 1 finda
  */
 void printQ1(clock_t start_t, clock_t end_t) {
-    printf("\nTempo de execução da Querie 1: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+    printf("\nTempo de execução da Querie 1: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**
@@ -155,7 +197,7 @@ void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
     printf("\nClientes não compradores: %d\n", querie6->nCli);
     printf("Produtos não comprados: %d\n", querie6->nProd);
 
-    printf("\nTempo de execução da Querie 6: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+    printf("\nTempo de execução da Querie 6: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**
@@ -176,7 +218,7 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     for(i=0; i<12; i++)
         printf("Mes %02d: %-4d  %-4d  %-4d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
 
-    printf("\nTempo de execução da Querie 7: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+    printf("\nTempo de execução da Querie 7: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**
@@ -194,7 +236,7 @@ void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
     printf("\nTotal vendas: %d\n", querie8->vendas);
     printf("Total faturado: %.2f\n", querie8->fact);
 
-    printf("\nTempo de execução da Querie 8: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+    printf("\nTempo de execução da Querie 8: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**
@@ -221,7 +263,7 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
 
     printf("Numero de Clientes que compraram o produto da filial %d: %d\n", filial, querie9->total);
 
-    printf("\nTempo de execução da Querie 9: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+    printf("\nTempo de execução da Querie 9: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**
@@ -241,7 +283,7 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   for(i = 0; i < querie10 -> size;i++)
     printf("%s %d\n", querie10->produtos[i].prod,querie10->produtos[i].quantidade);
 
-  printf("\nTempo de execução da Querie 10: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+  printf("\nTempo de execução da Querie 10: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**
@@ -262,7 +304,7 @@ void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
     printf("%s %-4d %-4d %-4d %d %d %d %d\n", querie11->produtos[i].prod, querie11->produtos[i].unidades[0], querie11->produtos[i].unidades[1], querie11->produtos[i].unidades[2],
                         querie11->produtos[i].clientes[0], querie11->produtos[i].clientes[1], querie11->produtos[i].clientes[2], querie11->produtos[i].total);
 
-  printf("\nTempo de execução da Querie 11: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+  printf("\nTempo de execução da Querie 11: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**
@@ -282,7 +324,7 @@ void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
   for(i = 0; i < querie12 -> size;i++)
     printf("%s %.2f\n", querie12->prods[i].prod,querie12->prods[i].faturacao);
 
-  printf("\nTempo de execução da Querie 12: %.4f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
+  printf("\nTempo de execução da Querie 12: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
 /**

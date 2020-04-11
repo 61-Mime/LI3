@@ -16,8 +16,7 @@ program: $(OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJECTS)
 	@echo Compilado
 
-.PHONY: docs
-docs:
+all: program
 	doxygen Doxyfile
 	@echo Documentação gerada
 
@@ -25,10 +24,17 @@ docs:
 clean:
 	rm -r $(OBJ)
 	rm -f program
+	@echo Objetos e Executável Apagados
 
-.PHONY: clean
+.PHONY: cleanall
 cleanall: clean
 	rm -r docs/html
+	@echo Documentação Apagada
+
+.PHONY: help
+help:
+	@echo "src: $(SOURCES)"
+	@echo "obj: $(OBJECTS)"
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

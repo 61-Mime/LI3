@@ -1,5 +1,5 @@
 /**
- * @file  auxintrepertador.c
+ * @file  auxinterpretador.c
  * @brief Ficheiro que contém funções relativas ao módulo Auxinterpretador
  */
 

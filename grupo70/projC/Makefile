@@ -6,7 +6,6 @@ SRC := src
 OBJ := obj
 
 SOURCES := $(wildcard $(SRC)/*.c)
-
 NAME = program
 
 OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))

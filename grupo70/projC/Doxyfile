@@ -1,27 +1,13 @@
 DOXYFILE_ENCODING      = UTF-8
-
 PROJECT_NAME           = "Sistema de Gestão de Vendas"
-
-PROJECT_NUMBER         = 
-
 PROJECT_BRIEF          = "Projeto de LI3 - Trabalho Prático C - Grupo 70"
-
-PROJECT_LOGO           =
-
 OUTPUT_DIRECTORY       = docs
-
 CREATE_SUBDIRS         = NO
-
 ALLOW_UNICODE_NAMES    = YES
-
 OUTPUT_LANGUAGE        = Portuguese
-
 OUTPUT_TEXT_DIRECTION  = None
-
 BRIEF_MEMBER_DESC      = YES
-
 REPEAT_BRIEF           = YES
-
 ABBREVIATE_BRIEF       = "The $name class" \
                          "The $name widget" \
                          "The $name file" \

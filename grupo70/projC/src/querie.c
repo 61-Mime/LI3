@@ -8,6 +8,10 @@
 #define SIZE 26
 #define SMAX 10
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que devolve os produtos começados por um determinado char
  *@param sgv    estrutura de sistema e gestão de vendas
@@ -34,6 +38,10 @@ Q2* getProductsStartedByLetter(SGV sgv, char letter) {
 
   return querie2;
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 3 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief           função que devolve a faturação de um determinado produto, por filial e mês
@@ -88,6 +96,10 @@ Q3* getProductSalesAndProfit(SGV sgv, char* productID, int month, int type) {
   return querie3;
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 4 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief           função que devolve o número de produtos não comprados
  *@param sgv       estrutura de sistema e gestão de vendas
@@ -134,6 +146,10 @@ Q4* getProductsNeverBough(SGV sgv,int branch) {
   return querie4;
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 5 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief           função que devolve os clientes que fizeram compras em todas as filiais
  *@return          apontador para Q5
@@ -164,6 +180,10 @@ Q5* getClientsOfAllBranches(SGV sgv) {
     return querie5;
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 6 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief           função que devolve os cliente que não compraram e os produtos não comprados
  *@param sgv       estrutura de sistema e gestão de vendas
@@ -193,6 +213,10 @@ Q6* getClientsAndProductsNeverBoughtCount(SGV sgv) {
 
     return querie6;
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 7 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief           função que devolve os produtos comprados por um determinado cliente
@@ -226,6 +250,10 @@ Q7* getProductsBoughtByClient(SGV sgv, char* clientID) {
     return querie7;
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 8 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief           função que devolve o total de vendas e o total faturado num determinado espaço de tempo
  *@param sgv       estrutura de sistema e gestão de vendas
@@ -255,6 +283,10 @@ Q8* getSalesAndProfit(SGV sgv,int minMonth,int maxMonth) {
 
   return querie8;
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 9 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief           função que devolve a lista de clientes para um determinado produto numa determinada filial
@@ -294,6 +326,10 @@ Q9* getProductBuyers(SGV sgv,char *prodID,int branch) {
 
     return querie9;
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  * @brief   Função troca o apontador de duas Structs P
@@ -386,6 +422,10 @@ Q10* getClientFavouriteProducts(SGV sgv, char *cliID, int month) {
   return querie10;
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief   Função de comparação usada no qsort de PP, por unidades de produto globais
  *@param p Apontador para estrutura
@@ -437,7 +477,6 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
     }
   }
 
-  /*quickSortbyPP(querie11->produtos, 0, querie11->size - 1);*/
   qsort(querie11->produtos,querie11->size,sizeof(PP),comparatorT);
 
   if(limit < querie11->size) {
@@ -455,6 +494,10 @@ Q11* getTopSelledProducts(SGV sgv, int limit) {
 
   return querie11;
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  * @brief   Função troca o apontador de duas Structs PF
@@ -549,6 +592,10 @@ Q12* getClientTopProfitProducts(SGV sgv, char* clientID, int limit) {
 
   return querie12;
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ QUERIE 13 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief           função que devolve os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas

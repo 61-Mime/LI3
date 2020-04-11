@@ -7,6 +7,9 @@
 
 #define MAX 10
 
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ MENUS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  * @brief Função que mostra o menu do boas vindas
  */
@@ -35,6 +38,7 @@ void welcome() {
     printf("sair do programa.\n\n");
 }
 
+
 /**
  *@brief Função que mostra o menu dos comandos que o utilizador pode usar
  */
@@ -56,10 +60,14 @@ void menu() {
     printf("---------------------------------------------------------------------");
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ARRAYS COM PAGINAS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief Função que imprime uma página da tabela de Strings
  */
-static void printPagina(char** arr, int size, int page, int maxpage) {
+static void printPagina(char** arr, int size, int page, int max, int maxpage) {
     int i, j;
 
     system("clear");
@@ -68,7 +76,7 @@ static void printPagina(char** arr, int size, int page, int maxpage) {
     printf("                                       Página %d/%d\n", page+1, maxpage+1);
     printf("---------------------------------------------------------------------------------------------\n");
 
-    for(i=72*page; i<(72*(page+1)) && i<size; i+=6) {
+    for(i=max*page; i<(max*(page+1)) && i<size; i+=6) {
         for(j=i; (j<i+5) && (j<size-1); j++)
             printf("%s - %-5d  ", arr[j], j+1);
         printf("%s - %-5d\n", arr[j], j+1);
@@ -79,15 +87,64 @@ static void printPagina(char** arr, int size, int page, int maxpage) {
     printf("---------------------------------------------------------------------------------------------\n");
 }
 
+
+static void printPagina11(PP* prod, int size, int page, int max, int maxpage){
+    int i;
+
+    printf("-----------------------------------------------------------------------------\n");
+    printf("                                  Página %d/%d\n", page+1, maxpage+1);
+    printf("-----------------------------------------------------------------------------\n");
+
+    for(i=max*page; i<(max*(page+1)) && i<size; i++) {
+        printf("%s %-4d %-4d %-4d %d %d %d\n", prod[i].prod, prod[i].unidades[0], 
+                                               prod[i].unidades[1], prod[i].unidades[2],
+                                               prod[i].clientes[0], prod[i].clientes[1], 
+                                               prod[i].clientes[2]);        
+    }
+
+    printf("---------------------------------------------------------------------------------------------\n");
+    printf("      [N] Next Page | [P] Previous Page | [F] First Page | [L] Last Page | [Q] Quit        \n");
+    printf("---------------------------------------------------------------------------------------------\n");
+}
+
+
+static void printPagina12(PF* prod, int size, int page, int max, int maxpage) {
+    int i;
+
+    system("clear");
+    
+    printf("-----------------------------------\n");
+    printf("             Página %d/%d\n", page+1, maxpage+1);
+    printf("     Produtos          Gasto\n");
+    printf("-----------------------------------\n");
+
+    for(i=max*page; i<(max*(page+1)) && i<size; i++)
+        printf("      %s         %.2f\n", prod[i].prod, prod[i].faturacao); 
+
+    printf("----------------------------------\n");
+    printf("[N] Next Page  | [P] Previous Page\n");
+    printf("[F] First Page | [L] Last Page\n");
+    printf("[Q] Quit\n");
+    printf("----------------------------------\n");
+}
+
+
 /**
  *@brief Função que imprime uma tabela de Strings por páginas
  */
-static void printArray(char** arr, int size) {
-    int page = 0, maxpage = size/72, r=1;
+static void printArray(void* arr, int size, int max, int querie) {
+    int page = 0, maxpage = (size-1)/max, r=1;
     char buffer[MAX], *s;
 
     while(r) {
-        printPagina(arr, size, page, maxpage);
+        if(querie == 11)
+            printPagina11((PP *) arr, size, page, max, maxpage);
+        
+        if(querie == 12)
+            printPagina12((PF *) arr, size, page, max, maxpage);
+        
+        else
+            printPagina((char **) arr, size, page, max, maxpage);
 
         s = fgets(buffer, MAX, stdin);
 
@@ -108,6 +165,11 @@ static void printArray(char** arr, int size) {
     }
 }
 
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 1 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief         Função que imprime o tempo que a querie 1 demora a executar
  *@param start_t Momento em que a querie 1 inicia
@@ -116,6 +178,10 @@ static void printArray(char** arr, int size) {
 void printQ1(clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 1: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief         Função que imprime o número de produtos começados por um determinado char
@@ -128,10 +194,14 @@ void printQ2(Q2* querie2, char letter) {
         return;
     }
 
-    printArray(querie2->prods, querie2->size);
+    printArray(querie2->prods, querie2->size, 72, 2);
 
     printf("\nNumero de Produtos começados por %c: %d\n", letter, querie2->size);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 3 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief         Função que imprime a faturação de um determinado produto, por filial e mês
@@ -166,26 +236,38 @@ void printQ3(Q3* querie3, char* prodID, int month) {
     }
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 4 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief         Função que imprime o número de produtos não comprados
  *@param querie4 Apontador para Q4
  */
 void printQ4(Q4* querie4) {
 
-    printArray(querie4->prods, querie4->size);
+    printArray(querie4->prods, querie4->size, 72, 4);
 
     printf("\nProdutos não comprados:%d\n", querie4->size);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 5 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief         Função que imprime o número de clientes que realizaram compras em todas as Filiais
  *@param querie5 Apontador para Q5
  */
 void printQ5(Q5* querie5) {
-    printArray(querie5->cli, querie5->size);
+    printArray(querie5->cli, querie5->size, 72, 5);
 
     printf("\nClientes que realizaram compras em todas as Filiais: %d\n", querie5->size);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 6 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief         Função que imprime os cliente que não compraram, os produtos não comprados e o tempo de execução desta querie
@@ -199,6 +281,10 @@ void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
 
     printf("\nTempo de execução da Querie 6: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 7 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief         Função que imprime os produtos comprados por um cliente e o tempo de execução desta querie
@@ -214,12 +300,23 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
         return;
     }
 
-    printf("\nFilial  1     2     3\n" );
+    system("clear");
+
+    printf("------------------------\n");
+    printf("Filial    1     2     3\n" );
+    printf("------------------------\n");
+
     for(i=0; i<12; i++)
-        printf("Mes %02d: %-4d  %-4d  %-4d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
+        printf("Mes %02d:  %-4d  %-4d  %-4d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
+    
+    printf("------------------------\n");
 
     printf("\nTempo de execução da Querie 7: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 8 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief         Função que imprime o total de vendas, o total faturado e o tempo de execução desta querie
@@ -238,6 +335,10 @@ void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
 
     printf("\nTempo de execução da Querie 8: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 9 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief         Função que imprime a lista de clientes para um determinado produto numa determinada filial e o tempo de execução desta querie
@@ -266,6 +367,10 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     printf("\nTempo de execução da Querie 9: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief          Função que imprime por ordem decrescente de quantidade os produtos que um determinado cliente comprou e o tempo de execução desta querie
  *@param querie10 Apontador para a estrutura Q10
@@ -286,6 +391,10 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   printf("\nTempo de execução da Querie 10: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief          Função que imprime por ordem decrescente o número de produtos mais vendido em todo o ano, indicando o número total de clientes e unidades vendidas por filial, e o tempo de execução desta querie
  *@param querie11 Apontador para a estrutura Q11
@@ -293,19 +402,19 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
  *@param end_t    Momento em que a querie 11 finda
  */
 void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
-  int i;
-
   if(querie11 == NULL) {
     printf("Limite inválido\n");
     return;
   }
 
-  for(i = 0; i < querie11->size;i++)
-    printf("%s %-4d %-4d %-4d %d %d %d %d\n", querie11->produtos[i].prod, querie11->produtos[i].unidades[0], querie11->produtos[i].unidades[1], querie11->produtos[i].unidades[2],
-                        querie11->produtos[i].clientes[0], querie11->produtos[i].clientes[1], querie11->produtos[i].clientes[2], querie11->produtos[i].total);
+  printArray(querie11->produtos, querie11->size, 12, 11);
 
   printf("\nTempo de execução da Querie 11: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief          Função que imprime os n produtos mais comprados por um determinado cliente durante o ano e o tempo de execução desta querie
@@ -314,18 +423,19 @@ void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
  *@param end_t    Momento em que a querie 12 finda
  */
 void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
-  int i;
-
   if(querie12 == NULL) {
     printf("Cliente ou limite inválido\n");
     return;
   }
 
-  for(i = 0; i < querie12 -> size;i++)
-    printf("%s %.2f\n", querie12->prods[i].prod,querie12->prods[i].faturacao);
+  printArray(querie12->prods, querie12->size, 12, 12);
 
   printf("\nTempo de execução da Querie 12: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ PRINT QUERIE 13 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief          Função que imprime os resultados da leitura dos ficheiros da querie 1, bem como o ficheiro lido e usado e o número total de linhas lidas e validadas

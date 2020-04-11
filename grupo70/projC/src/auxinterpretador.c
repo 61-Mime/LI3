@@ -8,6 +8,10 @@
 #define MAX 100
 #define SMAX 30
 
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 1 E 13 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que aplica as querie 1 e 13
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas as queries 1 e 13
@@ -62,6 +66,10 @@ SGV runQuerie1e13(SGV sgv, int load) {
   return sgv;
 }
 
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que aplica a querie 2
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 2
@@ -95,6 +103,10 @@ void runQuerie2(SGV sgv) {
     }
 }
 
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 3 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que aplica a querie 3
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 3
@@ -123,6 +135,10 @@ void runQuerie3(SGV sgv){
       querie3 = NULL;
     }
 }
+
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 4 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief        função que aplica a querie 4
@@ -156,6 +172,10 @@ void runQuerie4(SGV sgv) {
   }
 }
 
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 5 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que aplica a querie 5
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 5
@@ -176,6 +196,10 @@ void runQuerie5(SGV sgv) {
   querie5 = NULL;
 }
 
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 6 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que aplica a querie 6
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 6
@@ -192,6 +216,10 @@ void runQuerie6(SGV sgv) {
     free(querie6);
     querie6 = NULL;
 }
+
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 7 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief        função que aplica a querie 7
@@ -221,8 +249,11 @@ void runQuerie7(SGV sgv) {
       free(querie7);
       querie7 = NULL;
     }
-
 }
+
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 8 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief        função que aplica a querie 8
@@ -253,6 +284,10 @@ void runQuerie8(SGV sgv) {
       querie8 = NULL;
     }
 }
+
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 9 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief        função que aplica a querie 9
@@ -286,6 +321,10 @@ void runQuerie9(SGV sgv) {
     }
 }
 
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que aplica a querie 10
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 10
@@ -318,6 +357,10 @@ void runQuerie10(SGV sgv) {
     }
 }
 
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 /**
  *@brief        função que aplica a querie 11
  *@param sgv    sistema de gestão de vendas ao qual vão ser aplicadas a querie 11
@@ -349,6 +392,10 @@ void runQuerie11(SGV sgv) {
       querie11 = NULL;
     }
 }
+
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EXECUTA QUERIE 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /**
  *@brief        função que aplica a querie 12

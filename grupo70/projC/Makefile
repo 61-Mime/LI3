@@ -1,6 +1,6 @@
 CC = gcc
 INCLUDE = -I include
-CFLAGS = -Wno-unused-result -O3 -Wall -g -ansi
+CFLAGS = -Wunused-command-line-argument -O3 -Wall -g -ansi
 
 SRC := src
 OBJ := obj
@@ -16,13 +16,18 @@ program: $(OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJECTS)
 	@echo Compilado
 
+.PHONY: docs
 docs:
 	doxygen Doxyfile
 	@echo Documentação gerada
 
+.PHONY: clean
 clean:
 	rm -r $(OBJ)
 	rm -f program
+
+.PHONY: clean
+cleanall: clean
 	rm -r docs/html
 
 $(OBJ)/%.o: $(SRC)/%.c

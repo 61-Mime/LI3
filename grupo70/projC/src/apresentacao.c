@@ -94,12 +94,11 @@ static void printPagina11(PP* prod, int size, int page, int max, int maxpage){
     printf("-----------------------------------------------------------------------------\n");
     printf("                                  Página %d/%d\n", page+1, maxpage+1);
     printf("-----------------------------------------------------------------------------\n");
-
     for(i=max*page; i<(max*(page+1)) && i<size; i++) {
-        printf("%s %-4d %-4d %-4d %d %d %d\n", prod[i].prod, prod[i].unidades[0], 
+        printf("%s %-4d %-4d %-4d %d %d %d\n", prod[i].prod, prod[i].unidades[0],
                                                prod[i].unidades[1], prod[i].unidades[2],
-                                               prod[i].clientes[0], prod[i].clientes[1], 
-                                               prod[i].clientes[2]);        
+                                               prod[i].clientes[0], prod[i].clientes[1],
+                                               prod[i].clientes[2]);
     }
 
     printf("---------------------------------------------------------------------------------------------\n");
@@ -112,14 +111,14 @@ static void printPagina12(PF* prod, int size, int page, int max, int maxpage) {
     int i;
 
     system("clear");
-    
+
     printf("-----------------------------------\n");
     printf("             Página %d/%d\n", page+1, maxpage+1);
     printf("     Produtos          Gasto\n");
     printf("-----------------------------------\n");
 
     for(i=max*page; i<(max*(page+1)) && i<size; i++)
-        printf("      %s         %.2f\n", prod[i].prod, prod[i].faturacao); 
+        printf("      %s         %.2f\n", prod[i].prod, prod[i].faturacao);
 
     printf("----------------------------------\n");
     printf("[N] Next Page  | [P] Previous Page\n");
@@ -139,10 +138,10 @@ static void printArray(void* arr, int size, int max, int querie) {
     while(r) {
         if(querie == 11)
             printPagina11((PP *) arr, size, page, max, maxpage);
-        
-        if(querie == 12)
+
+        else if(querie == 12)
             printPagina12((PF *) arr, size, page, max, maxpage);
-        
+
         else
             printPagina((char **) arr, size, page, max, maxpage);
 
@@ -150,13 +149,13 @@ static void printArray(void* arr, int size, int max, int querie) {
 
         if((strcmp(s, "N\n") == 0 || strcmp(s, "n\n") == 0) && page<maxpage)
             page++;
-        
+
         else if((strcmp(s, "P\n") == 0 || strcmp(s, "p\n") == 0) && page>0)
             page--;
 
         else if((strcmp(s, "F\n") == 0 || strcmp(s, "f\n") == 0))
             page = 0;
-        
+
         else if((strcmp(s, "L\n") == 0 || strcmp(s, "l\n") == 0))
             page = maxpage;
 
@@ -308,7 +307,7 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
 
     for(i=0; i<12; i++)
         printf("Mes %02d:  %-4d  %-4d  %-4d\n", (i+1), querie7->tabela[i][0], querie7->tabela[i][1], querie7->tabela[i][2]);
-    
+
     printf("------------------------\n");
 
     printf("\nTempo de execução da Querie 7: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);

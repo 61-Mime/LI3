@@ -41,8 +41,10 @@ void interpretador(SGV sgv) {
         else {
             buffer = strtok(s, "\n");
 
-            if(strcmp(s, "menu") == 0)
+            if(strcmp(s, "menu") == 0) {
+              system("clear");
               menu();
+            }
 
             else if(strcmp(s, "q")==0 || strcmp(s, "Q")==0)
               r=0;

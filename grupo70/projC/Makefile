@@ -1,11 +1,15 @@
 CC = gcc
+
 INCLUDE = -I include
-CFLAGS = -Wunused-command-line-argument -O3 -Wall -g -ansi
+
+CFLAGS = -O3 -Wall -g -ansi
 
 SRC := src
+
 OBJ := obj
 
 SOURCES := $(wildcard $(SRC)/*.c)
+
 NAME = program
 
 OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))

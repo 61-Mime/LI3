@@ -84,7 +84,7 @@ void runQuerie2(SGV sgv) {
     res = sscanf(s, "%s", c1);
 
     if(res != 1) {
-      printf("Argumento inválido\n");
+      printf("\nArgumento inválido\n");
       return;
     }
 
@@ -116,12 +116,12 @@ void runQuerie3(SGV sgv){
     int mes, type, res;
     char buffer[MAX], *s;
 
-    printf("Introduza um produto, um mes e um 0/1 (0-Resultados Globais / 1-Resultados por Filial):\n");
+    printf("\nIntroduza um produto, um mes e um 0/1 (0-Resultados Globais / 1-Resultados por Filial):\n");
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d %d", c, &mes, &type);
 
     if(res != 3) {
-      printf("Argumentos inválidos\n");
+      printf("\nArgumentos inválidos\n");
       return;
     }
 
@@ -148,12 +148,12 @@ void runQuerie4(SGV sgv) {
   int i, filial, res;
   char buffer[MAX], *s;
 
-  printf("Introduza uma filial (1 a 3) ou 0 se pretender os resultados globais:\n");
+  printf("\nIntroduza uma filial (1 a 3) ou 0 se pretender os resultados globais:\n");
   s = fgets(buffer, MAX, stdin);
   res = sscanf(s, "%d", &filial);
 
   if(res != 1) {
-      printf("Argumento inválido\n");
+      printf("\nArgumento inválido\n");
       return;
     }
 
@@ -230,12 +230,12 @@ void runQuerie7(SGV sgv) {
     int res;
     clock_t start_t, end_t;
 
-    printf("Introduza um código de Cliente:\n");
+    printf("\nIntroduza um código de Cliente:\n");
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s", c1);
 
     if(res != 1) {
-      printf("Argumento inválido\n");
+      printf("\nArgumento inválido\n");
       return;
     }
 
@@ -264,12 +264,12 @@ void runQuerie8(SGV sgv) {
     int minMonth=0, maxMonth=0, res;
     clock_t start_t, end_t;
 
-    printf("Introduza um mes mínimo e um mes máximo:\n");
+    printf("\nIntroduza um mes mínimo e um mes máximo:\n");
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%d %d", &minMonth, &maxMonth);
 
     if(res != 2) {
-      printf("Argumento inválido\n");
+      printf("\nArgumento inválido\n");
       return;
     }
 
@@ -298,12 +298,12 @@ void runQuerie9(SGV sgv) {
     int filial, res;
     clock_t start_t, end_t;
 
-    printf("Introduza um código de Produto e uma Filial:\n");
+    printf("\nIntroduza um código de Produto e uma Filial:\n");
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d", c1, &filial);
 
     if(res != 2) {
-      printf("Argumentos inválidos\n");
+      printf("\nArgumentos inválidos\n");
       return;
     }
 
@@ -334,12 +334,12 @@ void runQuerie10(SGV sgv) {
     int res, mes;
     clock_t start_t, end_t;
 
-    printf("Introduza um código de Cliente e um mes:\n");
+    printf("\nIntroduza um código de Cliente e um mes:\n");
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d", c1, &mes);
 
     if(res != 2) {
-      printf("Argumentos inválidos\n");
+      printf("\nArgumentos inválidos\n");
       return;
     }
 
@@ -370,12 +370,12 @@ void runQuerie11(SGV sgv) {
     char buffer[MAX], *s;
     int limit, res;
 
-    printf("Introduza o número limite de Produtos a apresentar:\n");
+    printf("\nIntroduza o número limite de Produtos a apresentar:\n");
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%d", &limit);
 
     if(res != 1) {
-      printf("Argumento inválido\n");
+      printf("\nArgumento inválido\n");
       return;
     }
 
@@ -406,12 +406,12 @@ void runQuerie12(SGV sgv) {
     int res, limit;
     clock_t start_t, end_t;
 
-    printf("Introduza um código de Cliente e o número máximo de produtos a apresentar:\n");
+    printf("\nIntroduza um código de Cliente e o número máximo de produtos a apresentar:\n");
     s = fgets(buffer, MAX, stdin);
     res = sscanf(s, "%s %d", c1, &limit);
 
     if(res != 2) {
-      printf("Argumento inválido\n");
+      printf("\nArgumento inválido\n");
       return;
     }
 

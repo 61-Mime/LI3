@@ -5,6 +5,9 @@
 #include <time.h>
 #include "querie.h"
 
+#define RESET   "\033[0m"
+#define BOLDWHITE   "\033[1m\033[37m"
+
 void menu();
 void welcome();
 void printQ1(clock_t start_t, clock_t end_t);

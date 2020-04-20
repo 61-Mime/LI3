@@ -14,8 +14,10 @@
  * @brief Função que mostra o menu do boas vindas
  */
 void welcome() {
+    system("clear");
+
     printf("\n\n\n");
-    printf("   SSSSSSSSSSSSSSS           GGGGGGGGGGGG   VVVVVVVV           VVVVVVVV\n");
+    printf(BOLDWHITE"   SSSSSSSSSSSSSSS           GGGGGGGGGGGG   VVVVVVVV           VVVVVVVV\n");
     printf(" SS:::::::::::::::S       GGG::::::::::::G  V::::::V           V::::::V\n");
     printf("S:::::SSSSSS::::::S     GG:::::::::::::::G  V::::::V           V::::::V\n");
     printf("S:::::S     SSSSSSS    G:::::GGGGGGGG::::G  V::::::V           V::::::V\n");
@@ -30,7 +32,7 @@ void welcome() {
     printf("SSSSSSS     S:::::S    G:::::GGGGGGGG::::G           V:::::::V         \n");
     printf("S::::::SSSSSS:::::S     GG:::::::::::::::G            V:::::V          \n");
     printf("S:::::::::::::::SS        GGG::::::::::::G             V:::V           \n");
-    printf(" SSSSSSSSSSSSSSS             GGGGGGGGGGGG               VVV            \n");
+    printf(" SSSSSSSSSSSSSSS             GGGGGGGGGGGG               VVV            \n"RESET);
     printf("\nBem Vindo ao Sistema de Gestão de Vendas. Durante a execução do programa\n");
     printf("pode executar qualquer dos comandos do menu, tendo em atenção que o com-\n");
     printf("ando 1 tem de ser executado antes de qualquer outro.\n");
@@ -91,19 +93,22 @@ static void printPagina(char** arr, int size, int page, int max, int maxpage) {
 static void printPagina11(PP* prod, int size, int page, int max, int maxpage){
     int i;
 
-    printf("-----------------------------------------------------------------------------\n");
-    printf("                                  Página %d/%d\n", page+1, maxpage+1);
-    printf("-----------------------------------------------------------------------------\n");
-    for(i=max*page; i<(max*(page+1)) && i<size; i++) {
-        printf("%s %-4d %-4d %-4d %d %d %d\n", prod[i].prod, prod[i].unidades[0],
-                                               prod[i].unidades[1], prod[i].unidades[2],
-                                               prod[i].clientes[0], prod[i].clientes[1],
-                                               prod[i].clientes[2]);
-    }
+    system("clear");
 
-    printf("---------------------------------------------------------------------------------------------\n");
-    printf("      [N] Next Page | [P] Previous Page | [F] First Page | [L] Last Page | [Q] Quit        \n");
-    printf("---------------------------------------------------------------------------------------------\n");
+    printf("---------------------------------------\n");
+    printf("              Página %d/%d\n\n", page+1, maxpage+1);
+    printf("Produtos  Filial 1  Filial 2  Filial 3\n");
+    printf("---------------------------------------\n");
+    for(i=max*page; i<(max*(page+1)) && i<size; i++)
+        printf(" %s    %-4d %-2d   %-4d %-2d   %-4d %-2d\n", prod[i].prod, prod[i].unidades[0], prod[i].clientes[0],
+                                                                     prod[i].unidades[1], prod[i].clientes[1],
+                                                                     prod[i].unidades[2], prod[i].clientes[2]);
+
+    printf("---------------------------------------\n");
+    printf("  [N] Next Page  | [P] Previous Page\n");
+    printf("  [F] First Page | [L] Last Page\n");
+    printf("  [Q] Quit\n");
+    printf("---------------------------------------\n");
 }
 
 
@@ -113,7 +118,7 @@ static void printPagina12(PF* prod, int size, int page, int max, int maxpage) {
     system("clear");
 
     printf("-----------------------------------\n");
-    printf("             Página %d/%d\n", page+1, maxpage+1);
+    printf("            Página %d/%d\n\n", page+1, maxpage+1);
     printf("     Produtos          Gasto\n");
     printf("-----------------------------------\n");
 
@@ -175,6 +180,8 @@ static void printArray(void* arr, int size, int max, int querie) {
  *@param end_t   Momento em que a querie 1 finda
  */
 void printQ1(clock_t start_t, clock_t end_t) {
+    system("clear");
+
     printf("\nTempo de execução da Querie 1: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
 
@@ -189,7 +196,7 @@ void printQ1(clock_t start_t, clock_t end_t) {
  */
 void printQ2(Q2* querie2, char letter) {
     if(querie2 == NULL) {
-        printf("Letra inválida\n");
+        printf("\nLetra inválida\n");
         return;
     }
 
@@ -212,9 +219,11 @@ void printQ3(Q3* querie3, char* prodID, int month) {
     int i;
 
     if(querie3 == NULL) {
-        printf("Produto ou mês inválido\n");
+        printf("\nProduto ou mês inválido\n");
         return;
     }
+
+    system("clear");
 
     if(querie3->size == 1) {
         printf("\nFaturação do produto %s no mês %d\n", prodID, month);
@@ -244,7 +253,6 @@ void printQ3(Q3* querie3, char* prodID, int month) {
  *@param querie4 Apontador para Q4
  */
 void printQ4(Q4* querie4) {
-
     printArray(querie4->prods, querie4->size, 72, 4);
 
     printf("\nProdutos não comprados:%d\n", querie4->size);
@@ -275,6 +283,8 @@ void printQ5(Q5* querie5) {
  *@param end_t   Momento em que a querie 6 finda
  */
 void printQ6(Q6* querie6, clock_t start_t, clock_t end_t) {
+    system("clear");
+
     printf("\nClientes não compradores: %d\n", querie6->nCli);
     printf("Produtos não comprados: %d\n", querie6->nProd);
 
@@ -295,7 +305,7 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
     int i;
 
     if(querie7 == NULL) {
-        printf("Cliente inválido\n");
+        printf("\nCliente inválido\n");
         return;
     }
 
@@ -325,9 +335,11 @@ void printQ7(Q7* querie7, clock_t start_t, clock_t end_t) {
  */
 void printQ8(Q8* querie8, clock_t start_t, clock_t end_t) {
     if(querie8 == NULL) {
-        printf("Mês inválido\n");
+        printf("\nMês inválido\n");
         return;
     }
+
+    system("clear");
 
     printf("\nTotal vendas: %d\n", querie8->vendas);
     printf("Total faturado: %.2f\n", querie8->fact);
@@ -350,9 +362,11 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
     int i;
 
     if(querie9 == NULL) {
-        printf("Produto ou filial inválido\n");
+        printf("\nProduto ou filial inválido\n");
         return;
     }
+
+    system("clear");
 
     for(i=0; i<querie9->total; i++) {
         if(querie9->lista[i].tipocompra == 1)
@@ -361,7 +375,7 @@ void printQ9(Q9* querie9, int filial, clock_t start_t, clock_t end_t) {
             printf("%s (P)\n", querie9->lista[i].cliente);
     }
 
-    printf("Numero de Clientes que compraram o produto da filial %d: %d\n", filial, querie9->total);
+    printf("\nNumero de Clientes que compraram o produto da filial %d: %d\n", filial, querie9->total);
 
     printf("\nTempo de execução da Querie 9: %.6f s\n", (double) (end_t - start_t) / CLOCKS_PER_SEC);
 }
@@ -380,9 +394,11 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
   int i;
 
   if(querie10 == NULL) {
-    printf("Cliente ou mês inválido\n");
+    printf("\nCliente ou mês inválido\n");
     return;
   }
+
+  system("clear");
 
   for(i = 0; i < querie10 -> size;i++)
     printf("%s %d\n", querie10->produtos[i].prod,querie10->produtos[i].quantidade);
@@ -402,7 +418,7 @@ void printQ10(Q10* querie10, clock_t start_t, clock_t end_t) {
  */
 void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
   if(querie11 == NULL) {
-    printf("Limite inválido\n");
+    printf("\nLimite inválido\n");
     return;
   }
 
@@ -423,7 +439,7 @@ void printQ11(Q11* querie11, clock_t start_t, clock_t end_t) {
  */
 void printQ12(Q12* querie12, clock_t start_t, clock_t end_t) {
   if(querie12 == NULL) {
-    printf("Cliente ou limite inválido\n");
+    printf("\nCliente ou limite inválido\n");
     return;
   }
 

@@ -17,7 +17,6 @@ public class Facturacao {
         for(i = 0;i < 26;i++) {
             catlist = CatProd.getTree(i).stream().collect(Collectors.toList());
             size = catlist.size();
-            System.out.println(size);
             listaProd.put(i,new ArrayList<>());
             for(i2 = 0;i2 < size;i2++){
                 //System.out.println(catlist.get(i2));
@@ -35,7 +34,6 @@ public class Facturacao {
     public int binarySearch(List <FactMF>lista,String codProd) {
         int startIndex = 0;
         int endIndex = lista.size();
-        System.out.println(endIndex);
         int midIndex = (endIndex+startIndex) / 2;
 
         while(lista.get(midIndex).getCodProd().compareTo(codProd) !=  0) {
@@ -58,6 +56,7 @@ public class Facturacao {
 
     public void print(){
         System.out.println(listaProd.get(0).size());
-        System.out.print(listaProd.get(0).get(0).toSring());
+        for(int i = 0;i < 20;i++)
+        System.out.print(listaProd.get(1).get(i).toSring());
     }
 }

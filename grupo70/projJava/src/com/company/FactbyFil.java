@@ -4,35 +4,30 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class FactbyFil{
-    private List<Integer> vendasP;
-    private List<Integer> vendasN;
-    private List<Float> facturacaoP;
-    private List<Float> facturacaoN;
-    private List<Integer> unidades;
+    private int vendasP[] = new int[3];
+    private int vendasN[] = new int[3];
+    private int facturacaoP[] = new int[3];
+    private int facturacaoN[] = new int[3];
+    private int unidades[] = new int[3];
 
     public FactbyFil() {
-        this.vendasN = new ArrayList<>(3);
-        this.vendasP = new ArrayList<>(3);
-        this.facturacaoN = new ArrayList<>(3);
-        this.facturacaoP = new ArrayList<>(3);
-        this.unidades = new ArrayList<>(3);
     }
 
     public void setFactFil(int fil,char type,float price, int uni) {
         if(type == 'N') {
-            vendasN.set(fil, vendasN.get(fil) + 1);
-            facturacaoN.set(fil, price * uni + facturacaoN.get(fil));
+            vendasN[fil]++;
+            facturacaoN[fil] += price * uni;
         }
         else {
-            vendasP.set(fil, vendasP.get(fil) + 1);
-            facturacaoP.set(fil, price * uni + facturacaoP.get(fil));
+            vendasP[fil]++;
+            facturacaoP[fil] += price * uni;
         }
-        unidades.set(fil,uni + unidades.get(fil));
+        unidades[fil] += uni;
     }
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(vendasN.get(0)+" "+vendasN.get(1)+" "+vendasN.get(2)+"\n");
+        sb.append(vendasN[0]+" "+vendasN[1]+" "+vendasN[2]+"\n");
         return sb.toString();
     }
 }

@@ -11,10 +11,9 @@ public class FactMF {
     public FactMF(String cod){
         this.codProd = cod;
         this.occup = 0;
-        this.listMensal = new ArrayList<>(12);
-        for(int i = 0;i < 12;i++) {
+        this.listMensal = new ArrayList<>();
+        for(int i = 0;i < 12;i++)
             listMensal.add(i,new FactbyFil());
-        }
     }
 
     public String getCodProd(){
@@ -28,6 +27,6 @@ public class FactMF {
     }
 
     public String toSring() {
-        return (codProd+" "+listMensal.get(0).toString());
+        return (codProd+" "+listMensal.get(1).toString());
     }
 }

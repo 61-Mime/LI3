@@ -14,16 +14,15 @@ public class CliInfo {
 
     public void addProd(String prodCode, int mes, int uni, double price) {
         ProdCli aux = new ProdCli(prodCode);
+        boolean r = prod.add(aux);
 
-        if(!prod.add(aux)) {
+        if(r == false) {
             Iterator<ProdCli> it = prod.iterator();
-            boolean r = true;
-
+            r = true;
             while (it.hasNext() && r) {
-                if (it.next().getProd().equals(prodCode)) {
+                aux = it.next();
+                if (aux.getProd().equals(prodCode))
                     r = false;
-                    aux = it.next();
-                }
             }
         }
 

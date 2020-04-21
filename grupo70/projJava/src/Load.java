@@ -90,8 +90,8 @@ public class Load {
                 type = venda[3].charAt(0);
                 if(valSale(branch,month,price,uni,type) &&
                    CatClientes.contem(venda[4]) && CatProdutos.contem(venda[0])) {
-                    Fact.addSale(branch - 1, month, price, uni, type, venda[0]);
-                    //GFil.get(branch - 1).addSale(month, price, uni, type, venda[0], venda[4]);
+                    Fact.addSale(branch - 1, month-1, price, uni, type, venda[0]);
+                    GFil.get(branch - 1).addSale(month-1, price, uni, type, venda[0], venda[4]);
                 }
             }
         } catch (IOException ioex) {

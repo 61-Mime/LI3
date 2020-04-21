@@ -73,12 +73,12 @@ public class Filial {
 
     public void addSale(int month,float price,int uni,char type,String prod,String cli){
         List<ProdInfo> lprod = mapProd.get(prod.charAt(0) - 'A');
-        List<CliInfo> lcli = mapCli.get(prod.charAt(0) - 'A');
+        List<CliInfo> lcli = mapCli.get(cli.charAt(0) - 'A');
 
         int i = binarySearchProd(lprod, prod);
         int j = binarySearchCli(lcli, cli);
-
-        lprod.get(j).addCli(cli, type);
-        lcli.get(i).addProd(prod, month, uni, price);
+        //System.out.println(i +" "+ j +" "+ lprod.size() +" "+ lcli.size());
+        lprod.get(i).addCli(cli, type);
+        lcli.get(j).addProd(prod, month, uni, price);
     }
 }

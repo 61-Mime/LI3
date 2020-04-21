@@ -1,4 +1,4 @@
-public class ProdCli {
+public class ProdCli implements  Comparable {
     private String prod;
     private int[] uni;
     private double fat;
@@ -14,8 +14,14 @@ public class ProdCli {
         this.fat += price * uni;
     }
 
-    public int compareTo(ProdCli outro) {
-        return this.prod.compareTo(outro.prod);
+    @Override
+    public int compareTo(Object o) {
+        ProdCli aux = (ProdCli) o;
+        return this.prod.compareTo(aux.prod);
+    }
+
+    public boolean equals(ProdCli p) {
+        return prod.equals(p.getProd());
     }
 
     public String getProd(){

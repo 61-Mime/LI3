@@ -1,5 +1,3 @@
-package com.company;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.Comparator;
@@ -19,19 +17,14 @@ public class Facturacao {
             size = catlist.size();
             listaProd.put(i,new ArrayList<>());
             for(i2 = 0;i2 < size;i2++){
-                //System.out.println(catlist.get(i2));
                 FactMF f = new FactMF(catlist.get(i2));
                 listaProd.get(i).add(f);
                 }
         }
     }
 
-    public boolean valSale(int branch,int month,float price,int uni,char type){
-        return (branch >= 1 && branch <= 3 && month >= 1 && month <= 12 &&
-                price >= 0 && uni >= 0 && (type == 'N' || type == 'P'));
-    }
 
-    public int binarySearch(List <FactMF>lista,String codProd) {
+    public int binarySearch(List <FactMF>lista, String codProd) {
         int startIndex = 0;
         int endIndex = lista.size();
         int midIndex = (endIndex+startIndex) / 2;

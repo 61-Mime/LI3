@@ -1,4 +1,3 @@
-package com.company;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -9,10 +8,13 @@ public class Main {
 
     public static void main(String[] args) {
         Load sgv = new Load();
-        sgv.loadCat("Files/Clientes.txt",0);
-        sgv.loadCat("Files/Produtos.txt",1);
+        sgv.loadCat("files/Clientes.txt",0);
+        sgv.loadCat("files/Produtos.txt",1);
         sgv.getFact().loadFactfromCat(sgv.getCatP());
-        sgv.loadSales("Files/Vendas_1M.txt");
+        for(int i=0; i<3; i++){
+            sgv.getFilial(i).loadFilfromCat(sgv.getCatP(), sgv.getCatC());
+        }
+        sgv.loadSales("files/Vendas_1M.txt");
         sgv.getFact().print();
 	}
 }

@@ -9,11 +9,11 @@ public class Facturacao {
         listaProd = new HashMap<>();
     }
 
-    public void loadFactfromCat(Catalogo CatProd) {
+    public void loadFactfromCat(Catalogo catProd) {
         List<String> catlist;
         int i, i2,size;
         for(i = 0;i < 26;i++) {
-            catlist = CatProd.getTree(i).stream().collect(Collectors.toList());
+            catlist = catProd.getTree(i).stream().collect(Collectors.toList());
             size = catlist.size();
             listaProd.put(i,new ArrayList<>());
             for(i2 = 0;i2 < size;i2++){

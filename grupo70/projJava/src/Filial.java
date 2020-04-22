@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Filial {
@@ -75,10 +72,16 @@ public class Filial {
         List<ProdInfo> lprod = mapProd.get(prod.charAt(0) - 'A');
         List<CliInfo> lcli = mapCli.get(cli.charAt(0) - 'A');
 
+//        List<String> lprodStr = lprod.stream().parallel().map(ProdInfo::getProd).collect(Collectors.toList());
+//        List<String> lcliStr = lcli.stream().parallel().map(CliInfo::getCli).collect(Collectors.toList());
+
         int i = binarySearchProd(lprod, prod);
         int j = binarySearchCli(lcli, cli);
+//        int i = Collections.binarySearch(lprodStr, prod);
+//        int j = Collections.binarySearch(lcliStr, cli);
         //System.out.println(i +" "+ j +" "+ lprod.size() +" "+ lcli.size());
         lprod.get(i).addCli(cli, type);
         lcli.get(j).addProd(prod, month, uni, price);
+
     }
 }

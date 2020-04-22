@@ -39,9 +39,7 @@ public class Catalogo {
     public void printlista(int i) {
         Set <String> tree = lista.get(i);
         if(tree != null) {
-            for (String elem : tree) {
-                System.out.println(elem);
-            }
+            tree.stream().forEach(System.out::println);
         }
     }
 }

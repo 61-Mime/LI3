@@ -2,41 +2,39 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Load {
-    private Catalogo CatClientes;
-    private Catalogo CatProdutos;
-    private Facturacao Fact;
-    private Map<Integer, Filial> GFil;
+    private Catalogo catClientes;
+    private Catalogo catProdutos;
+    private Facturacao fact;
+    private Map<Integer, Filial> gFil;
 
     public Load(){
-        CatClientes = new Catalogo(0);
-        CatProdutos = new Catalogo(1);
-        Fact = new Facturacao();
-        GFil = new HashMap<>();
+        catClientes = new Catalogo(0);
+        catProdutos = new Catalogo(1);
+        fact = new Facturacao();
+        gFil = new HashMap<>();
 
         for(int i=0; i<3; i++)
-            GFil.put(i, new Filial());
+            gFil.put(i, new Filial());
     }
 
     public Catalogo getCatC(){
-        return CatClientes;
+        return catClientes;
     }
 
     public Catalogo getCatP(){
-        return CatProdutos;
+        return catProdutos;
     }
 
     public Facturacao getFact(){
-        return Fact;
+        return fact;
     }
 
     public Filial getFilial(int fil){
-        return GFil.get(fil);
+        return gFil.get(fil);
     }
 
     public void loadCat(String filename,int type){
@@ -52,13 +50,14 @@ public class Load {
         try {
             while ((line = br.readLine()) != null) {
                 if(type == 0)
-                    CatClientes.addCod(line);
+                    catClientes.addCod(line);
                 else
-                    CatProdutos.addCod(line);
+                    catProdutos.addCod(line);
             }
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
+
     }
 
     public boolean valSale(int branch,int month,float price,int uni,char type){
@@ -73,6 +72,8 @@ public class Load {
         int branch,month,uni;
         float price;
         char type;
+
+        long start = System.currentTimeMillis();
 
         try {
             br = new BufferedReader(new FileReader(filename));
@@ -89,13 +90,16 @@ public class Load {
                 uni = Integer.parseInt(venda[2]);
                 type = venda[3].charAt(0);
                 if(valSale(branch,month,price,uni,type) &&
-                   CatClientes.contem(venda[4]) && CatProdutos.contem(venda[0])) {
-                    Fact.addSale(branch - 1, month, price, uni, type, venda[0]);
-                    //GFil.get(branch - 1).addSale(month, price, uni, type, venda[0], venda[4]);
+                   catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
+                    fact.addSale(branch - 1, month-1, price, uni, type, venda[0]);
+                    gFil.get(branch - 1).addSale(month-1, price, uni, type, venda[0], venda[4]);
                 }
             }
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
+
+        long end = System.currentTimeMillis() - start;
+        System.out.println(end);
     }
 }

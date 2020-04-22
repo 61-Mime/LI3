@@ -21,7 +21,7 @@ public class FactMF {
     public void setFact(int fil,int mes,char type,float price, int uni) {
         if(occup == 0)
             occup = 1;
-        this.listMensal.get(mes - 1).setFactFil(fil,type,price,uni);
+        this.listMensal.get(mes).setFactFil(fil,type,price,uni);
     }
 
     public String toSring() {

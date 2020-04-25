@@ -1,7 +1,4 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CliInfo {
     private String cli;
@@ -13,20 +10,10 @@ public class CliInfo {
     }
 
     public void addProd(String prodCode, int mes, int uni, double price) {
-        ProdCli aux = new ProdCli(prodCode);
-        boolean r = prod.add(aux);
 
-        if(r == false) {
-            Iterator<ProdCli> it = prod.iterator();
-            r = true;
-            while (it.hasNext() && r) {
-                aux = it.next();
-                if (aux.getProd().equals(prodCode))
-                    r = false;
-            }
+        if (!prod.add(new ProdCli(prodCode))) {
+            prod.stream().filter(p -> p.getProd().equals(prodCode)).findAny().get().addInfo(mes, uni, price);
         }
-
-        aux.addInfo(mes, uni, price);
     }
 
     public String getCli() {

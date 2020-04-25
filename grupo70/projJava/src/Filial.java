@@ -1,3 +1,4 @@
+import javax.swing.plaf.basic.BasicComboPopup;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,17 +18,15 @@ public class Filial {
 
         for(i = 0;i < 26;i++) {
             catlist = catProd.getTree(i).stream().collect(Collectors.toList());
-            size = catlist.size();
             mapProd.put(i,new ArrayList<>());
-            for(i2 = 0;i2 < size;i2++){
+            for(i2 = 0; i2 < catlist.size(); i2++){
                 ProdInfo f = new ProdInfo(catlist.get(i2));
                 mapProd.get(i).add(f);
             }
 
             catlist = catCli.getTree(i).stream().collect(Collectors.toList());
-            size = catlist.size();
             mapCli.put(i,new ArrayList<>());
-            for(i2 = 0;i2 < size;i2++){
+            for(i2 = 0; i2 < catlist.size(); i2++){
                 CliInfo f = new CliInfo(catlist.get(i2));
                 mapCli.get(i).add(f);
             }
@@ -72,14 +71,9 @@ public class Filial {
         List<ProdInfo> lprod = mapProd.get(prod.charAt(0) - 'A');
         List<CliInfo> lcli = mapCli.get(cli.charAt(0) - 'A');
 
-//        List<String> lprodStr = lprod.stream().parallel().map(ProdInfo::getProd).collect(Collectors.toList());
-//        List<String> lcliStr = lcli.stream().parallel().map(CliInfo::getCli).collect(Collectors.toList());
-
         int i = binarySearchProd(lprod, prod);
         int j = binarySearchCli(lcli, cli);
-//        int i = Collections.binarySearch(lprodStr, prod);
-//        int j = Collections.binarySearch(lcliStr, cli);
-        //System.out.println(i +" "+ j +" "+ lprod.size() +" "+ lcli.size());
+
         lprod.get(i).addCli(cli, type);
         lcli.get(j).addProd(prod, month, uni, price);
 

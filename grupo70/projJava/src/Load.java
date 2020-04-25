@@ -73,7 +73,7 @@ public class Load {
         float price;
         char type;
 
-        long start = System.currentTimeMillis();
+        Crono.start();
 
         try {
             br = new BufferedReader(new FileReader(filename));
@@ -99,7 +99,6 @@ public class Load {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
 
-        long end = System.currentTimeMillis() - start;
-        System.out.println(end);
+        System.out.println(Crono.getTime());
     }
 }

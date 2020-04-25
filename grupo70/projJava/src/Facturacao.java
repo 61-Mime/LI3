@@ -14,9 +14,8 @@ public class Facturacao {
         int i, i2,size;
         for(i = 0;i < 26;i++) {
             catlist = catProd.getTree(i).stream().collect(Collectors.toList());
-            size = catlist.size();
             listaProd.put(i,new ArrayList<>());
-            for(i2 = 0;i2 < size;i2++){
+            for(i2 = 0; i2 < catlist.size(); i2++){
                 FactMF f = new FactMF(catlist.get(i2));
                 listaProd.get(i).add(f);
                 }

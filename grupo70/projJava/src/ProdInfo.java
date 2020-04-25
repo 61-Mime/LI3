@@ -2,13 +2,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class ProdInfo {
-    private String prod;
+public class ProdInfo extends Info{
+//    private String prod;
     private Set<String> cliN;
     private Set<String> cliP;
 
-    public ProdInfo(String prodCode) {
-        prod = prodCode;
+    public ProdInfo(String code) {
+        super(code);
         cliN = new TreeSet<>();
         cliP = new TreeSet<>();
     }
@@ -21,7 +21,4 @@ public class ProdInfo {
             cliP.add(cliCode);
     }
 
-    public String getProd() {
-        return this.prod;
-    }
 }

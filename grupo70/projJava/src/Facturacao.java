@@ -13,7 +13,7 @@ public class Facturacao {
         List<String> catlist;
         int i, i2,size;
         for(i = 0;i < 26;i++) {
-            catlist = catProd.getTree(i).stream().collect(Collectors.toList());
+            catlist = new ArrayList<>(catProd.getTree(i));
             listaProd.put(i,new ArrayList<>());
             for(i2 = 0; i2 < catlist.size(); i2++){
                 FactMF f = new FactMF(catlist.get(i2));
@@ -21,7 +21,6 @@ public class Facturacao {
                 }
         }
     }
-
 
     public int binarySearch(List <FactMF>lista, String codProd) {
         int startIndex = 0;

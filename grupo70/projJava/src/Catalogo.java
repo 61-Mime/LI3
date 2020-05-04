@@ -2,19 +2,26 @@ import java.util.*;
 
 public class Catalogo {
     private int type;
+    private int total;
     private Map<Integer,Set<String>> lista;
 
     public Catalogo(int t){
         int i;
         this.type = t;
+        this.total = 0;
         this.lista = new HashMap<>(26);
         for(i = 0;i < 26;i++) {
             this.lista.put(i,new TreeSet<>());
         }
     }
 
+    public int getTotal() {
+        return this.total;
+    }
+
     public void addCod(String cod) {
         if((type == 0 && valCli(cod))||(type == 1 && valProd(cod))) {
+            total++;
             int i = cod.charAt(0) - 'A';
             lista.get(i).add(cod);
         }
@@ -39,7 +46,7 @@ public class Catalogo {
     public void printlista(int i) {
         Set <String> tree = lista.get(i);
         if(tree != null) {
-            tree.stream().forEach(System.out::println);
+            tree.forEach(System.out::println);
         }
     }
 }

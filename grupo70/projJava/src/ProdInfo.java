@@ -13,6 +13,14 @@ public class ProdInfo extends Info{
         cliP = new TreeSet<>();
     }
 
+    public int getSizeN() {
+        return cliN.size();
+    }
+
+    public int getSizeP() {
+        return cliP.size();
+    }
+
     public void addCli(String cliCode, char type) {
         if(type == 'N')
             cliN.add(cliCode);

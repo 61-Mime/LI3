@@ -1,4 +1,4 @@
-public class ProdCli implements  Comparable {
+public class ProdCli implements Comparable {
     private String prod;
     private int[] uni;
     private double fat;
@@ -7,6 +7,13 @@ public class ProdCli implements  Comparable {
         this.prod = prodCode;
         this.uni = new int[12];
         this.fat = 0;
+    }
+
+    public ProdCli(String prodCode,int mes, int uni, double price){
+        this.prod = prodCode;
+        this.uni = new int[12];
+        this.uni[mes] += uni;
+        this.fat = price * uni;
     }
 
     public void addInfo(int mes, int uni, double price) {

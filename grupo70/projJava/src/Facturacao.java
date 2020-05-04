@@ -4,9 +4,27 @@ import java.util.Comparator;
 
 public class Facturacao {
     private Map<Integer,List<FactMF>> listaProd;
+    private int comprados;
+    private int compras0;
+    private float faturacaoTotal;
 
     public Facturacao() {
         listaProd = new HashMap<>();
+        comprados = 0;
+        compras0 = 0;
+        faturacaoTotal = 0;
+    }
+
+    public int getComprados() {
+        return comprados;
+    }
+
+    public int getCompras0() {
+        return compras0;
+    }
+
+    public float getFaturacaoTotal() {
+        return faturacaoTotal;
     }
 
     public void loadFactfromCat(Catalogo catProd) {
@@ -18,7 +36,7 @@ public class Facturacao {
             for(i2 = 0; i2 < catlist.size(); i2++){
                 FactMF f = new FactMF(catlist.get(i2));
                 listaProd.get(i).add(f);
-                }
+            }
         }
     }
 
@@ -42,6 +60,13 @@ public class Facturacao {
     public void addSale(int branch,int month,float price,int uni,char type,String prod){
         List<FactMF> l = listaProd.get(prod.charAt(0) - 'A');
         int i = binarySearch(l,prod);
+
+        if(l.get(i).getOccup() == 0)
+            comprados++;
+        if(price == 0.0)
+            compras0++;
+
+        faturacaoTotal += price * uni;
         l.get(i).setFact(branch,month,type,price,uni);
     }
 

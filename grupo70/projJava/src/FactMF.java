@@ -18,9 +18,13 @@ public class FactMF {
         return codProd;
     }
 
-    public void setFact(int fil,int mes,char type,float price, int uni) {
-//        if(occup == 0)
-//            occup = 1;
+    public int getOccup() {
+        return occup;
+    }
+
+    public void setFact(int fil, int mes, char type, float price, int uni) {
+        if(occup == 0)
+            occup = 1;
         this.listMensal.get(mes).setFactFil(fil,type,price,uni);
     }
 

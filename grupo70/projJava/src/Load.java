@@ -10,12 +10,14 @@ public class Load {
     private Catalogo catProdutos;
     private Facturacao fact;
     private Map<Integer, Filial> gFil;
+    private LoadInfo loadInfo;
 
     public Load(){
         catClientes = new Catalogo(0);
         catProdutos = new Catalogo(1);
         fact = new Facturacao();
         gFil = new HashMap<>();
+        loadInfo = new LoadInfo();
 
         for(int i=0; i<3; i++)
             gFil.put(i, new Filial());
@@ -29,6 +31,10 @@ public class Load {
         return catProdutos;
     }
 
+    public LoadInfo getLoadInfo(){
+        return loadInfo;
+    }
+
     public Facturacao getFact(){
         return fact;
     }
@@ -38,7 +44,7 @@ public class Load {
     }
 
     public void loadCat(String filename,int type){
-        String line = "11111";
+        String line;
         BufferedReader br = null;
 
         try {
@@ -66,14 +72,12 @@ public class Load {
     }
 
     public void loadSales(String filename){
-        String line = "11111";
+        String line;
         String[] venda;
         BufferedReader br = null;
         int branch,month,uni;
         float price;
         char type;
-
-        Crono.start();
 
         try {
             br = new BufferedReader(new FileReader(filename));
@@ -91,14 +95,15 @@ public class Load {
                 type = venda[3].charAt(0);
                 if(valSale(branch,month,price,uni,type) &&
                    catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
+                    loadInfo.incValidas();
                     fact.addSale(branch - 1, month-1, price, uni, type, venda[0]);
                     gFil.get(branch - 1).addSale(month-1, price, uni, type, venda[0], venda[4]);
                 }
+                else
+                    loadInfo.incInvalidas();
             }
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
-
-        System.out.println(Crono.getTime());
     }
 }

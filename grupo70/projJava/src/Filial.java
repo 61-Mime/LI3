@@ -23,6 +23,10 @@ public class Filial {
         return cliCompradoresMes;
     }
 
+    public int getSizeCli(String cliCod, int pos) {
+        return mapCli.get(cliCod.charAt(0) - 'A').get(pos).getSize();
+    }
+
     public void loadFilfromCat(Catalogo catProd, Catalogo catCli) {
         List<String> catlist;
 
@@ -63,20 +67,25 @@ public class Filial {
     }
 
 
-    public void addSale(int month,float price,int uni,char type,String prod,String cli){
+    public int addSale(int month,float price,int uni,char type,String prod,String cli){
         List<Info> lprod = mapProd.get(prod.charAt(0) - 'A');
         List<Info> lcli = mapCli.get(cli.charAt(0) - 'A');
 
         int prodIndex = binarySearchInfo(lprod, prod);
         int cliIndex = binarySearchInfo(lcli, cli);
+        int res = -1;
 
         if(lcli.get(cliIndex).getSize() == 0) {
             clientesCompradores++;
             cliCompradoresMes[month]++;
+            res = cliIndex;
         }
 
         lprod.get(prodIndex).addCli(cli, type);
         lcli.get(cliIndex).addProd(prod, month, uni, price);
 
+        return res;
     }
+
+
 }

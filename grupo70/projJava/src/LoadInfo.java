@@ -3,6 +3,7 @@ public class LoadInfo {
     private int vendasInvalidas;
     private int CliValidos;
     private int CliLidos;
+    private int cliComprador;
     private int ProdValidos;
     private int ProdLidos;
     private String CliPath;
@@ -14,6 +15,7 @@ public class LoadInfo {
         vendasValidas = 0;
         ProdLidos = 0;
         CliLidos = 0;
+        cliComprador = 0;
         CliPath = "Files/Clientes.txt";
         ProdPath = "Files/Produtos.txt";
         SalesPath = "Files/Vendas_1M.txt";
@@ -43,6 +45,10 @@ public class LoadInfo {
         return CliValidos;
     }
 
+    public int getCliComprador() {
+        return cliComprador;
+    }
+
     public int getProdValidos() {
         return ProdValidos;
     }
@@ -62,6 +68,8 @@ public class LoadInfo {
     public void incCliLidos(){
         CliLidos++;
     }
+
+    public void incCliComprador() { cliComprador++; }
 
     public void setCliPath(String cliPath) {
         CliPath = cliPath;

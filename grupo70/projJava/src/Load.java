@@ -80,7 +80,7 @@ public class Load {
         String line;
         String[] venda;
         BufferedReader br = null;
-        int branch,month,uni;
+        int branch,month,uni,cliIndex,res;
         float price;
         char type;
 
@@ -102,7 +102,17 @@ public class Load {
                    catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
                     loadInfo.incValidas();
                     fact.addSale(branch - 1, month-1, price, uni, type, venda[0]);
-                    gFil.get(branch - 1).addSale(month-1, price, uni, type, venda[0], venda[4]);
+                    cliIndex = gFil.get(branch - 1).addSale(month-1, price, uni, type, venda[0], venda[4]);
+                    if(cliIndex != -1) {
+                        res=0;
+                        for(int i=1; i<4 && res==0; i++) {
+                            if(i!=branch) {
+                                res += gFil.get(i-1).getSizeCli(venda[4], cliIndex);
+                            }
+                        }
+                        if(res == 0)
+                            loadInfo.incCliComprador();
+                    }
                 }
                 else
                     loadInfo.incInvalidas();

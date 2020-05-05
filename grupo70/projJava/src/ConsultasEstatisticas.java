@@ -22,8 +22,8 @@ public class ConsultasEstatisticas {
         prodsComprados = sgv.getFact().getComprados();
         prodsNaoComprados = totalProdutos - prodsNaoComprados;
         totalClientes = sgv.getLoadInfo().getCliValidos();
-        //cliCompradores
-        //cliNaoCompradores = totalClientes - cliCompradores;
+        cliCompradores = sgv.getLoadInfo().getCliComprador();
+        cliNaoCompradores = totalClientes - cliCompradores;
         comprasValor0 = sgv.getFact().getCompras0();
         fatTotal = sgv.getFact().getFaturacaoTotal();
         comprasMes = sgv.getFact().getComprasMes();
@@ -41,6 +41,8 @@ public class ConsultasEstatisticas {
         append("Total clientes:").append(totalClientes).append("\n").
         append("Produtos comprados:").append(prodsComprados).append("\n").
         append("Produtos não comprados:").append(prodsNaoComprados).append("\n").
+        append("Clientes compradores:").append(cliCompradores).append("\n").
+        append("Clientes não compradores:").append(cliNaoCompradores).append("\n").
         append("Compras valor 0.0:").append(comprasValor0).append("\n").
         append("Faturação total:").append(fatTotal).append("\n").
         append("Faturação Janeiro:").append(fatMesFil[0]).append(" ").

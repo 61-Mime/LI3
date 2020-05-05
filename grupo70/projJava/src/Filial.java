@@ -5,16 +5,22 @@ import java.util.stream.Collectors;
 public class Filial {
     private Map<Integer, List<Info>> mapProd;
     private Map<Integer,List<Info>> mapCli;
-    private int ClientesCompradores;
+    private int clientesCompradores;
+    private int [] cliCompradoresMes;
 
     public Filial() {
         mapProd = new HashMap<>();
         mapCli = new HashMap<>();
-        ClientesCompradores = 0;
+        clientesCompradores = 0;
+        cliCompradoresMes = new int[12];
     }
 
     public int getClientesCompradores() {
-        return ClientesCompradores;
+        return clientesCompradores;
+    }
+
+    public int[] getCliCompradoresMes() {
+        return cliCompradoresMes;
     }
 
     public void loadFilfromCat(Catalogo catProd, Catalogo catCli) {
@@ -64,8 +70,10 @@ public class Filial {
         int prodIndex = binarySearchInfo(lprod, prod);
         int cliIndex = binarySearchInfo(lcli, cli);
 
-        if(lcli.get(cliIndex).getSize() == 0)
-            ClientesCompradores++;
+        if(lcli.get(cliIndex).getSize() == 0) {
+            clientesCompradores++;
+            cliCompradoresMes[month]++;
+        }
 
         lprod.get(prodIndex).addCli(cli, type);
         lcli.get(cliIndex).addProd(prod, month, uni, price);

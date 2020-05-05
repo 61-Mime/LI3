@@ -55,15 +55,20 @@ public class Load {
         }
         try {
             while ((line = br.readLine()) != null) {
-                if(type == 0)
+                if(type == 0) {
+                    loadInfo.incCliLidos();
                     catClientes.addCod(line);
-                else
+                }
+                else {
+                    loadInfo.incProdLidos();
                     catProdutos.addCod(line);
+                }
             }
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
-
+        loadInfo.setCliValidos(catClientes.getTotal());
+        loadInfo.setProdValidos(catProdutos.getTotal());
     }
 
     public boolean valSale(int branch,int month,float price,int uni,char type){

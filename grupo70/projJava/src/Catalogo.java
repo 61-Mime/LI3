@@ -3,15 +3,15 @@ import java.util.*;
 public class Catalogo {
     private int type;
     private int total;
-    private Map<Integer,Set<String>> lista;
+    private Map<Integer,Set<String>> list;
 
     public Catalogo(int t){
         int i;
         this.type = t;
         this.total = 0;
-        this.lista = new HashMap<>(26);
+        this.list = new HashMap<>(26);
         for(i = 0;i < 26;i++) {
-            this.lista.put(i,new TreeSet<>());
+            this.list.put(i,new TreeSet<>());
         }
     }
 
@@ -23,7 +23,7 @@ public class Catalogo {
         if((type == 0 && valCli(cod))||(type == 1 && valProd(cod))) {
             total++;
             int i = cod.charAt(0) - 'A';
-            lista.get(i).add(cod);
+            list.get(i).add(cod);
         }
     }
 
@@ -36,15 +36,15 @@ public class Catalogo {
     }
 
     public boolean contem(String cod) {
-        return lista.get(cod.charAt(0) - 'A').contains(cod);
+        return list.get(cod.charAt(0) - 'A').contains(cod);
     }
 
     public Set<String> getTree(int i) {
-        return lista.get(i);
+        return list.get(i);
     }
 
     public void printlista(int i) {
-        Set <String> tree = lista.get(i);
+        Set <String> tree = list.get(i);
         if(tree != null) {
             tree.forEach(System.out::println);
         }

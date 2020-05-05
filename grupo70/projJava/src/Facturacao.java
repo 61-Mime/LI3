@@ -7,12 +7,16 @@ public class Facturacao {
     private int comprados;
     private int compras0;
     private float faturacaoTotal;
+    private float [] faturacaoMesFil;
+    private int [] comprasMes;
 
     public Facturacao() {
         listaProd = new HashMap<>();
         comprados = 0;
         compras0 = 0;
         faturacaoTotal = 0;
+        comprasMes = new int[12];
+        faturacaoMesFil = new float[36];
     }
 
     public int getComprados() {
@@ -25,6 +29,14 @@ public class Facturacao {
 
     public float getFaturacaoTotal() {
         return faturacaoTotal;
+    }
+
+    public int[] getComprasMes() {
+        return comprasMes;
+    }
+
+    public float[] getFaturacaoMesFil() {
+        return faturacaoMesFil;
     }
 
     public void loadFactfromCat(Catalogo catProd) {
@@ -63,10 +75,13 @@ public class Facturacao {
 
         if(l.get(i).getOccup() == 0)
             comprados++;
-        if(price == 0.0)
+        if(price * uni == 0.0)
             compras0++;
 
-        faturacaoTotal += price * uni;
+        float f = price * uni;
+        faturacaoTotal += f;
+        comprasMes[month]++;
+        faturacaoMesFil [12*branch + month]+= f;
         l.get(i).setFact(branch,month,type,price,uni);
     }
 

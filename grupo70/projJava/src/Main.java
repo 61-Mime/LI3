@@ -9,21 +9,25 @@ public class Main {
     public static void main(String[] args) {
         Crono.start();
         Load sgv = new Load();
-        sgv.loadCat("Files/Clientes.txt",0);
-        sgv.loadCat("Files/Produtos.txt",1);
+        sgv.loadCat(sgv.getLoadInfo().getCliPath(),0);
+        sgv.loadCat(sgv.getLoadInfo().getProdPath(),1);
+
         System.out.println("Tempo carregamento catalogos " + Crono.getTime());
+
         Crono.start();
         sgv.getFact().loadFactfromCat(sgv.getCatP());
 
-        for(int i=0; i<3; i++){
+        for(int i=0; i<3; i++)
             sgv.getFilial(i).loadFilfromCat(sgv.getCatP(), sgv.getCatC());
-        }
+
         System.out.println("Tempo carregamento catalogos para structs " +Crono.getTime());
+
         Crono.start();
-        sgv.loadSales("Files/Vendas_1M.txt");
+        sgv.loadSales(sgv.getLoadInfo().getSalesPath());
         System.out.println("Tempo carregamento vendas " + Crono.getTime());
-        System.out.println("nºprodutos " + sgv.getCatP().getTotal());
-        System.out.println("nºclientes " + sgv.getCatC().getTotal());
+/*
+        System.out.println("nºprodutos " + sgv.getLoadInfo().getProdValidos());
+        System.out.println("nºclientes " + sgv.getLoadInfo().getCliValidos());
         System.out.println("nºvendas válidas " + sgv.getLoadInfo().getVendasValidas());
         System.out.println("nºvendas inválidas " + sgv.getLoadInfo().getVendasInvalidas());
         System.out.println("produtos comprados  " + sgv.getFact().getComprados());
@@ -32,5 +36,9 @@ public class Main {
         System.out.println("Clientes compradores " + (sgv.getFilial(0).getClientesCompradores()+
                                                       sgv.getFilial(1).getClientesCompradores())+
                                                       sgv.getFilial(2).getClientesCompradores());
+
+ */
+        ConsultasEstatisticas ce = new ConsultasEstatisticas(sgv);
+        System.out.println(ce.toString());
 	}
 }

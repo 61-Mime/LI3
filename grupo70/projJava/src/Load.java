@@ -9,18 +9,15 @@ public class Load {
     private Catalogo catClientes;
     private Catalogo catProdutos;
     private Facturacao fact;
-    private Map<Integer, Filial> gFil;
+    private GestaoFiliais gFil;
     private LoadInfo loadInfo;
 
     public Load(){
         catClientes = new Catalogo(0);
         catProdutos = new Catalogo(1);
         fact = new Facturacao();
-        gFil = new HashMap<>();
+        gFil = new GestaoFiliais();
         loadInfo = new LoadInfo();
-
-        for(int i=0; i<3; i++)
-            gFil.put(i, new Filial());
     }
 
     public Catalogo getCatC(){
@@ -39,11 +36,15 @@ public class Load {
         return fact;
     }
 
-    public Filial getFilial(int fil){
-        return gFil.get(fil);
+    public Filial getFilial(int branch){
+        return gFil.getFil(branch);
     }
 
-    public void loadCat(String filename,int type){
+    public GestaoFiliais getgFil() {
+        return gFil;
+    }
+
+    public void loadCat(String filename, int type){
         String line;
         BufferedReader br = null;
 
@@ -102,17 +103,9 @@ public class Load {
                    catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
                     loadInfo.incValidas();
                     fact.addSale(branch - 1, month-1, price, uni, type, venda[0]);
-                    cliIndex = gFil.get(branch - 1).addSale(month-1, price, uni, type, venda[0], venda[4]);
-                    if(cliIndex != -1) {
-                        res=0;
-                        for(int i=1; i<4 && res==0; i++) {
-                            if(i!=branch) {
-                                res += gFil.get(i-1).getSizeCli(venda[4], cliIndex);
-                            }
-                        }
-                        if(res == 0)
-                            loadInfo.incCliComprador();
-                    }
+
+                    if (gFil.addSaleInfo(month-1, price, uni, venda[0], venda[4],branch - 1))
+                        loadInfo.incCliComprador();
                 }
                 else
                     loadInfo.incInvalidas();

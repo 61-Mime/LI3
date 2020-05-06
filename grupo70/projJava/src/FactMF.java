@@ -4,31 +4,47 @@ import java.util.ArrayList;
 public class FactMF {
     private String codProd;
     private int occup;
-    private List<FactbyFil> listMensal;
+    private int[] unidadesMes;
+    private double[][] faturacaoMesFill;
+    private double faturacaoTotal;
 
     public FactMF(String cod){
         this.codProd = cod;
         this.occup = 0;
-        this.listMensal = new ArrayList<>();
-        for(int i = 0;i < 12;i++)
-            listMensal.add(i,new FactbyFil());
+        unidadesMes = new int[12];
+        faturacaoMesFill = new double[12][3];
+        faturacaoTotal = 0;
     }
 
     public String getCodProd(){
         return codProd;
     }
 
+    public int getUnidadesMes(int month) {
+        return unidadesMes[month];
+    }
+
+    public double getFaturacaoTotal() {
+        return faturacaoTotal;
+    }
+
+    public double getFaturacaoMes(int month) {
+        return faturacaoMesFill[month][0] + faturacaoMesFill[month][1] + faturacaoMesFill[month][2];
+    }
+
     public int getOccup() {
         return occup;
     }
 
-    public void setFact(int fil, int mes, char type, float price, int uni) {
+    public void setFact(int branch, int month, float price, int uni) {
         if(occup == 0)
             occup = 1;
-        this.listMensal.get(mes).setFactFil(fil,type,price,uni);
+        unidadesMes[month] += uni;
+        faturacaoTotal += price*uni;
+        faturacaoMesFill[month][branch] = price*uni;
     }
 
     public String toSring() {
-        return (codProd+" "+listMensal.get(1).toString());
+        return ("Produto: "+codProd+"\n"+"Faturação Total:"+faturacaoTotal);
     }
 }

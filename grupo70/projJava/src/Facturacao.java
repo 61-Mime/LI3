@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
-public class Facturacao {
+public class Facturacao{
     private Map<Integer,List<FactMF>> listaProd;
     private int comprados;
     private int compras0;
@@ -39,6 +39,26 @@ public class Facturacao {
         return faturacaoMesFil;
     }
 
+    public int getIndex(String cod){
+        return cod.charAt(0) - 'A';
+    }
+
+    public int getPos(String cod,int index){
+        return binarySearch(listaProd.get(index),cod);
+    }
+
+    public double getFatTotalMes(int index,int pos,int month){
+        return listaProd.get(index).get(pos).getFaturacaoMes(month);
+    }
+
+    public double getUniMes(int index,int pos,int month){
+        return listaProd.get(index).get(pos).getUnidadesMes(month);
+    }
+
+    public List<FactMF> getList(int index){
+        return listaProd.get(index);
+    }
+
     public void loadFactfromCat(Catalogo catProd) {
         List<String> catlist;
         int i, i2,size;
@@ -70,8 +90,8 @@ public class Facturacao {
     }
 
     public void addSale(int branch,int month,float price,int uni,char type,String prod){
-        List<FactMF> l = listaProd.get(prod.charAt(0) - 'A');
-        int i = binarySearch(l,prod);
+        List<FactMF> l = listaProd.get(getIndex(prod));
+        int i = getPos(prod,getIndex(prod));
 
         if(l.get(i).getOccup() == 0)
             comprados++;
@@ -82,7 +102,7 @@ public class Facturacao {
         faturacaoTotal += f;
         comprasMes[month]++;
         faturacaoMesFil [12*branch + month]+= f;
-        l.get(i).setFact(branch,month,type,price,uni);
+        l.get(i).setFact(branch,month,price,uni);
     }
 
     public void print(){

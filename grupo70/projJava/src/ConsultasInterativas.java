@@ -11,6 +11,7 @@ public class ConsultasInterativas {
         querie1 = new ArrayList<>();
         querie2 = new int[8];
         querie3 = new HashMap<>();
+        querie4 = new HashMap<>();
     }
 
     public void setQuerie1(Load sgv){
@@ -33,14 +34,15 @@ public class ConsultasInterativas {
     }
 
     public void setQuerie3(Load sgv,String cod){
-        double res[],res2[],res3[];
+        double res[];
+        int index,pos;
         for(int month = 1;month < 13;month++){
-            res = sgv.getFilial(0).getCliInfo(cod,month);
-            res2 = sgv.getFilial(1).getCliInfo(cod,month);
-            res3 = sgv.getFilial(2).getCliInfo(cod,month);
-            res[0] += res2[0] + res3[0];
-            res[1] += res2[1] + res3[1];
-            res[2] += res2[2] + res3[2];
+            res = new double[3];
+            index = sgv.getFilial(0).getIndex(cod);
+            pos = sgv.getFilial(0).getPosCli(cod,index);
+            res[0] = sgv.getgFil().numeroComprasMes(index,pos,month);
+            res[1] = sgv.getgFil().produtosDiferentes(cod,month);
+            res[2] = sgv.getgFil().gastoTotalMes(index,pos,month);
             querie3.put(month,res);
         }
     }

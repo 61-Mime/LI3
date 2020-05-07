@@ -16,6 +16,25 @@ public class Filial {
         cliCompradoresMes = new int[12];
         vendasMes = new int[12];
     }
+    public int getIndex(String cod){
+        return cod.charAt(0) - 'A';
+    }
+
+    public int getPosProd(String cod,int index){
+        return binarySearchInfo(mapProd.get(index),cod);
+    }
+
+    public int getPosCli(String cod,int index){
+        return binarySearchInfo(mapCli.get(index),cod);
+    }
+
+    public ProdInfo getCliInfo(int index,int pos){
+        return mapCli.get(index).get(pos);
+    }
+
+    public ProdInfo getProdInfo(int index,int pos){
+        return mapProd.get(index).get(pos);
+    }
 
     public int getClientesCompradores() {
         return clientesCompradores;
@@ -50,15 +69,12 @@ public class Filial {
         return clientes;
     }
 
-    public double[] getCliInfo(String cod,int month){
-        int index = cod.charAt(0)-'A';
-        int pos = binarySearchInfo(mapCli.get(index),cod);
-        double []res = new double[3];
-        CliInfo cli = (CliInfo) mapCli.get(index).get(pos);
-        res[0] = cli.getNumeroCompras(month);
-        res[1] = cli.getSizeMonth(month);
-        res[2] = cli.getGastoTotal(month);
-        return res;
+    public double getNumeroCompras(int index,int pos,int month){
+        return ((CliInfo)mapCli.get(index).get(pos)).getNumeroCompras(month);
+    }
+
+    public double getGastoTotal(int index,int pos,int month){
+        return ((CliInfo)mapCli.get(index).get(pos)).getGastoTotal(month);
     }
 
     public Set<String> getClientesDiferentes(int month,String cod) {
@@ -133,6 +149,4 @@ public class Filial {
 
         return res;
     }
-
-
 }

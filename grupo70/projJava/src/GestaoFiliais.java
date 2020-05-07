@@ -39,14 +39,24 @@ public class GestaoFiliais {
         cli.addAll(gFil.get(2).getClientesDiferentes(month,prodCod));
         return cli.size();
     }
-/*
+
     public double produtosDiferentes(String cliCod,int month){
         Set<String> prod =gFil.get(0).getProdutosDiferentes(month,cliCod);
         prod.addAll(gFil.get(1).getProdutosDiferentes(month,cliCod));
         prod.addAll(gFil.get(2).getProdutosDiferentes(month,cliCod));
         return prod.size();
     }
-*/
+
+    public double gastoTotalMes(int pos,int index,int month){
+        return gFil.get(0).getGastoTotal(index,pos,month) + gFil.get(1).getGastoTotal(index,pos,month)
+                + gFil.get(2).getGastoTotal(index,pos,month);
+    }
+
+    public double numeroComprasMes(int pos,int index,int month){
+        return gFil.get(0).getNumeroCompras(index,pos,month) + gFil.get(1).getNumeroCompras(index,pos,month)
+               + gFil.get(2).getNumeroCompras(index,pos,month);
+    }
+
     public int clientesDiferentesMes(int month) {
         Set<String> cli =gFil.get(0).getClientesMes(month);
         cli.addAll(gFil.get(1).getClientesMes(month));

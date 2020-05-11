@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ConsultasInterativas {
     private List<String> querie1;
@@ -7,6 +8,7 @@ public class ConsultasInterativas {
     private Map<Integer,double[]> querie3;
     private Map<Integer,double[]> querie4;
     private Map<Integer, List<String>> querie7;
+    private List<Querie8> querie8;
 
     public ConsultasInterativas(){
         querie1 = new ArrayList<>();
@@ -14,6 +16,7 @@ public class ConsultasInterativas {
         querie3 = new HashMap<>();
         querie4 = new HashMap<>();
         querie7 = new HashMap<>();
+        querie8 = new ArrayList<>();
     }
 
     public void setQuerie1(Load sgv){
@@ -71,6 +74,18 @@ public class ConsultasInterativas {
 
     public Map<Integer, List<String>> getQuerie7() {
         return querie7;
+    }
+
+    public void setQuerie8(Load sgv, int limit) {
+        for(int i=0; i<26; i++) {
+            sgv.getCatC().getTree(i).forEach(a -> querie8.add(new Querie8(a, sgv.getgFil().produtosDiferentesTotal(a))));
+        }
+
+        querie8 = querie8.stream().sorted().limit(limit).collect(Collectors.toList());
+    }
+
+    public List<Querie8> getQuerie8() {
+        return querie8;
     }
 }
 

@@ -34,7 +34,7 @@ public class Main {
 
         ConsultasInterativas ci = new ConsultasInterativas();
 
-        ci.setQuerie7(sgv);
-        System.out.println(ci.getQuerie7());
+        ci.setQuerie8(sgv, 10);
+        System.out.println(ci.getQuerie8());
 	}
 }

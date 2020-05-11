@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,6 +45,18 @@ public class GestaoFiliais {
         Set<String> prod =gFil.get(0).getProdutosDiferentes(month,cliCod);
         prod.addAll(gFil.get(1).getProdutosDiferentes(month,cliCod));
         prod.addAll(gFil.get(2).getProdutosDiferentes(month,cliCod));
+        return prod.size();
+    }
+
+    public int produtosDiferentesTotal(String cliCod){
+        Set<String> prod = new HashSet<>();
+
+        for(int i=0; i<12; i++) {
+            prod.addAll(gFil.get(0).getProdutosDiferentes(i, cliCod));
+            prod.addAll(gFil.get(1).getProdutosDiferentes(i, cliCod));
+            prod.addAll(gFil.get(2).getProdutosDiferentes(i, cliCod));
+        }
+
         return prod.size();
     }
 

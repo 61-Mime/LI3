@@ -25,23 +25,16 @@ public class Main {
         Crono.start();
         sgv.loadSales(sgv.getLoadInfo().getSalesPath());
         System.out.println("Tempo carregamento vendas " + Crono.getTime());
-/*
-        System.out.println("nºprodutos " + sgv.getLoadInfo().getProdValidos());
-        System.out.println("nºclientes " + sgv.getLoadInfo().getCliValidos());
-        System.out.println("nºvendas válidas " + sgv.getLoadInfo().getVendasValidas());
-        System.out.println("nºvendas inválidas " + sgv.getLoadInfo().getVendasInvalidas());
-        System.out.println("produtos comprados  " + sgv.getFact().getComprados());
-        System.out.println("compras valor 0 " + sgv.getFact().getCompras0());
-        System.out.println("faturação total " + sgv.getFact().getFaturacaoTotal());
-        System.out.println("Clientes compradores " + (sgv.getFilial(0).getClientesCompradores()+
-                                                      sgv.getFilial(1).getClientesCompradores())+
-                                                      sgv.getFilial(2).getClientesCompradores());
 
- */
         ConsultasEstatisticas ce = new ConsultasEstatisticas(sgv);
         System.out.println(ce.toString());
 
-        System.out.println(sgv.getFilial(1).getClientesMaisCompradores());
-        System.out.println(sgv.getFilial(1).clientesOrdenados());
+//        System.out.println(sgv.getFilial(1).clientesOrdenados());
+
+
+        ConsultasInterativas ci = new ConsultasInterativas();
+
+        ci.setQuerie7(sgv);
+        System.out.println(ci.getQuerie7());
 	}
 }

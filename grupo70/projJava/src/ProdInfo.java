@@ -9,6 +9,11 @@ public class ProdInfo {
         mapMes = new HashMap<>();
     }
 
+//    public ProdInfo(ProdInfo p) {
+//        this.code = p.getCode();
+//        this.mapMes = p.get
+//    }
+
     public int getSizeMonth(int month) {
         if(mapMes.containsKey(month))
             return mapMes.get(month).size();
@@ -17,6 +22,18 @@ public class ProdInfo {
 
     public String getCode() {
         return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Map<Integer, Set<ProdCliinfo>> getMapMes() {
+        return mapMes;
+    }
+
+    public void setMapMes(Map<Integer, Set<ProdCliinfo>> mapMes) {
+        this.mapMes = mapMes;
     }
 
     public int getSize(){

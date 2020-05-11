@@ -40,5 +40,8 @@ public class Main {
  */
         ConsultasEstatisticas ce = new ConsultasEstatisticas(sgv);
         System.out.println(ce.toString());
+
+        System.out.println(sgv.getFilial(1).getClientesMaisCompradores());
+        System.out.println(sgv.getFilial(1).clientesOrdenados());
 	}
 }

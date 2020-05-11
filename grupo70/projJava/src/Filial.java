@@ -1,18 +1,38 @@
-import javax.swing.plaf.basic.BasicComboPopup;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Filial {
-    private Map<Integer, List<Info>> mapProd;
-    private Map<Integer,List<Info>> mapCli;
+    private Map<Integer, List<ProdInfo>> mapProd;
+    private Map<Integer,List<CliInfo>> mapCli;
     private int clientesCompradores;
-    private int [] cliCompradoresMes;
+    private int[] cliCompradoresMes;
+    private int[] vendasMes;
 
     public Filial() {
         mapProd = new HashMap<>();
         mapCli = new HashMap<>();
         clientesCompradores = 0;
         cliCompradoresMes = new int[12];
+        vendasMes = new int[12];
+    }
+    public int getIndex(String cod){
+        return cod.charAt(0) - 'A';
+    }
+
+    public int getPosProd(String cod,int index){
+        return binarySearchInfo(mapProd.get(index),cod);
+    }
+
+    public int getPosCli(String cod,int index){
+        return binarySearchInfo(mapCli.get(index),cod);
+    }
+
+    public ProdInfo getCliInfo(int index,int pos){
+        return mapCli.get(index).get(pos);
+    }
+
+    public ProdInfo getProdInfo(int index,int pos){
+        return mapProd.get(index).get(pos);
     }
 
     public int getClientesCompradores() {
@@ -23,8 +43,49 @@ public class Filial {
         return cliCompradoresMes;
     }
 
+    public int getCliCompradoresMes(int month) {
+        return cliCompradoresMes[month];
+    }
+
+    public int getVendasMes(int month) {
+        return vendasMes[month];
+    }
+
+    public int getVendasFil(){
+        return Arrays.stream(vendasMes).sum();
+    }
+
     public int getSizeCli(String cliCod, int pos) {
         return mapCli.get(cliCod.charAt(0) - 'A').get(pos).getSize();
+    }
+
+    public Set<String> getClientesMes(int month){
+        Set<String> clientes = new TreeSet<>();
+        for(int i = 0;i < 26;i++)
+            for(ProdInfo p:mapProd.get(i))
+                clientes.addAll(p.getCliMonth(month));
+
+        return clientes;
+    }
+
+    public double getNumeroCompras(int index,int pos,int month){
+        return ((CliInfo)mapCli.get(index).get(pos)).getNumeroCompras(month);
+    }
+
+    public double getGastoTotal(int index,int pos,int month){
+        return ((CliInfo)mapCli.get(index).get(pos)).getGastoTotal(month);
+    }
+
+    public Set<String> getClientesDiferentes(int month,String cod) {
+        int index = cod.charAt(0)-'A';
+        int pos = binarySearchInfo(mapProd.get(index),cod);
+        return mapProd.get(index).get(pos).getCliMonth(month);
+    }
+
+    public Set<String> getProdutosDiferentes(int month,String cod) {
+        int index = cod.charAt(0)-'A';
+        int pos = binarySearchInfo(mapCli.get(index),cod);
+        return mapCli.get(index).get(pos).getCliMonth(month);
     }
 
     public void loadFilfromCat(Catalogo catProd, Catalogo catCli) {
@@ -49,7 +110,7 @@ public class Filial {
         }
     }
 
-    public int binarySearchInfo(List <Info> lista, String codProd) {
+    public int binarySearchInfo(List <? extends ProdInfo> lista, String codProd) {
         int startIndex = 0;
         int endIndex = lista.size();
         int midIndex = (endIndex+startIndex) / 2;
@@ -67,25 +128,46 @@ public class Filial {
     }
 
 
-    public int addSale(int month,float price,int uni,char type,String prod,String cli){
-        List<Info> lprod = mapProd.get(prod.charAt(0) - 'A');
-        List<Info> lcli = mapCli.get(cli.charAt(0) - 'A');
+    public int addSale(int month,double price,int uni,String prod,String cli){
+        List<ProdInfo> lprod = mapProd.get(prod.charAt(0) - 'A');
+        List<CliInfo> lcli = mapCli.get(cli.charAt(0) - 'A');
 
         int prodIndex = binarySearchInfo(lprod, prod);
         int cliIndex = binarySearchInfo(lcli, cli);
         int res = -1;
 
+        vendasMes[month]++;
         if(lcli.get(cliIndex).getSize() == 0) {
             clientesCompradores++;
             cliCompradoresMes[month]++;
             res = cliIndex;
         }
 
-        lprod.get(prodIndex).addCli(cli, type);
-        lcli.get(cliIndex).addProd(prod, month, uni, price);
+        lprod.get(prodIndex).addCode(prod,month,price,uni);
+        lcli.get(cliIndex).addProd(prod, month,uni,price);
 
         return res;
     }
 
+    public List<String> getClientesMaisCompradores() {
+        List<String> list = new ArrayList<>();
 
+       for(List<CliInfo> l: mapCli.values()) {
+           l.stream().sorted().limit(3).forEach(c -> list.add(c.getCode()));
+       }
+
+       return list.stream().sorted().limit(3).collect(Collectors.toList());
+
+    }
+
+//    public List<Double> clientesOrdenados() {
+//
+//        List<Double> list = new ArrayList<>();
+//
+//       for(List<CliInfo> l: mapCli.values()) {
+//           l.stream().sorted().limit(3).forEach(c -> list.add(c.getGastoTotal()));
+//       }
+//
+//       return list;
+//    }
 }

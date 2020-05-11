@@ -150,22 +150,22 @@ public class Filial {
     }
 
     public List<String> getClientesMaisCompradores() {
-        List<String> list = new ArrayList<>();
+        List<CliInfo> list = new ArrayList<>();
 
        for(List<CliInfo> l: mapCli.values()) {
-           l.stream().sorted().limit(3).forEach(c -> list.add(c.getCode()));
+           l.stream().sorted().limit(3).forEach(list::add);
        }
 
-       return list.stream().sorted().limit(3).collect(Collectors.toList());
+       return list.stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
 
     }
 
-//    public List<Double> clientesOrdenados() {
+//    public List<String> clientesOrdenados() {
 //
-//        List<Double> list = new ArrayList<>();
+//        List<String> list = new ArrayList<>();
 //
 //       for(List<CliInfo> l: mapCli.values()) {
-//           l.stream().sorted().limit(3).forEach(c -> list.add(c.getGastoTotal()));
+//           l.stream().sorted().forEach(c -> list.add(c.getCode()));
 //       }
 //
 //       return list;

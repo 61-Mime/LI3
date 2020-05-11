@@ -6,13 +6,14 @@ public class ConsultasInterativas {
     private int[] querie2;
     private Map<Integer,double[]> querie3;
     private Map<Integer,double[]> querie4;
-    private List<String> querie7;
+    private Map<Integer, List<String>> querie7;
 
     public ConsultasInterativas(){
         querie1 = new ArrayList<>();
         querie2 = new int[8];
         querie3 = new HashMap<>();
         querie4 = new HashMap<>();
+        querie7 = new HashMap<>();
     }
 
     public void setQuerie1(Load sgv){
@@ -64,9 +65,13 @@ public class ConsultasInterativas {
 
     public void setQuerie7(Load sgv) {
 
-        for (int i = 0; i<2; i++) {
+        for(int i = 0; i<3; i++)
+            querie7.put(i, sgv.getFilial(i).getClientesMaisCompradores());
+    }
 
-        }
+    public Map<Integer, List<String>> getQuerie7() {
+        return querie7;
+    }
 }
 
 

@@ -20,6 +20,8 @@ public class Load {
         loadInfo = new LoadInfo();
     }
 
+
+
     public Catalogo getCatC(){
         return catClientes;
     }

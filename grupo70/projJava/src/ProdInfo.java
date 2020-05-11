@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ProdInfo{
+public class ProdInfo {
     private String code;
     private Map<Integer,Set<ProdCliinfo>> mapMes;
 
@@ -52,7 +52,7 @@ public class ProdInfo{
     public void addProd(String prodCode, int month, int uni, double price) {
     }
 
-    //public int compareTo(ProdInfo i) {
-      //  return this.getCode().compareTo(i.getCode());
-    //}
+//    public int compareTo(ProdInfo i) {
+//        return this.getCode().compareTo(i.getCode());
+//    }
 }

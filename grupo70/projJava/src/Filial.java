@@ -1,10 +1,9 @@
-import javax.swing.plaf.basic.BasicComboPopup;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Filial {
     private Map<Integer, List<ProdInfo>> mapProd;
-    private Map<Integer,List<ProdInfo>> mapCli;
+    private Map<Integer,List<CliInfo>> mapCli;
     private int clientesCompradores;
     private int[] cliCompradoresMes;
     private int[] vendasMes;
@@ -105,13 +104,13 @@ public class Filial {
             catlist = new ArrayList<>(catCli.getTree(i));
             mapCli.put(i,new ArrayList<>());
             for(i2 = 0; i2 < catlist.size(); i2++){
-                ProdInfo f = new CliInfo(catlist.get(i2));
+                CliInfo f = new CliInfo(catlist.get(i2));
                 mapCli.get(i).add(f);
             }
         }
     }
 
-    public int binarySearchInfo(List <ProdInfo> lista, String codProd) {
+    public int binarySearchInfo(List <? extends ProdInfo> lista, String codProd) {
         int startIndex = 0;
         int endIndex = lista.size();
         int midIndex = (endIndex+startIndex) / 2;
@@ -131,7 +130,7 @@ public class Filial {
 
     public int addSale(int month,double price,int uni,String prod,String cli){
         List<ProdInfo> lprod = mapProd.get(prod.charAt(0) - 'A');
-        List<ProdInfo> lcli = mapCli.get(cli.charAt(0) - 'A');
+        List<CliInfo> lcli = mapCli.get(cli.charAt(0) - 'A');
 
         int prodIndex = binarySearchInfo(lprod, prod);
         int cliIndex = binarySearchInfo(lcli, cli);
@@ -149,4 +148,26 @@ public class Filial {
 
         return res;
     }
+
+    public List<String> getClientesMaisCompradores() {
+        List<String> list = new ArrayList<>();
+
+       for(List<CliInfo> l: mapCli.values()) {
+           l.stream().sorted().limit(3).forEach(c -> list.add(c.getCode()));
+       }
+
+       return list.stream().sorted().limit(3).collect(Collectors.toList());
+
+    }
+
+//    public List<Double> clientesOrdenados() {
+//
+//        List<Double> list = new ArrayList<>();
+//
+//       for(List<CliInfo> l: mapCli.values()) {
+//           l.stream().sorted().limit(3).forEach(c -> list.add(c.getGastoTotal()));
+//       }
+//
+//       return list;
+//    }
 }

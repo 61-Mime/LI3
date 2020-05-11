@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class CliInfo extends ProdInfo{
+public class CliInfo extends ProdInfo implements Comparable<CliInfo>{
     private int []numeroCompras;
     private double []gastoTotal;
 
@@ -26,5 +26,10 @@ public class CliInfo extends ProdInfo{
         super.addCode(prodCode,month,price,uni);
         numeroCompras[month]++;
         gastoTotal[month] += uni * price;
+    }
+
+    public int compareTo(CliInfo c) {
+
+        return (int) (c.getGastoTotal() - this.getGastoTotal());
     }
 }

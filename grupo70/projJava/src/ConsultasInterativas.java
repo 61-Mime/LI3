@@ -6,6 +6,7 @@ public class ConsultasInterativas {
     private int[] querie2;
     private Map<Integer,double[]> querie3;
     private Map<Integer,double[]> querie4;
+    private List<String> querie7;
 
     public ConsultasInterativas(){
         querie1 = new ArrayList<>();
@@ -60,6 +61,12 @@ public class ConsultasInterativas {
             querie3.put(month,res);
         }
     }
+
+    public void setQuerie7(Load sgv) {
+
+        for (int i = 0; i<2; i++) {
+
+        }
 }
 
 

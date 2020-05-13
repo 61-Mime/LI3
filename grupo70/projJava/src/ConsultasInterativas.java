@@ -27,7 +27,7 @@ public class ConsultasInterativas {
         }
     }
 
-    public int getQ1size(){
+    public int getQuerie1(){
         return querie1.size();
     }
 
@@ -38,6 +38,10 @@ public class ConsultasInterativas {
             querie2[2 + 2*i] = sgv.getFilial(i).getVendasFil();
             querie2[2 + 2*i+1] = sgv.getFilial(i).getClientesCompradores();
         }
+    }
+
+    public int[] getQuerie2() {
+        return querie2;
     }
 
     public void setQuerie3(Load sgv,String cod){
@@ -54,6 +58,10 @@ public class ConsultasInterativas {
         }
     }
 
+    public Map<Integer,double[]> getQuerie3() {
+        return querie3;
+    }
+
     public void setQuerie4(Load sgv,String cod){
         int index,pos;
         double res[];
@@ -66,6 +74,10 @@ public class ConsultasInterativas {
             res[2] = sgv.getFact().getFatTotalMes(index,pos,month);
             querie3.put(month,res);
         }
+    }
+
+    public Map<Integer,double[]> getQuerie4() {
+        return querie4;
     }
 
     public void addtodofodido(String cod, int uni) {
@@ -94,13 +106,16 @@ public class ConsultasInterativas {
 
         for(i=0; i<2; i++)
             for(j=0; j<12; j++){
-                System.out.println(".");
                 Set<ProdCliinfo> tree = sgv.getFilial(i).getCliInfo(index, pos).getSetMes(j);
                 if(tree != null)
                     tree.forEach(c -> addtodofodido(c.getCod(),c.getUni()));}
 
         querie5 = querie5.stream().sorted(new sortStringQueri8()).collect(Collectors.toList());
 
+    }
+
+    public List<Querie8> getQuerie5() {
+        return querie5;
     }
 
     public void setQuerie7(Load sgv) {
@@ -122,10 +137,6 @@ public class ConsultasInterativas {
 
     public List<Querie8> getQuerie8() {
         return querie8;
-    }
-
-    public List<Querie8> getQuerie5() {
-        return querie5;
     }
 }
 

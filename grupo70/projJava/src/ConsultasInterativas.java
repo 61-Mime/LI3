@@ -7,6 +7,7 @@ public class ConsultasInterativas {
     private int[] querie2;
     private Map<Integer,double[]> querie3;
     private Map<Integer,double[]> querie4;
+    private List<Querie8> querie5;
     private Map<Integer, List<String>> querie7;
     private List<Querie8> querie8;
 
@@ -15,6 +16,7 @@ public class ConsultasInterativas {
         querie2 = new int[8];
         querie3 = new HashMap<>();
         querie4 = new HashMap<>();
+        querie5 = new ArrayList<>();
         querie7 = new HashMap<>();
         querie8 = new ArrayList<>();
     }
@@ -41,10 +43,10 @@ public class ConsultasInterativas {
     public void setQuerie3(Load sgv,String cod){
         double res[];
         int index,pos;
-        for(int month = 1;month < 13;month++){
+        index = sgv.getFilial(0).getIndex(cod);
+        pos = sgv.getFilial(0).getPosCli(cod,index);
+        for(int month = 0;month < 12;month++){
             res = new double[3];
-            index = sgv.getFilial(0).getIndex(cod);
-            pos = sgv.getFilial(0).getPosCli(cod,index);
             res[0] = sgv.getgFil().numeroComprasMes(index,pos,month);
             res[1] = sgv.getgFil().produtosDiferentes(cod,month);
             res[2] = sgv.getgFil().gastoTotalMes(index,pos,month);
@@ -55,7 +57,7 @@ public class ConsultasInterativas {
     public void setQuerie4(Load sgv,String cod){
         int index,pos;
         double res[];
-        for(int month = 1;month < 13;month++){
+        for(int month = 0;month < 12;month++){
             res = new double[3];
             index = sgv.getFact().getIndex(cod);
             pos = sgv.getFact().getPos(cod,index);
@@ -64,6 +66,41 @@ public class ConsultasInterativas {
             res[2] = sgv.getFact().getFatTotalMes(index,pos,month);
             querie3.put(month,res);
         }
+    }
+
+    public void addtodofodido(String cod, int uni) {
+        Querie8 c = new Querie8(cod, uni);
+
+        if(querie5.contains(c)){
+            Iterator<Querie8> it = querie5.iterator();
+            boolean b = true;
+            Querie8 q;
+            while (it.hasNext() && b){
+                q = it.next();
+                if(q.getCode().equals(cod)) {
+                    q.addUni(uni);
+                    b = false;
+                }
+            }
+        }
+        else
+            querie5.add(c);
+    }
+
+    public void setQuerie5(Load sgv, String cod) {
+        int index,pos, i, j;
+        index = sgv.getgFil().getFil(0).getIndex(cod);
+        pos = sgv.getgFil().getFil(0).getPosCli(cod,index);
+
+        for(i=0; i<2; i++)
+            for(j=0; j<12; j++){
+                System.out.println(".");
+                Set<ProdCliinfo> tree = sgv.getFilial(i).getCliInfo(index, pos).getSetMes(j);
+                if(tree != null)
+                    tree.forEach(c -> addtodofodido(c.getCod(),c.getUni()));}
+
+        querie5 = querie5.stream().sorted(new sortStringQueri8()).collect(Collectors.toList());
+
     }
 
     public void setQuerie7(Load sgv) {
@@ -77,15 +114,18 @@ public class ConsultasInterativas {
     }
 
     public void setQuerie8(Load sgv, int limit) {
-        for(int i=0; i<26; i++) {
+        for(int i=0; i<26; i++)
             sgv.getCatC().getTree(i).forEach(a -> querie8.add(new Querie8(a, sgv.getgFil().produtosDiferentesTotal(a))));
-        }
 
-        querie8 = querie8.stream().sorted().limit(limit).collect(Collectors.toList());
+        querie8 = querie8.stream().sorted(new sortStringQueri8()).limit(limit).collect(Collectors.toList());
     }
 
     public List<Querie8> getQuerie8() {
         return querie8;
+    }
+
+    public List<Querie8> getQuerie5() {
+        return querie5;
     }
 }
 

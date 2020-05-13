@@ -20,6 +20,16 @@ public class ProdInfo {
         else return 0;
     }
 
+    public Set<ProdCliinfo> getSetMes(int month) {
+        Set<ProdCliinfo> novo  = new TreeSet<>();
+        if(mapMes.get(month) == null)
+            return null;
+
+        mapMes.get(month).forEach(c -> novo.add(c.clone()));
+
+        return novo;
+    }
+
     public String getCode() {
         return code;
     }

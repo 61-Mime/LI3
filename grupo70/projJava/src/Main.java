@@ -36,5 +36,8 @@ public class Main {
 
         ci.setQuerie8(sgv, 10);
         System.out.println(ci.getQuerie8());
+
+        ci.setQuerie5(sgv, "Q4462");
+        System.out.println(ci.getQuerie5());
 	}
 }

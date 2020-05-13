@@ -7,4 +7,4 @@ public class sortCliByTotalFact implements Comparator<ProdInfo> {
     }
 }
 
-//public class Sort implements Comparator<ProdInfo>
+

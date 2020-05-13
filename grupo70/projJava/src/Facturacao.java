@@ -58,6 +58,10 @@ public class Facturacao{
     public List<FactMF> getList(int index){
         return listaProd.get(index);
     }
+/*
+    public List<String> getXmaisVendidos(int x){
+
+    }*/
 
     public void loadFactfromCat(Catalogo catProd) {
         List<String> catlist;
@@ -110,4 +114,6 @@ public class Facturacao{
         for(int i = 0;i < 20;i++)
         System.out.print(listaProd.get(1).get(i).toSring());
     }
+
+
 }

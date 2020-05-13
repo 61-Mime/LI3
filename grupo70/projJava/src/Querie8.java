@@ -10,8 +10,17 @@ public class Querie8 implements Comparable<Querie8>{
         this.dif = dif;
     }
 
+    public Querie8(Querie8 q) {
+        this.code = q.getCode();
+        this.dif = q.getDif();
+    }
+
     public String getCode() {
         return code;
+    }
+
+    public void setDif(int dif) {
+        this.dif = dif;
     }
 
     public int getDif() {
@@ -45,5 +54,9 @@ public class Querie8 implements Comparable<Querie8>{
                 "code='" + code + '\'' +
                 ", dif=" + dif +
                 '}' + '\n';
+    }
+
+    public Querie8 clone() {
+        return new Querie8(this);
     }
 }

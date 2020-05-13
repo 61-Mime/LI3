@@ -37,10 +37,17 @@ public class Main {
         ci.setQuerie1(sgv);
         System.out.println(ci.getQuerie1());
 
+        System.out.println("***********************************");
+
         ci.setQuerie5(sgv, "Q4462");
         System.out.println(ci.getQuerie5());
 
+        System.out.println("***********************************");
+
         ci.setQuerie8(sgv, 10);
         System.out.println(ci.getQuerie8());
+
+//        ci.setQuerie5(sgv, );
+//        System.out.println(ci.getQuerie5());
 	}
 }

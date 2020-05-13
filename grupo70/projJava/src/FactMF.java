@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -22,6 +23,10 @@ public class FactMF {
 
     public int getUnidadesMes(int month) {
         return unidadesMes[month];
+    }
+
+    public int getUniTotal() {
+        return Arrays.stream(unidadesMes).sum();
     }
 
     public double getFaturacaoTotal() {

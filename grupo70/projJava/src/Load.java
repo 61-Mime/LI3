@@ -21,7 +21,6 @@ public class Load {
     }
 
 
-
     public Catalogo getCatC(){
         return catClientes;
     }

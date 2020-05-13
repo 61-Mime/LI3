@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,6 +7,7 @@ public class ConsultasInterativas {
     private Map<Integer,double[]> querie3;
     private Map<Integer,double[]> querie4;
     private List<Querie8> querie5;
+    private List<Querie8> querie6;
     private Map<Integer, List<String>> querie7;
     private List<Querie8> querie8;
 
@@ -17,6 +17,7 @@ public class ConsultasInterativas {
         querie3 = new HashMap<>();
         querie4 = new HashMap<>();
         querie5 = new ArrayList<>();
+        querie6 = new ArrayList<>();
         querie7 = new HashMap<>();
         querie8 = new ArrayList<>();
     }
@@ -80,7 +81,7 @@ public class ConsultasInterativas {
         return querie4;
     }
 
-    public void addtodofodido(String cod, int uni) {
+    public void addQuerie5(String cod, int uni) {
         Querie8 c = new Querie8(cod, uni);
 
         if(querie5.contains(c)){
@@ -104,11 +105,11 @@ public class ConsultasInterativas {
         index = sgv.getgFil().getFil(0).getIndex(cod);
         pos = sgv.getgFil().getFil(0).getPosCli(cod,index);
 
-        for(i=0; i<2; i++)
+        for(i=0; i<3; i++)
             for(j=0; j<12; j++){
                 Set<ProdCliinfo> tree = sgv.getFilial(i).getCliInfo(index, pos).getSetMes(j);
                 if(tree != null)
-                    tree.forEach(c -> addtodofodido(c.getCod(),c.getUni()));}
+                    tree.forEach(c -> addQuerie5(c.getCod(),c.getUni()));}
 
         querie5 = querie5.stream().sorted(new sortStringQueri8()).collect(Collectors.toList());
 
@@ -116,6 +117,29 @@ public class ConsultasInterativas {
 
     public List<Querie8> getQuerie5() {
         return querie5;
+    }
+
+    public void setQuerie6(Load sgv, int limit) {
+            int size = 0;
+//        for (List<FactMF> list: sgv.getFact().get)
+//            list.
+        for(int i = 0; i<26; i++) {
+            size = sgv.getFact().getSize(i);
+
+//            sgv.getFact().getList(i).forEach(a -> querie6.add(new Querie8(a.getCodProd(), )));
+
+            for (int j = 0; j<size; j++) {
+                querie6.add(new Querie8(sgv.getFact().getProd(i, j), sgv.getFact().getUni(i, j)));
+            }
+        }
+
+        querie6 = querie6.stream().sorted(new sortStringQueri8()).limit(limit).collect(Collectors.toList());
+
+        querie6.forEach(q -> q.setDif(sgv.getgFil().clientesDiferentesTotal(q.getCode())));
+    }
+
+    public List<Querie8> getQuerie6() {
+        return querie6.stream().map(Querie8::clone).collect(Collectors.toList());
     }
 
     public void setQuerie7(Load sgv) {

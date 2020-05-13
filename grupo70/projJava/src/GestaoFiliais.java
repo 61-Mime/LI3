@@ -60,6 +60,18 @@ public class GestaoFiliais {
         return prod.size();
     }
 
+    public int clientesDiferentesTotal(String prodCod){
+        Set<String> prod = new HashSet<>();
+
+        for(int i=0; i<12; i++) {
+            prod.addAll(gFil.get(0).getClientesDiferentes(i, prodCod));
+            prod.addAll(gFil.get(1).getClientesDiferentes(i, prodCod));
+            prod.addAll(gFil.get(2).getClientesDiferentes(i, prodCod));
+        }
+
+        return prod.size();
+    }
+
     public double gastoTotalMes(int pos,int index,int month){
         return gFil.get(0).getGastoTotal(index,pos,month) + gFil.get(1).getGastoTotal(index,pos,month)
                 + gFil.get(2).getGastoTotal(index,pos,month);

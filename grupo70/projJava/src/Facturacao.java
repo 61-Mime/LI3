@@ -19,6 +19,10 @@ public class Facturacao{
         faturacaoMesFil = new float[36];
     }
 
+    public Map<Integer, List<FactMF>> getListaProd() {
+        return listaProd;
+    }
+
     public int getComprados() {
         return comprados;
     }
@@ -45,6 +49,18 @@ public class Facturacao{
 
     public int getPos(String cod,int index){
         return binarySearch(listaProd.get(index),cod);
+    }
+
+    public String getProd(int i, int pos) {
+        return listaProd.get(i).get(pos).getCodProd();
+    }
+
+    public int getUni(int i, int pos) {
+        return listaProd.get(i).get(pos).getUniTotal();
+    }
+
+    public int getSize(int i) {
+        return listaProd.get(i).size();
     }
 
     public double getFatTotalMes(int index,int pos,int month){

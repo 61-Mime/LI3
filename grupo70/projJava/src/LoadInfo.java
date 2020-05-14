@@ -1,4 +1,6 @@
-public class LoadInfo {
+import java.io.Serializable;
+
+public class LoadInfo implements Serializable {
     private int vendasValidas;
     private int vendasInvalidas;
     private int CliValidos;

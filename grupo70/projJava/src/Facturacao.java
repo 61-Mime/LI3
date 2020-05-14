@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
-public class Facturacao{
+public class Facturacao implements Serializable {
     private Map<Integer,List<FactMF>> listaProd;
     private int comprados;
     private int compras0;

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class CliInfo extends ProdInfo implements Comparable<CliInfo>{
+public class CliInfo extends ProdInfo implements Comparable<CliInfo>, Serializable {
     private int []numeroCompras;
     private double []gastoTotal;
 

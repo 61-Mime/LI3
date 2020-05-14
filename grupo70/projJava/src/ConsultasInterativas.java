@@ -52,7 +52,7 @@ public class ConsultasInterativas {
     }
 
     public void setQuerie3(Load sgv,String cod){
-        double res[];
+        double[] res;
         int index,pos;
         index = sgv.getFilial(0).getIndex(cod);
         pos = sgv.getFilial(0).getPosCli(cod,index);
@@ -127,8 +127,11 @@ public class ConsultasInterativas {
 
     public void setQuerie6(Load sgv, int limit) {
             int size = 0;
-//        for (List<FactMF> list: sgv.getFact().get)
-//            list.
+//        for (List<FactMF> list: sgv.getFact().getListaProd().values()) {
+//            for (FactMF f: list)
+//                querie6.add(new Querie8(f.getCodProd(), f.getUniTotal()));
+//        }
+
         for(int i = 0; i<26; i++) {
             size = sgv.getFact().getSize(i);
 

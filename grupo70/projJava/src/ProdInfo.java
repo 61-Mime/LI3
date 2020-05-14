@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ProdInfo {
+public class ProdInfo implements Serializable {
     private String code;
     private Map<Integer,Set<ProdCliinfo>> mapMes;
 
@@ -52,11 +53,12 @@ public class ProdInfo {
     }
 
     public Set<String> getCliMonth(int month){
-        Set<String> clientes = new TreeSet<>();
+        Set<String> clientes = new HashSet<>();
         if(mapMes.containsKey(month)){
             for(ProdCliinfo c:mapMes.get(month))
                 clientes.add(c.getCod());
         }
+
         return clientes;
     }
 

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Catalogo {
+public class Catalogo implements Serializable {
     private int type;
     private int total;
     private Map<Integer,Set<String>> list;
@@ -64,4 +65,14 @@ public class Catalogo {
             tree.forEach(System.out::println);
         }
     }*/
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Catalogo{");
+        sb.append("type=").append(type);
+        sb.append(", total=").append(total);
+        sb.append(", list=").append(list);
+        sb.append('}');
+        return sb.toString();
+    }
 }

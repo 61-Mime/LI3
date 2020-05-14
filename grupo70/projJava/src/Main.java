@@ -1,13 +1,11 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import javax.xml.crypto.Data;
+import java.io.*;
 import java.util.TreeSet;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Crono.start();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+//        Crono.start();
         Load sgv = new Load();
         sgv.loadCat(sgv.getLoadInfo().getCliPath(),0);
         sgv.loadCat(sgv.getLoadInfo().getProdPath(),1);
@@ -25,49 +23,39 @@ public class Main {
         Crono.start();
         sgv.loadSales(sgv.getLoadInfo().getSalesPath());
         System.out.println("Tempo carregamento vendas " + Crono.getTime());
-
-        ConsultasEstatisticas ce = new ConsultasEstatisticas(sgv);
-        System.out.println(ce.toString());
-
-//        System.out.println(sgv.getFilial(1).clientesOrdenados());
-
-
-        ConsultasInterativas ci = new ConsultasInterativas();
-
-        ci.setQuerie1(sgv);
-        System.out.println("Querie 1\n"+ci.getQuerie1());
-
-        System.out.println("***********************************");
-
-        ci.setQuerie2(sgv, 1);
-        System.out.println(ci.getQuerie2().toString());
-
-        System.out.println("***********************************");
-
-        ci.setQuerie5(sgv, "Q4462");
-        System.out.println("Querie 5\n"+ci.getQuerie5());
-
-        System.out.println("***********************************");
-
-        ci.setQuerie6(sgv, 100);
-        System.out.println("Querie 6\n"+ci.getQuerie6());
-
-        System.out.println("***********************************");
-
-        ci.setQuerie8(sgv, 10);
-        System.out.println("Querie 8\n"+ci.getQuerie8());
-
-        System.out.println("***********************************");
-
-        ci.setQuerie9(sgv, "AF1184",6);
-        System.out.println("Querie 9\n"+ci.getQuerie9());
-
-        System.out.println("***********************************");
-
-        ci.setQuerie10(sgv);
-        System.out.println(ci.toStringQ10());
+//
+//        ConsultasEstatisticas ce = new ConsultasEstatisticas(sgv);
+//        System.out.println(ce.toString());
+//
+////        System.out.println(sgv.getFilial(1).clientesOrdenados());
+//
+//
+//        ConsultasInterativas ci = new ConsultasInterativas();
+//
+//        ci.setQuerie1(sgv);
+//        System.out.println(ci.getQuerie1());
+//
+//        System.out.println("***********************************");
+//
+//        ci.setQuerie5(sgv, "Q4462");
+//        System.out.println(ci.getQuerie5());
+//
+//        System.out.println("***********************************");
+//
+//        ci.setQuerie8(sgv, 10);
+//        System.out.println(ci.getQuerie8());
 
 //        ci.setQuerie5(sgv, );
 //        System.out.println(ci.getQuerie5());
+
+//        DataFile dataFile = new DataFile();
+//        dataFile.guardaDados("data.dat", sgv);
+//
+//        System.out.println(sgv.getCatC().getTree(8));
+//
+//        sgv = dataFile.carregaDados("data.dat");
+//
+//        System.out.println(sgv.getCatC().getTree(8));
+
 	}
 }

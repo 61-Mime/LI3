@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ProdCliinfo implements Comparable<ProdCliinfo>{
+public class ProdCliinfo implements Comparable<ProdCliinfo>, Serializable {
     private String cod;
     private int month;
     private double price;

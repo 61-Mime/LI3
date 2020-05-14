@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Filial {
+public class Filial implements Serializable {
     private Map<Integer, List<ProdInfo>> mapProd;
     private Map<Integer,List<CliInfo>> mapCli;
     private int clientesCompradores;

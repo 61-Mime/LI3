@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class GestaoFiliais {
+public class GestaoFiliais implements Serializable {
     private Map<Integer, Filial> gFil;
 
     public GestaoFiliais(){

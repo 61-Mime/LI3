@@ -1,11 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Load {
+public class Load implements Serializable {
     private Catalogo catClientes;
     private Catalogo catProdutos;
     private Facturacao fact;
@@ -114,5 +111,17 @@ public class Load {
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Load{");
+        sb.append("catClientes=").append(catClientes);
+        sb.append(", catProdutos=").append(catProdutos);
+        sb.append(", fact=").append(fact);
+        sb.append(", gFil=").append(gFil);
+        sb.append(", loadInfo=").append(loadInfo);
+        sb.append('}');
+        return sb.toString();
     }
 }

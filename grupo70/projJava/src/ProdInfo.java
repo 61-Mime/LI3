@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProdInfo {
     private String code;
@@ -77,6 +78,16 @@ public class ProdInfo {
     }
 
     public void addProd(String prodCode, int month, int uni, double price) {
+    }
+
+    public List<ProdCliinfo> getMapList(){
+        List<ProdCliinfo> list = new ArrayList<>();
+        for(int i = 0;i < 12;i++){
+            if(mapMes.containsKey(i))
+                mapMes.get(i).stream().forEach(pcli -> list.add(pcli.clone()));
+        }
+
+        return list;
     }
 
 //    public int compareTo(ProdInfo i) {

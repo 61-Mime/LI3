@@ -64,7 +64,6 @@ public class Filial {
         for(int i = 0;i < 26;i++)
             for(ProdInfo p:mapProd.get(i))
                 clientes.addAll(p.getCliMonth(month));
-
         return clientes;
     }
 
@@ -143,7 +142,7 @@ public class Filial {
             res = cliIndex;
         }
 
-        lprod.get(prodIndex).addCode(prod,month,price,uni);
+        lprod.get(prodIndex).addCode(cli,month,price,uni);
         lcli.get(cliIndex).addProd(prod, month,uni,price);
 
         return res;
@@ -158,6 +157,10 @@ public class Filial {
 
        return list.stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
 
+    }
+
+    public List<ProdCliinfo> getProdCliList(int index,int pos){
+        return mapProd.get(index).get(pos).getMapList();
     }
 
 //    public List<String> clientesOrdenados() {

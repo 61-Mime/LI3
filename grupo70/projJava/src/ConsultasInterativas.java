@@ -6,10 +6,11 @@ public class ConsultasInterativas {
     private int[] querie2;
     private Map<Integer,double[]> querie3;
     private Map<Integer,double[]> querie4;
-    private List<Querie8> querie5;
-    private List<Querie8> querie6;
+    private List<ParStringInt> querie5;
+    private List<ParStringInt> querie6;
     private Map<Integer, List<String>> querie7;
-    private List<Querie8> querie8;
+    private List<ParStringInt> querie8;
+    private List<ParStringInt> querie9;
 
     public ConsultasInterativas(){
         querie1 = new ArrayList<>();
@@ -20,6 +21,7 @@ public class ConsultasInterativas {
         querie6 = new ArrayList<>();
         querie7 = new HashMap<>();
         querie8 = new ArrayList<>();
+        querie9 = new ArrayList<>();
     }
 
     public void setQuerie1(Load sgv){
@@ -82,12 +84,12 @@ public class ConsultasInterativas {
     }
 
     public void addQuerie5(String cod, int uni) {
-        Querie8 c = new Querie8(cod, uni);
+        ParStringInt c = new ParStringInt(cod, uni);
 
         if(querie5.contains(c)){
-            Iterator<Querie8> it = querie5.iterator();
+            Iterator<ParStringInt> it = querie5.iterator();
             boolean b = true;
-            Querie8 q;
+            ParStringInt q;
             while (it.hasNext() && b){
                 q = it.next();
                 if(q.getCode().equals(cod)) {
@@ -111,11 +113,11 @@ public class ConsultasInterativas {
                 if(tree != null)
                     tree.forEach(c -> addQuerie5(c.getCod(),c.getUni()));}
 
-        querie5 = querie5.stream().sorted(new sortStringQueri8()).collect(Collectors.toList());
+        querie5 = querie5.stream().sorted(new sortParbyValue()).collect(Collectors.toList());
 
     }
 
-    public List<Querie8> getQuerie5() {
+    public List<ParStringInt> getQuerie5() {
         return querie5;
     }
 
@@ -129,17 +131,17 @@ public class ConsultasInterativas {
 //            sgv.getFact().getList(i).forEach(a -> querie6.add(new Querie8(a.getCodProd(), )));
 
             for (int j = 0; j<size; j++) {
-                querie6.add(new Querie8(sgv.getFact().getProd(i, j), sgv.getFact().getUni(i, j)));
+                querie6.add(new ParStringInt(sgv.getFact().getProd(i, j), sgv.getFact().getUni(i, j)));
             }
         }
 
-        querie6 = querie6.stream().sorted(new sortStringQueri8()).limit(limit).collect(Collectors.toList());
+        querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
 
-        querie6.forEach(q -> q.setDif(sgv.getgFil().clientesDiferentesTotal(q.getCode())));
+        querie6.forEach(q -> q.setValue(sgv.getgFil().clientesDiferentesTotal(q.getCode())));
     }
 
-    public List<Querie8> getQuerie6() {
-        return querie6.stream().map(Querie8::clone).collect(Collectors.toList());
+    public List<ParStringInt> getQuerie6() {
+        return querie6.stream().map(ParStringInt::clone).collect(Collectors.toList());
     }
 
     public void setQuerie7(Load sgv) {
@@ -154,13 +156,46 @@ public class ConsultasInterativas {
 
     public void setQuerie8(Load sgv, int limit) {
         for(int i=0; i<26; i++)
-            sgv.getCatC().getTree(i).forEach(a -> querie8.add(new Querie8(a, sgv.getgFil().produtosDiferentesTotal(a))));
+            sgv.getCatC().getTree(i).forEach(a -> querie8.add(new ParStringInt(a, sgv.getgFil().produtosDiferentesTotal(a))));
 
-        querie8 = querie8.stream().sorted(new sortStringQueri8()).limit(limit).collect(Collectors.toList());
+        querie8 = querie8.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
 
-    public List<Querie8> getQuerie8() {
+    public List<ParStringInt> getQuerie8() {
         return querie8;
+    }
+
+    public void setQuerie9(Load sgv, String codProd,int limit) {
+        List<ProdCliinfo> list;
+        int index = sgv.getgFil().getFil(0).getIndex(codProd);
+        int pos = sgv.getgFil().getFil(0).getPosProd(codProd,index);
+
+        for(int i=0; i<3; i++) {
+            list = sgv.getgFil().getFil(i).getProdCliList(index, pos);
+            for (ProdCliinfo pcli : list){
+                ParStringInt q9 = new ParStringInt(pcli.getCod(),pcli.getUni());
+                if(querie9.contains(q9)){
+                    Iterator<ParStringInt> it = querie9.iterator();
+                    boolean b = true;
+                    ParStringInt q;
+                    while (it.hasNext() && b){
+                        q = it.next();
+                        if(q.getCode().equals(q9.getCode())) {
+                            q.addUni(q9.getValue());
+                            b = false;
+                        }
+                    }
+                }
+                else
+                    querie9.add(q9);
+            }
+        }
+
+        querie9 = querie9.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
+    }
+
+    public List<ParStringInt> getQuerie9() {
+        return querie9.stream().map(ParStringInt::clone).collect(Collectors.toList());
     }
 }
 

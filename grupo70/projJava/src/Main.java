@@ -35,17 +35,32 @@ public class Main {
         ConsultasInterativas ci = new ConsultasInterativas();
 
         ci.setQuerie1(sgv);
-        System.out.println(ci.getQuerie1());
+        System.out.println("Querie 1\n"+ci.getQuerie1());
+
+        System.out.println("***********************************");
+
+        ci.setQuerie2(sgv, 1);
+        System.out.println(ci.getQuerie2().toString());
 
         System.out.println("***********************************");
 
         ci.setQuerie5(sgv, "Q4462");
-        System.out.println(ci.getQuerie5());
+        System.out.println("Querie 5\n"+ci.getQuerie5());
+
+        System.out.println("***********************************");
+
+        ci.setQuerie6(sgv, 100);
+        System.out.println("Querie 6\n"+ci.getQuerie6());
 
         System.out.println("***********************************");
 
         ci.setQuerie8(sgv, 10);
-        System.out.println(ci.getQuerie8());
+        System.out.println("Querie 8\n"+ci.getQuerie8());
+
+        System.out.println("***********************************");
+
+        ci.setQuerie9(sgv, "AF1184",6);
+        System.out.println("Querie 9\n"+ci.getQuerie9());
 
 //        ci.setQuerie5(sgv, );
 //        System.out.println(ci.getQuerie5());

@@ -62,6 +62,11 @@ public class Main {
         ci.setQuerie9(sgv, "AF1184",6);
         System.out.println("Querie 9\n"+ci.getQuerie9());
 
+        System.out.println("***********************************");
+
+        ci.setQuerie10(sgv);
+        System.out.println(ci.toStringQ10());
+
 //        ci.setQuerie5(sgv, );
 //        System.out.println(ci.getQuerie5());
 	}

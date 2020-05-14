@@ -26,6 +26,11 @@ public class Catalogo {
             list.get(i).add(cod);
         }
     }
+    /*
+    public void ordena(){
+        for(int i = 0;i < 12;i++)
+            list.get(i).sort(null);
+    }*/
 
     public boolean valCli(String codCli) {
         return codCli.matches("[A-Z]([1-4]\\d{3}|50{3})");
@@ -43,10 +48,20 @@ public class Catalogo {
         return list.get(i);
     }
 
-    public void printlista(int i) {
+    public String[] getArraycat(){
+        String[] array = new String[total];
+        int curr = 0,i;
+        for(i = 0;i < 12;i++)
+            for (String st:list.get(i))
+                array[curr++] = st;
+
+        return array;
+    }
+
+    /*public void printlista(int i) {
         Set <String> tree = list.get(i);
         if(tree != null) {
             tree.forEach(System.out::println);
         }
-    }
+    }*/
 }

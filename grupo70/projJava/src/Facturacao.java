@@ -67,6 +67,10 @@ public class Facturacao{
         return listaProd.get(index).get(pos).getFaturacaoMes(month);
     }
 
+    public double[][] getFatMesFilProd(int index,int pos){
+        return listaProd.get(index).get(pos).getFaturacaoMesFill();
+    }
+
     public double getUniMes(int index,int pos,int month){
         return listaProd.get(index).get(pos).getUnidadesMes(month);
     }

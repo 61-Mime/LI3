@@ -11,6 +11,8 @@ public class ConsultasInterativas {
     private Map<Integer, List<String>> querie7;
     private List<ParStringInt> querie8;
     private List<ParStringInt> querie9;
+    private List<double[][]> querie10;
+    private String[]querie10prods;
 
     public ConsultasInterativas(){
         querie1 = new ArrayList<>();
@@ -22,6 +24,8 @@ public class ConsultasInterativas {
         querie7 = new HashMap<>();
         querie8 = new ArrayList<>();
         querie9 = new ArrayList<>();
+        querie10 = new ArrayList<>();
+        querie10prods = new String[0];
     }
 
     public void setQuerie1(Load sgv){
@@ -196,6 +200,39 @@ public class ConsultasInterativas {
 
     public List<ParStringInt> getQuerie9() {
         return querie9.stream().map(ParStringInt::clone).collect(Collectors.toList());
+    }
+
+    public void setQuerie10(Load sgv) {
+        int size = 0, i,c = 0;
+        querie10prods = new String[sgv.getCatP().getTotal()];
+
+        for (i = 0; i < 26; i++) {
+            size = sgv.getFact().getSize(i);
+            for (int j = 0; j < size; j++) {
+                querie10.add(sgv.getFact().getFatMesFilProd(i, j));
+                querie10prods[c++] = sgv.getFact().getProd(i, j);
+            }
+        }
+    }
+
+    public String toStringTabela(double[][] values){
+        StringBuilder sb = new StringBuilder();
+        for(int fil = 0;fil < 3;fil++) {
+            for (int i = 0; i < 12; i++)
+                sb.append(values[i][fil]).append(" ");
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    public String toStringQ10(){
+        int size = querie10.size();
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i<size;i++)
+            sb.append("Faturação ").append(querie10prods[i]).append("\n").append(toStringTabela(querie10.get(i)));
+
+        return sb.toString();
     }
 }
 

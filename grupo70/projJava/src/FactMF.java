@@ -1,6 +1,5 @@
 import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class FactMF {
     private String codProd;
@@ -35,6 +34,10 @@ public class FactMF {
 
     public double getFaturacaoMes(int month) {
         return faturacaoMesFill[month][0] + faturacaoMesFill[month][1] + faturacaoMesFill[month][2];
+    }
+
+    public double[][] getFaturacaoMesFill() {
+        return Arrays.stream(faturacaoMesFill).toArray(double[][]::new);
     }
 
     public int getOccup() {

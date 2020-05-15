@@ -17,7 +17,6 @@ public class Load implements Serializable {
         loadInfo = new LoadInfo();
     }
 
-
     public Catalogo getCatC(){
         return catClientes;
     }
@@ -40,6 +39,24 @@ public class Load implements Serializable {
 
     public GestaoFiliais getgFil() {
         return gFil;
+    }
+
+    public void load(){
+        Crono.start();
+        loadCat(getLoadInfo().getCliPath(),0);
+        loadCat(getLoadInfo().getProdPath(),1);
+        System.out.println("Tempo carregamento catalogos " + Crono.getTime());
+
+        Crono.start();
+        fact.loadFactfromCat(getCatP());
+        for(int i=0; i<3; i++)
+            getFilial(i).loadFilfromCat(getCatP(), getCatC());
+        System.out.println("Tempo carregamento catalogos para structs " +Crono.getTime());
+
+        Crono.start();
+        loadSales(getLoadInfo().getSalesPath());
+        System.out.println("Tempo carregamento vendas " + Crono.getTime());
+
     }
 
     public void loadCat(String filename, int type){
@@ -66,8 +83,10 @@ public class Load implements Serializable {
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
-        loadInfo.setCliValidos(catClientes.getTotal());
-        loadInfo.setProdValidos(catProdutos.getTotal());
+        if(type == 0)
+            loadInfo.setCliValidos(catClientes.getTotal());
+        else
+            loadInfo.setProdValidos(catProdutos.getTotal());
     }
 
     public boolean valSale(int branch,int month,float price,int uni,char type){
@@ -100,13 +119,13 @@ public class Load implements Serializable {
                 if(valSale(branch,month,price,uni,type) &&
                    catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
                     loadInfo.incValidas();
-                    fact.addSale(branch - 1, month-1, price, uni, type, venda[0]);
+                    fact.addSale(branch - 1, month - 1, price, uni, type, venda[0]);
 
-                    if (gFil.addSaleInfo(month-1, price, uni, venda[0], venda[4],branch - 1))
+                    if (gFil.addSaleInfo(month - 1, price, uni, venda[0], venda[4], branch - 1))
                         loadInfo.incCliComprador();
+                    else
+                        loadInfo.incInvalidas();
                 }
-                else
-                    loadInfo.incInvalidas();
             }
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");

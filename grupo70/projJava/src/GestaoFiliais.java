@@ -21,7 +21,7 @@ public class GestaoFiliais implements Serializable {
         if(cliIndex != -1) {
             int res=0;
             for(int i=1; i<4 && res==0; i++)
-                if(i!=branch)
+                if(i!=branch + 1)
                     res += gFil.get(i-1).getSizeCli(cod, cliIndex);
 
             if(res == 0)
@@ -73,12 +73,12 @@ public class GestaoFiliais implements Serializable {
         return cli.size();
     }
 
-    public double gastoTotalMes(int pos,int index,int month){
+    public double gastoTotalMes(int index,int pos,int month){
         return gFil.get(0).getGastoTotal(index,pos,month) + gFil.get(1).getGastoTotal(index,pos,month)
                 + gFil.get(2).getGastoTotal(index,pos,month);
     }
 
-    public double numeroComprasMes(int pos,int index,int month){
+    public double numeroComprasMes(int index,int pos,int month){
         return gFil.get(0).getNumeroCompras(index,pos,month) + gFil.get(1).getNumeroCompras(index,pos,month)
                + gFil.get(2).getNumeroCompras(index,pos,month);
     }

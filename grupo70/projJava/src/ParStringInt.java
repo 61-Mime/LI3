@@ -3,16 +3,24 @@ import java.util.Objects;
 
 public class ParStringInt implements Comparable<ParStringInt>{
     private String code;
-    private int value;
+    private double[] value;
 
     public ParStringInt(String code, int value) {
         this.code = code;
-        this.value = value;
+        this.value = new double[1];
+        this.value[0] = value;
+    }
+
+    public ParStringInt(String code, double value,double value2) {
+        this.code = code;
+        this.value = new double[2];
+        this.value[0] = value;
+        this.value[1] = value2;
     }
 
     public ParStringInt(ParStringInt q) {
         this.code = q.getCode();
-        this.value = q.getValue();
+        this.value = q.getArray();
     }
 
     public String getCode() {
@@ -23,12 +31,25 @@ public class ParStringInt implements Comparable<ParStringInt>{
         this.value = value;
     }
 
-    public int getValue() {
+    public double getValue() {
+        return value[0];
+    }
+
+    public double getValue2() {
+        return value[1];
+    }
+
+    public double[] getArray(){
         return value;
     }
 
-    public void addUni(int value) {
-        this.value += value;
+    public void addUni(double value) {
+        this.value[0] += value;
+    }
+
+    public void addUni(double value,double value2) {
+        this.value[0] += value;
+        this.value[1] += value2;
     }
 
     public int compareTo(ParStringInt aux) {
@@ -50,10 +71,11 @@ public class ParStringInt implements Comparable<ParStringInt>{
 
     @Override
     public String toString() {
-        return "ParStringInt{" +
-                "code='" + code + '\'' +
-                ", value=" + value +
-                '}' + '\n';
+        return code + " value=" + value[0] + '\n';
+    }
+
+    public String toString2() {
+        return code + " value=" + value[1] + '\n';
     }
 
     public ParStringInt clone() {

@@ -34,21 +34,30 @@ public class ConsultasInterativas {
         }
     }
 
-    public int getQuerie1(){
-        return querie1.size();
+    public String toStringQ1(){
+        return querie1.toString() + "\nTotal produtos nunca comprados:" + querie1.size();
     }
 
     public void setQuerie2(Load sgv,int month){
-        querie2[0] = sgv.getgFil().getVendasMes(month);
-        querie2[1] = sgv.getgFil().clientesDiferentesMes(month);
-        for(int i = 0;i < 3;i++) {
-            querie2[2 + 2*i] = sgv.getFilial(i).getVendasFil();
-            querie2[2 + 2*i+1] = sgv.getFilial(i).getClientesCompradores();
+        int i = 0;
+        querie2[i++] = sgv.getgFil().getVendasMes(month);
+        querie2[i++] = sgv.getgFil().clientesDiferentesMes(month);
+        for(int f = 0;f < 3;f++) {
+            querie2[i++] = sgv.getFilial(f).getVendasFil();
+            querie2[i++] = sgv.getFilial(f).getClientesCompradores();
         }
     }
 
-    public int[] getQuerie2() {
-        return querie2;
+    public String toStringQ2(int month){
+        int i = 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Total do vendas no mês ").append(month).append(":").append(querie2[i++]).
+                append("\nTotal de compras de clientes diferentes no mês ").append(month).append(":").append(querie2[i++]);
+        for(int fil = 1;fil < 4;fil++)
+            sb.append("\nTotal de vendas na filial ").append(fil).append(":").append(querie2[i++])
+              .append("\nTotal de compras de clientes diferentes na filial ").append(fil).append(":").append(querie2[i++]);
+
+        return sb.toString();
     }
 
     public void setQuerie3(Load sgv,String cod){
@@ -65,8 +74,16 @@ public class ConsultasInterativas {
         }
     }
 
-    public Map<Integer,double[]> getQuerie3() {
-        return querie3;
+    public String toStringQ3(){
+        double [] res;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Mês (Compras) (Produtos Diferentes) (Gasto total)\n");
+        for(int mes = 0;mes < 12;mes++) {
+            res = querie3.get(mes);
+            sb.append(mes).append("    ").append(res[0]).append("           ").append(res[1]).append("             ").append(res[2]).append("\n");
+        }
+
+        return sb.toString();
     }
 
     public void setQuerie4(Load sgv,String cod){
@@ -83,8 +100,16 @@ public class ConsultasInterativas {
         }
     }
 
-    public Map<Integer,double[]> getQuerie4() {
-        return querie4;
+    public String toStringQ4(){
+        double [] res;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Mês (Vendas uni) (Clientes Diferentes) (Faturação)\n");
+        for(int mes = 0;mes < 12;mes++) {
+            res = querie3.get(mes);
+            sb.append(mes).append("      ").append(res[0]).append("           ").append(res[1]).append("            ").append(res[2]).append("\n");
+        }
+
+        return sb.toString();
     }
 
     public void addQuerie5(String cod, int uni) {
@@ -118,11 +143,10 @@ public class ConsultasInterativas {
                     tree.forEach(c -> addQuerie5(c.getCod(),c.getUni()));}
 
         querie5 = querie5.stream().sorted(new sortParbyValue()).collect(Collectors.toList());
-
     }
 
-    public List<ParStringInt> getQuerie5() {
-        return querie5;
+    public String toStringQ5(){
+        return "Produtos que o cliente mais comprou:\n" + querie5.toString();
     }
 
     public void setQuerie6(Load sgv, int limit) {
@@ -147,8 +171,8 @@ public class ConsultasInterativas {
         querie6.forEach(q -> q.setValue(sgv.getgFil().clientesDiferentesTotal(q.getCode())));
     }
 
-    public List<ParStringInt> getQuerie6() {
-        return querie6.stream().map(ParStringInt::clone).collect(Collectors.toList());
+    public String toStringQ6(int limit){
+        return limit + " produtos mais vendidos em todo o ano:\n" + querie6.toString();
     }
 
     public void setQuerie7(Load sgv) {
@@ -157,8 +181,8 @@ public class ConsultasInterativas {
             querie7.put(i, sgv.getFilial(i).getClientesMaisCompradores());
     }
 
-    public Map<Integer, List<String>> getQuerie7() {
-        return querie7;
+    public String toStringQ7(){
+        return "3 Clientes mais compradores por filial:\n" + querie7.toString();
     }
 
     public void setQuerie8(Load sgv, int limit) {
@@ -168,8 +192,8 @@ public class ConsultasInterativas {
         querie8 = querie8.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
 
-    public List<ParStringInt> getQuerie8() {
-        return querie8;
+    public String toStringQ8(int limit){
+        return limit + " Clientes que compraram mais produtos diferentes:\n" + querie8.toString();
     }
 
     public void setQuerie9(Load sgv, String codProd,int limit) {
@@ -180,7 +204,7 @@ public class ConsultasInterativas {
         for(int i=0; i<3; i++) {
             list = sgv.getgFil().getFil(i).getProdCliList(index, pos);
             for (ProdCliinfo pcli : list){
-                ParStringInt q9 = new ParStringInt(pcli.getCod(),pcli.getUni());
+                ParStringInt q9 = new ParStringInt(pcli.getCod(),pcli.getUni(),pcli.getPrice()*pcli.getUni());
                 if(querie9.contains(q9)){
                     Iterator<ParStringInt> it = querie9.iterator();
                     boolean b = true;
@@ -188,7 +212,7 @@ public class ConsultasInterativas {
                     while (it.hasNext() && b){
                         q = it.next();
                         if(q.getCode().equals(q9.getCode())) {
-                            q.addUni(q9.getValue());
+                            q.addUni(q9.getValue(),q9.getValue2());
                             b = false;
                         }
                     }
@@ -201,8 +225,12 @@ public class ConsultasInterativas {
         querie9 = querie9.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
 
-    public List<ParStringInt> getQuerie9() {
-        return querie9.stream().map(ParStringInt::clone).collect(Collectors.toList());
+    public String toStringQ9(int limit,String code){
+        StringBuilder sb = new StringBuilder();
+        sb.append(limit).append(" Clientes que mais compraram o produto com o código ").append(code).append("\n");
+        querie9.forEach(par -> sb.append(par.toString2()));
+
+        return sb.toString();
     }
 
     public void setQuerie10(Load sgv) {

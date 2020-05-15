@@ -32,6 +32,10 @@ public class Filial implements Serializable {
         return mapCli.get(index).get(pos);
     }
 
+    public int getsize2(int i){
+        return mapCli.get(i).size();
+    }
+
     public ProdInfo getProdInfo(int index,int pos){
         return mapProd.get(index).get(pos);
     }
@@ -137,7 +141,7 @@ public class Filial implements Serializable {
         int res = -1;
 
         vendasMes[month]++;
-        if(lcli.get(cliIndex).getSize() == 0) {
+        if(getSizeCli(cli,cliIndex) == 0) {
             clientesCompradores++;
             cliCompradoresMes[month]++;
             res = cliIndex;

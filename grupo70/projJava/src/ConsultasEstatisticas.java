@@ -20,7 +20,7 @@ public class ConsultasEstatisticas {
         vendasInvalidas = sgv.getLoadInfo().getVendasInvalidas();
         totalProdutos = sgv.getLoadInfo().getProdValidos();
         prodsComprados = sgv.getFact().getComprados();
-        prodsNaoComprados = totalProdutos - prodsNaoComprados;
+        prodsNaoComprados = totalProdutos - prodsComprados;
         totalClientes = sgv.getLoadInfo().getCliValidos();
         cliCompradores = sgv.getLoadInfo().getCliComprador();
         cliNaoCompradores = totalClientes - cliCompradores;

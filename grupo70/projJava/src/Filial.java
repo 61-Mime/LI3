@@ -9,6 +9,8 @@ public class Filial implements Serializable {
     private int[] cliCompradoresMes;
     private int[] vendasMes;
 
+    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+
     public Filial() {
         mapProd = new HashMap<>();
         mapCli = new HashMap<>();

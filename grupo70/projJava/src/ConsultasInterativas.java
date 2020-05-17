@@ -74,7 +74,6 @@ public class ConsultasInterativas {
 
     public void setQuerie4(Load sgv,String cod){
         querie4 = new HashMap<>();
-        int index;
         double res[];
         for(int month = 0;month < 12;month++){
             res = new double[3];

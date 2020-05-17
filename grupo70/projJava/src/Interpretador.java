@@ -34,6 +34,7 @@ public class Interpretador {
             switch (comand){
                 case 0:
                     val = false;
+                    break;
                 case 1:
                     Crono.start();
                     ci.setQuerie1(sgv);

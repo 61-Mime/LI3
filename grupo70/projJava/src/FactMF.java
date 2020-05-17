@@ -3,23 +3,19 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class FactMF implements Serializable {
-    private String codProd;
-    private int occup;
     private int[] unidadesMes;
     private double[][] faturacaoMesFill;
-    private double faturacaoTotal;
+    private double faturacaoTotal; // Rever se é preciso
 
-    public FactMF(String cod){
-        this.codProd = cod;
-        this.occup = 0;
+    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+
+    public FactMF(){
         unidadesMes = new int[12];
         faturacaoMesFill = new double[12][3];
         faturacaoTotal = 0;
     }
 
-    public String getCodProd(){
-        return codProd;
-    }
+    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
 
     public int getUnidadesMes(int month) {
         return unidadesMes[month];
@@ -41,19 +37,9 @@ public class FactMF implements Serializable {
         return Arrays.stream(faturacaoMesFill).toArray(double[][]::new);
     }
 
-    public int getOccup() {
-        return occup;
-    }
-
     public void setFact(int branch, int month, float price, int uni) {
-        if(occup == 0)
-            occup = 1;
         unidadesMes[month] += uni;
         faturacaoTotal += price*uni;
         faturacaoMesFill[month][branch] = price*uni;
-    }
-
-    public String toSring() {
-        return ("Produto: "+codProd+"\n"+"Faturação Total:"+faturacaoTotal);
     }
 }

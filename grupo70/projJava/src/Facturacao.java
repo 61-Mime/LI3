@@ -11,6 +11,8 @@ public class Facturacao implements Serializable {
     private float [] faturacaoMesFil;
     private int [] comprasMes;
 
+    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+
     public Facturacao() {
         listaProd = new HashMap<>();
         comprados = 0;
@@ -19,6 +21,8 @@ public class Facturacao implements Serializable {
         comprasMes = new int[12];
         faturacaoMesFil = new float[36];
     }
+
+    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
 
     public int getComprados() {
         return comprados;
@@ -33,27 +37,19 @@ public class Facturacao implements Serializable {
     }
 
     public int[] getComprasMes() {
-        return comprasMes;
+        return comprasMes.clone();
     }
 
     public float[] getFaturacaoMesFil() {
-        return faturacaoMesFil;
+        return faturacaoMesFil.clone();
     }
 
     public Set<String> getKeys() {
-        return listaProd.keySet();
-    }
-
-    public String getProd(String code) {
-        return listaProd.get(code).getCodProd();
+        return new TreeSet(listaProd.keySet());
     }
 
     public int getUni(String code) {
         return listaProd.get(code).getUniTotal();
-    }
-
-    public int getSize() {
-        return listaProd.size();
     }
 
     public double getFatTotalMes(String code,int month){
@@ -68,19 +64,17 @@ public class Facturacao implements Serializable {
         return listaProd.get(code).getUnidadesMes(month);
     }
 
-    public List<FactMF> getList(){
-        return listaProd.values().stream().collect(Collectors.toList());
-    }
+    //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
     public boolean containsProd(String prodCode){
         return listaProd.containsKey(prodCode);
     }
 
-    public void addSale(int branch,int month,float price,int uni,char type,String prod){
+    public void addSale(int branch,int month,float price,int uni,String prod){
 
         if(!listaProd.containsKey(prod)) {
             comprados++;
-            listaProd.put(prod,new FactMF(prod));
+            listaProd.put(prod,new FactMF());
         }
         if(price * uni == 0.0)
             compras0++;

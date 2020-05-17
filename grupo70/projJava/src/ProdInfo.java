@@ -6,20 +6,17 @@ public class ProdInfo implements Serializable {
     private String code;
     private Map<Integer,Set<ProdCliinfo>> mapMes;
 
+    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+
     public ProdInfo(String code) {
         this.code = code;
         mapMes = new HashMap<>();
     }
 
-//    public ProdInfo(ProdInfo p) {
-//        this.code = p.getCode();
-//        this.mapMes = p.get
-//    }
+    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
 
-    public int getSizeMonth(int month) {
-        if(mapMes.containsKey(month))
-            return mapMes.get(month).size();
-        else return 0;
+    public String getCode() {
+        return code;
     }
 
     public Set<ProdCliinfo> getSetMes(int month) {
@@ -32,26 +29,6 @@ public class ProdInfo implements Serializable {
         return novo;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Map<Integer, Set<ProdCliinfo>> getMapMes() {
-        return mapMes;
-    }
-
-    public void setMapMes(Map<Integer, Set<ProdCliinfo>> mapMes) {
-        this.mapMes = mapMes;
-    }
-
-    public int getSize(){
-        return mapMes.size();
-    }
-
     public Set<String> getCliMonth(int month){
         Set<String> clientes = new HashSet<>();
         if(mapMes.containsKey(month)){
@@ -61,6 +38,18 @@ public class ProdInfo implements Serializable {
 
         return clientes;
     }
+
+    public List<ProdCliinfo> getMapList(){
+        List<ProdCliinfo> list = new ArrayList<>();
+
+        for(int i = 0;i < 12;i++)
+            if(mapMes.containsKey(i))
+                mapMes.get(i).stream().forEach(pcli -> list.add(pcli.clone()));
+
+        return list;
+    }
+
+    //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
     public void addCode(String cliCode, int month, double price, int uni) {
         ProdCliinfo c = new ProdCliinfo(cliCode,month,price,uni);
@@ -78,21 +67,4 @@ public class ProdInfo implements Serializable {
             }
         }
     }
-
-    public void addProd(String prodCode, int month, int uni, double price) {
-    }
-
-    public List<ProdCliinfo> getMapList(){
-        List<ProdCliinfo> list = new ArrayList<>();
-        for(int i = 0;i < 12;i++){
-            if(mapMes.containsKey(i))
-                mapMes.get(i).stream().forEach(pcli -> list.add(pcli.clone()));
-        }
-
-        return list;
-    }
-
-//    public int compareTo(ProdInfo i) {
-//        return this.getCode().compareTo(i.getCode());
-//    }
 }

@@ -5,11 +5,15 @@ public class CliInfo extends ProdInfo implements Comparable<CliInfo>, Serializab
     private int []numeroCompras;
     private double []gastoTotal;
 
+    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+
     public CliInfo(String code) {
         super(code);
         numeroCompras = new int[12];
         gastoTotal = new double[12];
     }
+
+    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
 
     public int getNumeroCompras(int month) {
         return numeroCompras[month];
@@ -29,8 +33,9 @@ public class CliInfo extends ProdInfo implements Comparable<CliInfo>, Serializab
         gastoTotal[month] += uni * price;
     }
 
-    public int compareTo(CliInfo c) {
+    //--------------------------------------------------------------compareTo--------------------------------------------------------------------------\\
 
+    public int compareTo(CliInfo c) {
         return (int) (c.getGastoTotal() - this.getGastoTotal());
     }
 }

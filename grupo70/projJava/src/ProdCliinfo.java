@@ -7,6 +7,8 @@ public class ProdCliinfo implements Comparable<ProdCliinfo>, Serializable {
     private double price;
     private int uni;
 
+    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+
     public ProdCliinfo(String cod, int month, double price, int uni) {
         this.cod = cod;
         this.month = month;
@@ -21,45 +23,29 @@ public class ProdCliinfo implements Comparable<ProdCliinfo>, Serializable {
         this.uni = p.getUni();
     }
 
+    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
+
     public String getCod() {
         return cod;
-    }
-
-    public void setCod(String cod) {
-        this.cod = cod;
     }
 
     public int getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public int getUni() {
         return uni;
     }
 
-    public void setUni(int uni) {
-        this.uni = uni;
-    }
-
     public void addUni(int uni){
         this.uni += uni;
     }
 
-    public int compareTo(ProdCliinfo i) {
-        return this.getCod().compareTo(i.getCod());
-    }
+    //--------------------------------------------------------------toString, equals e clone--------------------------------------------------------------------------\\
 
     @Override
     public boolean equals(Object o) {
@@ -87,5 +73,9 @@ public class ProdCliinfo implements Comparable<ProdCliinfo>, Serializable {
 
     public ProdCliinfo clone() {
         return new ProdCliinfo(this);
+    }
+
+    public int compareTo(ProdCliinfo i) {
+        return this.getCod().compareTo(i.getCod());
     }
 }

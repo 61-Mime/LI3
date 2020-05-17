@@ -18,16 +18,14 @@ public class GestaoFiliais implements Serializable {
     }
 
     public boolean isComprador(int cliIndex,String cod,int branch){
+        boolean res=false;
         if(cliIndex != -1) {
-            int res=0;
-            for(int i=1; i<4 && res==0; i++)
+            res = true;
+            for(int i=1; i<4 && res; i++)
                 if(i!=branch + 1)
-                    res += gFil.get(i-1).getSizeCli(cod, cliIndex);
-
-            if(res == 0)
-                return true;
+                    res = gFil.get(i-1).conteinsCliCode(cod);
         }
-        return false;
+        return res;
     }
 
     public boolean addSaleInfo(int month,double price,int uni,String prodCod,String cliCod,int branch){
@@ -73,14 +71,14 @@ public class GestaoFiliais implements Serializable {
         return cli.size();
     }
 
-    public double gastoTotalMes(int index,int pos,int month){
-        return gFil.get(0).getGastoTotal(index,pos,month) + gFil.get(1).getGastoTotal(index,pos,month)
-                + gFil.get(2).getGastoTotal(index,pos,month);
+    public double gastoTotalMes(String code,int month){
+        return gFil.get(0).getGastoTotal(code,month) + gFil.get(1).getGastoTotal(code,month)
+                + gFil.get(2).getGastoTotal(code,month);
     }
 
-    public double numeroComprasMes(int index,int pos,int month){
-        return gFil.get(0).getNumeroCompras(index,pos,month) + gFil.get(1).getNumeroCompras(index,pos,month)
-               + gFil.get(2).getNumeroCompras(index,pos,month);
+    public double numeroComprasMes(String code,int month){
+        return gFil.get(0).getNumeroCompras(code,month) + gFil.get(1).getNumeroCompras(code,month)
+               + gFil.get(2).getNumeroCompras(code,month);
     }
 
     public int clientesDiferentesMes(int month) {

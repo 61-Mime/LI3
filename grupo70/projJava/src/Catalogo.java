@@ -12,7 +12,7 @@ public class Catalogo implements Serializable {
         this.total = 0;
         this.list = new HashMap<>(26);
         for(i = 0;i < 26;i++) {
-            this.list.put(i,new TreeSet<>());
+            this.list.put(i,new HashSet<>());
         }
     }
 
@@ -46,7 +46,9 @@ public class Catalogo implements Serializable {
     }
 
     public Set<String> getTree(int i) {
-        return list.get(i);
+        Set<String> set = new TreeSet<>();
+        set.addAll(list.get(i));
+        return set;
     }
 
     public String[] getArraycat(){

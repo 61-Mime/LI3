@@ -1,5 +1,9 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Load implements Serializable {
@@ -41,17 +45,27 @@ public class Load implements Serializable {
         return gFil;
     }
 
+    public List<String> lerFicheiro(String filename){
+        List<String> lines = new ArrayList<>();
+        try {
+            lines = Files.readAllLines(Paths.get(filename));
+        } catch (IOException ioex) {
+            System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
+        }
+        return lines;
+    }
+
     public void load(){
         Crono.start();
         loadCat(getLoadInfo().getCliPath(),0);
         loadCat(getLoadInfo().getProdPath(),1);
         System.out.println("Tempo carregamento catalogos " + Crono.getTime());
-
+/*
         Crono.start();
         fact.loadFactfromCat(getCatP());
         for(int i=0; i<3; i++)
             getFilial(i).loadFilfromCat(getCatP(), getCatC());
-        System.out.println("Tempo carregamento catalogos para structs " +Crono.getTime());
+        System.out.println("Tempo carregamento catalogos para structs " +Crono.getTime());*/
 
         Crono.start();
         loadSales(getLoadInfo().getSalesPath());
@@ -60,9 +74,8 @@ public class Load implements Serializable {
     }
 
     public void loadCat(String filename, int type){
-        String line;
+        /*String line;
         BufferedReader br = null;
-
         try {
             br = new BufferedReader(new FileReader(filename));
         } catch (FileNotFoundException fnfex) {
@@ -70,7 +83,9 @@ public class Load implements Serializable {
             System.exit(0);
         }
         try {
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {*/
+        List<String> linhas = lerFicheiro(filename);
+        for(String line: linhas) {
                 if(type == 0) {
                     loadInfo.incCliLidos();
                     catClientes.addCod(line);
@@ -79,10 +94,10 @@ public class Load implements Serializable {
                     loadInfo.incProdLidos();
                     catProdutos.addCod(line);
                 }
-            }
+            }/*
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
-        }
+        }*/
         if(type == 0)
             loadInfo.setCliValidos(catClientes.getTotal());
         else
@@ -95,12 +110,12 @@ public class Load implements Serializable {
     }
 
     public void loadSales(String filename){
-        String line;
         String[] venda;
-        BufferedReader br = null;
         int branch,month,uni,cliIndex,res;
         float price;
         char type;
+        /*BufferedReader br = null;
+        String line;
 
         try {
             br = new BufferedReader(new FileReader(filename));
@@ -109,7 +124,9 @@ public class Load implements Serializable {
             System.exit(0);
         }
         try {
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {*/
+        List<String> linhas = lerFicheiro(filename);
+        for(String line: linhas) {
                 venda = line.split(" ");
                 branch = Integer.parseInt(venda[6]);
                 month = Integer.parseInt(venda[5]);
@@ -119,17 +136,18 @@ public class Load implements Serializable {
                 if(valSale(branch,month,price,uni,type) &&
                    catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
                     loadInfo.incValidas();
+                    //System.out.println(".");
                     fact.addSale(branch - 1, month - 1, price, uni, type, venda[0]);
-
+                    //System.out.println(".");
                     if (gFil.addSaleInfo(month - 1, price, uni, venda[0], venda[4], branch - 1))
                         loadInfo.incCliComprador();
                     else
                         loadInfo.incInvalidas();
                 }
-            }
+            }/*
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
-        }
+        }*/
     }
 
     @Override

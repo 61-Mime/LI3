@@ -19,6 +19,8 @@ public class Filial implements Serializable {
         vendasMes = new int[12];
     }
 
+    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
+
     public ProdInfo getCliInfo(String cliCode){
         return mapCli.get(cliCode);
     }
@@ -28,7 +30,7 @@ public class Filial implements Serializable {
     }
 
     public int[] getCliCompradoresMes() {
-        return cliCompradoresMes;
+        return cliCompradoresMes.clone();
     }
 
     public int getVendasMes(int month) {
@@ -41,9 +43,10 @@ public class Filial implements Serializable {
 
     public Set<String> getClientesMes(int month){
         Set<String> clientes = new TreeSet<>();
-        for(int i = 0;i < 26;i++)
-            for(ProdInfo p:mapProd.values())
-                clientes.addAll(p.getCliMonth(month));
+
+        for(ProdInfo p:mapProd.values())
+            clientes.addAll(p.getCodeMonth(month));
+
         return clientes;
     }
 
@@ -56,12 +59,30 @@ public class Filial implements Serializable {
     }
 
     public Set<String> getClientesDiferentes(int month,String code) {
-        return mapProd.get(code).getCliMonth(month);
+        return mapProd.get(code).getCodeMonth(month);
     }
 
     public Set<String> getProdutosDiferentes(int month,String code) {
-        return mapCli.get(code).getCliMonth(month);
+        return mapCli.get(code).getCodeMonth(month);
     }
+
+    public List<String> getClientesMaisCompradores() {
+        List<CliInfo> list = new ArrayList<>();
+
+        mapCli.values().stream().sorted().limit(3).forEach(list::add);
+
+       return list.stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
+    }
+
+    public List<ProdCliinfo> getProdCliList(String code){
+        return mapProd.get(code).getMapList();
+    }
+
+    public boolean containsCliCode(String code){
+        return mapCli.containsKey(code);
+    }
+
+    //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
     public int addSale(int month,double price,int uni,String prodCode,String cliCode){
         int res = -1;
@@ -80,21 +101,5 @@ public class Filial implements Serializable {
         mapCli.get(cliCode).addProd(prodCode, month,uni,price);
 
         return res;
-    }
-
-    public List<String> getClientesMaisCompradores() {
-        List<CliInfo> list = new ArrayList<>();
-
-        mapCli.values().stream().sorted().limit(3).forEach(list::add);
-
-       return list.stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
-    }
-
-    public List<ProdCliinfo> getProdCliList(String code){
-        return mapProd.get(code).getMapList();
-    }
-
-    public boolean containsCliCode(String code){
-        return mapCli.containsKey(code);
     }
 }

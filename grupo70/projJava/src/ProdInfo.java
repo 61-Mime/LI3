@@ -29,7 +29,7 @@ public class ProdInfo implements Serializable {
         return novo;
     }
 
-    public Set<String> getCliMonth(int month){
+    public Set<String> getCodeMonth(int month){
         Set<String> clientes = new HashSet<>();
         if(mapMes.containsKey(month)){
             for(ProdCliinfo c:mapMes.get(month))

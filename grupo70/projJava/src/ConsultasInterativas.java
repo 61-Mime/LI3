@@ -16,12 +16,9 @@ public class ConsultasInterativas {
 
     public void setQuerie1(Load sgv){
         querie1 = new ArrayList<>();
-        int i;
-        for(i = 0;i < 26;i++){
-            int finalI = i;
-            sgv.getCatP().getTree(i).stream().filter(cod -> sgv.getFact().containsProd(finalI,cod)).forEach(s -> querie1.add(s));
-            //sgv.getFact().getList(i).stream().filter(p -> p.getOccup() == 0).forEach(p -> querie1.add(p.getCodProd()));
-        }
+
+        for(int i = 0;i < 26;i++)
+            sgv.getCatP().getTree(i).stream().filter(cod -> sgv.getFact().containsProd(cod)).forEach(s -> querie1.add(s));
     }
 
     public String toStringQ1(){
@@ -84,11 +81,9 @@ public class ConsultasInterativas {
         double res[];
         for(int month = 0;month < 12;month++){
             res = new double[3];
-            index = sgv.getFact().getIndex(cod);
-            //pos = sgv.getFact().getPos(cod,index);
-            res[0] = sgv.getFact().getUniMes(index,cod,month);
+            res[0] = sgv.getFact().getUniMes(cod,month);
             res[1] = sgv.getgFil().clientesDiferentes(cod,month);
-            res[2] = sgv.getFact().getFatTotalMes(index,cod,month);
+            res[2] = sgv.getFact().getFatTotalMes(cod,month);
             querie3.put(month,res);
         }
     }
@@ -143,22 +138,9 @@ public class ConsultasInterativas {
 
     public void setQuerie6(Load sgv, int limit) {
         querie6 = new ArrayList<>();
-        int size = 0;
-//        for (List<FactMF> list: sgv.getFact().getListaProd().values()) {
-//            for (FactMF f: list)
-//                querie6.add(new Querie8(f.getCodProd(), f.getUniTotal()));
-//        }
 
-        for(int i = 0; i<26; i++) {
-            //size = sgv.getFact().getSize(i);
-            for(String s:sgv.getFact().getKeys(i))
-                querie6.add(new ParStringInt(s, sgv.getFact().getUni(i, s)));
-//            sgv.getFact().getList(i).forEach(a -> querie6.add(new Querie8(a.getCodProd(), )));
-/*
-            for (int j = 0; j<size; j++) {
-                querie6.add(new ParStringInt(sgv.getFact().getProd(i, j), sgv.getFact().getUni(i, j)));
-            }*/
-        }
+        for(String cod:sgv.getFact().getKeys())
+            querie6.add(new ParStringInt(cod, sgv.getFact().getUni(cod)));
 
         querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
 
@@ -234,16 +216,9 @@ public class ConsultasInterativas {
         int i,c = 0;
         querie10prods = new String[sgv.getCatP().getTotal()];
 
-        for (i = 0; i < 26; i++) {
-            for(String s:sgv.getFact().getKeys(i)){
-                querie10.add(sgv.getFact().getFatMesFilProd(i, s));
-                querie10prods[c++] = sgv.getFact().getProd(i, s);
-            }
-            /*size = sgv.getFact().getSize(i);
-            for (int j = 0; j < size; j++) {
-                querie10.add(sgv.getFact().getFatMesFilProd(i, j));
-                querie10prods[c++] = sgv.getFact().getProd(i, j);
-            }*/
+        for(String cod:sgv.getFact().getKeys()){
+            querie10.add(sgv.getFact().getFatMesFilProd(cod));
+            querie10prods[c++] = sgv.getFact().getProd(cod);
         }
     }
 

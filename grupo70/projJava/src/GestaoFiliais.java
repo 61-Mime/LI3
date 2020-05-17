@@ -23,7 +23,7 @@ public class GestaoFiliais implements Serializable {
             res = true;
             for(int i=1; i<4 && res; i++)
                 if(i!=branch + 1)
-                    res = gFil.get(i-1).conteinsCliCode(cod);
+                    res = gFil.get(i-1).containsCliCode(cod);
         }
         return res;
     }

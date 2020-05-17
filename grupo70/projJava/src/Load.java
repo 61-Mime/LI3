@@ -60,12 +60,6 @@ public class Load implements Serializable {
         loadCat(getLoadInfo().getCliPath(),0);
         loadCat(getLoadInfo().getProdPath(),1);
         System.out.println("Tempo carregamento catalogos " + Crono.getTime());
-/*
-        Crono.start();
-        fact.loadFactfromCat(getCatP());
-        for(int i=0; i<3; i++)
-            getFilial(i).loadFilfromCat(getCatP(), getCatC());
-        System.out.println("Tempo carregamento catalogos para structs " +Crono.getTime());*/
 
         Crono.start();
         loadSales(getLoadInfo().getSalesPath());
@@ -136,9 +130,7 @@ public class Load implements Serializable {
                 if(valSale(branch,month,price,uni,type) &&
                    catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
                     loadInfo.incValidas();
-                    //System.out.println(".");
                     fact.addSale(branch - 1, month - 1, price, uni, type, venda[0]);
-                    //System.out.println(".");
                     if (gFil.addSaleInfo(month - 1, price, uni, venda[0], venda[4], branch - 1))
                         loadInfo.incCliComprador();
                     else

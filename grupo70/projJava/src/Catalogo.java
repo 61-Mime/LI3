@@ -4,34 +4,49 @@ import java.util.*;
 public class Catalogo implements Serializable {
     private int type;
     private int total;
-    private Map<Integer,Set<String>> list;
+    private Set<String> list;
+
+    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
     public Catalogo(int t){
         int i;
         this.type = t;
         this.total = 0;
-        this.list = new HashMap<>(26);
-        for(i = 0;i < 26;i++) {
-            this.list.put(i,new HashSet<>());
-        }
+        this.list = new TreeSet<>();
     }
+
+    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
 
     public int getTotal() {
         return this.total;
     }
 
+    public Set<String> getTree() {
+        Set<String> set = new TreeSet<>();
+        set.addAll(list);
+        return set;
+    }
+
+    //--------------------------------------------------------------toString--------------------------------------------------------------------------\\
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Catalogo{");
+        sb.append("type=").append(type);
+        sb.append(", total=").append(total);
+        sb.append(", list=").append(list);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
+
     public void addCod(String cod) {
         if((type == 0 && valCli(cod))||(type == 1 && valProd(cod))) {
             total++;
-            int i = cod.charAt(0) - 'A';
-            list.get(i).add(cod);
+            list.add(cod);
         }
     }
-    /*
-    public void ordena(){
-        for(int i = 0;i < 12;i++)
-            list.get(i).sort(null);
-    }*/
 
     public boolean valCli(String codCli) {
         return codCli.matches("[A-Z]([1-4]\\d{3}|50{3})");
@@ -42,39 +57,6 @@ public class Catalogo implements Serializable {
     }
 
     public boolean contem(String cod) {
-        return list.get(cod.charAt(0) - 'A').contains(cod);
-    }
-
-    public Set<String> getTree(int i) {
-        Set<String> set = new TreeSet<>();
-        set.addAll(list.get(i));
-        return set;
-    }
-
-    public String[] getArraycat(){
-        String[] array = new String[total];
-        int curr = 0,i;
-        for(i = 0;i < 12;i++)
-            for (String st:list.get(i))
-                array[curr++] = st;
-
-        return array;
-    }
-
-    /*public void printlista(int i) {
-        Set <String> tree = list.get(i);
-        if(tree != null) {
-            tree.forEach(System.out::println);
-        }
-    }*/
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Catalogo{");
-        sb.append("type=").append(type);
-        sb.append(", total=").append(total);
-        sb.append(", list=").append(list);
-        sb.append('}');
-        return sb.toString();
+        return list.contains(cod);
     }
 }

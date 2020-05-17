@@ -1,3 +1,4 @@
+import java.security.KeyStore;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -11,14 +12,12 @@ public class ConsultasInterativas {
     private Map<Integer, List<String>> querie7;
     private List<ParStringInt> querie8;
     private List<ParStringInt> querie9;
-    private List<double[][]> querie10;
-    private String[]querie10prods;
+    private Map<String, double[][]> querie10;
 
     public void setQuerie1(Load sgv){
         querie1 = new ArrayList<>();
 
-        for(int i = 0;i < 26;i++)
-            sgv.getCatP().getTree(i).stream().filter(cod -> sgv.getFact().containsProd(cod)).forEach(s -> querie1.add(s));
+        sgv.getCatP().getTree().stream().filter(cod -> sgv.getFact().containsProd(cod)).forEach(s -> querie1.add(s));
     }
 
     public String toStringQ1(){
@@ -52,8 +51,6 @@ public class ConsultasInterativas {
         querie3 = new HashMap<>();
         double[] res;
         int index,pos;
-        //index = sgv.getFilial(0).getIndex(cod);
-        //pos = sgv.getFilial(0).getPosCli(cod,index);
         for(int month = 0;month < 12;month++){
             res = new double[3];
             res[0] = sgv.getgFil().numeroComprasMes(cod,month);
@@ -164,8 +161,8 @@ public class ConsultasInterativas {
 
     public void setQuerie8(Load sgv, int limit) {
         querie8 = new ArrayList<>();
-        for(int i=0; i<26; i++)
-            sgv.getCatC().getTree(i).forEach(a -> querie8.add(new ParStringInt(a, sgv.getgFil().produtosDiferentesTotal(a))));
+
+        sgv.getCatC().getTree().forEach(a -> querie8.add(new ParStringInt(a, sgv.getgFil().produtosDiferentesTotal(a))));
 
         querie8 = querie8.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
@@ -211,14 +208,14 @@ public class ConsultasInterativas {
     }
 
     public void setQuerie10(Load sgv) {
-        querie10 = new ArrayList<>();
-        querie10prods = new String[0];
-        int i,c = 0;
-        querie10prods = new String[sgv.getCatP().getTotal()];
+        querie10 = new HashMap<>();
 
-        for(String cod:sgv.getFact().getKeys()){
-            querie10.add(sgv.getFact().getFatMesFilProd(cod));
-            querie10prods[c++] = sgv.getFact().getProd(cod);
+        for(String cod: sgv.getCatP().getTree()){
+            if(sgv.getFact().containsProd(cod))
+                querie10.put(cod, sgv.getFact().getFatMesFilProd(cod));
+
+            else
+                querie10.put(cod, null);
         }
     }
 
@@ -236,8 +233,15 @@ public class ConsultasInterativas {
     public String toStringQ10(){
         int size = querie10.size();
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i<size;i++)
-            sb.append("Faturação ").append(querie10prods[i]).append("\n").append(toStringTabela(querie10.get(i)));
+        for(Map.Entry<String, double[][]> cod:querie10.entrySet()) {
+            sb.append("Faturação ").append(cod.getKey()).append("\n");
+
+            if (cod.getValue() != null)
+                sb.append(toStringTabela(cod.getValue()));
+
+            else
+                sb.append("Produto não vendido\n");
+        }
 
         return sb.toString();
     }

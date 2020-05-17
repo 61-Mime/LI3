@@ -21,12 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="927fff91-0e75-4032-ad4d-044b6e25925c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/ConsultasInterativas.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Facturacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Facturacao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Filial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Filial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/GestaoFiliais.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Load.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Load.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Catalogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Catalogo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ConsultasInterativas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsultasInterativas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Facturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Facturacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Filial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GestaoFiliais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GestaoFiliais.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589569882421</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Alteração de Estruturas&#10;Programa mais rápido">
+      <created>1589747245246</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1589747245247</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +205,8 @@
     <MESSAGE value="querie 9" />
     <MESSAGE value="queries feitas" />
     <MESSAGE value="interpretador" />
-    <option name="LAST_COMMIT_MESSAGE" value="interpretador" />
+    <MESSAGE value="Alteração de Estruturas&#10;Programa mais rápido" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alteração de Estruturas&#10;Programa mais rápido" />
   </component>
   <component name="WindowStateProjectService">
     <state x="534" y="147" width="563" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1589684265416">
@@ -228,7 +238,7 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1589217142502" />
-    <state width="1750" height="424" key="GridCell.Tab.0.bottom" timestamp="1589746479819">
+    <state width="1750" height="424" key="GridCell.Tab.0.bottom" timestamp="1589747374757">
       <screen x="0" y="23" width="1792" height="1033" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1589487380944" />
@@ -244,9 +254,9 @@
     <state width="716" height="210" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1588647120948" />
     <state width="1398" height="210" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1588617305455" />
     <state width="1398" height="210" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1588638261328" />
-    <state width="1750" height="424" key="GridCell.Tab.0.bottom/0.23.1792.1033@0.23.1792.1033" timestamp="1589746479819" />
+    <state width="1750" height="424" key="GridCell.Tab.0.bottom/0.23.1792.1033@0.23.1792.1033" timestamp="1589747374757" />
     <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589396844583" />
-    <state width="1750" height="424" key="GridCell.Tab.0.center" timestamp="1589746479818">
+    <state width="1750" height="424" key="GridCell.Tab.0.center" timestamp="1589747374757">
       <screen x="0" y="23" width="1792" height="1033" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1589487380943" />
@@ -262,9 +272,9 @@
     <state width="716" height="210" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1588647120946" />
     <state width="1398" height="210" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1588617305454" />
     <state width="1398" height="210" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1588638261327" />
-    <state width="1750" height="424" key="GridCell.Tab.0.center/0.23.1792.1033@0.23.1792.1033" timestamp="1589746479818" />
+    <state width="1750" height="424" key="GridCell.Tab.0.center/0.23.1792.1033@0.23.1792.1033" timestamp="1589747374757" />
     <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589396844582" />
-    <state width="1750" height="424" key="GridCell.Tab.0.left" timestamp="1589746479817">
+    <state width="1750" height="424" key="GridCell.Tab.0.left" timestamp="1589747374757">
       <screen x="0" y="23" width="1792" height="1033" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1589487380942" />
@@ -280,9 +290,9 @@
     <state width="716" height="210" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1588647120944" />
     <state width="1398" height="210" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1588617305453" />
     <state width="1398" height="210" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1588638261327" />
-    <state width="1750" height="424" key="GridCell.Tab.0.left/0.23.1792.1033@0.23.1792.1033" timestamp="1589746479817" />
+    <state width="1750" height="424" key="GridCell.Tab.0.left/0.23.1792.1033@0.23.1792.1033" timestamp="1589747374756" />
     <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589396844582" />
-    <state width="1750" height="424" key="GridCell.Tab.0.right" timestamp="1589746479818">
+    <state width="1750" height="424" key="GridCell.Tab.0.right" timestamp="1589747374757">
       <screen x="0" y="23" width="1792" height="1033" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1589487380943" />
@@ -298,7 +308,7 @@
     <state width="716" height="210" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1588647120947" />
     <state width="1398" height="210" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1588617305454" />
     <state width="1398" height="210" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1588638261328" />
-    <state width="1750" height="424" key="GridCell.Tab.0.right/0.23.1792.1033@0.23.1792.1033" timestamp="1589746479818" />
+    <state width="1750" height="424" key="GridCell.Tab.0.right/0.23.1792.1033@0.23.1792.1033" timestamp="1589747374757" />
     <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589396844583" />
     <state width="1398" height="642" key="GridCell.Tab.1.bottom" timestamp="1589487380946">
       <screen x="0" y="23" width="1440" height="798" />

@@ -67,11 +67,7 @@ public class Filial implements Serializable {
     }
 
     public List<String> getClientesMaisCompradores() {
-        List<CliInfo> list = new ArrayList<>();
-
-        mapCli.values().stream().sorted().limit(3).forEach(list::add);
-
-       return list.stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
+        return mapCli.values().stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
     }
 
     public List<ProdCliinfo> getProdCliList(String code){

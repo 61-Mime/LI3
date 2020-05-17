@@ -17,7 +17,7 @@ public class ConsultasInterativas {
     public void setQuerie1(Load sgv){
         querie1 = new ArrayList<>();
 
-        sgv.getCatP().getTree().stream().filter(cod -> sgv.getFact().containsProd(cod)).forEach(s -> querie1.add(s));
+        sgv.getCatP().getTree().stream().filter(cod -> !(sgv.getFact().containsProd(cod))).forEach(s -> querie1.add(s));
     }
 
     public String toStringQ1(){
@@ -30,7 +30,7 @@ public class ConsultasInterativas {
         querie2[i++] = sgv.getgFil().getVendasMes(month);
         querie2[i++] = sgv.getgFil().clientesDiferentesMes(month);
         for(int f = 0;f < 3;f++) {
-            querie2[i++] = sgv.getFilial(f).getVendasFil();
+            querie2[i++] = sgv.getVendasFilial(f);
             querie2[i++] = sgv.getFilial(f).getClientesCompradores();
         }
     }

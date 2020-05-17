@@ -41,8 +41,8 @@ public class Load implements Serializable {
         return fact;
     }
 
-    public Filial getFilial(int branch){
-        return gFil.getFil(branch);
+    public int getVendasFilial(int branch){
+        return gFil.getFil(branch).getVendasFil();
     }
 
     public GestaoFiliais getgFil() {

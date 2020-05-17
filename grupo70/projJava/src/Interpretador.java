@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Interpretador {
@@ -14,17 +16,21 @@ public class Interpretador {
                 "9.X clientes que mais compraram um produto e valor gasto para cada um\n" +
                 "10.Faturação total de cada produto mês a mês e filial a filial\n" +
                 "11.Consultas estatisticas\n" +
-                "12.Menu\n");
+                "12.Gravar estado\n" +
+                "13.Carregar estado a partir de um ficheiro\n" +
+                "14.Carregar dados a partir do ficheiro vendas_1M.txt\n" +
+                "15.Menu\n");
     }
 
-    public void interpretador(){
+    public void interpretador() throws IOException, ClassNotFoundException {
         boolean val = true;
         Scanner scanner = new Scanner(System.in);
         String line;
         int comand,num;
         Load sgv = new Load();
-        sgv.load();
         ConsultasInterativas ci = new ConsultasInterativas();
+        DataFile data = new DataFile();
+
 
         while (val){
             menu();
@@ -143,6 +149,25 @@ public class Interpretador {
                     System.out.println("Tempo consultas estatisticas:" + Crono.getTime());
                     break;
                 case 12:
+                    System.out.println("Pretende guardar no ficheiro default? (S/N)");
+                    String str = scanner.nextLine();
+                    if (str.equals("S"))
+                        data.guardaDados("gestVendas.dat", sgv);
+                    else {
+                        System.out.println("Introduza o nome do ficheiro para o qual pretende guardar os dados: ");
+                        str = scanner.nextLine();
+                        data.guardaDados(str, sgv);
+                    }
+                    break;
+                case 13:
+                    System.out.println("Introduza o nome do ficheiro do qual os dados serão carregados: ");
+                    String string = scanner.nextLine();
+                    sgv = data.carregaDados(string);
+                    break;
+                case 14:
+                    sgv.load();
+                    break;
+                case 15:
                     menu();
                     break;
             }

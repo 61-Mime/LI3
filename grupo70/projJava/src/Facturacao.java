@@ -1,7 +1,5 @@
 import java.io.Serializable;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.Comparator;
 
 public class Facturacao implements Serializable {
     private Map<String,FactMF> listaProd;
@@ -45,7 +43,7 @@ public class Facturacao implements Serializable {
     }
 
     public Set<String> getKeys() {
-        return new TreeSet(listaProd.keySet());
+        return new TreeSet<>(listaProd.keySet());
     }
 
     public int getUni(String code) {

@@ -1,10 +1,7 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Load implements Serializable {
     private Catalogo catClientes;
@@ -41,8 +38,56 @@ public class Load implements Serializable {
         return fact;
     }
 
-    public int getVendasFilial(int branch){
-        return gFil.getFil(branch).getVendasFil();
+    public int getFilialVendas(int branch){
+        return gFil.getVendasFilial(branch);
+    }
+
+    public int getFilialClientesCompradores(int branch){
+        return gFil.getClientesCompradoresFilial(branch);
+    }
+
+    public Set<ProdCliinfo> getFilialProdCliMes(int branch, String cod, int month){
+        return gFil.getProdCliMesFilial(branch, cod, month);
+    }
+
+    public List<String> getFilialClientesMaisCompradores(int branch){
+        return gFil.getClientesMaisCompradoresFilial(branch);
+    }
+
+    public int getGFilVendasMes(int month){
+        return gFil.getVendasMes(month);
+    }
+
+    public int getGFilClientesDiferentesMes(int month) {
+        return gFil.clientesDiferentesMes(month);
+    }
+
+    public double getGFilNumeroComprasMes(String cod, int month) {
+        return gFil.numeroComprasMes(cod, month);
+    }
+
+    public double getGFilProdutosDiferentes(String cod, int month) {
+        return gFil.produtosDiferentes(cod, month);
+    }
+
+    public double getGFilGastoTotalMes(String cod, int month) {
+        return gFil.gastoTotalMes(cod, month);
+    }
+
+    public double getGFilClientesDiferentes(String cod, int month) {
+        return gFil.clientesDiferentes(cod, month);
+    }
+
+    public int getGFilClientesDiferentesTotal(String cod) {
+        return gFil.clientesDiferentesTotal(cod);
+    }
+
+    public int getGFilProdutosDiferentesTotal(String cod) {
+        return gFil.produtosDiferentesTotal(cod);
+    }
+
+    public List<ProdCliinfo> getGFilProdCliList(int branch, String cod) {
+        return gFil.getFilialProdCliList(cod, branch);
     }
 
     public GestaoFiliais getgFil() {

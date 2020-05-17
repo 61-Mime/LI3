@@ -1,4 +1,3 @@
-import java.security.KeyStore;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,11 +26,11 @@ public class ConsultasInterativas {
     public void setQuerie2(Load sgv,int month){
         querie2 = new int[8];
         int i = 0;
-        querie2[i++] = sgv.getgFil().getVendasMes(month);
-        querie2[i++] = sgv.getgFil().clientesDiferentesMes(month);
+        querie2[i++] = sgv.getGFilVendasMes(month);
+        querie2[i++] = sgv.getGFilClientesDiferentesMes(month);
         for(int f = 0;f < 3;f++) {
-            querie2[i++] = sgv.getVendasFilial(f);
-            querie2[i++] = sgv.getFilial(f).getClientesCompradores();
+            querie2[i++] = sgv.getFilialVendas(f);
+            querie2[i++] = sgv.getFilialClientesCompradores(f);
         }
     }
 
@@ -53,9 +52,9 @@ public class ConsultasInterativas {
         int index,pos;
         for(int month = 0;month < 12;month++){
             res = new double[3];
-            res[0] = sgv.getgFil().numeroComprasMes(cod,month);
-            res[1] = sgv.getgFil().produtosDiferentes(cod,month);
-            res[2] = sgv.getgFil().gastoTotalMes(cod,month);
+            res[0] = sgv.getGFilNumeroComprasMes(cod, month);
+            res[1] = sgv.getGFilProdutosDiferentes(cod, month);
+            res[2] = sgv.getGFilGastoTotalMes(cod, month);
             querie3.put(month,res);
         }
     }
@@ -78,7 +77,7 @@ public class ConsultasInterativas {
         for(int month = 0;month < 12;month++){
             res = new double[3];
             res[0] = sgv.getFact().getUniMes(cod,month);
-            res[1] = sgv.getgFil().clientesDiferentes(cod,month);
+            res[1] = sgv.getGFilClientesDiferentes(cod, month);
             res[2] = sgv.getFact().getFatTotalMes(cod,month);
             querie3.put(month,res);
         }
@@ -121,7 +120,7 @@ public class ConsultasInterativas {
 
         for(i=0; i<3; i++)
             for(j=0; j<12; j++){
-                Set<ProdCliinfo> tree = sgv.getFilial(i).getCliInfo(cod).getSetMes(j);
+                Set<ProdCliinfo> tree = sgv.getFilialProdCliMes(i, cod, j);
                 if(tree != null)
                     tree.forEach(c -> addQuerie5(c.getCod(),c.getUni()));}
 
@@ -140,7 +139,7 @@ public class ConsultasInterativas {
 
         querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
 
-        querie6.forEach(q -> q.setValue(sgv.getgFil().clientesDiferentesTotal(q.getCode())));
+        querie6.forEach(q -> q.setValue(sgv.getGFilClientesDiferentesTotal(q.getCode())));
     }
 
     public String toStringQ6(int limit){
@@ -151,7 +150,7 @@ public class ConsultasInterativas {
         querie7 = new HashMap<>();
 
         for(int i = 0; i<3; i++)
-            querie7.put(i, sgv.getFilial(i).getClientesMaisCompradores());
+            querie7.put(i, sgv.getFilialClientesMaisCompradores(i));
     }
 
     public String toStringQ7(){
@@ -161,7 +160,7 @@ public class ConsultasInterativas {
     public void setQuerie8(Load sgv, int limit) {
         querie8 = new ArrayList<>();
 
-        sgv.getCatC().getTree().forEach(a -> querie8.add(new ParStringInt(a, sgv.getgFil().produtosDiferentesTotal(a))));
+        sgv.getCatC().getTree().forEach(a -> querie8.add(new ParStringInt(a, sgv.getGFilProdutosDiferentesTotal(a))));
 
         querie8 = querie8.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
@@ -175,7 +174,7 @@ public class ConsultasInterativas {
         List<ProdCliinfo> list;
 
         for(int i=0; i<3; i++) {
-            list = sgv.getgFil().getFil(i).getProdCliList(codProd);
+            list = sgv.getGFilProdCliList(i, codProd);
             for (ProdCliinfo pcli : list){
                 ParStringInt q9 = new ParStringInt(pcli.getCod(),pcli.getUni(),pcli.getPrice()*pcli.getUni());
                 if(querie9.contains(q9)){

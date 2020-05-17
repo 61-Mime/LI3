@@ -1,8 +1,5 @@
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class GestaoFiliais implements Serializable {
     private Map<Integer, Filial> gFil;
@@ -15,6 +12,22 @@ public class GestaoFiliais implements Serializable {
 
     public Filial getFil(int fil) {
         return gFil.get(fil);
+    }
+
+    public int getVendasFilial(int branch) {
+        return getFil(branch).getVendasFil();
+    }
+
+    public int getClientesCompradoresFilial(int branch){
+        return getFil(branch).getClientesCompradores();
+    }
+
+    public Set<ProdCliinfo> getProdCliMesFilial(int branch, String cod, int month){
+        return getFil(branch).getCliInfo(cod).getSetMes(month);
+    }
+
+    public List<String> getClientesMaisCompradoresFilial(int branch){
+        return getFil(branch).getClientesMaisCompradores();
     }
 
     public boolean isComprador(int cliIndex,String cod,int branch){
@@ -90,5 +103,9 @@ public class GestaoFiliais implements Serializable {
 
     public int getVendasMes(int month){
         return gFil.get(0).getVendasMes(month)+gFil.get(1).getVendasMes(month)+gFil.get(2).getVendasMes(month);
+    }
+
+    public List<ProdCliinfo> getFilialProdCliList(String cod, int branch) {
+        return getFil(branch).getProdCliList(cod);
     }
 }

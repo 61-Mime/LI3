@@ -37,6 +37,14 @@ public class Load implements Serializable {
         return catClientes.getTree();
     }
 
+    public boolean cliVal(String code) {
+        return catClientes.valCli(code);
+    }
+
+    public boolean prodVal(String code) {
+        return catProdutos.valProd(code);
+    }
+
     public int getFilialVendas(int branch){
         return gFil.getVendasFilial(branch);
     }

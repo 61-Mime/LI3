@@ -1,0 +1,342 @@
+Index: src/ParStringIntTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/ParStringIntTest.java	(date 1589801327903)
++++ src/ParStringIntTest.java	(date 1589801327903)
+@@ -0,0 +1,26 @@
++import org.junit.Before;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class ParStringIntTest {
++    ParStringInt p1;
++    ParStringInt p2;
++
++    @Before
++    public void setUp(){
++        p1 = new ParStringInt("Z5000", 5);
++        p2 = new ParStringInt("AB542", 8, 2);
++    }
++
++    @Test
++    public void testAddUnit(){
++//        p1.addUni(2);
++//        p2.addUni(1, 3);
++        double unitObtidas1 = p1.getValue();
++        double unitObtidas2 = p2.getValue2();
++
++        assertEquals(7, unitObtidas1, "unit1 mal adicionadas");
++        assertEquals(5, unitObtidas2, "unit2 mal adicionadas");
++    }
++}
+\ No newline at end of file
+Index: projJava.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"JAVA_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\n    <exclude-output />\n    <content url=\"file://$MODULE_DIR$\">\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\n    </content>\n    <orderEntry type=\"inheritedJdk\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- projJava.iml	(revision d14035eac676a0735159a091e919f5d0393835c4)
++++ projJava.iml	(date 1589798864558)
+@@ -7,5 +7,47 @@
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="module-library" scope="TEST">
++      <library name="JUnit5.4">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.4.2/junit-jupiter-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.4.2/junit-jupiter-api-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.4.2/junit-platform-commons-1.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.4.2/junit-jupiter-params-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.4.2/junit-jupiter-engine-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.4.2/junit-platform-engine-1.4.2.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
++    <orderEntry type="module-library">
++      <library name="JUnit4">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
++    <orderEntry type="module-library">
++      <library>
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.4.2/junit-jupiter-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.4.2/junit-jupiter-api-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.4.2/junit-platform-commons-1.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.4.2/junit-jupiter-params-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.4.2/junit-jupiter-engine-5.4.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.4.2/junit-platform-engine-1.4.2.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"a7d9a260-62ee-47be-913f-994f23ac6e51\" name=\"Default Changelist\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/ConsultasEstatisticas.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/ConsultasEstatisticas.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/ConsultasInterativas.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/ConsultasInterativas.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/Facturacao.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/Facturacao.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/GestaoFiliais.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/GestaoFiliais.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/Interpretador.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/Interpretador.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/Load.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/Load.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ConsultasEstatisticas.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ConsultasEstatisticas.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ConsultasInterativas.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ConsultasInterativas.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Facturacao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Facturacao.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/GestaoFiliais.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/GestaoFiliais.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Interpretador.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Interpretador.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Load.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Load.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/../..\" />\n  </component>\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <OptionsSetting value=\"false\" id=\"Update\" />\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.keymap\" />\n  </component>\n  <component name=\"Push.Settings\">\n    <option name=\"SHOW_DETAILS_PANEL\" value=\"false\" />\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"projJava\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Main\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SvnConfiguration\">\n    <configuration />\n  </component>\n  <component name=\"TaskManager\">\n    <task id=\"LOCAL-00001\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755181422</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755181422</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755321878</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755321878</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755499813</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755499813</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755872494</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755872494</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"melhoramento interpretador e encapsulamento\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"melhoramento interpretador e encapsulamento\" />\n  </component>\n  <component name=\"WindowStateProjectService\">\n    <state x=\"863\" y=\"421\" width=\"251\" height=\"263\" key=\"#Notifications\" timestamp=\"1589755395318\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"863\" y=\"421\" width=\"251\" height=\"263\" key=\"#Notifications/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755395318\" />\n    <state x=\"171\" y=\"138\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1589759742959\">\n      <screen x=\"0\" y=\"23\" width=\"1440\" height=\"813\" />\n    </state>\n    <state x=\"171\" y=\"138\" key=\"#com.intellij.ide.util.MemberChooser/0.23.1440.813@0.23.1440.813\" timestamp=\"1589759742959\" />\n    <state x=\"523\" y=\"100\" width=\"931\" height=\"905\" key=\"CommitChangelistDialog2\" timestamp=\"1589755871866\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"523\" y=\"100\" width=\"931\" height=\"905\" key=\"CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755871866\" />\n    <state x=\"242\" y=\"116\" width=\"1482\" height=\"872\" key=\"DiffContextDialog\" timestamp=\"1589755543660\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"242\" y=\"116\" width=\"1482\" height=\"872\" key=\"DiffContextDialog/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755543660\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1589766310790\">\n      <screen x=\"0\" y=\"23\" width=\"1440\" height=\"813\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310790\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298386\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.center\" timestamp=\"1589766310789\">\n      <screen x=\"0\" y=\"23\" width=\"1440\" height=\"813\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310789\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298386\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.left\" timestamp=\"1589766310789\">\n      <screen x=\"0\" y=\"23\" width=\"1440\" height=\"813\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310789\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298385\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.right\" timestamp=\"1589766310789\">\n      <screen x=\"0\" y=\"23\" width=\"1440\" height=\"813\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310789\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298386\" />\n    <state x=\"221\" y=\"58\" key=\"SettingsEditor\" timestamp=\"1589760877445\">\n      <screen x=\"0\" y=\"23\" width=\"1440\" height=\"813\" />\n    </state>\n    <state x=\"221\" y=\"58\" key=\"SettingsEditor/0.23.1440.813@0.23.1440.813\" timestamp=\"1589760877445\" />\n    <state x=\"588\" y=\"288\" width=\"800\" height=\"528\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1589755875751\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"588\" y=\"288\" width=\"800\" height=\"528\" key=\"Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755875751\" />\n    <state x=\"764\" y=\"467\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1589755483482\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"764\" y=\"467\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755483482\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision d14035eac676a0735159a091e919f5d0393835c4)
++++ .idea/workspace.xml	(date 1589816837289)
+@@ -2,41 +2,61 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="">
++      <change afterPath="$PROJECT_DIR$/src/ParStringIntTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/ConsultasEstatisticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/ConsultasEstatisticas.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/ConsultasInterativas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/ConsultasInterativas.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Facturacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Facturacao.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/GestaoFiliais.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/GestaoFiliais.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Interpretador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Interpretador.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Load.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Load.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ConsultasEstatisticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsultasEstatisticas.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ConsultasInterativas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsultasInterativas.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Facturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Facturacao.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/GestaoFiliais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GestaoFiliais.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Interpretador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interpretador.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/projJava/META-INF/projJava.kotlin_module" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/projJava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/projJava.iml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++        <option value="JUnit5 Test Class" />
++      </list>
++    </option>
++  </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+   </component>
++  <component name="ProjectId" id="1c4r10GGJ4aFsLEF8FxRzRJxR8d" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+-    <OptionsSetting value="false" id="Update" />
+     <ConfirmationsSetting value="2" id="Add" />
+   </component>
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
+   <component name="PropertiesComponent">
+-    <property name="node.js.path.for.package.tslint" value="project" />
+-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
++    <property name="Downloaded.Files.Path.Enabled" value="false" />
++    <property name="Repository.Attach.Annotations" value="false" />
++    <property name="Repository.Attach.JavaDocs" value="false" />
++    <property name="Repository.Attach.Sources" value="false" />
++    <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="aspect.path.notification.shown" value="true" />
++    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
++    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
++    <property name="create.test.in.the.same.root" value="true" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../POO/Projeto_POO/TrabalhoPratico" />
+     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+   </component>
+   <component name="Push.Settings">
+     <option name="SHOW_DETAILS_PANEL" value="false" />
+   </component>
+-  <component name="RunManager">
++  <component name="RecentsManager">
++    <key name="CreateTestDialog.RecentsKey">
++      <recent name="" />
++    </key>
++    <key name="CreateTestDialog.Recents.Supers">
++      <recent name="" />
++      <recent name="ParStringInt" />
++    </key>
++  </component>
++  <component name="RunManager" selected="Application.Main">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="Main" />
+       <module name="projJava" />
+@@ -44,9 +64,50 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <configuration name="ParStringIntTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="projJava" />
++      <useClassPathOnly />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="MAIN_CLASS_NAME" value="ParStringIntTest" />
++      <option name="METHOD_NAME" value="" />
++      <option name="TEST_OBJECT" value="class" />
++      <option name="PARAMETERS" value="" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="ParStringIntTest.testAddUnit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="projJava" />
++      <useClassPathOnly />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="MAIN_CLASS_NAME" value="ParStringIntTest" />
++      <option name="METHOD_NAME" value="testAddUnit" />
++      <option name="TEST_OBJECT" value="method" />
++      <option name="PARAMETERS" value="" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="JUnit" factoryName="JUnit">
++      <useClassPathOnly />
++      <option name="MAIN_CLASS_NAME" value="" />
++      <option name="METHOD_NAME" value="" />
++      <option name="TEST_OBJECT" value="class" />
++      <option name="PARAMETERS" value="" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <list>
++      <item itemvalue="Application.Main" />
++      <item itemvalue="JUnit.ParStringIntTest" />
++      <item itemvalue="JUnit.ParStringIntTest.testAddUnit" />
++    </list>
+     <recent_temporary>
+       <list>
+         <item itemvalue="Application.Main" />
++        <item itemvalue="JUnit.ParStringIntTest.testAddUnit" />
++        <item itemvalue="JUnit.ParStringIntTest" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -82,9 +143,20 @@
+       <option name="project" value="LOCAL" />
+       <updated>1589755872494</updated>
+     </task>
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="" />
++      <created>1589810096825</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1589810096825</updated>
++      <workItem from="1589810105624" duration="2962000" />
++    </task>
+     <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="2" />
++  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+@@ -97,10 +169,18 @@
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="863" y="421" width="251" height="263" key="#Notifications/67.27.1853.1053@67.27.1853.1053" timestamp="1589755395318" />
+-    <state x="171" y="138" key="#com.intellij.ide.util.MemberChooser" timestamp="1589759742959">
+-      <screen x="0" y="23" width="1440" height="813" />
++    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589800082759">
++      <screen x="67" y="27" width="1853" height="1053" />
++    </state>
++    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589800082759" />
++    <state x="721" y="330" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1589800513976">
++      <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state x="171" y="138" key="#com.intellij.ide.util.MemberChooser/0.23.1440.813@0.23.1440.813" timestamp="1589759742959" />
++    <state x="721" y="330" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589800513976" />
++    <state x="725" y="344" width="525" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1589800562748">
++      <screen x="67" y="27" width="1853" height="1053" />
++    </state>
++    <state x="725" y="344" width="525" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589800562748" />
+     <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2" timestamp="1589755871866">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+@@ -109,37 +189,45 @@
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="242" y="116" width="1482" height="872" key="DiffContextDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589755543660" />
+-    <state width="1398" height="642" key="GridCell.Tab.0.bottom" timestamp="1589766310790">
+-      <screen x="0" y="23" width="1440" height="813" />
++    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1589811102285">
++      <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1589766310790" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
+-    <state width="1398" height="642" key="GridCell.Tab.0.center" timestamp="1589766310789">
+-      <screen x="0" y="23" width="1440" height="813" />
++    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1589811102285" />
++    <state width="1807" height="847" key="GridCell.Tab.0.bottom" timestamp="1589816125357">
++      <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
+-    <state width="1398" height="642" key="GridCell.Tab.0.left" timestamp="1589766310789">
+-      <screen x="0" y="23" width="1440" height="813" />
++    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589816125357" />
++    <state width="1807" height="847" key="GridCell.Tab.0.center" timestamp="1589816125355">
++      <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298385" />
+-    <state width="1398" height="642" key="GridCell.Tab.0.right" timestamp="1589766310789">
+-      <screen x="0" y="23" width="1440" height="813" />
++    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589816125355" />
++    <state width="1807" height="847" key="GridCell.Tab.0.left" timestamp="1589816125354">
++      <screen x="67" y="27" width="1853" height="1053" />
++    </state>
++    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589816125354" />
++    <state width="1807" height="847" key="GridCell.Tab.0.right" timestamp="1589816125356">
++      <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
+-    <state x="221" y="58" key="SettingsEditor" timestamp="1589760877445">
+-      <screen x="0" y="23" width="1440" height="813" />
++    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589816125356" />
++    <state x="614" y="220" key="SettingsEditor" timestamp="1589800745629">
++      <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state x="221" y="58" key="SettingsEditor/0.23.1440.813@0.23.1440.813" timestamp="1589760877445" />
++    <state x="614" y="220" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1589800745629" />
+     <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589755875751">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589755875751" />
+-    <state x="764" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589755483482">
++    <state x="660" y="445" width="646" height="229" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1589798845731">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state x="764" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589755483482" />
++    <state x="660" y="445" width="646" height="229" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/67.27.1853.1053@67.27.1853.1053" timestamp="1589798845731" />
++    <state x="764" y="467" width="448" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589816837271">
++      <screen x="67" y="27" width="1853" height="1053" />
++    </state>
++    <state x="764" y="467" width="448" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589816837271" />
++    <state x="760" y="207" width="456" height="690" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1589800605617">
++      <screen x="67" y="27" width="1853" height="1053" />
++    </state>
++    <state x="760" y="207" width="456" height="690" key="com.intellij.testIntegration.createTest.CreateTestDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589800605617" />
+   </component>
+ </project>
+\ No newline at end of file

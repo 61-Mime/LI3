@@ -1,0 +1,108 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"a7d9a260-62ee-47be-913f-994f23ac6e51\" name=\"Default Changelist\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/src/ConsultasInterativas.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ConsultasInterativas.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/GestaoFiliais.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/GestaoFiliais.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Load.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Load.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/../..\" />\n  </component>\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"Push.Settings\">\n    <option name=\"SHOW_DETAILS_PANEL\" value=\"false\" />\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"projJava\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Main\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SvnConfiguration\">\n    <configuration />\n  </component>\n  <component name=\"TaskManager\">\n    <task id=\"LOCAL-00001\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755181422</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755181422</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755321878</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755321878</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755499813</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755499813</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755872494</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755872494</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"melhoramento interpretador e encapsulamento\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"melhoramento interpretador e encapsulamento\" />\n  </component>\n  <component name=\"WindowStateProjectService\">\n    <state x=\"863\" y=\"421\" width=\"251\" height=\"263\" key=\"#Notifications\" timestamp=\"1589755395318\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"863\" y=\"421\" width=\"251\" height=\"263\" key=\"#Notifications/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755395318\" />\n    <state x=\"523\" y=\"100\" width=\"931\" height=\"905\" key=\"CommitChangelistDialog2\" timestamp=\"1589755871866\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"523\" y=\"100\" width=\"931\" height=\"905\" key=\"CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755871866\" />\n    <state x=\"242\" y=\"116\" width=\"1482\" height=\"872\" key=\"DiffContextDialog\" timestamp=\"1589755543660\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"242\" y=\"116\" width=\"1482\" height=\"872\" key=\"DiffContextDialog/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755543660\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1589754298386\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298386\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.center\" timestamp=\"1589754298386\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298386\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.left\" timestamp=\"1589754298385\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298385\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.right\" timestamp=\"1589754298386\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589754298386\" />\n    <state x=\"588\" y=\"288\" width=\"800\" height=\"528\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1589755875751\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"588\" y=\"288\" width=\"800\" height=\"528\" key=\"Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755875751\" />\n    <state x=\"764\" y=\"467\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1589755483482\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"764\" y=\"467\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755483482\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 96ff3cec91f0eac945d4576ea9969c584ed768e7)
++++ .idea/workspace.xml	(date 1589761003228)
+@@ -1,11 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/ConsultasInterativas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsultasInterativas.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/GestaoFiliais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GestaoFiliais.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load.java" afterDir="false" />
+-    </list>
++    <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -17,6 +13,9 @@
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+     <ConfirmationsSetting value="2" id="Add" />
+   </component>
++  <component name="PropertiesComponent">
++    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
++  </component>
+   <component name="Push.Settings">
+     <option name="SHOW_DETAILS_PANEL" value="false" />
+   </component>
+@@ -66,7 +65,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1589755872494</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="melhoramento do encapsulamento">
++      <created>1589758981931</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1589758981931</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -74,41 +80,46 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="melhoramento interpretador e encapsulamento" />
+-    <option name="LAST_COMMIT_MESSAGE" value="melhoramento interpretador e encapsulamento" />
++    <MESSAGE value="melhoramento do encapsulamento" />
++    <option name="LAST_COMMIT_MESSAGE" value="melhoramento do encapsulamento" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="863" y="421" width="251" height="263" key="#Notifications" timestamp="1589755395318">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="863" y="421" width="251" height="263" key="#Notifications/67.27.1853.1053@67.27.1853.1053" timestamp="1589755395318" />
+-    <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2" timestamp="1589755871866">
++    <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2" timestamp="1589758981875">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1589755871866" />
++    <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1589758981875" />
+     <state x="242" y="116" width="1482" height="872" key="DiffContextDialog" timestamp="1589755543660">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="242" y="116" width="1482" height="872" key="DiffContextDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589755543660" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.bottom" timestamp="1589754298386">
++    <state width="1807" height="847" key="GridCell.Tab.0.bottom" timestamp="1589761003057">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.center" timestamp="1589754298386">
++    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589761003057" />
++    <state width="1807" height="847" key="GridCell.Tab.0.center" timestamp="1589761003057">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.left" timestamp="1589754298385">
++    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589761003057" />
++    <state width="1807" height="847" key="GridCell.Tab.0.left" timestamp="1589761003056">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298385" />
+-    <state width="1807" height="847" key="GridCell.Tab.0.right" timestamp="1589754298386">
++    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589761003056" />
++    <state width="1807" height="847" key="GridCell.Tab.0.right" timestamp="1589761003057">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
+-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589755875751">
++    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589761003057" />
++    <state x="482" y="187" key="SettingsEditor" timestamp="1589760944819">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589755875751" />
++    <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1589760944819" />
++    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589758983956">
++      <screen x="67" y="27" width="1853" height="1053" />
++    </state>
++    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589758983955" />
+     <state x="764" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589755483482">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>

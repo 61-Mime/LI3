@@ -182,12 +182,15 @@ public class Load implements Serializable {
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
     public List<String> lerFicheiro(String filename){
+        Crono crono = new Crono();
+        crono.start();
         List<String> lines = new ArrayList<>();
         try {
             lines = Files.readAllLines(Paths.get(filename));
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }
+        System.out.println(crono.getTImeString());
         return lines;
     }
 
@@ -269,9 +272,9 @@ public class Load implements Serializable {
                 fact.addSale(branch - 1, month - 1, price, uni, venda[0]);
                 if (gFil.addSaleInfo(month - 1, price, uni, venda[0], venda[4], branch - 1))
                     loadInfo.incCliComprador();
-                else
-                    loadInfo.incInvalidas();
             }
+            else
+                loadInfo.incInvalidas();
         }/*
         } catch (IOException ioex) {
             System.out.println(ioex.getMessage() + "Erro a ler ficheiro");

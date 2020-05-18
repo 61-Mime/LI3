@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Apresentacao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ParStringIntTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Interpretador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Interpretador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interpretador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interpretador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Load.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Load.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/META-INF/projJava.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projJava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/projJava.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Catalogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Catalogo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoadInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,18 +24,14 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="Push.Settings">
     <option name="SHOW_DETAILS_PANEL" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="projJava" />
@@ -58,9 +39,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParStringIntTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projJava" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ParStringIntTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.ParStringIntTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ParStringIntTest" />
       </list>
     </recent_temporary>
   </component>
@@ -100,15 +95,6 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
@@ -132,35 +118,30 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="242" y="116" width="1482" height="872" key="DiffContextDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589755543660" />
-    <state width="1750" height="883" key="GridCell.Tab.0.bottom" timestamp="1589816301614">
-      <screen x="0" y="23" width="1792" height="1033" />
+    <state width="1807" height="847" key="GridCell.Tab.0.bottom" timestamp="1589821624277">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1589766310790" />
-    <state width="1750" height="883" key="GridCell.Tab.0.bottom/0.23.1792.1033@0.23.1792.1033" timestamp="1589816301614" />
-    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
-    <state width="1750" height="883" key="GridCell.Tab.0.center" timestamp="1589816301613">
-      <screen x="0" y="23" width="1792" height="1033" />
+    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589821624277" />
+    <state width="1807" height="847" key="GridCell.Tab.0.center" timestamp="1589821624275">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
-    <state width="1750" height="883" key="GridCell.Tab.0.center/0.23.1792.1033@0.23.1792.1033" timestamp="1589816301613" />
-    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
-    <state width="1750" height="883" key="GridCell.Tab.0.left" timestamp="1589816301613">
-      <screen x="0" y="23" width="1792" height="1033" />
+    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589821624275" />
+    <state width="1807" height="847" key="GridCell.Tab.0.left" timestamp="1589821624274">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
-    <state width="1750" height="883" key="GridCell.Tab.0.left/0.23.1792.1033@0.23.1792.1033" timestamp="1589816301613" />
-    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298385" />
-    <state width="1750" height="883" key="GridCell.Tab.0.right" timestamp="1589816301613">
-      <screen x="0" y="23" width="1792" height="1033" />
+    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589821624274" />
+    <state width="1807" height="847" key="GridCell.Tab.0.right" timestamp="1589821624276">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
-    <state width="1750" height="883" key="GridCell.Tab.0.right/0.23.1792.1033@0.23.1792.1033" timestamp="1589816301613" />
-    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
-    <state x="275" y="67" key="SettingsEditor" timestamp="1589815623036">
-      <screen x="0" y="23" width="1792" height="1033" />
+    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589821624276" />
+    <state x="221" y="58" key="SettingsEditor" timestamp="1589760877445">
+      <screen x="0" y="23" width="1440" height="813" />
     </state>
     <state x="221" y="58" key="SettingsEditor/0.23.1440.813@0.23.1440.813" timestamp="1589760877445" />
-    <state x="275" y="67" key="SettingsEditor/0.23.1792.1033@0.23.1792.1033" timestamp="1589815623036" />
     <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589755875751">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

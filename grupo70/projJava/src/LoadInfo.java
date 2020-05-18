@@ -20,7 +20,7 @@ public class LoadInfo implements Serializable {
         cliComprador = 0;
         CliPath = "Files/Clientes.txt";
         ProdPath = "Files/Produtos.txt";
-        SalesPath = "Files/Vendas_1M.txt";
+        SalesPath = "Files/Vendas_5M.txt";
     }
 
     public int getVendasValidas(){

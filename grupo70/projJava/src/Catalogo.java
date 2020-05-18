@@ -4,15 +4,14 @@ import java.util.*;
 public class Catalogo implements Serializable {
     private int type;
     private int total;
-    private Set<String> list;
+    private Map<String, Set<String>> list;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
     public Catalogo(int t){
-        int i;
         this.type = t;
         this.total = 0;
-        this.list = new TreeSet<>();
+        this.list = new HashMap<>();
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
@@ -23,7 +22,8 @@ public class Catalogo implements Serializable {
 
     public Set<String> getTree() {
         Set<String> set = new TreeSet<>();
-        set.addAll(list);
+        for (Set<String> s: list.values())
+            set.addAll(s);
         return set;
     }
 
@@ -44,7 +44,10 @@ public class Catalogo implements Serializable {
     public void addCod(String cod) {
         if((type == 0 && valCli(cod))||(type == 1 && valProd(cod))) {
             total++;
-            list.add(cod);
+            String s = String.valueOf(cod.charAt(0) + cod.charAt(1));
+            if(!list.containsKey(s))
+                list.put(s, new TreeSet<>());
+            list.get(s).add(cod);
         }
     }
 
@@ -57,6 +60,10 @@ public class Catalogo implements Serializable {
     }
 
     public boolean contem(String cod) {
-        return list.contains(cod);
+        String s = String.valueOf(cod.charAt(0) + cod.charAt(1));
+        if (list.containsKey(s))
+        return list.get(s).contains(cod);
+
+        return false;
     }
 }

@@ -5,8 +5,8 @@ public class Facturacao implements Serializable {
     private Map<String,FactMF> listaProd;
     private int comprados;
     private int compras0;
-    private float faturacaoTotal;
-    private float [] faturacaoMesFil;
+    private double faturacaoTotal;
+    private double [][] faturacaoMesFil;
     private int [] comprasMes;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
@@ -17,7 +17,7 @@ public class Facturacao implements Serializable {
         compras0 = 0;
         faturacaoTotal = 0;
         comprasMes = new int[12];
-        faturacaoMesFil = new float[36];
+        faturacaoMesFil = new double[12][3];
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
@@ -30,7 +30,7 @@ public class Facturacao implements Serializable {
         return compras0;
     }
 
-    public float getFaturacaoTotal() {
+    public double getFaturacaoTotal() {
         return faturacaoTotal;
     }
 
@@ -38,7 +38,7 @@ public class Facturacao implements Serializable {
         return comprasMes.clone();
     }
 
-    public float[] getFaturacaoMesFil() {
+    public double[][] getFaturacaoMesFil() {
         return faturacaoMesFil.clone();
     }
 
@@ -77,10 +77,10 @@ public class Facturacao implements Serializable {
         if(price * uni == 0.0)
             compras0++;
 
-        float f = price * uni;
+        double f = price * uni;
         faturacaoTotal += f;
         comprasMes[month]++;
-        faturacaoMesFil [12*branch + month]+= f;
+        faturacaoMesFil [month][branch]+= f;
         listaProd.get(prod).setFact(branch,month,price,uni);
     }
 }

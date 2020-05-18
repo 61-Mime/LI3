@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ConsultasEstatisticas {
     private String SalesPath;
     private int vendasInvalidas;
@@ -8,49 +10,65 @@ public class ConsultasEstatisticas {
     private int cliCompradores;
     private int cliNaoCompradores;
     private int comprasValor0;
-    private float fatTotal;
+    private double fatTotal;
     private int []comprasMes;
-    private float []fatMesFil;
-    private int []compradoresMesFil1;
-    private int []compradoresMesFil2;
-    private int []compradoresMesFil3;
+    private double [][] fatMesFil;
+    private int [][]compradoresMesFil;
 
     public ConsultasEstatisticas(Load sgv) {
-        SalesPath = sgv.getLoadInfo().getSalesPath();
-        vendasInvalidas = sgv.getLoadInfo().getVendasInvalidas();
-        totalProdutos = sgv.getLoadInfo().getProdValidos();
-        prodsComprados = sgv.getFact().getComprados();
+        SalesPath = sgv.getLoadInfoSalesPath();
+        vendasInvalidas = sgv.getLoadInfoVendasInvalidas();
+        totalProdutos = sgv.getLoadInfoProdValidos();
+        prodsComprados = sgv.getFactComprados();
         prodsNaoComprados = totalProdutos - prodsComprados;
-        totalClientes = sgv.getLoadInfo().getCliValidos();
-        cliCompradores = sgv.getLoadInfo().getCliComprador();
+        totalClientes = sgv.getLoadInfoCliValidos();
+        cliCompradores = sgv.getLoadInfoCliComprador();
         cliNaoCompradores = totalClientes - cliCompradores;
-        comprasValor0 = sgv.getFact().getCompras0();
-        fatTotal = sgv.getFact().getFaturacaoTotal();
-        comprasMes = sgv.getFact().getComprasMes();
-        fatMesFil = sgv.getFact().getFaturacaoMesFil();
-        compradoresMesFil1 = sgv.getFilial(0).getCliCompradoresMes();
-        compradoresMesFil2 = sgv.getFilial(1).getCliCompradoresMes();
-        compradoresMesFil3 = sgv.getFilial(2).getCliCompradoresMes();
+        comprasValor0 = sgv.getFactCompras0();
+        fatTotal = sgv.getFactFaturacaoTotal();
+        comprasMes = sgv.getFactComprasMes();
+        fatMesFil = sgv.getFactFaturacaoMesFil();
+        compradoresMesFil = new int[3][12];
+        compradoresMesFil[0] = sgv.getgFilCliCompradoresMes(0);
+        compradoresMesFil[1] = sgv.getgFilCliCompradoresMes(1);
+        compradoresMesFil[2] = sgv.getgFilCliCompradoresMes(2);
     }
 
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ficheiro vendas:").append(SalesPath).append("\n").
-        append("Vendas inválidas:").append(vendasInvalidas).append("\n").
-        append("Total produtos:").append(totalProdutos).append("\n").
-        append("Total clientes:").append(totalClientes).append("\n").
-        append("Produtos comprados:").append(prodsComprados).append("\n").
-        append("Produtos não comprados:").append(prodsNaoComprados).append("\n").
-        append("Clientes compradores:").append(cliCompradores).append("\n").
-        append("Clientes não compradores:").append(cliNaoCompradores).append("\n").
-        append("Compras valor 0.0:").append(comprasValor0).append("\n").
-        append("Faturação total:").append(fatTotal).append("\n").
-        append("Faturação Janeiro:").append(fatMesFil[0]).append(" ").
-        append(fatMesFil[12]).append(" ").append(fatMesFil[24]).append("\n").
-        append("Clientes compradores Janeiro:").append(compradoresMesFil1[0]).
-        append(" ").append(compradoresMesFil2[0]).append(" ").
-        append(compradoresMesFil3[0]).append("\n");
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ConsultasEstatisticas\n");
+        sb.append("SalesPath='").append(SalesPath);
+        sb.append("\nvendasInvalidas=").append(vendasInvalidas);
+        sb.append("\ntotalProdutos=").append(totalProdutos);
+        sb.append("\nprodsComprados=").append(prodsComprados);
+        sb.append("\nprodsNaoComprados=").append(prodsNaoComprados);
+        sb.append("\ntotalClientes=").append(totalClientes);
+        sb.append("\ncliCompradores=").append(cliCompradores);
+        sb.append("\ncliNaoCompradores=").append(cliNaoCompradores);
+        sb.append("\ncomprasValor0=").append(comprasValor0);
+        sb.append("\nfatTotal=").append(fatTotal);
+        return sb.toString();
+    }
 
+    public String toString2(){
+        final StringBuilder sb = new StringBuilder();
+        sb.append("\ncomprasMes=").append(Arrays.toString(comprasMes));
+        return sb.toString();
+    }
+
+    public String toString3(){
+        final StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < 12;i++)
+            sb.append("\nFaturação Mes ").append(i+1).append(":").append(fatMesFil[i][0]).
+                    append(" ").append(fatMesFil[i][1]).append(" ").append(fatMesFil[i][2]);
+        return sb.toString();
+    }
+
+    public String toString4(){
+        final StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < 12;i++)
+            sb.append("\nCompradores Mes ").append(i+1).append(":").append(compradoresMesFil[0][i]).
+                    append(" ").append(compradoresMesFil[1][i]).append(" ").append(compradoresMesFil[2][i]);
         return sb.toString();
     }
 }

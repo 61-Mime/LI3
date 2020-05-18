@@ -16,7 +16,7 @@ public class ConsultasInterativas {
     public void setQuerie1(Load sgv){
         querie1 = new ArrayList<>();
 
-        sgv.getCatP().getTree().stream().filter(cod -> !(sgv.getFact().containsProd(cod))).forEach(s -> querie1.add(s));
+        sgv.getCatPtree().stream().filter(cod -> !(sgv.getFactContainsProd(cod))).forEach(s -> querie1.add(s));
     }
 
     public String toStringQ1(){
@@ -76,9 +76,9 @@ public class ConsultasInterativas {
         double res[];
         for(int month = 0;month < 12;month++){
             res = new double[3];
-            res[0] = sgv.getFact().getUniMes(cod,month);
+            res[0] = sgv.getFactUniMes(cod,month);
             res[1] = sgv.getGFilClientesDiferentes(cod, month);
-            res[2] = sgv.getFact().getFatTotalMes(cod,month);
+            res[2] = sgv.getFactTotalMes(cod,month);
             querie3.put(month,res);
         }
     }
@@ -134,8 +134,8 @@ public class ConsultasInterativas {
     public void setQuerie6(Load sgv, int limit) {
         querie6 = new ArrayList<>();
 
-        for(String cod:sgv.getFact().getKeys())
-            querie6.add(new ParStringInt(cod, sgv.getFact().getUni(cod)));
+        for(String cod:sgv.getFactKeys())
+            querie6.add(new ParStringInt(cod, sgv.getFactUni(cod)));
 
         querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
 
@@ -160,7 +160,7 @@ public class ConsultasInterativas {
     public void setQuerie8(Load sgv, int limit) {
         querie8 = new ArrayList<>();
 
-        sgv.getCatC().getTree().forEach(a -> querie8.add(new ParStringInt(a, sgv.getGFilProdutosDiferentesTotal(a))));
+        sgv.getCatCtree().forEach(a -> querie8.add(new ParStringInt(a, sgv.getGFilProdutosDiferentesTotal(a))));
 
         querie8 = querie8.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
@@ -208,9 +208,9 @@ public class ConsultasInterativas {
     public void setQuerie10(Load sgv) {
         querie10 = new HashMap<>();
 
-        for(String cod: sgv.getCatP().getTree()){
-            if(sgv.getFact().containsProd(cod))
-                querie10.put(cod, sgv.getFact().getFatMesFilProd(cod));
+        for(String cod: sgv.getCatPtree()){
+            if(sgv.getFactContainsProd(cod))
+                querie10.put(cod, sgv.getFactMesFilProd(cod));
 
             else
                 querie10.put(cod, null);

@@ -21,21 +21,20 @@ public class Load implements Serializable {
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
-
-    public Catalogo getCatC(){
-        return catClientes;
+    public boolean getCatCcontains(String cliCode){
+        return catClientes.contem(cliCode);
     }
 
-    public Catalogo getCatP(){
-        return catProdutos;
+    public boolean getCatPcontains(String prodCode){
+        return catProdutos.contem(prodCode);
     }
 
-    public LoadInfo getLoadInfo(){
-        return loadInfo;
+    public Set<String> getCatPtree(){
+        return catProdutos.getTree();
     }
 
-    public Facturacao getFact(){
-        return fact;
+    public Set<String> getCatCtree(){
+        return catClientes.getTree();
     }
 
     public int getFilialVendas(int branch){
@@ -90,8 +89,72 @@ public class Load implements Serializable {
         return gFil.getFilialProdCliList(cod, branch);
     }
 
-    public GestaoFiliais getgFil() {
-        return gFil;
+    public int[] getgFilCliCompradoresMes(int branch){
+        return gFil.getFilCliCompradoresMes(branch);
+    }
+
+    public double getFactUniMes(String cod,int month){
+        return fact.getUniMes(cod,month);
+    }
+
+    public double getFactTotalMes(String cod,int month){
+        return fact.getFatTotalMes(cod,month);
+    }
+
+    public Set<String> getFactKeys(){
+        return fact.getKeys();
+    }
+
+    public int getFactUni(String cod){
+        return fact.getUni(cod);
+    }
+
+    public boolean getFactContainsProd(String cod){
+        return fact.containsProd(cod);
+    }
+
+    public double[][] getFactMesFilProd(String cod){
+        return fact.getFatMesFilProd(cod);
+    }
+
+    public int getFactComprados(){
+        return fact.getComprados();
+    }
+
+    public int getFactCompras0(){
+        return fact.getCompras0();
+    }
+
+    public double getFactFaturacaoTotal(){
+        return fact.getFaturacaoTotal();
+    }
+
+    public int[] getFactComprasMes(){
+        return fact.getComprasMes();
+    }
+
+    public double[][] getFactFaturacaoMesFil(){
+        return fact.getFaturacaoMesFil();
+    }
+
+    public String getLoadInfoSalesPath(){
+        return loadInfo.getSalesPath();
+    }
+
+    public int getLoadInfoVendasInvalidas(){
+        return loadInfo.getVendasInvalidas();
+    }
+
+    public int getLoadInfoProdValidos(){
+        return loadInfo.getProdValidos();
+    }
+
+    public int getLoadInfoCliValidos(){
+        return loadInfo.getCliValidos();
+    }
+
+    public int getLoadInfoCliComprador(){
+        return loadInfo.getCliComprador();
     }
 
     //--------------------------------------------------------------toString--------------------------------------------------------------------------\\
@@ -122,12 +185,12 @@ public class Load implements Serializable {
 
     public void load(){
         Crono.start();
-        loadCat(getLoadInfo().getCliPath(),0);
-        loadCat(getLoadInfo().getProdPath(),1);
+        loadCat(loadInfo.getCliPath(),0);
+        loadCat(loadInfo.getProdPath(),1);
         System.out.println("Tempo carregamento catalogos " + Crono.getTime() + "\n");
 
         Crono.start();
-        loadSales(getLoadInfo().getSalesPath());
+        loadSales(loadInfo.getSalesPath());
         System.out.println("Tempo carregamento vendas " + Crono.getTime() + "\n");
 
     }

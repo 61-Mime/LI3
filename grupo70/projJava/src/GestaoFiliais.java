@@ -30,6 +30,10 @@ public class GestaoFiliais implements Serializable {
         return getFil(branch).getClientesMaisCompradores();
     }
 
+    public int[] getFilCliCompradoresMes(int branch){
+        return getFil(branch).getCliCompradoresMes();
+    }
+
     public boolean isComprador(int cliIndex,String cod,int branch){
         boolean res=false;
         if(cliIndex != -1) {

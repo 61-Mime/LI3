@@ -13,13 +13,13 @@ public class ConsultasInterativas {
     private List<ParStringFloat> querie9;
     private Map<String, float[][]> querie10;
 
-    public void setQuerie1(Load sgv){
+    public void setQuerie1(GestVendas sgv){
         querie1 = new ArrayList<>();
 
         sgv.getCatPtree().stream().filter(cod -> !(sgv.getFactContainsProd(cod))).forEach(s -> querie1.add(s));
     }
 
-    public void setQuerie1teste(Load sgv){
+    public void setQuerie1teste(GestVendas sgv){
         querie1 = new ArrayList<>();
 
         sgv.getCatPtree().stream().filter(cod -> !(sgv.getFactContainsProd(cod))).forEach(s -> querie1.add(s));
@@ -29,7 +29,7 @@ public class ConsultasInterativas {
         return querie1.toString() + "\nTotal produtos nunca comprados:" + querie1.size();
     }
 
-    public void setQuerie2(Load sgv,int month){
+    public void setQuerie2(GestVendas sgv,int month){
         querie2 = new int[8];
         int i = 0;
         querie2[i++] = sgv.getGFilVendasMes(month);
@@ -52,7 +52,7 @@ public class ConsultasInterativas {
         return sb.toString();
     }
 
-    public void setQuerie3(Load sgv,String cod){
+    public void setQuerie3(GestVendas sgv,String cod){
         querie3 = new HashMap<>();
         float[] res;
         int index,pos;
@@ -77,7 +77,7 @@ public class ConsultasInterativas {
         return sb.toString();
     }
 
-    public void setQuerie4(Load sgv,String cod){
+    public void setQuerie4(GestVendas sgv,String cod){
         querie4 = new HashMap<>();
         float res[];
         for(int month = 0;month < 12;month++){
@@ -120,7 +120,7 @@ public class ConsultasInterativas {
             querie5.add(c);
     }
 */
-    public void setQuerie5(Load sgv, String cod) {
+    public void setQuerie5(GestVendas sgv, String cod) {
         querie5 = new ArrayList<>();
         int i;
 
@@ -134,7 +134,7 @@ public class ConsultasInterativas {
         return "Produtos que o cliente mais comprou:\n" + querie5.toString();
     }
 
-    public void setQuerie6(Load sgv, int limit) {
+    public void setQuerie6(GestVendas sgv, int limit) {
         querie6 = new ArrayList<>();
 
         for(String cod:sgv.getFactKeys())
@@ -142,14 +142,14 @@ public class ConsultasInterativas {
 
         querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
 
-        querie6.forEach(q -> q.setValue(sgv.getGFilClientesDiferentesTotal(q.getCode())));
+        querie6.forEach(q -> q.setValue2(sgv.getGFilClientesDiferentesTotal(q.getCode())));
     }
 
     public String toStringQ6(int limit){
         return limit + " produtos mais vendidos em todo o ano:\n" + querie6.toString();
     }
 
-    public void setQuerie7(Load sgv) {
+    public void setQuerie7(GestVendas sgv) {
         querie7 = new HashMap<>();
 
         for(int i = 0; i<3; i++)
@@ -160,7 +160,7 @@ public class ConsultasInterativas {
         return "3 Clientes mais compradores por filial:\n" + querie7.toString();
     }
 
-    public void setQuerie8(Load sgv, int limit) {
+    public void setQuerie8(GestVendas sgv, int limit) {
         querie8 = new ArrayList<>();
 
         sgv.getCatCtree().forEach(a -> querie8.add(new ParStringFloat(a, sgv.getGFilProdutosDiferentesTotal(a))));
@@ -172,7 +172,7 @@ public class ConsultasInterativas {
         return limit + " Clientes que compraram mais produtos diferentes:\n" + querie8.toString();
     }
 
-    public void setQuerie9(Load sgv, String codProd,int limit) {
+    public void setQuerie9(GestVendas sgv, String codProd,int limit) {
         querie9 = new ArrayList<>();
   /*      List<ProdCliinfo> list;
 
@@ -210,7 +210,7 @@ public class ConsultasInterativas {
         return sb.toString();
     }
 
-    public void setQuerie10(Load sgv) {
+    public void setQuerie10(GestVendas sgv) {
         querie10 = new HashMap<>();
 
         for(String cod: sgv.getCatPtree()){

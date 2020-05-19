@@ -99,41 +99,41 @@ public class ConsultasEstatisticas implements IConsultasEstatisticas{
         return copy;
     }
 
-//    @Override
-//    public String toString() {
-//        final StringBuilder sb = new StringBuilder("ConsultasEstatisticas\n");
-//        sb.append("SalesPath='").append(SalesPath);
-//        sb.append("\nvendasInvalidas=").append(vendasInvalidas);
-//        sb.append("\ntotalProdutos=").append(totalProdutos);
-//        sb.append("\nprodsComprados=").append(prodsComprados);
-//        sb.append("\nprodsNaoComprados=").append(prodsNaoComprados);
-//        sb.append("\ntotalClientes=").append(totalClientes);
-//        sb.append("\ncliCompradores=").append(cliCompradores);
-//        sb.append("\ncliNaoCompradores=").append(cliNaoCompradores);
-//        sb.append("\ncomprasValor0=").append(comprasValor0);
-//        sb.append("\nfatTotal=").append(fatTotal);
-//        return sb.toString();
-//    }
-//
-//    public String toString2(){
-//        final StringBuilder sb = new StringBuilder();
-//        sb.append("\ncomprasMes=").append(Arrays.toString(comprasMes));
-//        return sb.toString();
-//    }
-//
-//    public String toString3(){
-//        final StringBuilder sb = new StringBuilder();
-//        for(int i = 0;i < 12;i++)
-//            sb.append("\nFaturação Mes ").append(i+1).append(":").append(fatMesFil[i][0]).
-//                    append(" ").append(fatMesFil[i][1]).append(" ").append(fatMesFil[i][2]);
-//        return sb.toString();
-//    }
-//
-//    public String toString4(){
-//        final StringBuilder sb = new StringBuilder();
-//        for(int i = 0;i < 12;i++)
-//            sb.append("\nCompradores Mes ").append(i+1).append(":").append(compradoresMesFil[0][i]).
-//                    append(" ").append(compradoresMesFil[1][i]).append(" ").append(compradoresMesFil[2][i]);
-//        return sb.toString();
-//    }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ConsultasEstatisticas\n");
+        sb.append("SalesPath='").append(SalesPath);
+        sb.append("\nvendasInvalidas=").append(vendasInvalidas);
+        sb.append("\ntotalProdutos=").append(totalProdutos);
+        sb.append("\nprodsComprados=").append(prodsComprados);
+        sb.append("\nprodsNaoComprados=").append(prodsNaoComprados);
+        sb.append("\ntotalClientes=").append(totalClientes);
+        sb.append("\ncliCompradores=").append(cliCompradores);
+        sb.append("\ncliNaoCompradores=").append(cliNaoCompradores);
+        sb.append("\ncomprasValor0=").append(comprasValor0);
+        sb.append("\nfatTotal=").append(fatTotal);
+        return sb.toString();
+    }
+
+    public String toString2(){
+        final StringBuilder sb = new StringBuilder();
+        sb.append("\ncomprasMes=").append(Arrays.toString(comprasMes));
+        return sb.toString();
+    }
+
+    public String toString3(){
+        final StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < 12;i++)
+            sb.append("\nFaturação Mes ").append(i+1).append(":").append(fatMesFil[i][0]).
+                    append(" ").append(fatMesFil[i][1]).append(" ").append(fatMesFil[i][2]);
+        return sb.toString();
+    }
+
+    public String toString4(){
+        final StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < 12;i++)
+            sb.append("\nCompradores Mes ").append(i+1).append(":").append(compradoresMesFil[0][i]).
+                    append(" ").append(compradoresMesFil[1][i]).append(" ").append(compradoresMesFil[2][i]);
+        return sb.toString();
+    }
 }

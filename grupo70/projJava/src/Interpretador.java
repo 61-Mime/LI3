@@ -132,16 +132,16 @@ public class Interpretador {
                     val = false;
                     break;
                 case 1:
-                    a.printConsultaEstatisticas(ce, 1);
+                    a.printConsultasEstatisticas(ce, 1);
                     break;
                 case 2:
-                    a.printConsultaEstatisticas(ce, 2);
+                    a.printConsultasEstatisticas(ce, 2);
                     break;
                 case 3:
-                    a.printConsultaEstatisticas(ce, 3);
+                    a.printConsultasEstatisticas(ce, 3);
                     break;
                 case 4:
-                    a.printConsultaEstatisticas(ce, 4);
+                    a.printConsultasEstatisticas(ce, 4);
                     break;
             }
         }

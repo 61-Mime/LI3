@@ -1,7 +1,8 @@
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ConsultasInterativas {
+public class ConsultasInterativas implements IConsultasInterarivas {
     private List<String> querie1;
     private int[] querie2;
     private Map<Integer,float[]> querie3;
@@ -100,26 +101,7 @@ public class ConsultasInterativas {
 
         return sb.toString();
     }
-/*
-    public void addQuerie5(String cod, int uni) {
-        ParStringFloat c = new ParStringFloat(cod, uni);
 
-        if(querie5.contains(c)){
-            Iterator<ParStringFloat> it = querie5.iterator();
-            boolean b = true;
-            ParStringFloat q;
-            while (it.hasNext() && b){
-                q = it.next();
-                if(q.getCode().equals(cod)) {
-                    q.addUni(uni);
-                    b = false;
-                }
-            }
-        }
-        else
-            querie5.add(c);
-    }
-*/
     public void setQuerie5(Load sgv, String cod) {
         querie5 = new ArrayList<>();
         int i;
@@ -174,28 +156,7 @@ public class ConsultasInterativas {
 
     public void setQuerie9(Load sgv, String codProd,int limit) {
         querie9 = new ArrayList<>();
-  /*      List<ProdCliinfo> list;
 
-        for(int i=0; i<3; i++) {
-            list = sgv.getGFilProdCliList(i, codProd);
-            for (ProdCliinfo pcli : list){
-                ParStringFloat q9 = new ParStringFloat(pcli.getCod(),pcli.getUni(),pcli.getPrice()*pcli.getUni());
-                if(querie9.contains(q9)){
-                    Iterator<ParStringFloat> it = querie9.iterator();
-                    boolean b = true;
-                    ParStringFloat q;
-                    while (it.hasNext() && b){
-                        q = it.next();
-                        if(q.getCode().equals(q9.getCode())) {
-                            q.addUni(q9.getValue(),q9.getValue2());
-                            b = false;
-                        }
-                    }
-                }
-                else
-                    querie9.add(q9);
-            }
-        }*/
         for(int i=0; i<3; i++)
             querie9.addAll(sgv.getGFilProdSet(i, codProd));
 
@@ -247,6 +208,74 @@ public class ConsultasInterativas {
         }
 
         return sb.toString();
+    }
+
+    public List<String> getQ1(){
+        return new ArrayList<>(querie1);
+    }
+
+    public int[] getQ2(){
+        int[] copy;
+        copy = Arrays.copyOf(querie2,8);
+        return copy;
+    }
+
+    public Map<Integer,float[]> getQ3(){
+        Map<Integer,float[]> q3copy = new HashMap<>();
+        for(int i=0; i<12; i++)
+            //q3copy.put(i,Arrays.copyOf(querie3, 3));
+
+        return q3copy;
+    }
+
+    public Map<Integer,float[]> getQ4(){
+        Map<Integer,float[]> q4copy = new HashMap<>();
+        for(int i=0; i<12; i++)
+            //q4copy.put(i,Arrays.copyOf(querie4,3));
+
+        return q4copy;
+    }
+
+    public List<ParStringFloat> getQ5(){
+        List<ParStringFloat> q5copy = new ArrayList<>();
+        querie5.forEach(p -> q5copy.add(p.clone()));
+
+        return q5copy;
+    }
+
+    public List<ParStringFloat> getQ6(){
+        List<ParStringFloat> q6copy = new ArrayList<>();
+        querie6.forEach(p -> q6copy.add(p.clone()));
+
+        return q6copy;
+    }
+
+    public Map<Integer,List<String>> getQ7(){
+        Map<Integer,List<String>> q7copy = new HashMap<>();
+
+        for(int i = 0;i < 3;i++)
+            q7copy.put(i,new ArrayList<>(querie7.get(i)));
+
+        return q7copy;
+    }
+
+    public List<ParStringFloat> getQ8(){
+        List<ParStringFloat> q8copy = new ArrayList<>();
+
+        querie8.forEach(p -> q8copy.add(p.clone()));
+
+        return q8copy;
+    }
+
+    public List<ParStringFloat> getQ9(){
+        List<ParStringFloat> q9copy = new ArrayList<>();
+        querie9.forEach(p -> q9copy.add(p.clone()));
+
+        return q9copy;
+    }
+
+    public Map<String,float[][]> getQ10(){
+        return new HashMap<>(querie10);
     }
 }
 

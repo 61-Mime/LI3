@@ -1,4 +1,7 @@
-public class Apresentacao {
+import java.util.List;
+import java.util.Scanner;
+
+public class Apresentacao implements IApresentacao{
 
     public void welcome() {
         System.out.print("   SSSSSSSSSSSSSSS           GGGGGGGGGGGG   VVVVVVVV           VVVVVVVV\n");
@@ -61,7 +64,6 @@ public class Apresentacao {
                 "4 | Clientes compradores distintos por (Filial/Mês)\n" +
                 "0 | Sair\n");
     }
-
 
     public void printMessage(String message) {
         System.out.println(message);

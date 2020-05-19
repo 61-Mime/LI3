@@ -4,16 +4,22 @@ import java.util.stream.Collectors;
 public class ConsultasInterativas {
     private List<String> querie1;
     private int[] querie2;
-    private Map<Integer,double[]> querie3;
-    private Map<Integer,double[]> querie4;
-    private List<ParStringInt> querie5;
-    private List<ParStringInt> querie6;
+    private Map<Integer,float[]> querie3;
+    private Map<Integer,float[]> querie4;
+    private List<ParStringFloat> querie5;
+    private List<ParStringFloat> querie6;
     private Map<Integer, List<String>> querie7;
-    private List<ParStringInt> querie8;
-    private List<ParStringInt> querie9;
-    private Map<String, double[][]> querie10;
+    private List<ParStringFloat> querie8;
+    private List<ParStringFloat> querie9;
+    private Map<String, float[][]> querie10;
 
     public void setQuerie1(Load sgv){
+        querie1 = new ArrayList<>();
+
+        sgv.getCatPtree().stream().filter(cod -> !(sgv.getFactContainsProd(cod))).forEach(s -> querie1.add(s));
+    }
+
+    public void setQuerie1teste(Load sgv){
         querie1 = new ArrayList<>();
 
         sgv.getCatPtree().stream().filter(cod -> !(sgv.getFactContainsProd(cod))).forEach(s -> querie1.add(s));
@@ -48,10 +54,10 @@ public class ConsultasInterativas {
 
     public void setQuerie3(Load sgv,String cod){
         querie3 = new HashMap<>();
-        double[] res;
+        float[] res;
         int index,pos;
         for(int month = 0;month < 12;month++){
-            res = new double[3];
+            res = new float[3];
             res[0] = sgv.getGFilNumeroComprasMes(cod, month);
             res[1] = sgv.getGFilProdutosDiferentes(cod, month);
             res[2] = sgv.getGFilGastoTotalMes(cod, month);
@@ -60,12 +66,12 @@ public class ConsultasInterativas {
     }
 
     public String toStringQ3(){
-        double [] res;
+        float [] res;
         StringBuilder sb = new StringBuilder();
         sb.append("Mês (Compras) (Produtos Diferentes) (Gasto total)\n");
         for(int mes = 0;mes < 12;mes++) {
             res = querie3.get(mes);
-            sb.append(mes).append("    ").append(res[0]).append("           ").append(res[1]).append("             ").append(res[2]).append("\n");
+            sb.append(mes+1).append("    ").append(res[0]).append("           ").append(res[1]).append("             ").append(res[2]).append("\n");
         }
 
         return sb.toString();
@@ -73,35 +79,35 @@ public class ConsultasInterativas {
 
     public void setQuerie4(Load sgv,String cod){
         querie4 = new HashMap<>();
-        double res[];
+        float res[];
         for(int month = 0;month < 12;month++){
-            res = new double[3];
+            res = new float[3];
             res[0] = sgv.getFactUniMes(cod,month);
             res[1] = sgv.getGFilClientesDiferentes(cod, month);
             res[2] = sgv.getFactTotalMes(cod,month);
-            querie3.put(month,res);
+            querie4.put(month,res);
         }
     }
 
     public String toStringQ4(){
-        double [] res;
+        float [] res;
         StringBuilder sb = new StringBuilder();
         sb.append("Mês (Vendas uni) (Clientes Diferentes) (Faturação)\n");
         for(int mes = 0;mes < 12;mes++) {
-            res = querie3.get(mes);
-            sb.append(mes).append("      ").append(res[0]).append("           ").append(res[1]).append("            ").append(res[2]).append("\n");
+            res = querie4.get(mes);
+            sb.append(mes+1).append("      ").append(res[0]).append("           ").append(res[1]).append("            ").append(res[2]).append("\n");
         }
 
         return sb.toString();
     }
-
+/*
     public void addQuerie5(String cod, int uni) {
-        ParStringInt c = new ParStringInt(cod, uni);
+        ParStringFloat c = new ParStringFloat(cod, uni);
 
         if(querie5.contains(c)){
-            Iterator<ParStringInt> it = querie5.iterator();
+            Iterator<ParStringFloat> it = querie5.iterator();
             boolean b = true;
-            ParStringInt q;
+            ParStringFloat q;
             while (it.hasNext() && b){
                 q = it.next();
                 if(q.getCode().equals(cod)) {
@@ -113,16 +119,13 @@ public class ConsultasInterativas {
         else
             querie5.add(c);
     }
-
+*/
     public void setQuerie5(Load sgv, String cod) {
         querie5 = new ArrayList<>();
-        int i, j;
+        int i;
 
         for(i=0; i<3; i++)
-            for(j=0; j<12; j++){
-                Set<ProdCliinfo> tree = sgv.getFilialProdCliMes(i, cod, j);
-                if(tree != null)
-                    tree.forEach(c -> addQuerie5(c.getCod(),c.getUni()));}
+            sgv.getGFilCliSet(i, cod).forEach(c -> querie5.add(c));
 
         querie5 = querie5.stream().sorted(new sortParbyValue()).collect(Collectors.toList());
     }
@@ -135,7 +138,7 @@ public class ConsultasInterativas {
         querie6 = new ArrayList<>();
 
         for(String cod:sgv.getFactKeys())
-            querie6.add(new ParStringInt(cod, sgv.getFactUni(cod)));
+            querie6.add(new ParStringFloat(cod, sgv.getFactUni(cod)));
 
         querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
 
@@ -160,7 +163,7 @@ public class ConsultasInterativas {
     public void setQuerie8(Load sgv, int limit) {
         querie8 = new ArrayList<>();
 
-        sgv.getCatCtree().forEach(a -> querie8.add(new ParStringInt(a, sgv.getGFilProdutosDiferentesTotal(a))));
+        sgv.getCatCtree().forEach(a -> querie8.add(new ParStringFloat(a, sgv.getGFilProdutosDiferentesTotal(a))));
 
         querie8 = querie8.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
@@ -171,16 +174,16 @@ public class ConsultasInterativas {
 
     public void setQuerie9(Load sgv, String codProd,int limit) {
         querie9 = new ArrayList<>();
-        List<ProdCliinfo> list;
+  /*      List<ProdCliinfo> list;
 
         for(int i=0; i<3; i++) {
             list = sgv.getGFilProdCliList(i, codProd);
             for (ProdCliinfo pcli : list){
-                ParStringInt q9 = new ParStringInt(pcli.getCod(),pcli.getUni(),pcli.getPrice()*pcli.getUni());
+                ParStringFloat q9 = new ParStringFloat(pcli.getCod(),pcli.getUni(),pcli.getPrice()*pcli.getUni());
                 if(querie9.contains(q9)){
-                    Iterator<ParStringInt> it = querie9.iterator();
+                    Iterator<ParStringFloat> it = querie9.iterator();
                     boolean b = true;
-                    ParStringInt q;
+                    ParStringFloat q;
                     while (it.hasNext() && b){
                         q = it.next();
                         if(q.getCode().equals(q9.getCode())) {
@@ -192,7 +195,9 @@ public class ConsultasInterativas {
                 else
                     querie9.add(q9);
             }
-        }
+        }*/
+        for(int i=0; i<3; i++)
+            querie9.addAll(sgv.getGFilProdSet(i, codProd));
 
         querie9 = querie9.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
     }
@@ -217,7 +222,7 @@ public class ConsultasInterativas {
         }
     }
 
-    public String toStringTabela(double[][] values){
+    public String toStringTabela(float[][] values){
         StringBuilder sb = new StringBuilder();
         for(int fil = 0;fil < 3;fil++) {
             for (int i = 0; i < 12; i++)
@@ -231,7 +236,7 @@ public class ConsultasInterativas {
     public String toStringQ10(){
         int size = querie10.size();
         StringBuilder sb = new StringBuilder();
-        for(Map.Entry<String, double[][]> cod:querie10.entrySet()) {
+        for(Map.Entry<String, float[][]> cod:querie10.entrySet()) {
             sb.append("Faturação ").append(cod.getKey()).append("\n");
 
             if (cod.getValue() != null)

@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -7,7 +6,7 @@ public class Interpretador {
 
     public int lerInt(String message,int min,int max){
         Scanner s = new Scanner(System.in);
-        int n = 0;
+        int n = -1;
 
         do{
             a.printMessage(message);
@@ -15,10 +14,9 @@ public class Interpretador {
                 String line = s.nextLine();
                 n = Integer.parseInt(line);
             } catch (NumberFormatException nfe) {
-                a.printMessage(nfe.getMessage()+"erro a ler int");
-                n = -1;
+                a.printErroLerInt();
             }
-        } while (n < min);
+        } while (n < min || n > max);
 
         return n;
     }
@@ -30,21 +28,21 @@ public class Interpretador {
         do{
             a.printMessage(message);
             line = s.nextLine();
-        } while ((type == 0 && (!sgv.cliVal(line) || !sgv.getCatCcontains(line))) || (type == 1 && (!sgv.prodVal(line) || !sgv.getCatPcontains(line))));
+        } while ((type == 0 && (!sgv.cliVal(line) || !sgv.getCatCcontains(line))) ||
+                 (type == 1 && (!sgv.prodVal(line) || !sgv.getCatPcontains(line))));
 
         return line;
     }
 
     public void consultasIterativas(Load sgv){
         boolean val = true;
-        Scanner scanner = new Scanner(System.in);
         String line,time;
         int comand,num;
         ConsultasInterativas ci = new ConsultasInterativas();
 
         while (val){
             a.menuConsultasInterativas();
-            comand = (int)lerInt("Introduza um número:",0,10);
+            comand = lerInt(a.pedirNumero(),0,10);
             switch (comand){
                 case 0:
                     val = false;
@@ -56,35 +54,35 @@ public class Interpretador {
                     a.printQ1(ci, time);
                     break;
                 case 2:
-                    num = (int)lerInt("Introduza um mês",1,12);
+                    num = lerInt(a.pedirMes(),1,12);
                     Crono.start();
                     ci.setQuerie2(sgv,num - 1);
                     time = Crono.getTime();
                     a.printQ2(ci, time, num);
                     break;
                 case 3:
-                    line = lerString("Introduza um cliente",0,sgv);
+                    line = lerString(a.pedirCliente(),0,sgv);
                     Crono.start();
                     ci.setQuerie3(sgv, line);
                     time = Crono.getTime();
                     a.printQ3(ci, time);
                     break;
                 case 4:
-                    line = lerString("Introduza um produto",1,sgv);
+                    line = lerString(a.pedirProduto(),1,sgv);
                     Crono.start();
                     ci.setQuerie4(sgv, line);
                     time = Crono.getTime();
                     a.printQ4(ci, time);
                     break;
                 case 5:
-                    line = lerString("Introduza um cliente",0,sgv);
+                    line = lerString(a.pedirCliente(),0,sgv);
                     Crono.start();
                     ci.setQuerie5(sgv, line);
                     time = Crono.getTime();
                     a.printQ5(ci, time);
                     break;
                 case 6:
-                    num = lerInt("Introduza o limite",0,1000000);
+                    num = lerInt(a.pedirLimite(),0,1000000);
                     Crono.start();
                     ci.setQuerie6(sgv, num);
                     time = Crono.getTime();
@@ -97,15 +95,15 @@ public class Interpretador {
                     a.printQ7(ci, time);
                     break;
                 case 8:
-                    num = lerInt("Introduza o limite",0,1000000);
+                    num = lerInt(a.pedirLimite(),0,1000000);
                     Crono.start();
                     ci.setQuerie8(sgv, num);
                     time = Crono.getTime();
                     a.printQ8(ci, time, num);
                     break;
                 case 9:
-                    num = lerInt("Introduza o limite",0,1000000);
-                    line = lerString("Introduza um produto",1,sgv);
+                    num = lerInt(a.pedirLimite(),0,1000000);
+                    line = lerString(a.pedirProduto(),1,sgv);
                     Crono.start();
                     ci.setQuerie9(sgv, line,num);
                     time = Crono.getTime();
@@ -128,22 +126,22 @@ public class Interpretador {
 
         while (val){
             a.menuConsultasEstatisticas();
-            comand = lerInt("Introduza um número:",0,4);
+            comand = lerInt(a.pedirNumero(),0,4);
             switch (comand){
                 case 0:
                     val = false;
                     break;
                 case 1:
-                    System.out.println(ce.toString());
+                    a.printMessage(ce.toString());
                     break;
                 case 2:
-                    System.out.println(ce.toString2());
+                    a.printMessage(ce.toString2());
                     break;
                 case 3:
-                    System.out.println(ce.toString3());
+                    a.printMessage(ce.toString3());
                     break;
                 case 4:
-                    System.out.println(ce.toString4());
+                    a.printMessage(ce.toString4());
                     break;
             }
         }
@@ -152,7 +150,8 @@ public class Interpretador {
     public void interpretador() throws IOException, ClassNotFoundException {
         boolean val = true,load = false;
         Scanner scanner = new Scanner(System.in);
-        int comand;
+        int comand, n;
+        String time;
         Load sgv = new Load();
         DataFile data = new DataFile();
 
@@ -162,7 +161,7 @@ public class Interpretador {
 
         while (val){
             a.menu();
-            comand = lerInt("Introduza um número: ",0,5);
+            comand = lerInt(a.pedirNumero(),0,5);
             switch (comand){
                 case 0:
                     val = false;
@@ -171,17 +170,17 @@ public class Interpretador {
                     if(load)
                         consultasEstatisticas(sgv);
                     else
-                        a.printMessage("Carregue as estruturas primeiro");
+                        a.printErroCarregar();
                     break;
                 case 2:
                     if(load)
                         consultasIterativas(sgv);
                     else
-                        a.printMessage("Carregue as estruturas primeiro");
+                        a.printErroCarregar();
                     break;
                 case 3:
                     if(!load) {
-                        a.printMessage("Carregue as estruturas primeiro");
+                        a.printErroCarregar();
                         break;
                     }
                     a.printMessage("Pretende guardar no ficheiro default? (S/N)");
@@ -201,7 +200,19 @@ public class Interpretador {
                     load = true;
                     break;
                 case 5:
-                    sgv.load();
+                    if(load)
+                        sgv = new Load();
+                    Crono.start();
+                    if((n = sgv.loadCat("Clientes.txt",1)) != 0)
+                        a.printErroLerFicheiro(n);
+                    if((n = sgv.loadCat("Produtos.txt",1)) != 0)
+                        a.printErroLerFicheiro(n);
+                    a.printTime(Crono.getTime(),"Catalogos");
+
+                    Crono.start();
+                    if((n = sgv.loadSales(sgv.getLoadInfoSalesPath())) != 0)
+                        a.printErroLerFicheiro(n);
+                    a.printTime(Crono.getTime(),"Vendas");
                     load = true;
                     break;
             }

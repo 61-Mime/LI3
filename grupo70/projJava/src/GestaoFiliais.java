@@ -22,8 +22,16 @@ public class GestaoFiliais implements Serializable {
         return getFil(branch).getClientesCompradores();
     }
 
-    public Set<ProdCliinfo> getProdCliMesFilial(int branch, String cod, int month){
+    /*public Set<ProdCliinfo> getProdCliMesFilial(int branch, String cod, int month){
         return getFil(branch).getCliInfo(cod).getSetMes(month);
+    }*/
+
+    public Set<ParStringFloat> getCliSetCodUni(int branch,String code){
+        return gFil.get(branch).getCliSetCodUni(code);
+    }
+
+    public Set<ParStringFloat> getProdSetCodUni(int branch,String code){
+        return gFil.get(branch).getProdSetCodUni(code);
     }
 
     public List<String> getClientesMaisCompradoresFilial(int branch){
@@ -45,19 +53,19 @@ public class GestaoFiliais implements Serializable {
         return res;
     }
 
-    public boolean addSaleInfo(int month,double price,int uni,String prodCod,String cliCod,int branch){
-        int cliIndex = gFil.get(branch).addSale(month, price, uni, prodCod, cliCod);
+    public boolean addSaleInfo(short month,float price,short uni,String prodCod,String cliCod,short branch){
+        int cliIndex = gFil.get((int)branch).addSale(month, price, uni, prodCod, cliCod);
         return isComprador(cliIndex,cliCod,branch);
     }
 
-    public double clientesDiferentes(String prodCod,int month){
+    public float clientesDiferentes(String prodCod,int month){
         Set<String> cli =gFil.get(0).getClientesDiferentes(month,prodCod);
         cli.addAll(gFil.get(1).getClientesDiferentes(month,prodCod));
         cli.addAll(gFil.get(2).getClientesDiferentes(month,prodCod));
         return cli.size();
     }
 
-    public double produtosDiferentes(String cliCod,int month){
+    public float produtosDiferentes(String cliCod,int month){
         Set<String> prod =gFil.get(0).getProdutosDiferentes(month,cliCod);
         prod.addAll(gFil.get(1).getProdutosDiferentes(month,cliCod));
         prod.addAll(gFil.get(2).getProdutosDiferentes(month,cliCod));
@@ -88,12 +96,12 @@ public class GestaoFiliais implements Serializable {
         return cli.size();
     }
 
-    public double gastoTotalMes(String code,int month){
+    public float gastoTotalMes(String code,int month){
         return gFil.get(0).getGastoTotal(code,month) + gFil.get(1).getGastoTotal(code,month)
                 + gFil.get(2).getGastoTotal(code,month);
     }
 
-    public double numeroComprasMes(String code,int month){
+    public float numeroComprasMes(String code,int month){
         return gFil.get(0).getNumeroCompras(code,month) + gFil.get(1).getNumeroCompras(code,month)
                + gFil.get(2).getNumeroCompras(code,month);
     }
@@ -109,7 +117,7 @@ public class GestaoFiliais implements Serializable {
         return gFil.get(0).getVendasMes(month)+gFil.get(1).getVendasMes(month)+gFil.get(2).getVendasMes(month);
     }
 
-    public List<ProdCliinfo> getFilialProdCliList(String cod, int branch) {
+    /*public List<ProdCliinfo> getFilialProdCliList(String cod, int branch) {
         return getFil(branch).getProdCliList(cod);
-    }
+    }*/
 }

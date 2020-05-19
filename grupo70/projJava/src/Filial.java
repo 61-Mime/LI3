@@ -21,9 +21,9 @@ public class Filial implements Serializable {
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
 
-    public ProdInfo getCliInfo(String cliCode){
+    /*public ProdInfo getCliInfo(String cliCode){
         return mapCli.get(cliCode);
-    }
+    }*/
 
     public int getClientesCompradores() {
         return clientesCompradores;
@@ -50,11 +50,11 @@ public class Filial implements Serializable {
         return clientes;
     }
 
-    public double getNumeroCompras(String cliCode,int month){
+    public float getNumeroCompras(String cliCode,int month){
         return (mapCli.get(cliCode)).getNumeroCompras(month);
     }
 
-    public double getGastoTotal(String cliCode,int month){
+    public float getGastoTotal(String cliCode,int month){
         return (mapCli.get(cliCode)).getGastoTotal(month);
     }
 
@@ -70,17 +70,25 @@ public class Filial implements Serializable {
         return mapCli.values().stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
     }
 
-    public List<ProdCliinfo> getProdCliList(String code){
+    /*public List<ProdCliinfo> getProdCliList(String code){
         return mapProd.get(code).getMapList();
-    }
+    }*/
 
     public boolean containsCliCode(String code){
         return mapCli.containsKey(code);
     }
 
+    public Set<ParStringFloat> getCliSetCodUni(String code){
+        return mapCli.get(code).getSetCodUni();
+    }
+
+    public Set<ParStringFloat> getProdSetCodUni(String code){
+        return mapProd.get(code).getSetCodUni();
+    }
+
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
-    public int addSale(int month,double price,int uni,String prodCode,String cliCode){
+    public int addSale(short month,float price,short uni,String prodCode,String cliCode){
         int res = -1;
 
         vendasMes[month]++;

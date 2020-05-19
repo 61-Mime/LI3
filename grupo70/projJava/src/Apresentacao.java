@@ -106,4 +106,47 @@ public class Apresentacao {
     public void printQ10(ConsultasInterativas ci, String time) {
         System.out.println(ci.toStringQ10()+"\nTempo querie 10:" + time);
     }
+
+    public void printCE1(ConsultasInterativas ci, String time) {
+        System.out.println(ci.toStringQ10()+"\nTempo querie 10:" + time);
+    }
+
+    public void printErroLerInt(){
+        System.out.println("Erro a ler int!");
+    }
+
+    public void printErroCarregar(){
+        System.out.println("Carregue as estruturas primeiro!");
+    }
+
+    public void printErroLerFicheiro(int i){
+        if(i == 1)
+            System.out.println("Erro a ler ficheiro!");
+        else
+            System.out.println("Ficheiro não encontrado!");
+    }
+
+    public void printTime(String time,String type){
+        System.out.println("Tempo carregamento " + type + ":" +time);
+    }
+
+    public String pedirCliente(){
+        return "Introduza um cliente:";
+    }
+
+    public String pedirProduto(){
+        return "Introduza um produto:";
+    }
+
+    public String pedirMes(){
+        return "Introduza um mês:";
+    }
+
+    public String pedirLimite(){
+        return "Introduza um limite:";
+    }
+
+    public String pedirNumero(){
+        return "Introduza um número:";
+    }
 }

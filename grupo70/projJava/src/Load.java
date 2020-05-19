@@ -53,8 +53,12 @@ public class Load implements Serializable {
         return gFil.getClientesCompradoresFilial(branch);
     }
 
-    public Set<ProdCliinfo> getFilialProdCliMes(int branch, String cod, int month){
-        return gFil.getProdCliMesFilial(branch, cod, month);
+    public Set<ParStringFloat> getGFilCliSet(int branch, String cod){
+        return gFil.getCliSetCodUni(branch, cod);
+    }
+
+    public Set<ParStringFloat> getGFilProdSet(int branch, String cod){
+        return gFil.getProdSetCodUni(branch, cod);
     }
 
     public List<String> getFilialClientesMaisCompradores(int branch){
@@ -69,19 +73,19 @@ public class Load implements Serializable {
         return gFil.clientesDiferentesMes(month);
     }
 
-    public double getGFilNumeroComprasMes(String cod, int month) {
+    public float getGFilNumeroComprasMes(String cod, int month) {
         return gFil.numeroComprasMes(cod, month);
     }
 
-    public double getGFilProdutosDiferentes(String cod, int month) {
+    public float getGFilProdutosDiferentes(String cod, int month) {
         return gFil.produtosDiferentes(cod, month);
     }
 
-    public double getGFilGastoTotalMes(String cod, int month) {
+    public float getGFilGastoTotalMes(String cod, int month) {
         return gFil.gastoTotalMes(cod, month);
     }
 
-    public double getGFilClientesDiferentes(String cod, int month) {
+    public float getGFilClientesDiferentes(String cod, int month) {
         return gFil.clientesDiferentes(cod, month);
     }
 
@@ -93,19 +97,19 @@ public class Load implements Serializable {
         return gFil.produtosDiferentesTotal(cod);
     }
 
-    public List<ProdCliinfo> getGFilProdCliList(int branch, String cod) {
+    /*public List<ProdCliinfo> getGFilProdCliList(int branch, String cod) {
         return gFil.getFilialProdCliList(cod, branch);
-    }
+    }*/
 
     public int[] getgFilCliCompradoresMes(int branch){
         return gFil.getFilCliCompradoresMes(branch);
     }
 
-    public double getFactUniMes(String cod,int month){
+    public float getFactUniMes(String cod,int month){
         return fact.getUniMes(cod,month);
     }
 
-    public double getFactTotalMes(String cod,int month){
+    public float getFactTotalMes(String cod,int month){
         return fact.getFatTotalMes(cod,month);
     }
 
@@ -121,7 +125,7 @@ public class Load implements Serializable {
         return fact.containsProd(cod);
     }
 
-    public double[][] getFactMesFilProd(String cod){
+    public float[][] getFactMesFilProd(String cod){
         return fact.getFatMesFilProd(cod);
     }
 
@@ -133,7 +137,7 @@ public class Load implements Serializable {
         return fact.getCompras0();
     }
 
-    public double getFactFaturacaoTotal(){
+    public float getFactFaturacaoTotal(){
         return fact.getFaturacaoTotal();
     }
 
@@ -141,7 +145,7 @@ public class Load implements Serializable {
         return fact.getComprasMes();
     }
 
-    public double[][] getFactFaturacaoMesFil(){
+    public float[][] getFactFaturacaoMesFil(){
         return fact.getFaturacaoMesFil();
     }
 
@@ -193,27 +197,35 @@ public class Load implements Serializable {
         System.out.println(crono.getTImeString());
         return lines;
     }
-
-    public void load(){
+/*
+    public String loadCatalogo() {
         Crono.start();
-        loadCat(loadInfo.getCliPath(),0);
-        loadCat(loadInfo.getProdPath(),1);
-        System.out.println("Tempo carregamento catalogos " + Crono.getTime() + "\n");
-
-        Crono.start();
-        loadSales(loadInfo.getSalesPath());
-        System.out.println("Tempo carregamento vendas " + Crono.getTime() + "\n");
-
+        loadCat(loadInfo.getCliPath(), 0);
+        loadCat(loadInfo.getProdPath(), 1);
+        //System.out.println("Tempo carregamento catalogos " + Crono.getTime() + "\n");
+        return Crono.getTime();
     }
 
-    public void loadCat(String filename, int type){
+    public String load() {
+        Crono.start();
+        loadSales(loadInfo.getSalesPath());
+        //System.out.println("Tempo carregamento vendas " + Crono.getTime() + "\n");
+        return Crono.getTime();
+    }
+*/
+    public boolean valSale(int branch,int month,double price,int uni,char type){
+        return (branch >= 1 && branch <= 3 && month >= 1 && month <= 12 &&
+                price >= 0 && uni >= 0 && (type == 'N' || type == 'P'));
+    }
+
+    public int loadCat(String filename, int type){
         /*String line;
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(filename));
         } catch (FileNotFoundException fnfex) {
-            System.out.println(fnfex.getMessage() + "Ficheiro não encontrado");
-            System.exit(0);
+            //System.out.println(fnfex.getMessage() + "Ficheiro não encontrado");
+            System.exit(1);
         }
         try {
             while ((line = br.readLine()) != null) {*/
@@ -229,55 +241,56 @@ public class Load implements Serializable {
             }
         }/*
         } catch (IOException ioex) {
-            System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
+            System.exit(1);
+            //System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
         }*/
         if(type == 0)
             loadInfo.setCliValidos(catClientes.getTotal());
         else
             loadInfo.setProdValidos(catProdutos.getTotal());
+
+        return 0;
     }
 
-    public boolean valSale(int branch,int month,float price,int uni,char type){
-        return (branch >= 1 && branch <= 3 && month >= 1 && month <= 12 &&
-                price >= 0 && uni >= 0 && (type == 'N' || type == 'P'));
-    }
-
-    public void loadSales(String filename){
+    public int loadSales(String filename){
         String[] venda;
-        int branch,month,uni,cliIndex,res;
+        int branch,month;
+        short uni;
         float price;
         char type;
-        /*BufferedReader br = null;
+        BufferedReader br = null;
         String line;
 
         try {
             br = new BufferedReader(new FileReader(filename));
         } catch (FileNotFoundException fnfex) {
-            System.out.println(fnfex.getMessage() + "Ficheiro não encontrado");
-            System.exit(0);
+            //System.out.println(fnfex.getMessage() + "Ficheiro não encontrado");//apresentaçao
+            System.exit(1);
         }
         try {
-            while ((line = br.readLine()) != null) {*/
-        List<String> linhas = lerFicheiro(filename);
-        for(String line: linhas) {
+            while ((line = br.readLine()) != null) {
+        //List<String> linhas = lerFicheiro(filename);
+        //for(String line: linhas) {
             venda = line.split(" ");
             branch = Integer.parseInt(venda[6]);
             month = Integer.parseInt(venda[5]);
             price = Float.parseFloat(venda[1]);
-            uni = Integer.parseInt(venda[2]);
+            uni = Short.parseShort(venda[2]);
             type = venda[3].charAt(0);
             if(valSale(branch,month,price,uni,type) &&
                     catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
                 loadInfo.incValidas();
-                fact.addSale(branch - 1, month - 1, price, uni, venda[0]);
-                if (gFil.addSaleInfo(month - 1, price, uni, venda[0], venda[4], branch - 1))
+                fact.addSale((short) (branch - 1), (short) (month - 1), price, uni, venda[0]);
+                if (gFil.addSaleInfo((short) (month - 1), price, uni, venda[0], venda[4], (short) (branch - 1)))
                     loadInfo.incCliComprador();
             }
             else
                 loadInfo.incInvalidas();
-        }/*
+            }
         } catch (IOException ioex) {
-            System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
-        }*/
+            //System.out.println(ioex.getMessage() + "Erro a ler ficheiro");//apresentaçao
+            System.exit(2);
+        }
+        return 0;
     }
 }

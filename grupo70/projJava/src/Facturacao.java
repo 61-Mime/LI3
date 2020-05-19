@@ -5,8 +5,8 @@ public class Facturacao implements Serializable {
     private Map<String,FactMF> listaProd;
     private int comprados;
     private int compras0;
-    private double faturacaoTotal;
-    private double [][] faturacaoMesFil;
+    private float faturacaoTotal;
+    private float [][] faturacaoMesFil;
     private int [] comprasMes;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
@@ -17,7 +17,7 @@ public class Facturacao implements Serializable {
         compras0 = 0;
         faturacaoTotal = 0;
         comprasMes = new int[12];
-        faturacaoMesFil = new double[12][3];
+        faturacaoMesFil = new float[12][3];
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
@@ -30,7 +30,7 @@ public class Facturacao implements Serializable {
         return compras0;
     }
 
-    public double getFaturacaoTotal() {
+    public float getFaturacaoTotal() {
         return faturacaoTotal;
     }
 
@@ -38,7 +38,7 @@ public class Facturacao implements Serializable {
         return comprasMes.clone();
     }
 
-    public double[][] getFaturacaoMesFil() {
+    public float[][] getFaturacaoMesFil() {
         return faturacaoMesFil.clone();
     }
 
@@ -50,15 +50,15 @@ public class Facturacao implements Serializable {
         return listaProd.get(code).getUniTotal();
     }
 
-    public double getFatTotalMes(String code,int month){
+    public float getFatTotalMes(String code,int month){
         return listaProd.get(code).getFaturacaoMes(month);
     }
 
-    public double[][] getFatMesFilProd(String code){
+    public float[][] getFatMesFilProd(String code){
         return listaProd.get(code).getFaturacaoMesFill();
     }
 
-    public double getUniMes(String code,int month){
+    public float getUniMes(String code,int month){
         return listaProd.get(code).getUnidadesMes(month);
     }
 
@@ -68,7 +68,7 @@ public class Facturacao implements Serializable {
         return listaProd.containsKey(prodCode);
     }
 
-    public void addSale(int branch,int month,float price,int uni,String prod){
+    public void addSale(short branch,short month,float price,short uni,String prod){
 
         if(!listaProd.containsKey(prod)) {
             comprados++;
@@ -77,7 +77,7 @@ public class Facturacao implements Serializable {
         if(price * uni == 0.0)
             compras0++;
 
-        double f = price * uni;
+        float f = price * uni;
         faturacaoTotal += f;
         comprasMes[month]++;
         faturacaoMesFil [month][branch]+= f;

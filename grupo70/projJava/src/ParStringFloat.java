@@ -1,24 +1,24 @@
 import java.util.Comparator;
 import java.util.Objects;
 
-public class ParStringInt implements Comparable<ParStringInt>{
+public class ParStringFloat implements Comparable<ParStringFloat>{
     private String code;
-    private double[] value;
+    private float[] value;
 
-    public ParStringInt(String code, int value) {
+    public ParStringFloat(String code, int value) {
         this.code = code;
-        this.value = new double[1];
+        this.value = new float[1];
         this.value[0] = value;
     }
 
-    public ParStringInt(String code, double value,double value2) {
+    public ParStringFloat(String code, float value,float value2) {
         this.code = code;
-        this.value = new double[2];
+        this.value = new float[2];
         this.value[0] = value;
         this.value[1] = value2;
     }
 
-    public ParStringInt(ParStringInt q) {
+    public ParStringFloat(ParStringFloat q) {
         this.code = q.getCode();
         this.value = q.getArray();
     }
@@ -27,32 +27,32 @@ public class ParStringInt implements Comparable<ParStringInt>{
         return code;
     }
 
-    public void setValue(int dif) {
-        this.value = value;
+    public void setValue(float dif) {
+        this.value[0] = dif;
     }
 
-    public double getValue() {
+    public float getValue() {
         return value[0];
     }
 
-    public double getValue2() {
+    public float getValue2() {
         return value[1];
     }
 
-    public double[] getArray(){
+    public float[] getArray(){
         return value;
     }
 
-    public void addUni(double value) {
+    public void addUni(float value) {
         this.value[0] += value;
     }
 
-    public void addUni(double value,double value2) {
+    public void addUni(float value,float value2) {
         this.value[0] += value;
         this.value[1] += value2;
     }
 
-    public int compareTo(ParStringInt aux) {
+    public int compareTo(ParStringFloat aux) {
         return this.getCode().compareTo(aux.getCode());
     }
 
@@ -60,8 +60,8 @@ public class ParStringInt implements Comparable<ParStringInt>{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ParStringInt parStringInt = (ParStringInt) o;
-        return this.getCode().equals(parStringInt.getCode());
+        ParStringFloat ParStringFloat = (ParStringFloat) o;
+        return this.getCode().equals(ParStringFloat.getCode());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class ParStringInt implements Comparable<ParStringInt>{
         return code + " value=" + value[1] + '\n';
     }
 
-    public ParStringInt clone() {
-        return new ParStringInt(this);
+    public ParStringFloat clone() {
+        return new ParStringFloat(this);
     }
 }

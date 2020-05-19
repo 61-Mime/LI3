@@ -10,9 +10,9 @@ public class ConsultasEstatisticas {
     private int cliCompradores;
     private int cliNaoCompradores;
     private int comprasValor0;
-    private double fatTotal;
+    private float fatTotal;
     private int []comprasMes;
-    private double [][] fatMesFil;
+    private float [][] fatMesFil;
     private int [][]compradoresMesFil;
 
     public ConsultasEstatisticas(Load sgv) {

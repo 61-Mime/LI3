@@ -11,7 +11,7 @@ public class Catalogo implements Serializable {
     public Catalogo(int t){
         this.type = t;
         this.total = 0;
-        this.list = new HashMap<>();
+        this.list = new TreeMap<>();
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
@@ -44,10 +44,10 @@ public class Catalogo implements Serializable {
     public void addCod(String cod) {
         if((type == 0 && valCli(cod))||(type == 1 && valProd(cod))) {
             total++;
-            String s = String.valueOf(cod.charAt(0) + cod.charAt(1));
-            if(!list.containsKey(s))
-                list.put(s, new TreeSet<>());
-            list.get(s).add(cod);
+            String c = String.valueOf(cod.charAt(0));
+            if(!list.containsKey(c))
+                list.put(c, new TreeSet<>());
+            list.get(c).add(cod);
         }
     }
 
@@ -60,9 +60,9 @@ public class Catalogo implements Serializable {
     }
 
     public boolean contem(String cod) {
-        String s = String.valueOf(cod.charAt(0) + cod.charAt(1));
-        if (list.containsKey(s))
-        return list.get(s).contains(cod);
+        String c = String.valueOf(cod.charAt(0));
+        if (list.containsKey(c))
+            return list.get(c).contains(cod);
 
         return false;
     }

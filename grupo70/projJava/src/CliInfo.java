@@ -3,14 +3,14 @@ import java.util.*;
 
 public class CliInfo extends ProdInfo implements Comparable<CliInfo>, Serializable {
     private int []numeroCompras;
-    private double []gastoTotal;
+    private float []gastoTotal;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
     public CliInfo(String code) {
         super(code);
         numeroCompras = new int[12];
-        gastoTotal = new double[12];
+        gastoTotal = new float[12];
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
@@ -19,15 +19,18 @@ public class CliInfo extends ProdInfo implements Comparable<CliInfo>, Serializab
         return numeroCompras[month];
     }
 
-    public double getGastoTotal(int month) {
+    public float getGastoTotal(int month) {
         return gastoTotal[month];
     }
 
-    public double getGastoTotal(){
-        return Arrays.stream(gastoTotal).sum();
+    public float getGastoTotal(){
+        float gasto = 0;
+        for (short i = 0;i< 12;i++)
+            gasto+=gastoTotal[i];
+        return gasto;
     }
 
-    public void addProd(String prodCode, int month, int uni, double price) {
+    public void addProd(String prodCode, short month, short uni, float price) {
         super.addCode(prodCode,month,price,uni);
         numeroCompras[month]++;
         gastoTotal[month] += uni * price;

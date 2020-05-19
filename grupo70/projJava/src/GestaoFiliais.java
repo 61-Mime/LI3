@@ -53,19 +53,19 @@ public class GestaoFiliais implements Serializable {
         return res;
     }
 
-    public boolean addSaleInfo(short month,float price,short uni,String prodCod,String cliCod,short branch){
+    public boolean addSaleInfo(int month,float price,int uni,String prodCod,String cliCod,int branch){
         int cliIndex = gFil.get((int)branch).addSale(month, price, uni, prodCod, cliCod);
         return isComprador(cliIndex,cliCod,branch);
     }
 
-    public float clientesDiferentes(String prodCod,int month){
+    public int clientesDiferentes(String prodCod,int month){
         Set<String> cli =gFil.get(0).getClientesDiferentes(month,prodCod);
         cli.addAll(gFil.get(1).getClientesDiferentes(month,prodCod));
         cli.addAll(gFil.get(2).getClientesDiferentes(month,prodCod));
         return cli.size();
     }
 
-    public float produtosDiferentes(String cliCod,int month){
+    public int produtosDiferentes(String cliCod,int month){
         Set<String> prod =gFil.get(0).getProdutosDiferentes(month,cliCod);
         prod.addAll(gFil.get(1).getProdutosDiferentes(month,cliCod));
         prod.addAll(gFil.get(2).getProdutosDiferentes(month,cliCod));

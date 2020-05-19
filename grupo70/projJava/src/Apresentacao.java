@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Apresentacao {
 
     public void welcome() {
@@ -107,10 +109,6 @@ public class Apresentacao {
         System.out.println(ci.toStringQ10()+"\nTempo querie 10:" + time);
     }
 
-    public void printCE1(ConsultasInterativas ci, String time) {
-        System.out.println(ci.toStringQ10()+"\nTempo querie 10:" + time);
-    }
-
     public void printErroLerInt(){
         System.out.println("Erro a ler int!");
     }
@@ -148,5 +146,40 @@ public class Apresentacao {
 
     public String pedirNumero(){
         return "Introduza um número:";
+    }
+
+    public void printConsultaEstatisticas(ConsultasEstatisticas ce, int i) {
+
+        final StringBuilder sb = new StringBuilder("ConsultasEstatisticas\n");
+
+        switch (i) {
+            case 1:
+                sb.append("SalesPath='").append(ce.getSalesPath());
+                sb.append("\nvendasInvalidas=").append(ce.getVendasInvalidas());
+                sb.append("\ntotalProdutos=").append(ce.getTotalProdutos());
+                sb.append("\nprodsComprados=").append(ce.getProdsComprados());
+                sb.append("\nprodsNaoComprados=").append(ce.getProdsNaoComprados());
+                sb.append("\ntotalClientes=").append(ce.getTotalClientes());
+                sb.append("\ncliCompradores=").append(ce.getCliCompradores());
+                sb.append("\ncliNaoCompradores=").append(ce.getCliNaoCompradores());
+                sb.append("\ncomprasValor0=").append(ce.getComprasValor0());
+                sb.append("\nfatTotal=").append(ce.getFatTotal());
+                break;
+            case 2:
+                sb.append("\ncomprasMes=").append(Arrays.toString(ce.getComprasMes()));
+                break;
+            case 3:
+                for(int j = 0; j < 12; j++)
+                    sb.append("\nFaturação Mes ").append(i+1).append(":").append(ce.getFatMesFil()[i][0]).
+                        append(" ").append(ce.getFatMesFil()[i][1]).append(" ").append(ce.getFatMesFil()[i][2]);
+                break;
+            case 4:
+                for(int j = 0; j < 12; j++)
+                    sb.append("\nCompradores Mes ").append(i+1).append(":").append(ce.getCompradoresMesFil()[0][i]).
+                        append(" ").append(ce.getCompradoresMesFil()[1][i]).append(" ").append(ce.getCompradoresMesFil()[2][i]);
+                break;
+        }
+
+        System.out.println(sb.toString());
     }
 }

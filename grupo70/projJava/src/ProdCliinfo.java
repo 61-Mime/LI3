@@ -2,13 +2,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class ProdCliinfo{
-    private short month;
+    private int month;
     private float fat;
-    private short uni;
+    private int uni;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
-    public ProdCliinfo(short month,float fat,short uni) {
+    public ProdCliinfo(int month,float fat,int uni) {
         this.month = month;
         this.fat = fat;
         this.uni = uni;
@@ -22,7 +22,7 @@ public class ProdCliinfo{
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
 
-    public short getMonth() {
+    public int getMonth() {
         return month;
     }
 
@@ -30,11 +30,11 @@ public class ProdCliinfo{
         return fat;
     }
 
-    public short getUni() {
+    public int getUni() {
         return uni;
     }
 
-    public void add(short uni,float price){
+    public void add(int uni,float price){
         this.uni += uni;
         this.fat += uni * price;
     }

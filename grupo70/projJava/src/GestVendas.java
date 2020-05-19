@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class Load implements Serializable {
+public class GestVendas implements Serializable, IGestVendas{
     private Catalogo catClientes;
     private Catalogo catProdutos;
     private Facturacao fact;
@@ -12,7 +12,7 @@ public class Load implements Serializable {
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
-    public Load(){
+    public GestVendas(){
         catClientes = new Catalogo(0);
         catProdutos = new Catalogo(1);
         fact = new Facturacao();
@@ -213,7 +213,7 @@ public class Load implements Serializable {
         return Crono.getTime();
     }
 */
-    public boolean valSale(int branch,int month,double price,int uni,char type){
+    public boolean valSale(int branch,int month,float price,int uni,char type){
         return (branch >= 1 && branch <= 3 && month >= 1 && month <= 12 &&
                 price >= 0 && uni >= 0 && (type == 'N' || type == 'P'));
     }
@@ -255,7 +255,7 @@ public class Load implements Serializable {
     public int loadSales(String filename){
         String[] venda;
         int branch,month;
-        short uni;
+        int uni;
         float price;
         char type;
         BufferedReader br = null;
@@ -275,13 +275,13 @@ public class Load implements Serializable {
             branch = Integer.parseInt(venda[6]);
             month = Integer.parseInt(venda[5]);
             price = Float.parseFloat(venda[1]);
-            uni = Short.parseShort(venda[2]);
+            uni = Integer.parseInt(venda[2]);
             type = venda[3].charAt(0);
             if(valSale(branch,month,price,uni,type) &&
                     catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
                 loadInfo.incValidas();
-                fact.addSale((short) (branch - 1), (short) (month - 1), price, uni, venda[0]);
-                if (gFil.addSaleInfo((short) (month - 1), price, uni, venda[0], venda[4], (short) (branch - 1)))
+                fact.addSale((branch - 1), (month - 1), price, uni, venda[0]);
+                if (gFil.addSaleInfo((month - 1), price, uni, venda[0], venda[4], (branch - 1)))
                     loadInfo.incCliComprador();
             }
             else

@@ -44,7 +44,7 @@ public class Catalogo implements Serializable {
     public void addCod(String cod) {
         if((type == 0 && valCli(cod))||(type == 1 && valProd(cod))) {
             total++;
-            String c = String.valueOf(cod.charAt(0));
+            String c = String.valueOf(cod.charAt(0) + cod.charAt(1));
             if(!list.containsKey(c))
                 list.put(c, new TreeSet<>());
             list.get(c).add(cod);
@@ -60,7 +60,7 @@ public class Catalogo implements Serializable {
     }
 
     public boolean contem(String cod) {
-        String c = String.valueOf(cod.charAt(0));
+        String c = String.valueOf(cod.charAt(0) + cod.charAt(1));
         if (list.containsKey(c))
             return list.get(c).contains(cod);
 

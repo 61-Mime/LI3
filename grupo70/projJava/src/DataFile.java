@@ -2,7 +2,7 @@ import java.io.*;
 
 public class DataFile extends IOException {
 
-    public void guardaDados(String fileName, Load load) {
+    public void guardaDados(String fileName, GestVendas load) {
         try {
             FileOutputStream file = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(file);
@@ -18,10 +18,10 @@ public class DataFile extends IOException {
         }
     }
 
-    public Load carregaDados(String fileName) throws IOException, ClassNotFoundException {
+    public GestVendas carregaDados(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream file = new FileInputStream(fileName);
         ObjectInputStream ois = new ObjectInputStream(file);
-        Load sgv = (Load) ois.readObject();
+        GestVendas sgv = (GestVendas) ois.readObject();
         ois.close();
         return sgv;
     }

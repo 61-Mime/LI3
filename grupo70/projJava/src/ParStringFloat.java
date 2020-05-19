@@ -5,7 +5,7 @@ public class ParStringFloat implements Comparable<ParStringFloat>{
     private String code;
     private float[] value;
 
-    public ParStringFloat(String code, int value) {
+    public ParStringFloat(String code, float value) {
         this.code = code;
         this.value = new float[1];
         this.value[0] = value;
@@ -27,8 +27,8 @@ public class ParStringFloat implements Comparable<ParStringFloat>{
         return code;
     }
 
-    public void setValue(float dif) {
-        this.value[0] = dif;
+    public void setValue2(float dif) {
+        this.value[1] = dif;
     }
 
     public float getValue() {
@@ -41,10 +41,6 @@ public class ParStringFloat implements Comparable<ParStringFloat>{
 
     public float[] getArray(){
         return value;
-    }
-
-    public void addUni(float value) {
-        this.value[0] += value;
     }
 
     public void addUni(float value,float value2) {
@@ -64,18 +60,17 @@ public class ParStringFloat implements Comparable<ParStringFloat>{
         return this.getCode().equals(ParStringFloat.getCode());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(code, value);
-    }
-
-    @Override
-    public String toString() {
+    public String toString3() {
         return code + " value=" + value[0] + '\n';
     }
 
     public String toString2() {
         return code + " value=" + value[1] + '\n';
+    }
+
+    @Override
+    public String toString() {
+        return code + " value=" + value[0] + " value=" + value[1] + "\n";
     }
 
     public ParStringFloat clone() {

@@ -2,37 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/IConsultasEstatisticas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IGestVendas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Catalogo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Catalogo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/CliInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/CliInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/ConsultasEstatisticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/ConsultasEstatisticas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/ConsultasInterativas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/ConsultasInterativas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/DataFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/DataFile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/FactMF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/FactMF.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Facturacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Facturacao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Filial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Filial.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/GestaoFiliais.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/GestaoFiliais.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Interpretador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Interpretador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Load.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Load.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Load.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/LoadInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/LoadInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/ParStringInt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/ParStringIntTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/ProdCliinfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/ProdCliinfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/ProdInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/ProdInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/sortCliByTotalFact.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/sortCliByTotalFact.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/sortParbyValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/sortParbyValue.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Apresentacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apresentacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Catalogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Catalogo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CliInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CliInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ConsultasEstatisticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsultasEstatisticas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ConsultasInterativas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsultasInterativas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FactMF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FactMF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Facturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Facturacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Filial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filial.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GestaoFiliais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GestaoFiliais.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interpretador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interpretador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParStringInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParStringFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParStringIntTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GestVendas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoadInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParStringFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParStringFloat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProdCliinfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProdCliinfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProdInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProdInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sortParbyValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sortParbyValue.java" afterDir="false" />
@@ -41,6 +42,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -118,10 +126,15 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="863" y="421" width="251" height="263" key="#Notifications/67.27.1853.1053@67.27.1853.1053" timestamp="1589755395318" />
-    <state x="171" y="138" key="#com.intellij.ide.util.MemberChooser" timestamp="1589759742959">
-      <screen x="0" y="23" width="1440" height="813" />
+    <state x="287" y="176" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1589907174545">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="171" y="138" key="#com.intellij.ide.util.MemberChooser/0.23.1440.813@0.23.1440.813" timestamp="1589759742959" />
+    <state x="287" y="176" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1589907174545" />
+    <state x="596" y="125" width="784" height="854" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589904308811">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="596" y="125" width="784" height="854" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589904308811" />
     <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2" timestamp="1589755871866">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -130,42 +143,42 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="242" y="116" width="1482" height="872" key="DiffContextDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1589755543660" />
-    <state width="1398" height="642" key="GridCell.Tab.0.bottom" timestamp="1589851337213">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1807" height="847" key="GridCell.Tab.0.bottom" timestamp="1589913203609">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1589766310790" />
     <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.814@0.23.1440.814" timestamp="1589823818796" />
     <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1589825521965" />
     <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1589845522163" />
     <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1589851337213" />
-    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
-    <state width="1398" height="642" key="GridCell.Tab.0.center" timestamp="1589851337212">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589913203609" />
+    <state width="1807" height="847" key="GridCell.Tab.0.center" timestamp="1589913203608">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
     <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.814@0.23.1440.814" timestamp="1589823818795" />
     <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1589825521964" />
     <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1589845522163" />
     <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1589851337212" />
-    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
-    <state width="1398" height="642" key="GridCell.Tab.0.left" timestamp="1589851337212">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589913203608" />
+    <state width="1807" height="847" key="GridCell.Tab.0.left" timestamp="1589913203607">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
     <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.814@0.23.1440.814" timestamp="1589823818795" />
     <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1589825521964" />
     <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1589845522163" />
     <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1589851337212" />
-    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298385" />
-    <state width="1398" height="642" key="GridCell.Tab.0.right" timestamp="1589851337213">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589913203607" />
+    <state width="1807" height="847" key="GridCell.Tab.0.right" timestamp="1589913203608">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
     <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.814@0.23.1440.814" timestamp="1589823818796" />
     <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1589825521964" />
     <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1589845522163" />
     <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1589851337213" />
-    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589754298386" />
+    <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589913203608" />
     <state x="221" y="58" key="SettingsEditor" timestamp="1589760877445">
       <screen x="0" y="23" width="1440" height="813" />
     </state>
@@ -178,5 +191,9 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="764" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589755483482" />
+    <state x="657" y="253" key="run.anything.popup" timestamp="1589905153416">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="657" y="253" key="run.anything.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1589905153416" />
   </component>
 </project>

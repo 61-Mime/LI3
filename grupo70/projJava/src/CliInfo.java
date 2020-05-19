@@ -25,12 +25,12 @@ public class CliInfo extends ProdInfo implements Comparable<CliInfo>, Serializab
 
     public float getGastoTotal(){
         float gasto = 0;
-        for (short i = 0;i< 12;i++)
+        for (int i = 0;i< 12;i++)
             gasto+=gastoTotal[i];
         return gasto;
     }
 
-    public void addProd(String prodCode, short month, short uni, float price) {
+    public void addProd(String prodCode, int month, int uni, float price) {
         super.addCode(prodCode,month,price,uni);
         numeroCompras[month]++;
         gastoTotal[month] += uni * price;

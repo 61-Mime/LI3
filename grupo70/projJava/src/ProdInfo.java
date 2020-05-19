@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 
 public class ProdInfo implements Serializable {
     private String code;
-    private Map<Short,Map<String,ProdCliinfo>> mapMes;
+    private Map<Integer,Map<String,ProdCliinfo>> mapMes;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
@@ -56,8 +56,8 @@ public class ProdInfo implements Serializable {
             for(ProdCliinfo c:mapMes.get(month).keySet())
                 clientes.add(c.getCod());
         }*/
-        if(mapMes.containsKey((short) month))
-            clientes.addAll(mapMes.get((short)month).keySet());
+        if(mapMes.containsKey((int) month))
+            clientes.addAll(mapMes.get((int)month).keySet());
         //System.out.println(clientes);
         return clientes;
     }
@@ -74,7 +74,7 @@ public class ProdInfo implements Serializable {
 
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
-    public void addCode(String cliCode,short month,float price,short uni) {
+    public void addCode(String cliCode,int month,float price,int uni) {
         //ProdCliinfo c = new ProdCliinfo(cliCode,month,price,uni);
         mapMes.putIfAbsent(month,new HashMap<>());
         if(mapMes.get(month).containsKey(cliCode))

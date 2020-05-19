@@ -37,8 +37,8 @@ public class FactMF implements Serializable {
         return Arrays.stream(faturacaoMesFill).toArray(float[][]::new);
     }
 
-    public void setFact(short branch, short month, float
-            price,short uni) {
+    public void setFact(int branch, int month, float
+            price,int uni) {
         unidadesMes[month] += uni;
         faturacaoTotal += price*uni;
         faturacaoMesFill[month][branch] += price*uni;

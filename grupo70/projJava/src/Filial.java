@@ -59,6 +59,8 @@ public class Filial implements Serializable {
     }
 
     public Set<String> getClientesDiferentes(int month,String code) {
+        if (!mapProd.containsKey(code))
+            return new TreeSet<>();
         return mapProd.get(code).getCodeMonth(month);
     }
 
@@ -88,7 +90,7 @@ public class Filial implements Serializable {
 
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
-    public int addSale(short month,float price,short uni,String prodCode,String cliCode){
+    public int addSale(int month,float price,int uni,String prodCode,String cliCode){
         int res = -1;
 
         vendasMes[month]++;

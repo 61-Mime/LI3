@@ -68,7 +68,7 @@ public class Facturacao implements Serializable {
         return listaProd.containsKey(prodCode);
     }
 
-    public void addSale(short branch,short month,float price,short uni,String prod){
+    public void addSale(int branch,int month,float price,int uni,String prod){
 
         if(!listaProd.containsKey(prod)) {
             comprados++;

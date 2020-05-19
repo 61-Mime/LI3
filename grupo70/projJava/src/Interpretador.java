@@ -21,7 +21,7 @@ public class Interpretador {
         return n;
     }
 
-    public String lerString(String message,int type,Load sgv){
+    public String lerString(String message, int type, GestVendas sgv){
         Scanner s = new Scanner(System.in);
         String line;
 
@@ -34,7 +34,7 @@ public class Interpretador {
         return line;
     }
 
-    public void consultasIterativas(Load sgv){
+    public void consultasIterativas(GestVendas sgv){
         boolean val = true;
         String line,time;
         int comand,num;
@@ -119,7 +119,7 @@ public class Interpretador {
         }
     }
 //ver tempo
-    public void consultasEstatisticas(Load sgv){
+    public void consultasEstatisticas(GestVendas sgv){
         boolean val = true;
         int comand;
         ConsultasEstatisticas ce = new ConsultasEstatisticas(sgv);
@@ -132,16 +132,16 @@ public class Interpretador {
                     val = false;
                     break;
                 case 1:
-                    a.printMessage(ce.toString());
+                    a.printConsultaEstatisticas(ce, 1);
                     break;
                 case 2:
-                    a.printMessage(ce.toString2());
+                    a.printConsultaEstatisticas(ce, 2);
                     break;
                 case 3:
-                    a.printMessage(ce.toString3());
+                    a.printConsultaEstatisticas(ce, 3);
                     break;
                 case 4:
-                    a.printMessage(ce.toString4());
+                    a.printConsultaEstatisticas(ce, 4);
                     break;
             }
         }
@@ -152,7 +152,7 @@ public class Interpretador {
         Scanner scanner = new Scanner(System.in);
         int comand, n;
         String time;
-        Load sgv = new Load();
+        GestVendas sgv = new GestVendas();
         DataFile data = new DataFile();
 
         a.welcome();
@@ -201,11 +201,11 @@ public class Interpretador {
                     break;
                 case 5:
                     if(load)
-                        sgv = new Load();
+                        sgv = new GestVendas();
                     Crono.start();
-                    if((n = sgv.loadCat("Clientes.txt",1)) != 0)
+                    if((n = sgv.loadCat("Files/Clientes.txt",0)) != 0)
                         a.printErroLerFicheiro(n);
-                    if((n = sgv.loadCat("Produtos.txt",1)) != 0)
+                    if((n = sgv.loadCat("Files/Produtos.txt",1)) != 0)
                         a.printErroLerFicheiro(n);
                     a.printTime(Crono.getTime(),"Catalogos");
 

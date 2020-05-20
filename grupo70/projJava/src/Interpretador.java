@@ -36,7 +36,7 @@ public class Interpretador {
 
     public void consultasIterativas(GestVendas sgv){
         boolean val = true;
-        String line,time;
+        String line,time = "";
         int comand,num;
         ConsultasInterativas ci = new ConsultasInterativas();
 
@@ -48,56 +48,46 @@ public class Interpretador {
                     val = false;
                     break;
                 case 1:
-                    Crono.start();
-                    ci.setQuerie1(sgv);
+                    time = ci.setQuerie1(sgv);
                     break;
                 case 2:
                     num = lerInt(a.pedirMes(),1,12);
-                    Crono.start();
-                    ci.setQuerie2(sgv,num - 1);
+                    time = ci.setQuerie2(sgv,num - 1);
                     break;
                 case 3:
                     line = lerString(a.pedirCliente(),0,sgv);
-                    Crono.start();
-                    ci.setQuerie3(sgv, line);
+                    time = ci.setQuerie3(sgv, line);
                     break;
                 case 4:
                     line = lerString(a.pedirProduto(),1,sgv);
-                    Crono.start();
-                    ci.setQuerie4(sgv, line);
+                    time = ci.setQuerie4(sgv, line);
                     break;
                 case 5:
                     line = lerString(a.pedirCliente(),0,sgv);
-                    Crono.start();
-                    ci.setQuerie5(sgv, line);
+                    time = ci.setQuerie5(sgv, line);
                     break;
                 case 6:
                     num = lerInt(a.pedirLimite(),0,1000000);
-                    Crono.start();
-                    ci.setQuerie6(sgv, num);
+                    time = ci.setQuerie6(sgv, num);
                     break;
                 case 7:
-                    Crono.start();
-                    ci.setQuerie7(sgv);
+                    time = ci.setQuerie7(sgv);
                     break;
                 case 8:
                     num = lerInt(a.pedirLimite(),0,1000000);
-                    Crono.start();
-                    ci.setQuerie8(sgv, num);
+                    time = ci.setQuerie8(sgv, num);
                     break;
                 case 9:
                     num = lerInt(a.pedirLimite(),0,1000000);
                     line = lerString(a.pedirProduto(),1,sgv);
-                    Crono.start();
-                    ci.setQuerie9(sgv, line,num);
+                    time = ci.setQuerie9(sgv, line,num);
                     break;
                 case 10:
-                    Crono.start();
-                    ci.setQuerie10(sgv);
+                    time = ci.setQuerie10(sgv);
                     break;
             }
             if(comand != 0)
-                a.printConsultasIterativas(ci,comand,Crono.getTime());
+                a.printConsultasIterativas(ci,comand,time);
         }
     }
 //ver tempo
@@ -113,24 +103,6 @@ public class Interpretador {
                 val = false;
             else
                 a.printConsultasEstatisticas(ce, comand);
-            /*
-            switch (comand){
-                case 0:
-                    val = false;
-                    break;
-                case 1:
-                    a.printConsultasEstatisticas(ce, 1);
-                    break;
-                case 2:
-                    a.printConsultasEstatisticas(ce, 2);
-                    break;
-                case 3:
-                    a.printConsultasEstatisticas(ce, 3);
-                    break;
-                case 4:
-                    a.printConsultasEstatisticas(ce, 4);
-                    break;
-            }*/
         }
     }
 
@@ -138,7 +110,6 @@ public class Interpretador {
         boolean val = true,load = false;
         Scanner scanner = new Scanner(System.in);
         int comand, n;
-        String time;
         GestVendas sgv = new GestVendas();
         DataFile data = new DataFile();
 
@@ -177,7 +148,7 @@ public class Interpretador {
                     else {
                         a.pedirNomeFicheiro();
                         str = scanner.nextLine();
-                        if((n = data.guardaDados(str, sgv)) != 0);
+                        if((n = data.guardaDados(str, sgv)) != 0)
                             a.printErroLerFicheiro(n);
                     }
                     break;

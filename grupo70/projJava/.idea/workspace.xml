@@ -22,9 +22,9 @@
     <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="Correção conflitos&#10;Melhorias Menus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Apresentacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Apresentacao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/ParStringFloat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/ParStringFloat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Apresentacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apresentacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParStringFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParStringFloat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConsultasInterativas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsultasInterativas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IConsultasEstatisticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IConsultasEstatisticas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interpretador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interpretador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

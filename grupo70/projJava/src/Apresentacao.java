@@ -251,13 +251,59 @@ public class Apresentacao implements IApresentacao{
         }
     }
 
-    public void printConsultasIterativas(ConsultasInterativas ci, int i,String time) {
-        final StringBuilder sb = new StringBuilder("ConsultasEstatisticas\n");
-        //Tabela t = new Tabela();
+    private void printPagina(List<String> list, int page, int cols, int max, int maxpage) {
+        int i, j;
+        int size = list.size();
 
+
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("                                       Página (" + (page+1) + "/" +(maxpage+1) +")");
+        System.out.println("---------------------------------------------------------------------------------------------");
+
+        for(i=max * page; i<(max * (page+1)) && i<size; i+=cols) {
+            for(j=i; (j<i+cols-1) && (j<size-1); j++)
+                System.out.print(list.get(j) + "  |  ");
+            System.out.println(list.get(j));
+        }
+
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("      [N] Next Page | [P] Previous Page | [F] First Page | [L] Last Page | [Q] Quit        ");
+        System.out.println("---------------------------------------------------------------------------------------------");
+    }
+
+    private void printArray(List<String> list) {
+        int page = 0, lines = 6, cols = 93/(list.get(0).length() + 3);
+        int max = lines * cols, maxpage = (list.size()-1)/max;
+        Scanner s = new Scanner(System.in);
+        String line;
+        boolean r=true;
+
+        while(r) {
+            printPagina(list, page, cols, max, maxpage);
+
+            line = s.nextLine();
+
+            if((line.equals("N") || line.equals("n")) && page<maxpage)
+                page++;
+
+            else if((line.equals("P") || line.equals("p")) && page>0)
+                page--;
+
+            else if(line.equals("F")  || line.equals("f"))
+                page = 0;
+
+            else if(line.equals("L") || line.equals("l"))
+                page = maxpage;
+
+            else if(line.equals("Q") || line.equals("q"))
+                r=false;
+        }
+    }
+
+    public void printConsultasIterativas(ConsultasInterativas ci, int i,String time) {
         switch (i) {
             case 1:
-                //t.printArray(ci.getQ1());
+                printArray(ci.getQ1());
                 printQ1(ci.getQ1());
                 break;
             case 2:
@@ -270,19 +316,19 @@ public class Apresentacao implements IApresentacao{
                 printQ4(ci.getQ4());
                 break;
             case 5:
-                //t.printArray(ci.getQ5());
+                printArray(ci.getQ5());
                 break;
             case 6:
-                //t.printArray(ci.getQ6());
+                printArray(ci.getQ6());
                 break;
             case 7:
                 printQ7(ci.getQ7());
                 break;
             case 8:
-                //.printArray(ci.getQ8());
+                printArray(ci.getQ8());
                 break;
             case 9:
-                //t.printArray(ci.getQ9());
+                printArray(ci.getQ9());
                 break;
             case 10:
                 printQ10(ci.getQ10());

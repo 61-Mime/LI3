@@ -59,23 +59,13 @@ public class ParStringFloat implements Comparable<ParStringFloat>{
         ParStringFloat ParStringFloat = (ParStringFloat) o;
         return this.getCode().equals(ParStringFloat.getCode());
     }
-/*
-    public String toString3() {
-        return code + " value=" + value[0] + '\n';
-    }
 
-    public String toString2() {
-        return code + " value=" + value[1] + '\n';
-    }
-*/
     @Override
     public String toString() {
         if(value.length == 2)
-            return String.format("%5s %1s %5.2f %1s %5.2f", code , " ", value[0] , "", value[1]);
-            //return code + " " + value[0] + " " + value[1];
+            return String.format("%5s %1s %5.2f %1s %7.2f", code , " ", value[0] , " ", value[1]);
         else
             return String.format("%5s %1s %5.2f", code , " ", value[0] );
-            //return code + " " + value[0];
     }
 
     public ParStringFloat clone() {

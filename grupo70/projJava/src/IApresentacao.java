@@ -4,6 +4,7 @@ public interface IApresentacao {
     void menu();
     void menuConsultasInterativas();
     void menuConsultasEstatisticas();
+    void menuQ10();
     void printMessage(String message);
     void pedirNomeFicheiro();
     void printErroLerInt();
@@ -15,6 +16,7 @@ public interface IApresentacao {
     String pedirMes();
     String pedirLimite();
     String pedirNumero();
+    void printQ10(String prod, float[][] arr);
     void printConsultasEstatisticas(ConsultasEstatisticas ce, int i);
     void printConsultasIterativas(ConsultasInterativas ci, int i,String time);
 }

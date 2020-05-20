@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Interpretador {
@@ -32,6 +33,29 @@ public class Interpretador {
                  (type == 1 && (!sgv.prodVal(line) || !sgv.getCatPcontains(line))));
 
         return line;
+    }
+
+    public void interpretaQ10(GestVendas sgv, ConsultasInterativas ci) {
+        boolean r = true;
+        Scanner s = new Scanner(System.in);
+        int command;
+        String line, prod;
+
+        Map<String, float[][]> querie10 = ci.getQ10();
+
+        while(r) {
+            a.menuQ10();
+            command = lerInt(a.pedirNumero(), 0, 1);
+            switch (command) {
+                case 1:
+                    prod = lerString(a.pedirProduto(), 1, sgv);
+                    a.printQ10(prod, querie10.get(prod));
+                    break;
+                case 0:
+                    r=false;
+                    break;
+            }
+        }
     }
 
     public void consultasIterativas(GestVendas sgv){
@@ -86,7 +110,10 @@ public class Interpretador {
                     time = ci.setQuerie10(sgv);
                     break;
             }
-            if(comand != 0)
+            if(comand == 10)
+                interpretaQ10(sgv, ci);
+
+            else if(comand != 0)
                 a.printConsultasIterativas(ci,comand,time);
         }
     }

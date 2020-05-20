@@ -82,6 +82,17 @@ public class Apresentacao implements IApresentacao{
         System.out.print(sb.toString());
     }
 
+    public void menuQ10() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n-----------------------------------------------------\n");
+        sb.append("                      QUERIE 10\n");
+        sb.append("-----------------------------------------------------\n");
+        sb.append("1 | Ver tabela de faturação de um produto\n");
+        sb.append("0 | Voltar\n");
+        sb.append("-----------------------------------------------------\n");
+        System.out.print(sb.toString());
+    }
+
     public void printMessage(String message) {
         System.out.println(message);
     }
@@ -172,19 +183,6 @@ public class Apresentacao implements IApresentacao{
         System.out.println(sb.toString());
     }
 
-    public void printStringList(List<String> list){
-        StringBuilder sb = new StringBuilder();
-        int size = list.size(),i,c;
-        for(i = 0,c = 0;i < size;i++,c++) {
-            if (c == 2) {
-                sb.append(list.get(i)).append("\n");
-                c = 0;
-            } else
-                sb.append(list.get(i)).append("  ");
-        }
-        System.out.println(sb.append("\n").toString());
-    }
-
     public void printQ1(List<String> list) {
         System.out.println("Produtos não comprados:\n");
         //printStringList(list);
@@ -225,12 +223,10 @@ public class Apresentacao implements IApresentacao{
         for(int i = 0;i < 3;i++) {
             System.out.println(String.format("%5d %5s %10s %5s %10s %5s %10s %5s", i+1 ,  "|", list.get(i).get(0),
                                                                                             "|",list.get(i).get(1), "|",list.get(i).get(2),"|"));
-            //System.out.println("3 Maiores compradores filial "+i + 1+":");
-            //printStringList(list.get(i));
         }
     }
 
-    public void printTabela(float[][] table){
+    private void printTabela(float[][] table){
         int mes = 1;
         System.out.println(String.format("%s", "--------------------------------------------------------------------------"));
         for (final float[] row : table) {
@@ -239,16 +235,15 @@ public class Apresentacao implements IApresentacao{
         }
     }
 
-    public void printQ10(Map<String,float[][]> querie10){
-        for(Map.Entry<String, float[][]> cod:querie10.entrySet()) {
-            System.out.println("Faturação produto "+cod.getKey()+"\n");
-            if (cod.getValue() != null){
-                System.out.println(String.format("%5s %8s %8s %10s %8s %10s %8s %10s", "Filial" , "|", "1", "|", "2","|", "3","|"));
-                printTabela(cod.getValue());
-            }
-            else
-                System.out.println("Produto não vendido\n");
+    public void printQ10(String prod, float[][] arr){
+
+        System.out.println("Faturação produto "+prod+"\n");
+        if (arr != null){
+            System.out.println(String.format("%5s %8s %8s %10s %8s %10s %8s %10s", "Filial" , "|", "1", "|", "2","|", "3","|"));
+            printTabela(arr);
         }
+        else
+            System.out.println("Produto não vendido\n");
     }
 
     private void printPagina(List<String> list, int page, int cols, int max, int maxpage) {
@@ -329,9 +324,6 @@ public class Apresentacao implements IApresentacao{
                 break;
             case 9:
                 printArray(ci.getQ9());
-                break;
-            case 10:
-                printQ10(ci.getQ10());
                 break;
         }
 

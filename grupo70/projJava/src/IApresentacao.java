@@ -5,6 +5,7 @@ public interface IApresentacao {
     void menuConsultasInterativas();
     void menuConsultasEstatisticas();
     void printMessage(String message);
+    void pedirNomeFicheiro();
     void printErroLerInt();
     void printErroCarregar();
     void printErroLerFicheiro(int i);

@@ -97,10 +97,6 @@ public class GestVendas implements Serializable, IGestVendas{
         return gFil.produtosDiferentesTotal(cod);
     }
 
-    /*public List<ProdCliinfo> getGFilProdCliList(int branch, String cod) {
-        return gFil.getFilialProdCliList(cod, branch);
-    }*/
-
     public float[] getgFilCliCompradoresMes(int branch){
         return gFil.getFilCliCompradoresMes(branch);
     }
@@ -184,7 +180,7 @@ public class GestVendas implements Serializable, IGestVendas{
     }
 
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
-
+//apagar metodo
     public List<String> lerFicheiro(String filename){
         Crono crono = new Crono();
         crono.start();
@@ -197,23 +193,8 @@ public class GestVendas implements Serializable, IGestVendas{
         System.out.println(crono.getTImeString());
         return lines;
     }
-/*
-    public String loadCatalogo() {
-        Crono.start();
-        loadCat(loadInfo.getCliPath(), 0);
-        loadCat(loadInfo.getProdPath(), 1);
-        //System.out.println("Tempo carregamento catalogos " + Crono.getTime() + "\n");
-        return Crono.getTime();
-    }
 
-    public String load() {
-        Crono.start();
-        loadSales(loadInfo.getSalesPath());
-        //System.out.println("Tempo carregamento vendas " + Crono.getTime() + "\n");
-        return Crono.getTime();
-    }
-*/
-    public boolean valSale(int branch,int month,float price,int uni,char type){
+    private boolean valSale(int branch,int month,float price,int uni,char type){
         return (branch >= 1 && branch <= 3 && month >= 1 && month <= 12 &&
                 price >= 0 && uni >= 0 && (type == 'N' || type == 'P'));
     }

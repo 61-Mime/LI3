@@ -138,6 +138,10 @@ public class Apresentacao implements IApresentacao{
         System.out.println("Tempo carregamento " + type + ":" +time);
     }
 
+    public void pedirNomeFicheiro(){
+        System.out.println( "Introduza o nome do ficheiro:");
+    }
+
     public String pedirCliente(){
         return "Introduza um cliente:";
     }
@@ -164,7 +168,7 @@ public class Apresentacao implements IApresentacao{
         switch (i) {
             case 1:
                 sb.append("Informações sobre ficheiro de vendas lido\n");
-                sb.append("Ficheiro vendas lido:").append(ce.getSalesPath());
+                sb.append("\nFicheiro vendas lido:").append(ce.getSalesPath());
                 sb.append("\nVendas Inválidas:").append(ce.getVendasInvalidas());
                 sb.append("\nTotal produtos:").append(ce.getTotalProdutos());
                 sb.append("\nNúmero prodtutos comprados:").append(ce.getProdsComprados());
@@ -181,6 +185,7 @@ public class Apresentacao implements IApresentacao{
                 int [] comprasmes = ce.getComprasMes();
                 for(int j = 0;j < 12;j++)
                     sb.append("\nMes ").append(j+1).append(":").append(comprasmes[i]);
+                System.out.println(sb.toString());
                 break;
             case 3:
                 System.out.println("Facturação (Filial/Mês)");
@@ -194,11 +199,9 @@ public class Apresentacao implements IApresentacao{
                 break;
         }
         clearScreen();
-
-        System.out.println(sb.toString());
     }
 
-    public void printStringList(List<String> list){
+    private void printStringList(List<String> list){
         StringBuilder sb = new StringBuilder();
         int size = list.size(),i,c;
         for(i = 0,c = 0;i < size;i++,c++) {
@@ -211,12 +214,12 @@ public class Apresentacao implements IApresentacao{
         System.out.println(sb.append("\n").toString());
     }
 
-    public void printQ1(List<String> list) {
+    private void printQ1(List<String> list) {
         System.out.println("Produtos não comprados:\n");
         printStringList(list);
     }
 
-    public void printQ2(int [] array) {
+    private void printQ2(int [] array) {
         StringBuilder sb = new StringBuilder();
         sb.append("Vendas e clientes distintos que as fizeram para o mês dado\n\n");
         sb.append("Total vendas no mês dado ").append(":").append(array[0]);
@@ -227,7 +230,7 @@ public class Apresentacao implements IApresentacao{
         }
     }
 
-    public void printQ3(Map<Integer,float[]> querie3) {
+    private void printQ3(Map<Integer,float[]> querie3) {
         float [][] res = new float[12][3];
         for(int mes = 0;mes < 12;mes++)
             res[mes] = querie3.get(mes);
@@ -235,7 +238,7 @@ public class Apresentacao implements IApresentacao{
         printTabela(res);
     }
 
-    public void printQ4(Map<Integer,float[]> querie4) {
+    private void printQ4(Map<Integer,float[]> querie4) {
         float [][] res = new float[12][3];
         for(int mes = 0;mes < 12;mes++)
             res[mes] = querie4.get(mes);
@@ -243,19 +246,17 @@ public class Apresentacao implements IApresentacao{
         printTabela(res);
     }
 
-    public void printQ7(Map<Integer,List<String>> list) {
+    private void printQ7(Map<Integer,List<String>> list) {
         System.out.println("3 Maiores compradores por filial\n\n");
         System.out.println(String.format("%5s %5s %8s %7s %8s %7s %8s %7s", "Filial" , "|", "1º", "|", "2º","|", "3º","|"));
         System.out.println(String.format("%s", "---------------------------------------------------------------"));
         for(int i = 0;i < 3;i++) {
             System.out.println(String.format("%5d %5s %10s %5s %10s %5s %10s %5s", i+1 ,  "|", list.get(i).get(0),
                                                                                             "|",list.get(i).get(1), "|",list.get(i).get(2),"|"));
-            //System.out.println("3 Maiores compradores filial "+i + 1+":");
-            //printStringList(list.get(i));
         }
     }
 
-    public void printTabela(float[][] table){
+    private void printTabela(float[][] table){
         int mes = 1;
         System.out.println(String.format("%s", "--------------------------------------------------------------------------"));
         for (final float[] row : table) {
@@ -264,11 +265,11 @@ public class Apresentacao implements IApresentacao{
         }
     }
 
-    public void printQ10(Map<String,float[][]> querie10){
+    private void printQ10(Map<String,float[][]> querie10){
         for(Map.Entry<String, float[][]> cod:querie10.entrySet()) {
             System.out.println("Faturação produto "+cod.getKey()+"\n");
             if (cod.getValue() != null){
-                System.out.println(String.format("%5s %8s %8s %10s %8s %10s %8s %10s", "Filial" , "|", "1", "|", "2","|", "3","|"));
+                System.out.println(String.format("%5s %8s %8s %8s %8s %8s %8s %8s", "Filial" , "|", "1", "|", "2","|", "3","|"));
                 printTabela(cod.getValue());
             }
             else

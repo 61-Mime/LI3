@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ConsultasInterativas {
+public class ConsultasInterativas implements IConsultasInterarivas{
     private List<String> querie1;
     private int[] querie2;
     private Map<Integer,float[]> querie3;
@@ -12,6 +12,72 @@ public class ConsultasInterativas {
     private List<ParStringFloat> querie8;
     private List<ParStringFloat> querie9;
     private Map<String, float[][]> querie10;
+
+    public List<String> getQ1(){
+        return new ArrayList<>(querie1);
+    }
+
+    public int[] getQ2(){
+        int[] copy;
+        copy = Arrays.copyOf(querie2,8);
+        return copy;
+    }
+
+    public Map<Integer,float[]> getQ3(){
+        Map<Integer,float[]> q3copy = new HashMap<>();
+        for(int i = 0;i < 12;i++) {
+            q3copy.put(i,querie3.get(i).clone());
+        }
+        return q3copy;
+    }
+
+    public Map<Integer,float[]> getQ4(){
+        Map<Integer,float[]> q4copy = new HashMap<>();
+        for(int i = 0;i < 12;i++) {
+            q4copy.put(i,querie4.get(i).clone());
+        }
+        return q4copy;
+    }
+
+    public List<ParStringFloat> getQ5(){
+        List<ParStringFloat> q5copy = new ArrayList<>();
+        querie5.forEach(p -> q5copy.add(p.clone()));
+
+        return q5copy;
+    }
+
+    public List<ParStringFloat> getQ6(){
+        List<ParStringFloat> q6copy = new ArrayList<>();
+        querie6.forEach(p -> q6copy.add(p.clone()));
+
+        return q6copy;
+    }
+
+    public Map<Integer,List<String>> getQ7(){
+        Map<Integer,List<String>> q7copy = new HashMap<>();
+        for(int i = 0;i < 3;i++)
+            q7copy.put(i,new ArrayList<String>(querie7.get(i)));
+
+        return q7copy;
+    }
+
+    public List<ParStringFloat> getQ8(){
+        List<ParStringFloat> q8copy = new ArrayList<>();
+        querie8.forEach(p -> q8copy.add(p.clone()));
+
+        return q8copy;
+    }
+
+    public List<ParStringFloat> getQ9(){
+        List<ParStringFloat> q9copy = new ArrayList<>();
+        querie9.forEach(p -> q9copy.add(p.clone()));
+
+        return q9copy;
+    }
+
+    public Map<String,float[][]> getQ10(){
+        return new HashMap<>(querie10);
+    }
 
     public void setQuerie1(GestVendas sgv){
         querie1 = new ArrayList<>();
@@ -138,7 +204,7 @@ public class ConsultasInterativas {
         querie6 = new ArrayList<>();
 
         for(String cod:sgv.getFactKeys())
-            querie6.add(new ParStringFloat(cod, sgv.getFactUni(cod)));
+            querie6.add(new ParStringFloat(cod, sgv.getFactUni(cod),0));
 
         querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
 
@@ -205,7 +271,7 @@ public class ConsultasInterativas {
     public String toStringQ9(int limit,String code){
         StringBuilder sb = new StringBuilder();
         sb.append(limit).append(" Clientes que mais compraram o produto com o código ").append(code).append("\n");
-        querie9.forEach(par -> sb.append(par.toString2()));
+        querie9.forEach(par -> sb.append(par.toString()));
 
         return sb.toString();
     }

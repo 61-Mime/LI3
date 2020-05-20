@@ -50,56 +50,48 @@ public class Interpretador {
                 case 1:
                     Crono.start();
                     ci.setQuerie1(sgv);
-                    time = Crono.getTime();
-                    a.printQ1(ci, time);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 2:
                     num = lerInt(a.pedirMes(),1,12);
                     Crono.start();
                     ci.setQuerie2(sgv,num - 1);
-                    time = Crono.getTime();
-                    a.printQ2(ci, time, num);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 3:
                     line = lerString(a.pedirCliente(),0,sgv);
                     Crono.start();
                     ci.setQuerie3(sgv, line);
-                    time = Crono.getTime();
-                    a.printQ3(ci, time);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 4:
                     line = lerString(a.pedirProduto(),1,sgv);
                     Crono.start();
                     ci.setQuerie4(sgv, line);
-                    time = Crono.getTime();
-                    a.printQ4(ci, time);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 5:
                     line = lerString(a.pedirCliente(),0,sgv);
                     Crono.start();
                     ci.setQuerie5(sgv, line);
-                    time = Crono.getTime();
-                    a.printQ5(ci, time);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 6:
                     num = lerInt(a.pedirLimite(),0,1000000);
                     Crono.start();
                     ci.setQuerie6(sgv, num);
-                    time = Crono.getTime();
-                    a.printQ6(ci, time, num);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 7:
                     Crono.start();
                     ci.setQuerie7(sgv);
-                    time = Crono.getTime();
-                    a.printQ7(ci, time);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 8:
                     num = lerInt(a.pedirLimite(),0,1000000);
                     Crono.start();
                     ci.setQuerie8(sgv, num);
-                    time = Crono.getTime();
-                    a.printQ8(ci, time, num);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 9:
                     num = lerInt(a.pedirLimite(),0,1000000);
@@ -107,13 +99,12 @@ public class Interpretador {
                     Crono.start();
                     ci.setQuerie9(sgv, line,num);
                     time = Crono.getTime();
-                    a.printQ9(ci, time, num, line);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
                 case 10:
                     Crono.start();
                     ci.setQuerie10(sgv);
-                    time = Crono.getTime();
-                    a.printQ10(ci, time);
+                    a.printConsultasIterativas(ci,comand,Crono.getTime());
                     break;
             }
         }

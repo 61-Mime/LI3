@@ -13,7 +13,7 @@ public class ConsultasEstatisticas implements IConsultasEstatisticas{
     private float fatTotal;
     private int []comprasMes;
     private float [][] fatMesFil;
-    private int [][]compradoresMesFil;
+    private float [][]compradoresMesFil;
 
     public ConsultasEstatisticas(GestVendas sgv) {
         SalesPath = sgv.getLoadInfoSalesPath();
@@ -28,10 +28,15 @@ public class ConsultasEstatisticas implements IConsultasEstatisticas{
         fatTotal = sgv.getFactFaturacaoTotal();
         comprasMes = sgv.getFactComprasMes();
         fatMesFil = sgv.getFactFaturacaoMesFil();
-        compradoresMesFil = new int[3][12];
-        compradoresMesFil[0] = sgv.getgFilCliCompradoresMes(0);
-        compradoresMesFil[1] = sgv.getgFilCliCompradoresMes(1);
-        compradoresMesFil[2] = sgv.getgFilCliCompradoresMes(2);
+        compradoresMesFil = new float[12][3];
+        float [] array = sgv.getgFilCliCompradoresMes(0);
+        float [] array2 = sgv.getgFilCliCompradoresMes(1);
+        float [] array3 = sgv.getgFilCliCompradoresMes(2);
+        for(int i = 0;i < 12; i++) {
+            compradoresMesFil[i][0] = array[i];
+            compradoresMesFil[i][1] = array2[i];
+            compradoresMesFil[i][2] = array3[i];
+        }
     }
 
     public String getSalesPath() {
@@ -75,28 +80,15 @@ public class ConsultasEstatisticas implements IConsultasEstatisticas{
     }
 
     public int[] getComprasMes() {
-        int[] copy;
-
-        copy = Arrays.copyOf(this.comprasMes, 12);
-        return copy;
+        return comprasMes.clone();
     }
 
     public float[][] getFatMesFil() {
-        float[][] copy = new float[12][3];
-
-        for (int i=0; i<12; i++) {
-            copy[i] = Arrays.copyOf(this.fatMesFil[i], 3);
-        }
-        return copy;
+        return fatMesFil.clone();
     }
 
-    public int[][] getCompradoresMesFil() {
-        int[][] copy = new int[3][12];
-
-        for (int i=0; i<3; i++) {
-            copy[i] = Arrays.copyOf(this.compradoresMesFil[i], 12);
-        }
-        return copy;
+    public float[][] getCompradoresMesFil() {
+        return compradoresMesFil.clone();
     }
 
     @Override

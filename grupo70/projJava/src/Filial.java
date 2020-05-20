@@ -6,7 +6,7 @@ public class Filial implements Serializable {
     private Map<String,ProdInfo> mapProd;
     private Map<String,CliInfo> mapCli;
     private int clientesCompradores;
-    private int[] cliCompradoresMes;
+    private float[] cliCompradoresMes;
     private int[] vendasMes;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
@@ -15,7 +15,7 @@ public class Filial implements Serializable {
         mapProd = new HashMap<>();
         mapCli = new HashMap<>();
         clientesCompradores = 0;
-        cliCompradoresMes = new int[12];
+        cliCompradoresMes = new float[12];
         vendasMes = new int[12];
     }
 
@@ -29,7 +29,7 @@ public class Filial implements Serializable {
         return clientesCompradores;
     }
 
-    public int[] getCliCompradoresMes() {
+    public float[] getCliCompradoresMes() {
         return cliCompradoresMes.clone();
     }
 

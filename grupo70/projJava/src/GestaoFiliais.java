@@ -38,7 +38,7 @@ public class GestaoFiliais implements Serializable {
         return getFil(branch).getClientesMaisCompradores();
     }
 
-    public int[] getFilCliCompradoresMes(int branch){
+    public float[] getFilCliCompradoresMes(int branch){
         return getFil(branch).getCliCompradoresMes();
     }
 

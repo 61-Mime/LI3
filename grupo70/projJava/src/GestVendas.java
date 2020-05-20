@@ -101,7 +101,7 @@ public class GestVendas implements Serializable, IGestVendas{
         return gFil.getFilialProdCliList(cod, branch);
     }*/
 
-    public int[] getgFilCliCompradoresMes(int branch){
+    public float[] getgFilCliCompradoresMes(int branch){
         return gFil.getFilCliCompradoresMes(branch);
     }
 

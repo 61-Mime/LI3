@@ -13,7 +13,7 @@ public interface IGestVendas {
     float getFactFaturacaoTotal();
     int[] getFactComprasMes();
     float[][] getFactFaturacaoMesFil();
-    int[] getgFilCliCompradoresMes(int branch);
+    float[] getgFilCliCompradoresMes(int branch);
     Set<String> getCatPtree();
     boolean getFactContainsProd(String cod);
     int getGFilVendasMes(int month);

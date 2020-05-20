@@ -20,7 +20,7 @@ public class Tabela {
         System.out.println("      [N] Next Page | [P] Previous Page | [F] First Page | [L] Last Page | [Q] Quit        ");
         System.out.println("---------------------------------------------------------------------------------------------");
     }
-
+/*
     private void printPagina2(List<ParStringFloat> list, int page, int max, int maxpage) {
         int i, j;
         int size = list.size();
@@ -69,5 +69,5 @@ public class Tabela {
             else if(line.equals("Q"))
                 r=false;
         }
-    }
+    }*/
 }

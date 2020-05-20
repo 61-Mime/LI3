@@ -12,5 +12,5 @@ public interface IConsultasEstatisticas {
     float getFatTotal();
     int[] getComprasMes();
     float[][] getFatMesFil();
-    int[][] getCompradoresMesFil();
+    float[][] getCompradoresMesFil();
 }

@@ -1,6 +1,8 @@
 package Model;
 
-public class ParStringFloat implements Comparable<ParStringFloat>{
+import java.io.Serializable;
+
+public class ParStringFloat implements Serializable, Comparable<ParStringFloat>{
     private String code;
     private float[] value;
 

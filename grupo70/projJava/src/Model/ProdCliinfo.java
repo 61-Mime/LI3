@@ -1,6 +1,8 @@
 package Model;
 
-public class ProdCliinfo{
+import java.io.Serializable;
+
+public class ProdCliinfo implements Serializable {
     private int month;
     private float fat;
     private int uni;

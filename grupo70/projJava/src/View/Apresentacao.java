@@ -1,13 +1,12 @@
 package View;
 
 
-import Model.ConsultasInterativas;
-
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Apresentacao implements IApresentacao {
+public class Apresentacao implements Serializable, IApresentacao {
 
     public void welcome() {
         System.out.print("   SSSSSSSSSSSSSSS           GGGGGGGGGGGG   VVVVVVVV           VVVVVVVV\n");
@@ -193,19 +192,19 @@ public class Apresentacao implements IApresentacao {
         clearScreen();
     }
 
-    public void printQ1(List<String> list) {
-        System.out.println("Produtos não comprados:\n");
-        //printStringList(list);
+    public void printQ1(List<String> list, int size) {
+        System.out.println("Produtos não comprados: " + size + "\n");
+        printArray(list);
     }
 
     public void printQ2(int [] array) {
         StringBuilder sb = new StringBuilder();
         sb.append("Vendas e clientes distintos que as fizeram para o mês dado\n\n");
-        sb.append("Total vendas no mês dado ").append(":").append(array[0]);
-        sb.append("Clientes distintos no mês dado ").append(":").append(array[1]);
+        sb.append("Total vendas no mês dado ").append(":").append(array[0]).append("\n");
+        sb.append("Clientes distintos no mês dado ").append(":").append(array[1]).append("\n");
         for(int i = 2;i < 8;i+=2) {
-            sb.append("Total vendas filial ").append(i/2).append(":").append(array[i]);
-            sb.append("Clientes distintos filial ").append(i/2).append(":").append(array[i + 1]);
+            sb.append("Total vendas filial ").append(i/2).append(":").append(array[i]).append("\n");
+            sb.append("Clientes distintos filial ").append(i/2).append(":").append(array[i + 1]).append("\n");
         }
         System.out.println(sb.toString());
     }
@@ -276,7 +275,7 @@ public class Apresentacao implements IApresentacao {
         System.out.println("---------------------------------------------------------------------------------------------");
     }
 
-    private void printArray(List<String> list) {
+    public void printArray(List<String> list) {
         int page = 0, lines = 6, cols = 93/(list.get(0).length() + 3);
         int max = lines * cols, maxpage = (list.size()-1)/max;
         Scanner s = new Scanner(System.in);
@@ -303,40 +302,5 @@ public class Apresentacao implements IApresentacao {
             else if(line.equals("Q") || line.equals("q"))
                 r=false;
         }
-    }
-
-    public void printConsultasIterativas(ConsultasInterativas ci, int i, String time) {
-        switch (i) {
-            case 1:
-                printArray(ci.getQ1());
-                printQ1(ci.getQ1());
-                break;
-            case 2:
-                printQ2(ci.getQ2());
-                break;
-            case 3:
-                printQ3(ci.getQ3());
-                break;
-            case 4:
-                printQ4(ci.getQ4());
-                break;
-            case 5:
-                printArray(ci.getQ5());
-                break;
-            case 6:
-                printArray(ci.getQ6());
-                break;
-            case 7:
-                printQ7(ci.getQ7());
-                break;
-            case 8:
-                printArray(ci.getQ8());
-                break;
-            case 9:
-                printArray(ci.getQ9());
-                break;
-        }
-
-        printTime(time, "Querie " + i);
     }
 }

@@ -1,8 +1,10 @@
 package Controller;
 
+import java.io.Serializable;
+
 import static java.lang.System.nanoTime;
 
-public class Crono {
+public class Crono implements Serializable {
 
     private static long inicio = 0L;
     private static long fim = 0L;

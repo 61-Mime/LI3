@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GestVendas implements Serializable, IGestVendas {
     private Catalogo catClientes;
@@ -13,7 +14,6 @@ public class GestVendas implements Serializable, IGestVendas {
     private Faturacao fact;
     private GestaoFiliais gFil;
     private LoadInfo loadInfo;
-    private ConsultasInterativas ci;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
@@ -23,7 +23,6 @@ public class GestVendas implements Serializable, IGestVendas {
         fact = new Faturacao();
         gFil = new GestaoFiliais();
         loadInfo = new LoadInfo();
-        ci = new ConsultasInterativas();
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
@@ -273,5 +272,125 @@ public class GestVendas implements Serializable, IGestVendas {
         }
 
         return compradoresMesFil;
+    }
+
+    //--------------------------------------------------------------Consultas Interativas-------------------------------------------------------------\\
+
+    public List<String> listParStringFloatToListString(List<ParStringFloat> list){
+        List<String> stringList = new ArrayList<>();
+        list.forEach(p -> stringList.add(p.toString()));
+
+        return stringList;
+    }
+
+    public List<String> getQ1(){
+        List<String> querie1 = new ArrayList<>();
+
+        getCatPtree().stream().filter(cod -> !(getFactContainsProd(cod))).forEach(querie1::add);
+        return querie1;
+    }
+
+    public int[] getQ2(int month){
+
+         int[] querie2 = new int[8];
+        int i = 0;
+        querie2[i++] = getGFilVendasMes(month);
+        querie2[i++] = getGFilClientesDiferentesMes(month);
+        for(int f = 0;f < 3;f++) {
+            querie2[i++] = getFilialVendas(f);
+            querie2[i++] = getFilialClientesCompradores(f);
+        }
+
+        return querie2;
+    }
+
+    public Map<Integer, float[]> getQ3(String cod){
+        Map<Integer, float[]> querie3 = new HashMap<>();
+        float[] res;
+        for(int month = 0;month < 12;month++){
+            res = new float[3];
+            res[0] = getGFilNumeroComprasMes(cod, month);
+            res[1] = getGFilProdutosDiferentes(cod, month);
+            res[2] = getGFilGastoTotalMes(cod, month);
+            querie3.put(month,res);
+        }
+        return querie3;
+    }
+
+    public Map<Integer, float[]> getQ4(String cod){
+        Map<Integer, float[]> querie4 = new HashMap<>();
+        float[] res;
+        for(int month = 0;month < 12;month++){
+            res = new float[3];
+            res[0] = getFactUniMes(cod,month);
+            res[1] = getGFilClientesDiferentes(cod, month);
+            res[2] = getFactTotalMes(cod,month);
+            querie4.put(month,res);
+        }
+        return querie4;
+    }
+
+    public List<ParStringFloat> getQ5(String cod) {
+        List<ParStringFloat> querie5 = new ArrayList<>();
+        int i;
+
+        for(i=0; i<3; i++)
+            querie5.addAll(getGFilCliSet(i, cod));
+
+        querie5 = querie5.stream().sorted(new sortParbyValue()).collect(Collectors.toList());
+        return querie5;
+    }
+
+    public List<ParStringFloat> getQ6(int limit) {
+        List<ParStringFloat> querie6 = new ArrayList<>();
+
+        for(String cod: getFactKeys())
+            querie6.add(new ParStringFloat(cod, getFactUni(cod),0));
+
+        querie6 = querie6.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
+
+        querie6.forEach(q -> q.setValue2(getGFilClientesDiferentesTotal(q.getCode())));
+        return querie6;
+    }
+
+    public Map<Integer, List<String>> getQ7() {
+        Map<Integer, List<String>> querie7 = new HashMap<>();
+
+        for(int i = 0; i<3; i++)
+            querie7.put(i, getFilialClientesMaisCompradores(i));
+        return querie7;
+    }
+
+    public List<ParStringFloat> getQ8(int limit) {
+        List<ParStringFloat> querie8 = new ArrayList<>();
+
+        for (String s: getCatCtree())
+            querie8.add(new ParStringFloat(s, getGFilProdutosDiferentesTotal(s)));
+
+        querie8 = querie8.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
+        return querie8;
+    }
+
+    public List<ParStringFloat> getQ9(String codProd,int limit) {
+        List<ParStringFloat> querie9 = new ArrayList<>();
+
+        for(int i=0; i<3; i++)
+            querie9.addAll(getGFilProdSet(i, codProd));
+
+        querie9 = querie9.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
+        return querie9;
+    }
+
+    public Map<String, float[][]> getQ10() {
+        Map<String, float[][]> querie10 = new HashMap<>();
+
+        for(String cod: getCatPtree()){
+            if(getFactContainsProd(cod))
+                querie10.put(cod, getFactMesFilProd(cod));
+
+            else
+                querie10.put(cod, null);
+        }
+        return querie10;
     }
 }

@@ -3,6 +3,7 @@ package Model;
 import Model.ParStringFloat;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface IGestVendas {
@@ -43,4 +44,15 @@ public interface IGestVendas {
     int loadCat(String filename, int type);
     int loadSales(String filename);
     float[][] getCompradoresMesFil();
+    List<String> getQ1();
+    int[] getQ2(int month);
+    Map<Integer,float[]> getQ3(String code);
+    Map<Integer,float[]> getQ4(String code);
+    List<ParStringFloat> getQ5(String code);
+    List<ParStringFloat> getQ6(int limit);
+    Map<Integer,List<String>> getQ7();
+    List<ParStringFloat> getQ8(int limit);
+    List<ParStringFloat> getQ9(String code, int limit);
+    Map<String,float[][]> getQ10();
+    List<String> listParStringFloatToListString(List<ParStringFloat> list);
 }

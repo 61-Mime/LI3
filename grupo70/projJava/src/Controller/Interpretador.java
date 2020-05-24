@@ -1,15 +1,17 @@
 package Controller;
 
-import Model.ConsultasInterativas;
 import Model.DataFile;
 import Model.GestVendas;
+import Model.ParStringFloat;
 import View.Apresentacao;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Interpretador {
+public class Interpretador implements Serializable {
     Apresentacao a = new Apresentacao();
 
     public int lerInt(String message,int min,int max){
@@ -42,13 +44,14 @@ public class Interpretador {
         return line;
     }
 
-    public void interpretaQ10(GestVendas sgv, ConsultasInterativas ci) {
+    public String interpretaQ10(GestVendas sgv) {
         boolean r = true;
-        Scanner s = new Scanner(System.in);
         int command;
-        String line, prod;
+        String prod;
 
-        Map<String, float[][]> querie10 = ci.getQ10();
+        Crono.start();
+        Map<String, float[][]> querie10 = sgv.getQ10();
+        String time = Crono.getTime();
 
         while(r) {
             a.menuQ10();
@@ -63,13 +66,14 @@ public class Interpretador {
                     break;
             }
         }
+
+        return time;
     }
 
     public void consultasIterativas(GestVendas sgv){
         boolean val = true;
         String line,time = "";
         int comand,num;
-        ConsultasInterativas ci = new ConsultasInterativas();
 
         while (val){
             a.menuConsultasInterativas();
@@ -79,49 +83,74 @@ public class Interpretador {
                     val = false;
                     break;
                 case 1:
-                    time = ci.setQuerie1(sgv);
+                    Crono.start();
+                    List<String> q1 = sgv.getQ1();
+                    time = Crono.getTime();
+                    a.printQ1(q1, q1.size());
                     break;
                 case 2:
                     num = lerInt(a.pedirMes(),1,12);
-                    time = ci.setQuerie2(sgv,num - 1);
+                    Crono.start();
+                    int[] q2 = sgv.getQ2(num - 1);
+                    time = Crono.getTime();
+                    a.printQ2(q2);
                     break;
                 case 3:
                     line = lerString(a.pedirCliente(),0,sgv);
-                    time = ci.setQuerie3(sgv, line);
+                    Crono.start();
+                    Map<Integer, float[]> q3 = sgv.getQ3(line);
+                    time = Crono.getTime();
+                    a.printQ3(q3);
                     break;
                 case 4:
                     line = lerString(a.pedirProduto(),1,sgv);
-                    time = ci.setQuerie4(sgv, line);
+                    Crono.start();
+                    Map<Integer, float[]> q4 = sgv.getQ4(line);
+                    time = Crono.getTime();
+                    a.printQ4(q4);
                     break;
                 case 5:
                     line = lerString(a.pedirCliente(),0,sgv);
-                    time = ci.setQuerie5(sgv, line);
+                    Crono.start();
+                    List<ParStringFloat> q5 = sgv.getQ5(line);
+                    time = Crono.getTime();
+                    a.printArray(sgv.listParStringFloatToListString(q5));
                     break;
                 case 6:
                     num = lerInt(a.pedirLimite(),0,1000000);
-                    time = ci.setQuerie6(sgv, num);
+                    Crono.start();
+                    List<ParStringFloat> q6 = sgv.getQ6(num);
+                    time = Crono.getTime();
+                    a.printArray(sgv.listParStringFloatToListString(q6));
                     break;
                 case 7:
-                    time = ci.setQuerie7(sgv);
+                    Crono.start();
+                    Map<Integer, List<String>> q7 = sgv.getQ7();
+                    time = Crono.getTime();
+                    a.printQ7(q7);
                     break;
                 case 8:
                     num = lerInt(a.pedirLimite(),0,1000000);
-                    time = ci.setQuerie8(sgv, num);
+                    Crono.start();
+                    List<ParStringFloat> q8 = sgv.getQ8(num);
+                    time = Crono.getTime();
+                    a.printArray(sgv.listParStringFloatToListString(q8));
                     break;
                 case 9:
                     num = lerInt(a.pedirLimite(),0,1000000);
                     line = lerString(a.pedirProduto(),1,sgv);
-                    time = ci.setQuerie9(sgv, line,num);
+                    Crono.start();
+                    List<ParStringFloat> q9 = sgv.getQ9(line, num);
+                    time = Crono.getTime();
+                    a.printArray(sgv.listParStringFloatToListString(q9));
                     break;
                 case 10:
-                    time = ci.setQuerie10(sgv);
+                    time = interpretaQ10(sgv);
                     break;
             }
-            if(comand == 10)
-                interpretaQ10(sgv, ci);
 
-            else if(comand != 0)
-                a.printConsultasIterativas(ci,comand,time);
+            if(comand != 0)
+                a.printTime(time, "Querie " + comand);
         }
     }
 //ver tempo

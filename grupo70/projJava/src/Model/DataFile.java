@@ -4,7 +4,7 @@ import Model.GestVendas;
 
 import java.io.*;
 
-public class DataFile extends IOException {
+public class DataFile extends IOException implements Serializable {
 
     public int guardaDados(String fileName, GestVendas load) {
         try {

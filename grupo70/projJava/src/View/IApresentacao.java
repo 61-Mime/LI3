@@ -1,6 +1,6 @@
 package View;
 
-import Model.ConsultasInterativas;
+import java.util.List;
 
 public interface IApresentacao {
     void welcome();
@@ -25,5 +25,5 @@ public interface IApresentacao {
                                             int totalClientes, int cliCompradores, int cliNaoCompradores, int comprasValor0, float fatTotal);
     void printConsultasEstatisticas2(int[] comprasMes);
     void printConsultasEstatisticas3(float[][] tabela, int type);
-    void printConsultasIterativas(ConsultasInterativas ci, int i, String time);
+    void printArray(List<String> list);
 }

@@ -19,9 +19,6 @@ public class ConsultasInterativas implements IConsultasInterarivas {
 
     //--------------------------------------------------------------Getters--------------------------------------------------------------------------\\
 
-    public List<String> getQ1(){
-        return new ArrayList<>(querie1);
-    }
 
     public int[] getQ2(){
         int[] copy;
@@ -88,12 +85,11 @@ public class ConsultasInterativas implements IConsultasInterarivas {
     //--------------------------------------------------------------Setters--------------------------------------------------------------------------\\
 
 
-    public String setQuerie1(GestVendas sgv){
-        Crono.start();
-        querie1 = new ArrayList<>();
+    public List<String> getQ1(GestVendas sgv){
+        List<String> querie1 = new ArrayList<>();
 
         sgv.getCatPtree().stream().filter(cod -> !(sgv.getFactContainsProd(cod))).forEach(s -> querie1.add(s));
-        return Crono.getTime();
+        return querie1;
     }
 
     public String setQuerie2(GestVendas sgv,int month){

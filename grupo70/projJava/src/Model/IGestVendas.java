@@ -42,4 +42,5 @@ public interface IGestVendas {
     Set<ParStringFloat> getGFilProdSet(int branch, String cod);
     int loadCat(String filename, int type);
     int loadSales(String filename);
+    float[][] getCompradoresMesFil();
 }

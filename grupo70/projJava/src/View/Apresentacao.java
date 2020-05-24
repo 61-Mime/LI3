@@ -1,10 +1,8 @@
 package View;
 
 
-import Model.ConsultasEstatisticas;
 import Model.ConsultasInterativas;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -81,8 +79,8 @@ public class Apresentacao implements IApresentacao {
         sb.append("-----------------------------------------------------\n");
         sb.append("1 | Dados relativos ao último ficheiro de vendas lido\n");
         sb.append("2 | Total compras por mês\n");
-        sb.append("3 | Facturação total e por (Model.Filial/Mês)\n");
-        sb.append("4 | Clientes compradores distintos por (Model.Filial/Mês)\n");
+        sb.append("3 | Facturação total e por (Filial/Mês)\n");
+        sb.append("4 | Clientes compradores distintos por (Filial/Mês)\n");
         sb.append("0 | Voltar\n");
         sb.append("-----------------------------------------------------\n");
         System.out.print(sb.toString());
@@ -146,46 +144,53 @@ public class Apresentacao implements IApresentacao {
         return "Introduza um número:";
     }
 
-    public void printConsultasEstatisticas(ConsultasEstatisticas ce, int i) {
+    public void printConsultasEstatisticas1(String salesPath, int vendasInvalidas, int totalProdutos, int prodsComprados, int prodsNaoComprados,
+                                            int totalClientes, int cliCompradores, int cliNaoCompradores, int comprasValor0, float fatTotal) {
         final StringBuilder sb = new StringBuilder();
 
-        switch (i) {
-            case 1:
-                sb.append("-------------------------------------------------------\n");
-                sb.append("       Informações sobre ficheiro de vendas lido \n");
-                sb.append("----------------------------------+--------------------\n");
-                sb.append(" Ficheiro vendas lido             | ").append(ce.getSalesPath()).append("\n");
-                sb.append(" Vendas Inválidas                 | ").append(ce.getVendasInvalidas()).append("\n");
-                sb.append(" Total produtos                   | ").append(ce.getTotalProdutos()).append("\n");
-                sb.append(" Número prodtutos comprados       | ").append(ce.getProdsComprados()).append("\n");
-                sb.append(" Número prodtutos nunca Comprados | ").append(ce.getProdsNaoComprados()).append("\n");
-                sb.append(" Total clientes                   | ").append(ce.getTotalClientes()).append("\n");
-                sb.append(" Número clientes compradores      | ").append(ce.getCliCompradores()).append("\n");
-                sb.append(" Número clientes não compradores  | ").append(ce.getCliNaoCompradores()).append("\n");
-                sb.append(" Compras com valor 0              | ").append(ce.getComprasValor0()).append("\n");
-                sb.append(" Facturação total                 | ").append(ce.getFatTotal()).append("\n");
-                sb.append("----------------------------------+--------------------\n");
-                break;
-            case 2:
-                sb.append("Número de compras efetuadas em cada mês\n");
-                int [] comprasmes = ce.getComprasMes();
-                for(int j = 0;j < 12;j++)
-                    sb.append("\nMes ").append(j+1).append(":").append(comprasmes[i]);
-                break;
-            case 3:
-                System.out.println("Facturação (Model.Filial/Mês)");
-                System.out.println(String.format("%5s %8s %8s %10s %8s %10s %8s %10s", "Model.Filial" , "|", "1", "|", "2","|", "3","|"));
-                printTabela(ce.getFatMesFil());
-                break;
-            case 4:
-                System.out.println("Clientes compradores (Model.Filial/Mês)");
-                System.out.println(String.format("%5s %8s %8s %7s %8s %7s %8s %7s", "Model.Filial" , "|", "1", "|", "2","|", "3","|"));
-                printTabela(ce.getCompradoresMesFil());
-                break;
-        }
+        sb.append("-------------------------------------------------------\n");
+        sb.append("       Informações sobre ficheiro de vendas lido \n");
+        sb.append("----------------------------------+--------------------\n");
+        sb.append(" Ficheiro vendas lido             | ").append(salesPath).append("\n");
+        sb.append(" Vendas Inválidas                 | ").append(vendasInvalidas).append("\n");
+        sb.append(" Total produtos                   | ").append(totalProdutos).append("\n");
+        sb.append(" Número prodtutos comprados       | ").append(prodsComprados).append("\n");
+        sb.append(" Número prodtutos nunca Comprados | ").append(prodsNaoComprados).append("\n");
+        sb.append(" Total clientes                   | ").append(totalClientes).append("\n");
+        sb.append(" Número clientes compradores      | ").append(cliCompradores).append("\n");
+        sb.append(" Número clientes não compradores  | ").append(cliNaoCompradores).append("\n");
+        sb.append(" Compras com valor 0              | ").append(comprasValor0).append("\n");
+        sb.append(" Facturação total                 | ").append(fatTotal).append("\n");
+        sb.append("----------------------------------+--------------------\n");
+
         clearScreen();
 
         System.out.println(sb.toString());
+    }
+
+    public void printConsultasEstatisticas2(int[] comprasMes) {
+        final StringBuilder sb = new StringBuilder();
+
+        sb.append("Número de compras efetuadas em cada mês\n");
+                for(int j = 0;j < 12;j++)
+                    sb.append("\nMes ").append(j+1).append(":").append(comprasMes[j]);
+
+        clearScreen();
+
+        System.out.println(sb.toString());
+    }
+
+    public void printConsultasEstatisticas3(float[][] tabela, int type) {
+
+        if (type == 0)
+            System.out.println("Facturação (Filial/Mês)");
+        else
+            System.out.println("Clientes compradores (Filial/Mês)");
+
+        System.out.println(String.format("%5s %7s %8s %10s %8s %10s %8s %10s", "Filial" , "|", "1", "|", "2","|", "3","|"));
+        printTabela(tabela);
+
+        clearScreen();
     }
 
     public void printQ1(List<String> list) {
@@ -223,7 +228,7 @@ public class Apresentacao implements IApresentacao {
 
     public void printQ7(Map<Integer,List<String>> list) {
         System.out.println("3 Maiores compradores por filial\n\n");
-        System.out.println(String.format("%5s %5s %8s %7s %8s %7s %8s %7s", "Model.Filial" , "|", "1º", "|", "2º","|", "3º","|"));
+        System.out.println(String.format("%5s %5s %8s %7s %8s %7s %8s %7s", "Filial" , "|", "1º", "|", "2º","|", "3º","|"));
         System.out.println(String.format("%s", "---------------------------------------------------------------"));
         for(int i = 0;i < 3;i++) {
             System.out.println(String.format("%5d %5s %10s %5s %10s %5s %10s %5s", i+1 ,  "|", list.get(i).get(0),
@@ -244,7 +249,7 @@ public class Apresentacao implements IApresentacao {
 
         System.out.println("Faturação produto "+prod+"\n");
         if (arr != null){
-            System.out.println(String.format("%5s %8s %8s %10s %8s %10s %8s %10s", "Model.Filial" , "|", "1", "|", "2","|", "3","|"));
+            System.out.println(String.format("%5s %8s %8s %10s %8s %10s %8s %10s", "Filial" , "|", "1", "|", "2","|", "3","|"));
             printTabela(arr);
         }
         else

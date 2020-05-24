@@ -1,6 +1,5 @@
 package View;
 
-import Model.ConsultasEstatisticas;
 import Model.ConsultasInterativas;
 
 public interface IApresentacao {
@@ -22,6 +21,9 @@ public interface IApresentacao {
     String pedirLimite();
     String pedirNumero();
     void printQ10(String prod, float[][] arr);
-    void printConsultasEstatisticas(ConsultasEstatisticas ce, int i);
+    void printConsultasEstatisticas1(String salesPath, int vendasInvalidas, int totalProdutos, int prodsComprados, int prodsNaoComprados,
+                                            int totalClientes, int cliCompradores, int cliNaoCompradores, int comprasValor0, float fatTotal);
+    void printConsultasEstatisticas2(int[] comprasMes);
+    void printConsultasEstatisticas3(float[][] tabela, int type);
     void printConsultasIterativas(ConsultasInterativas ci, int i, String time);
 }

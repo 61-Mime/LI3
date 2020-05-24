@@ -13,6 +13,7 @@ public class GestVendas implements Serializable, IGestVendas {
     private Faturacao fact;
     private GestaoFiliais gFil;
     private LoadInfo loadInfo;
+    private ConsultasInterativas ci;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
@@ -22,6 +23,7 @@ public class GestVendas implements Serializable, IGestVendas {
         fact = new Faturacao();
         gFil = new GestaoFiliais();
         loadInfo = new LoadInfo();
+        ci = new ConsultasInterativas();
     }
 
     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
@@ -169,34 +171,20 @@ public class GestVendas implements Serializable, IGestVendas {
         return loadInfo.getCliComprador();
     }
 
-    //--------------------------------------------------------------toString--------------------------------------------------------------------------\\
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Load{");
-        sb.append("catClientes=").append(catClientes);
-        sb.append(", catProdutos=").append(catProdutos);
-        sb.append(", fact=").append(fact);
-        sb.append(", gFil=").append(gFil);
-        sb.append(", loadInfo=").append(loadInfo);
-        sb.append('}');
-        return sb.toString();
-    }
 
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
-//apagar metodo
-    public List<String> lerFicheiro(String filename){
-        Crono crono = new Crono();
-        crono.start();
-        List<String> lines = new ArrayList<>();
-        try {
-            lines = Files.readAllLines(Paths.get(filename));
-        } catch (IOException ioex) {
-            System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
-        }
-        crono.getTImeString();
-        return lines;
-    }
+//    public List<String> lerFicheiro(String filename){
+//        Crono crono = new Crono();
+//        crono.start();
+//        List<String> lines = new ArrayList<>();
+//        try {
+//            lines = Files.readAllLines(Paths.get(filename));
+//        } catch (IOException ioex) {
+//            System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
+//        }
+//        crono.getTImeString();
+//        return lines;
+//    }
 
     private boolean valSale(int branch,int month,float price,int uni,char type){
         return (branch >= 1 && branch <= 3 && month >= 1 && month <= 12 &&
@@ -271,5 +259,19 @@ public class GestVendas implements Serializable, IGestVendas {
             System.exit(2);
         }
         return 0;
+    }
+
+    public float[][] getCompradoresMesFil() {
+        float[][] compradoresMesFil = new float[12][3];
+        float [] array = getgFilCliCompradoresMes(0);
+        float [] array2 = getgFilCliCompradoresMes(1);
+        float [] array3 = getgFilCliCompradoresMes(2);
+        for(int i = 0;i < 12; i++) {
+            compradoresMesFil[i][0] = array[i];
+            compradoresMesFil[i][1] = array2[i];
+            compradoresMesFil[i][2] = array3[i];
+        }
+
+        return compradoresMesFil;
     }
 }

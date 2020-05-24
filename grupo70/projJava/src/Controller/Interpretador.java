@@ -1,7 +1,5 @@
 package Controller;
 
-import Controller.Crono;
-import Model.ConsultasEstatisticas;
 import Model.ConsultasInterativas;
 import Model.DataFile;
 import Model.GestVendas;
@@ -130,15 +128,36 @@ public class Interpretador {
     public void consultasEstatisticas(GestVendas sgv){
         boolean val = true;
         int comand;
-        ConsultasEstatisticas ce = new ConsultasEstatisticas(sgv);
+        int totalProdutos, produtosComprados, totalClientes, clientesCompradores;
 
         while (val){
             a.menuConsultasEstatisticas();
             comand = lerInt(a.pedirNumero(),0,4);
-            if(comand == 0)
-                val = false;
-            else
-                a.printConsultasEstatisticas(ce, comand);
+
+            switch (comand) {
+                case 0:
+                    val = false;
+                    break;
+                case 1:
+                    totalProdutos = sgv.getLoadInfoProdValidos();
+                    produtosComprados = sgv.getFactComprados();
+                    totalClientes = sgv.getLoadInfoCliValidos();
+                    clientesCompradores = sgv.getLoadInfoCliComprador();
+
+                    a.printConsultasEstatisticas1(sgv.getLoadInfoSalesPath(), sgv.getLoadInfoVendasInvalidas(), totalProdutos,
+                            produtosComprados, totalProdutos - produtosComprados, totalClientes, clientesCompradores, totalClientes - clientesCompradores,
+                            sgv.getFactCompras0(), sgv.getFactFaturacaoTotal());
+                    break;
+                case 2:
+                    a.printConsultasEstatisticas2(sgv.getFactComprasMes());
+                    break;
+                case 3:
+                    a.printConsultasEstatisticas3(sgv.getFactFaturacaoMesFil(), 0);
+                    break;
+                case 4:
+                    a.printConsultasEstatisticas3(sgv.getCompradoresMesFil(), 1);
+                    break;
+            }
         }
     }
 

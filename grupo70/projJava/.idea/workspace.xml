@@ -19,39 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2020,_21_06_[Default_Changelist]1/Facturacao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2020,_21_06_[Default_Changelist]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2020__21_06__Default_Changelist_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_20,_11_41_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_20__11_41__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Controller/Crono.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Controller/Crono.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Controller/Interpretador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Controller/Interpretador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/META-INF/projJava.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/Catalogo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/Catalogo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/CliInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/CliInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/DataFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/DataFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/FactMF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/FactMF.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/Faturacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/Faturacao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/Filial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/Filial.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/ICatalogo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/ICatalogo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/IFaturacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/IFaturacao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/IGestVendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/IGestVendas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/IGestaoFiliais.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/IGestaoFiliais.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/ParStringFloat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/ParStringFloat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/ProdCliinfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/ProdCliinfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/ProdInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/ProdInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/sortCliByTotalFact.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/sortCliByTotalFact.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/sortParbyValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/sortParbyValue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/View/Apresentacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/View/Apresentacao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/View/IApresentacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/View/IApresentacao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GestVendas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GestVendas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ProdInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ProdInfo.java" afterDir="false" />
+    <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="Documentação GestVendas">
+      <change beforePath="$PROJECT_DIR$/src/Model/Catalogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Catalogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/FactMF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FactMF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Faturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Faturacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590347588058</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Documentação GestVendas">
+      <created>1590418519986</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1590418519986</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +215,8 @@
     <MESSAGE value="MVC" />
     <MESSAGE value="MVC + interfaces" />
     <MESSAGE value="remocao classe consultas estatisticas" />
-    <option name="LAST_COMMIT_MESSAGE" value="remocao classe consultas estatisticas" />
+    <MESSAGE value="Documentação GestVendas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentação GestVendas" />
   </component>
   <component name="WindowStateProjectService">
     <state x="863" y="421" width="251" height="263" key="#Notifications" timestamp="1589755395318">
@@ -319,11 +298,11 @@
       <screen x="0" y="23" width="1440" height="813" />
     </state>
     <state x="221" y="58" key="SettingsEditor/0.23.1440.813@0.23.1440.813" timestamp="1589760877445" />
-    <state x="588" y="288" width="876" height="528" key="Vcs.Push.Dialog.v2" timestamp="1590347589686">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="504" y="279" width="876" height="528" key="Vcs.Push.Dialog.v2" timestamp="1590418522829">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
     <state x="405" y="227" key="Vcs.Push.Dialog.v2/0.23.1440.822@0.23.1440.822" timestamp="1589989960260" />
-    <state x="504" y="279" key="Vcs.Push.Dialog.v2/0.23.1792.1033@0.23.1792.1033" timestamp="1589986576358" />
+    <state x="504" y="279" key="Vcs.Push.Dialog.v2/0.23.1792.1033@0.23.1792.1033" timestamp="1590418522829" />
     <state x="588" y="288" width="876" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1590347589686" />
     <state x="764" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589755483482">
       <screen x="67" y="27" width="1853" height="1053" />

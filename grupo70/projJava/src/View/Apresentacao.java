@@ -1,5 +1,8 @@
-package View;
+/**
+ * Classe com a apresentação do programa
+ */
 
+package View;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,6 +11,9 @@ import java.util.Scanner;
 
 public class Apresentacao implements Serializable, IApresentacao {
 
+    /**
+     * Método que apresenta a mensagem de Boas Vindas
+     */
     public void welcome() {
         System.out.print("   SSSSSSSSSSSSSSS           GGGGGGGGGGGG   VVVVVVVV           VVVVVVVV\n");
         System.out.print(" SS:::::::::::::::S       GGG::::::::::::G  V::::::V           V::::::V\n");
@@ -31,11 +37,17 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.print("Pressione qualquer tecla para continuar!\n");
     }
 
+    /**
+     * Método que imprime espaço no ecrã
+     */
     public void clearScreen() {
         for (int i = 0; i < 3; ++i)
             System.out.println();
     }
 
+    /**
+     * Método que apresenta o Menu Inicial
+     */
     public void menu(){
         StringBuilder sb = new StringBuilder();
         sb.append("\n-----------------------------------------------------\n");
@@ -51,6 +63,9 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.print(sb.toString());
     }
 
+    /**
+     * Método que apresenta o menu das Consultas Interativas
+     */
     public void menuConsultasInterativas(){
         StringBuilder sb = new StringBuilder();
         sb.append("\n-------------------------------------------------------------------------------------------\n");
@@ -71,6 +86,9 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.print(sb.toString());
     }
 
+    /**
+     * Método que apresenta o menu das Consultas Estatísticas
+     */
     public void menuConsultasEstatisticas(){
         StringBuilder sb = new StringBuilder();
         sb.append("\n-----------------------------------------------------\n");
@@ -85,6 +103,9 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.print(sb.toString());
     }
 
+    /**
+     * Método que apresenta o menu da Querie 10
+     */
     public void menuQ10() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n-----------------------------------------------------\n");
@@ -96,22 +117,39 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.print(sb.toString());
     }
 
+    /**
+     * Método que apresenta uma mensagem
+     *
+     * @param message   String com a Mensagem
+     */
     public void printMessage(String message) {
         System.out.println(message);
     }
 
+    /**
+     * Método que apresenta uma mensagem a pedir o nome do ficheiro
+     */
     public void pedirNomeFicheiro(){
         System.out.println("Introduza o nome do ficheiro: ");
     }
 
+    /**
+     * Método que apresenta uma mensagem de aviso de erro a ler int
+     */
     public void printErroLerInt(){
         System.out.println("Erro a ler int!");
     }
 
+    /**
+     * Método que apresenta uma mensagem de aviso de erro por estruturas não carregadas
+     */
     public void printErroCarregar(){
         System.out.println("Carregue as estruturas primeiro!");
     }
 
+    /**
+     * Método que apresenta uma mensagem de aviso de erro ao ler ficheiro
+     */
     public void printErroLerFicheiro(int i){
         if(i == 1)
             System.out.println("Erro a ler ficheiro!");
@@ -119,30 +157,75 @@ public class Apresentacao implements Serializable, IApresentacao {
             System.out.println("Ficheiro não encontrado!");
     }
 
+    /**
+     * Método que apresenta o tempo
+     *
+     * @param time  String com o tempo
+     * @param type  String com o tipo
+     */
     public void printTime(String time,String type){
         System.out.println("Tempo carregamento " + type + ":" +time);
     }
 
+    /**
+     * Método que devolve mensagem a pedir cliente em formato de String
+     *
+     * @return  String com a mensagem
+     */
     public String pedirCliente(){
         return "Introduza um cliente:";
     }
 
+    /**
+     * Método que devolve mensagem a pedir produto em formato de String
+     *
+     * @return  String com a mensagem
+     */
     public String pedirProduto(){
         return "Introduza um produto:";
     }
 
+    /**
+     * Método que devolve mensagem a pedir mes em formato de String
+     *
+     * @return  String com a mensagem
+     */
     public String pedirMes(){
         return "Introduza um mês:";
     }
 
+    /**
+     * Método que devolve mensagem a pedir limite em formato de String
+     *
+     * @return  String com a mensagem
+     */
     public String pedirLimite(){
         return "Introduza um limite:";
     }
 
+    /**
+     * Método que devolve mensagem a pedir numero em formato de String
+     *
+     * @return  String com a mensagem
+     */
     public String pedirNumero(){
         return "Introduza um número:";
     }
 
+    /**
+     * Método que apresenta a informação sobre o ficheiro lido
+     *
+     * @param salesPath         String com o caminho para o ficheiro
+     * @param vendasInvalidas   Int com o número de vendas inválidas
+     * @param totalProdutos     Int com o total de produtos
+     * @param prodsComprados    Int com o número de produtos comprados
+     * @param prodsNaoComprados Int com o número de produtos não comprados
+     * @param totalClientes     Int com o número total de clientes
+     * @param cliCompradores    Int com o número de clientes compradores
+     * @param cliNaoCompradores Int com o número de clientes não compradores
+     * @param comprasValor0     Int com o número de compras com o valor zero
+     * @param fatTotal          Int com a faturação total
+     */
     public void printConsultasEstatisticas1(String salesPath, int vendasInvalidas, int totalProdutos, int prodsComprados, int prodsNaoComprados,
                                             int totalClientes, int cliCompradores, int cliNaoCompradores, int comprasValor0, float fatTotal) {
         final StringBuilder sb = new StringBuilder();
@@ -167,6 +250,11 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.println(sb.toString());
     }
 
+    /**
+     * Método que apresenta o número de compras efetuadas em cada mês
+     *
+     * @param comprasMes    Array de int com o número de compras por mês
+     */
     public void printConsultasEstatisticas2(int[] comprasMes) {
         final StringBuilder sb = new StringBuilder();
 
@@ -179,6 +267,12 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.println(sb.toString());
     }
 
+    /**
+     * Método que apresenta a tabela de Faturação ou Clientes Compradores
+     *
+     * @param tabela    Array de Float com a tabela
+     * @param type      Inteiro com o tipo
+     */
     public void printConsultasEstatisticas3(float[][] tabela, int type) {
 
         if (type == 0)
@@ -192,11 +286,22 @@ public class Apresentacao implements Serializable, IApresentacao {
         clearScreen();
     }
 
+    /**
+     * Método que apresenta o resultado da querie 1
+     *
+     * @param list  List com o resultado da querie
+     * @param size  Inteiro com o tamanho
+     */
     public void printQ1(List<String> list, int size) {
         System.out.println("Produtos não comprados: " + size + "\n");
         printArray(list);
     }
 
+    /**
+     * Método que apresenta o resultado da querie 2
+     *
+     * @param array Array de Int com o resultado da querie
+     */
     public void printQ2(int [] array) {
         StringBuilder sb = new StringBuilder();
         sb.append("Vendas e clientes distintos que as fizeram para o mês dado\n\n");
@@ -209,6 +314,11 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.println(sb.toString());
     }
 
+    /**
+     * Método que apresenta o resultado da querie 3
+     *
+     * @param querie3   Map com o resultado da querie
+     */
     public void printQ3(Map<Integer,float[]> querie3) {
         float [][] res = new float[12][3];
         for(int mes = 0;mes < 12;mes++)
@@ -217,6 +327,11 @@ public class Apresentacao implements Serializable, IApresentacao {
         printTabela(res);
     }
 
+    /**
+     * Método que apresenta o resultado da querie 4
+     *
+     * @param querie4   Map com o resultado da querie
+     */
     public void printQ4(Map<Integer,float[]> querie4) {
         float [][] res = new float[12][3];
         for(int mes = 0;mes < 12;mes++)
@@ -225,6 +340,11 @@ public class Apresentacao implements Serializable, IApresentacao {
         printTabela(res);
     }
 
+    /**
+     * Método que apresenta o resultado da querie 7
+     *
+     * @param list  map com o resultado da querie
+     */
     public void printQ7(Map<Integer,List<String>> list) {
         System.out.println("3 Maiores compradores por filial\n\n");
         System.out.println(String.format("%5s %5s %8s %7s %8s %7s %8s %7s", "Filial" , "|", "1º", "|", "2º","|", "3º","|"));
@@ -235,15 +355,12 @@ public class Apresentacao implements Serializable, IApresentacao {
         }
     }
 
-    private void printTabela(float[][] table){
-        int mes = 1;
-        System.out.println(String.format("%s", "--------------------------------------------------------------------------"));
-        for (final float[] row : table) {
-            System.out.println(String.format("%5s %2d %5s %10.2f %5s %10.2f %5s %10.2f %5s", "Mes ",  mes, "|", row[0], "|",row[1], "|",row[2],"|"));
-            mes++;
-        }
-    }
-
+    /**
+     * Método que apresenta o resultado de um produto da querie 10
+     *
+     * @param prod  String com o produto
+     * @param arr   Array de Float com o resultado
+     */
     public void printQ10(String prod, float[][] arr){
 
         System.out.println("Faturação produto "+prod+"\n");
@@ -255,6 +372,30 @@ public class Apresentacao implements Serializable, IApresentacao {
             System.out.println("Produto não vendido\n");
     }
 
+
+    /**
+     * Método que imprime uma tabela com resultados de queries
+     *
+     * @param table Array de Float com o resultado a imprimir
+     */
+    private void printTabela(float[][] table){
+        int mes = 1;
+        System.out.println(String.format("%s", "--------------------------------------------------------------------------"));
+        for (final float[] row : table) {
+            System.out.println(String.format("%5s %2d %5s %10.2f %5s %10.2f %5s %10.2f %5s", "Mes ",  mes, "|", row[0], "|",row[1], "|",row[2],"|"));
+            mes++;
+        }
+    }
+
+    /**
+     * Método que imprime uma página das tabelas dinamicas
+     *
+     * @param list      Lista a apresentar
+     * @param page      Inteiro com o número da página
+     * @param cols      Inteiro com o número de colunas
+     * @param max       Inteiro com o número máximo de elementos por página
+     * @param maxpage   Inteiro com o número máximo de páginas
+     */
     private void printPagina(List<String> list, int page, int cols, int max, int maxpage) {
         int i, j;
         int size = list.size();
@@ -275,6 +416,11 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.println("---------------------------------------------------------------------------------------------");
     }
 
+    /**
+     * Método que imprime uma tabela dinâmica
+     *
+     * @param list  Lista a imprimir
+     */
     public void printArray(List<String> list) {
         int page = 0, lines = 6, cols = 93/(list.get(0).length() + 3);
         int max = lines * cols, maxpage = (list.size()-1)/max;

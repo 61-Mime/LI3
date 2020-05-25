@@ -1,3 +1,7 @@
+/**
+ * Classe com o Controlador do Programa
+ */
+
 package Controller;
 
 import Model.DataFile;
@@ -14,6 +18,14 @@ import java.util.Scanner;
 public class Interpretador implements Serializable {
     Apresentacao a = new Apresentacao();
 
+    /**
+     * Método que recebe input de um Int
+     *
+     * @param message   String com mensagem a enviar à Apresentação
+     * @param min       Inteiro com o limite mínimo
+     * @param max       Inteiro com o limite máximo
+     * @return          Inteiro lido
+     */
     public int lerInt(String message,int min,int max){
         Scanner s = new Scanner(System.in);
         int n = -1;
@@ -31,6 +43,14 @@ public class Interpretador implements Serializable {
         return n;
     }
 
+    /**
+     * Método que lê um código de produto ou cliente
+     *
+     * @param message   String com mensagem a enviar à Apresentação
+     * @param type      Inteiro com o tipo
+     * @param sgv       GestVendas
+     * @return          String com o código lido
+     */
     public String lerString(String message, int type, GestVendas sgv){
         Scanner s = new Scanner(System.in);
         String line;
@@ -44,6 +64,12 @@ public class Interpretador implements Serializable {
         return line;
     }
 
+    /**
+     * Método que recebe input para a execução da querie 10
+     *
+     * @param sgv   GestVendas
+     * @return      String com o tempo de execução
+     */
     public String interpretaQ10(GestVendas sgv) {
         boolean r = true;
         int command;
@@ -70,6 +96,11 @@ public class Interpretador implements Serializable {
         return time;
     }
 
+    /**
+     * Método que recebe input para a execução das Consultas Interativas
+     *
+     * @param sgv   GestVendas
+     */
     public void consultasIterativas(GestVendas sgv){
         boolean val = true;
         String line,time = "";
@@ -153,7 +184,12 @@ public class Interpretador implements Serializable {
                 a.printTime(time, "Querie " + comand);
         }
     }
-//ver tempo
+
+    /**
+     * Método que recebe input para a execução das Consultas Estatísticas
+     *
+     * @param sgv   GestVendas
+     */
     public void consultasEstatisticas(GestVendas sgv){
         boolean val = true;
         int comand;
@@ -190,6 +226,12 @@ public class Interpretador implements Serializable {
         }
     }
 
+    /**
+     * Método que recebe input para a execução do programa
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void interpretador() throws IOException, ClassNotFoundException {
         boolean val = true,load = false;
         Scanner scanner = new Scanner(System.in);

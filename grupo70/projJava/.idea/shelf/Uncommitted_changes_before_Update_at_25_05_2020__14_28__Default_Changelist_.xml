@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_25_05_2020,_14_28_[Default_Changelist]" date="1590413336060" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2020,_14_28_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/05/2020, 14:28 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/projJava/Interpretador.class" />
+    <option name="AFTER_PATH" value="out/production/projJava/Interpretador.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2020,_14_28_[Default_Changelist]/Interpretador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".idea/shelf/Uncommitted_changes_before_Update_at_17_05_2020,_21_06_[Default_Changelist]1/Facturacao.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/projJava/IApresentacao.class" />
+    <option name="AFTER_PATH" value="out/production/projJava/IApresentacao.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2020,_14_28_[Default_Changelist]/IApresentacao.class" />
+  </binary>
+</changelist>

@@ -1,10 +1,10 @@
+/**
+ * Classe com a informação do modelo do programa
+ */
+
 package Model;
 
-import Controller.Crono;
-
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,8 +15,9 @@ public class GestVendas implements Serializable, IGestVendas {
     private GestaoFiliais gFil;
     private LoadInfo loadInfo;
 
-    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
-
+    /**
+     * Construtor da Classe GestVendas
+     */
     public GestVendas(){
         catClientes = new Catalogo(0);
         catProdutos = new Catalogo(1);
@@ -25,38 +26,84 @@ public class GestVendas implements Serializable, IGestVendas {
         loadInfo = new LoadInfo();
     }
 
-    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
+    /**
+     * Método que veridica se o Catalogo contém um cliente
+     *
+     * @param cliCode   String com o Cliente
+     * @return          Resultado Booleano
+     */
     public boolean getCatCcontains(String cliCode){
         return catClientes.contem(cliCode);
     }
 
+    /**
+     * Método que veridica se o Catalogo contém um produto
+     *
+     * @param prodCode  String com o Produto
+     * @return          Resultado Booleano
+     */
     public boolean getCatPcontains(String prodCode){
         return catProdutos.contem(prodCode);
     }
 
+    /**
+     * Método Get do Catalogo de produtos
+     *
+     * @return  Cópia do Set Catologo de produtos
+     */
     public Set<String> getCatPtree(){
         return catProdutos.getTree();
     }
 
+    /**
+     * Método Get do Catalogo de clientes
+     *
+     * @return  Cópia do Set Catalogo de clientes
+     */
     public Set<String> getCatCtree(){
         return catClientes.getTree();
     }
 
+    /**
+     * Método que verifica se um cliente é válido
+     *
+     * @param code  String com o Cliente
+     * @return      Resultado Booleano
+     */
     public boolean cliVal(String code) {
         return catClientes.valCli(code);
     }
 
+    /**
+     * Método que verifica se um produto é válido
+     *
+     * @param code  String com o Produto
+     * @return      Resultado Booleano
+     */
     public boolean prodVal(String code) {
         return catProdutos.valProd(code);
     }
 
+    /**
+     * Método que devolve o número de vendas de uma filial
+     *
+     * @param branch    Inteiro com o código da filial
+     * @return          Inteiro com o número de vendas da filial
+     */
     public int getFilialVendas(int branch){
         return gFil.getVendasFilial(branch);
     }
 
+    /**
+     * Método que devolve o número de clientes compradores de uma filial
+     *
+     * @param branch    Inteiro com o código da filial
+     * @return          Inteiro com o número de clientes compradores da filial
+     */
     public int getFilialClientesCompradores(int branch){
         return gFil.getClientesCompradoresFilial(branch);
     }
+
 
     public Set<ParStringFloat> getGFilCliSet(int branch, String cod){
         return gFil.getCliSetCodUni(branch, cod);
@@ -66,130 +113,283 @@ public class GestVendas implements Serializable, IGestVendas {
         return gFil.getProdSetCodUni(branch, cod);
     }
 
+    /**
+     * Método que devolve os clientes mais compradores de uma filial
+     *
+     * @param branch    Inteiro com o código da filial
+     * @return          List com os clientes
+     */
     public List<String> getFilialClientesMaisCompradores(int branch){
         return gFil.getClientesMaisCompradoresFilial(branch);
     }
 
+    /**
+     * Método que devolve o número vendas num mês
+     *
+     * @param month Inteiro com o mês
+     * @return      Inteiro com o número de vendas
+     */
     public int getGFilVendasMes(int month){
         return gFil.getVendasMes(month);
     }
 
+    /**
+     * Método que devolve o número de clientes diferentes num mês
+     *
+     * @param month Inteiro com o mês
+     * @return      Inteiro com o número de clientes diferentes
+     */
     public int getGFilClientesDiferentesMes(int month) {
         return gFil.clientesDiferentesMes(month);
     }
 
+    /**
+     * Método que devolve o número de compras num mês por um cliente
+     *
+     * @param cod   String com o cliente
+     * @param month Inteiro com o mês
+     * @return      Float com o número de compras num mês
+     */
     public float getGFilNumeroComprasMes(String cod, int month) {
         return gFil.numeroComprasMes(cod, month);
     }
 
+    /**
+     * Método que devolce o número de produtos diferentes
+     *
+     * @param cod   String com o cliente
+     * @param month Inteiro com o mês
+     * @return      Float com o número de produtos diferentes
+     */
     public float getGFilProdutosDiferentes(String cod, int month) {
         return gFil.produtosDiferentes(cod, month);
     }
 
+    /**
+     * Método que devolve o gasto total num mês
+     *
+     * @param cod   String com o cliente
+     * @param month Inteiro com o mês
+     * @return      Float com o gasto total
+     */
     public float getGFilGastoTotalMes(String cod, int month) {
         return gFil.gastoTotalMes(cod, month);
     }
 
+    /**
+     * Método que devolve o número de clientes diferentes por mês
+     *
+     * @param cod   String com o produto
+     * @param month Inteiro com o mês
+     * @return      Float com o número de clientes diferentes
+     */
     public float getGFilClientesDiferentes(String cod, int month) {
         return gFil.clientesDiferentes(cod, month);
     }
 
+    /**
+     * Método que devolve o número de clientes diferentes
+     *
+     * @param cod   String com o produto
+     * @return      Inteiro com o número de clientes diferentes
+     */
     public int getGFilClientesDiferentesTotal(String cod) {
         return gFil.clientesDiferentesTotal(cod);
     }
 
+    /**
+     * Método que devolve o número de produtos diferentes
+     *
+     * @param cod   String com o cliente
+     * @return      Inteiro com o número de produtos diferentes
+     */
     public int getGFilProdutosDiferentesTotal(String cod) {
         return gFil.produtosDiferentesTotal(cod);
     }
 
+    /**
+     * Método que devolve o número de clientes compradores por mês
+     *
+     * @param branch    Inteiro com o código da filial
+     * @return          Array de Float com o número de clientes compradores por mês
+     */
     public float[] getgFilCliCompradoresMes(int branch){
         return gFil.getFilCliCompradoresMes(branch);
     }
 
+    /**
+     * Método que devolve aa unidades vendidas de um produto num mês
+     *
+     * @param cod   String com o produto
+     * @param month Inteiro com o mês
+     * @return      Float com o número de unidades vendidas de um produto num mês
+     */
     public float getFactUniMes(String cod,int month){
         return fact.getUniMes(cod,month);
     }
 
+    /**
+     * Método que devolve a faturação de um produto num mês
+     *
+     * @param cod   String com o produto
+     * @param month Inteiro com o mês
+     * @return      Float com a faturação
+     */
     public float getFactTotalMes(String cod,int month){
         return fact.getFatTotalMes(cod,month);
     }
 
+    /**
+     * Método que devolve os códigos de produto da Faturação
+     *
+     * @return  Set com os códigos de produto
+     */
     public Set<String> getFactKeys(){
         return fact.getKeys();
     }
 
+    /**
+     * Método que devolve o número de unidades vendidas de um produto
+     *
+     * @param cod   String com o produto
+     * @return      Inteiro com o número de unidades vendidas
+     */
     public int getFactUni(String cod){
         return fact.getUni(cod);
     }
 
+    /**
+     * Método que verifica se a Faturação contém um produto
+     *
+     * @param cod   String com o produto
+     * @return      Resultado Boolenano
+     */
     public boolean getFactContainsProd(String cod){
         return fact.containsProd(cod);
     }
 
+    /**
+     * Método que devolve a faturação por mês e por filial de um produto
+     *
+     * @param cod   String com o produto
+     * @return      Matriz de Float com a faturação
+     */
     public float[][] getFactMesFilProd(String cod){
         return fact.getFatMesFilProd(cod);
     }
 
+    /**
+     * Método que devolve o número de produtos comprados
+     *
+     * @return  Inteiro com o número de produtos comprados
+     */
     public int getFactComprados(){
         return fact.getComprados();
     }
 
+    /**
+     * Método que devolve o número de produtos que não foram vendidos
+     *
+     * @return  Inteiro com o número de produtos
+     */
     public int getFactCompras0(){
         return fact.getCompras0();
     }
 
+    /**
+     * Método que devolve a Faturação total do sistema
+     *
+     * @return  Float com a Faturação
+     */
     public float getFactFaturacaoTotal(){
         return fact.getFaturacaoTotal();
     }
 
+    /**
+     * Método que devolve o número de compras por mês
+     *
+     * @return  Array de Int com o número de compras
+     */
     public int[] getFactComprasMes(){
         return fact.getComprasMes();
     }
 
+    /**
+     * Método que devolve a Faturação por mês e por filial
+     *
+     * @return  Array de Float com a Faturação
+     */
     public float[][] getFactFaturacaoMesFil(){
         return fact.getFaturacaoMesFil();
     }
 
+    /**
+     * Método que devolve o caminho do ficheiro das Vendas
+     *
+     * @return  String com o caminho
+     */
     public String getLoadInfoSalesPath(){
         return loadInfo.getSalesPath();
     }
 
+    /**
+     * Método que devolve o número de vendas inválidas
+     *
+     * @return  Inteiro com o número de vendas inválidas
+     */
     public int getLoadInfoVendasInvalidas(){
         return loadInfo.getVendasInvalidas();
     }
 
+    /**
+     * Método que devolve o número de produtos válidos
+     *
+     * @return  Inteiro com o número de produtos válidos
+     */
     public int getLoadInfoProdValidos(){
         return loadInfo.getProdValidos();
     }
 
+    /**
+     * Método que devolve o número de clientes válidos
+     *
+     * @return  Inteiro com o número de clientes válidos
+     */
     public int getLoadInfoCliValidos(){
         return loadInfo.getCliValidos();
     }
 
+    /**
+     * Método que devolve o número de clientes compradores
+     *
+     * @return  Inteiro com o número de clientes compradores
+     */
     public int getLoadInfoCliComprador(){
         return loadInfo.getCliComprador();
     }
 
-
-    //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
-//    public List<String> lerFicheiro(String filename){
-//        Crono crono = new Crono();
-//        crono.start();
-//        List<String> lines = new ArrayList<>();
-//        try {
-//            lines = Files.readAllLines(Paths.get(filename));
-//        } catch (IOException ioex) {
-//            System.out.println(ioex.getMessage() + "Erro a ler ficheiro");
-//        }
-//        crono.getTImeString();
-//        return lines;
-//    }
-
+    /**
+     * Método que verifica se uma venda é válida
+     *
+     * @param branch    Inteiro com a filial
+     * @param month     Inteiro com o mês
+     * @param price     Float com o preço
+     * @param uni       Inteiro com as unidades
+     * @param type      Char com o tipo
+     * @return          Resultado Booleano
+     */
     private boolean valSale(int branch,int month,float price,int uni,char type){
         return (branch >= 1 && branch <= 3 && month >= 1 && month <= 12 &&
                 price >= 0 && uni >= 0 && (type == 'N' || type == 'P'));
     }
 
+    /**
+     * Método que carrega um Catalogo a partir de um ficheiro
+     *
+     * @param filename  String com o caminho de ficheiro
+     * @param type      Inteiro com o tipo de Catalogo
+     * @return          Inteiro identificador de erro
+     */
     public int loadCat(String filename, int type){
         String line;
         BufferedReader br = null;
@@ -220,6 +420,12 @@ public class GestVendas implements Serializable, IGestVendas {
         return 0;
     }
 
+    /**
+     * Método que carrega a Faturação e as Filiais a partir de um ficheiro
+     *
+     * @param filename  String com caminho para o ficheiro
+     * @return          Inteiro identificador de erro
+     */
     public int loadSales(String filename){
         String[] venda;
         int branch,month;
@@ -236,8 +442,6 @@ public class GestVendas implements Serializable, IGestVendas {
         }
         try {
             while ((line = br.readLine()) != null) {
-//            List<String> linhas = lerFicheiro(filename);
-//            for(String line: linhas) {
             venda = line.split(" ");
             branch = Integer.parseInt(venda[6]);
             month = Integer.parseInt(venda[5]);
@@ -260,6 +464,11 @@ public class GestVendas implements Serializable, IGestVendas {
         return 0;
     }
 
+    /**
+     * Função que devolce o número de clientes compradores por mês e por filial
+     *
+     * @return  Matriz de Float com os clientes compradores
+     */
     public float[][] getCompradoresMesFil() {
         float[][] compradoresMesFil = new float[12][3];
         float [] array = getgFilCliCompradoresMes(0);
@@ -276,6 +485,12 @@ public class GestVendas implements Serializable, IGestVendas {
 
     //--------------------------------------------------------------Consultas Interativas-------------------------------------------------------------\\
 
+    /**
+     * Método que passa uma Lista ParStringFloat para Lista String
+     *
+     * @param list  Lista ParStringFloat
+     * @return      Lista String
+     */
     public List<String> listParStringFloatToListString(List<ParStringFloat> list){
         List<String> stringList = new ArrayList<>();
         list.forEach(p -> stringList.add(p.toString()));
@@ -283,6 +498,11 @@ public class GestVendas implements Serializable, IGestVendas {
         return stringList;
     }
 
+    /**
+     * Método que executa a querie 1
+     *
+     * @return  Lista String com o resultado da querie
+     */
     public List<String> getQ1(){
         List<String> querie1 = new ArrayList<>();
 
@@ -290,6 +510,12 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie1;
     }
 
+    /**
+     * Método que executa a querie 2
+     *
+     * @param month Inteiro com o mês
+     * @return      Array de inteiros com o resultado da querie
+     */
     public int[] getQ2(int month){
 
          int[] querie2 = new int[8];
@@ -304,6 +530,12 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie2;
     }
 
+    /**
+     * Método que executa a querie 3
+     *
+     * @param cod   String com o cliente
+     * @return      Map com o resultado da querie
+     */
     public Map<Integer, float[]> getQ3(String cod){
         Map<Integer, float[]> querie3 = new HashMap<>();
         float[] res;
@@ -317,6 +549,12 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie3;
     }
 
+    /**
+     * Método que executa a querie 4
+     *
+     * @param cod   String com o produto
+     * @return      Map com o resultado da querie
+     */
     public Map<Integer, float[]> getQ4(String cod){
         Map<Integer, float[]> querie4 = new HashMap<>();
         float[] res;
@@ -330,6 +568,12 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie4;
     }
 
+    /**
+     * Método que executa a querie 5
+     *
+     * @param cod   String com o cliente
+     * @return      List com o resultado da querie
+     */
     public List<ParStringFloat> getQ5(String cod) {
         List<ParStringFloat> querie5 = new ArrayList<>();
         int i;
@@ -341,6 +585,12 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie5;
     }
 
+    /**
+     * Método que executa a querie 6
+     *
+     * @param limit Int com o limite
+     * @return      List com o resultado da querie
+     */
     public List<ParStringFloat> getQ6(int limit) {
         List<ParStringFloat> querie6 = new ArrayList<>();
 
@@ -353,6 +603,11 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie6;
     }
 
+    /**
+     * Método que executa a querie 7
+     *
+     * @return  Map com o resultado da querie
+     */
     public Map<Integer, List<String>> getQ7() {
         Map<Integer, List<String>> querie7 = new HashMap<>();
 
@@ -361,6 +616,12 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie7;
     }
 
+    /**
+     * Método que executa a querie 8
+     *
+     * @param limit Inteiro com o limite
+     * @return      List com o resultado da querie
+     */
     public List<ParStringFloat> getQ8(int limit) {
         List<ParStringFloat> querie8 = new ArrayList<>();
 
@@ -371,6 +632,13 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie8;
     }
 
+    /**
+     * Método que executa a querie 9
+     *
+     * @param codProd   String com o produto
+     * @param limit     Inteiro com o limite
+     * @return          List com o resultado da querie
+     */
     public List<ParStringFloat> getQ9(String codProd,int limit) {
         List<ParStringFloat> querie9 = new ArrayList<>();
 
@@ -381,6 +649,11 @@ public class GestVendas implements Serializable, IGestVendas {
         return querie9;
     }
 
+    /**
+     * Método que executa a querie 10
+     *
+     * @return  Map com o resultado da querie
+     */
     public Map<String, float[][]> getQ10() {
         Map<String, float[][]> querie10 = new HashMap<>();
 

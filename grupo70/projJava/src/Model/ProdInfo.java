@@ -19,17 +19,7 @@ public class ProdInfo implements Serializable {
     public String getCode() {
         return code;
     }
-/*
-    public Set<Model.ProdCliinfo> getSetMes(int month) {
-        Set<Model.ProdCliinfo> novo  = new TreeSet<>();
-        if(mapMes.get(month) == null)
-            return null;
 
-        mapMes.get(month).values().forEach(c -> novo.add(c.clone()));
-
-        return novo;
-    }
-*/
     public Set<ParStringFloat> getSetCodUni(){
         TreeSet<ParStringFloat> tree = new TreeSet<>();
         for(Map<String,ProdCliinfo> map: mapMes.values())
@@ -51,32 +41,19 @@ public class ProdInfo implements Serializable {
             }
         return tree;
     }
+
     public Set<String> getCodeMonth(int month){
         Set<String> clientes = new TreeSet<>();
-        /*if(mapMes.containsKey(month)){
-            for(Model.ProdCliinfo c:mapMes.get(month).keySet())
-                clientes.add(c.getCod());
-        }*/
+
         if(mapMes.containsKey((int) month))
             clientes.addAll(mapMes.get((int)month).keySet());
-        //System.out.println(clientes);
+
         return clientes;
     }
-/*
-    public List<Model.ProdCliinfo> getMapList(){
-        List<Model.ProdCliinfo> list = new ArrayList<>();
-
-        for(int i = 0;i < 12;i++)
-            if(mapMes.containsKey(i))
-                mapMes.get(i).stream().forEach(pcli -> list.add(pcli.clone()));
-
-        return list;
-    }*/
 
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
     public void addCode(String cliCode,int month,float price,int uni) {
-        //Model.ProdCliinfo c = new Model.ProdCliinfo(cliCode,month,price,uni);
         mapMes.putIfAbsent(month,new HashMap<>());
         if(mapMes.get(month).containsKey(cliCode))
             mapMes.get(month).get(cliCode).add(uni,price);

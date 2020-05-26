@@ -45,8 +45,8 @@ public class ProdInfo implements Serializable {
     public Set<String> getCodeMonth(int month){
         Set<String> clientes = new TreeSet<>();
 
-        if(mapMes.containsKey((int) month))
-            clientes.addAll(mapMes.get((int)month).keySet());
+        if(mapMes.containsKey(month))
+            clientes.addAll(mapMes.get(month).keySet());
 
         return clientes;
     }
@@ -59,5 +59,9 @@ public class ProdInfo implements Serializable {
             mapMes.get(month).get(cliCode).add(uni,price);
         else
             mapMes.get(month).put(cliCode,new ProdCliinfo(month,price * uni,uni));
+    }
+
+    public boolean containsMes(int month) {
+        return mapMes.containsKey(month);
     }
 }

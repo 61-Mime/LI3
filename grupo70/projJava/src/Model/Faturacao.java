@@ -157,4 +157,8 @@ public class Faturacao implements Serializable, IFaturacao {
         faturacaoMesFil [month][branch]+= f;
         listaProd.get(prod).setFact(branch,month,price,uni);
     }
+
+    public int getNumeroVendasMes(String prodCode, int month) {
+        return listaProd.get(prodCode).getVendasMes(month);
+    }
 }

@@ -50,11 +50,11 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
     }
 
     /**
-     * -----------------------------------------------------------------------------------------------------
+     * Método que devolve os Clientes, as unidades que compraram e a faturação (ParStringFloat) numa determinada Filial
      *
-     * @param branch
-     * @param code
-     * @return
+     * @param branch    Inteiro que representa a Filial
+     * @param code       String que representa o código de Cliente
+     * @return          Set de ParStringFloat que representa o Clientes, as unidades que compraram e a faturação
      */
     public Set<ParStringFloat> getCliSetCodUni(int branch,String code){
         return gFil.get(branch).getCliSetCodUni(code);
@@ -88,7 +88,14 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
      * @return          Array de float(de tamanho 12) cujos valores representam o número de clientes compradores da Filial nos respetivos meses
      */
     public float[] getFilCliCompradoresMes(int branch){
-        return getFil(branch).getCliCompradoresMes();
+        float[] res = new float[12];
+        int[] aux = getFil(branch).getCliCompradoresMes();
+
+        for (int i=0; i<12; i++) {
+            res[i] = (float)(aux[i]);
+        }
+
+        return res;
     }
 
     /**
@@ -111,7 +118,7 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
     }
 
     /**
-     * Método que adiciona os dados de uma Venda a uma  --------------------------------------------------------------
+     * Método que adiciona os dados de uma Venda a uma  ------------------------------------------------------------------------
      *
      * @param month
      * @param price
@@ -240,4 +247,19 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
     /*public List<Model.ProdCliinfo> getFilialProdCliList(String cod, int branch) {
         return getFil(branch).getProdCliList(cod);
     }*/
+
+    /**
+     * Método que devolve o número de Vendas efetuadas numa Filial num determinado mês
+     *
+     * @param branch
+     * @param month
+     * @return
+     */
+    public int getFilialVendasMes(int branch, int month) {
+        return gFil.get(branch).getVendasMes(month);
+    }
+
+    public int getFilClientesCompradoresMes(int branch, int month) {
+        return gFil.get(branch).getClientesCompradoresMes(month);
+    }
 }

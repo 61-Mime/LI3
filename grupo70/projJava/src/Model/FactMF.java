@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 public class FactMF implements Serializable {
     private int[] unidadesMes;
+    private int[] vendasMes;
     private float[][] faturacaoMesFill;
     private float faturacaoTotal;
 
@@ -18,8 +19,13 @@ public class FactMF implements Serializable {
      */
     public FactMF(){
         unidadesMes = new int[12];
+        vendasMes = new int[12];
         faturacaoMesFill = new float[12][3];
         faturacaoTotal = 0;
+    }
+
+    public int getVendasMes(int month) {
+        return vendasMes[month];
     }
 
     /**
@@ -79,6 +85,7 @@ public class FactMF implements Serializable {
      */
     public void setFact(int branch, int month, float price,int uni) {
         unidadesMes[month] += uni;
+        vendasMes[month]++;
         faturacaoTotal += price*uni;
         faturacaoMesFill[month][branch] += price*uni;
     }

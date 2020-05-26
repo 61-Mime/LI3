@@ -104,11 +104,24 @@ public class GestVendas implements Serializable, IGestVendas {
         return gFil.getClientesCompradoresFilial(branch);
     }
 
-
+    /**
+     * Método que devolve os Clientes, as unidades que compraram e a faturação (ParStringFloat) numa determinada Filial
+     *
+     * @param branch    Inteiro que representa a Filial
+     * @param cod       String que representa o código de Cliente
+     * @return          Set de ParStringFloat que representa o Cliente, as unidades que compraram e a faturação
+     */
     public Set<ParStringFloat> getGFilCliSet(int branch, String cod){
         return gFil.getCliSetCodUni(branch, cod);
     }
 
+    /**
+     * Método que devolve os Produtos, as unidades que compraram e a faturação (ParStringFloat) numa determinada Filial
+     *
+     * @param branch    Inteiro que representa a Filial
+     * @param cod       String que representa o código de Produto
+     * @return          Set de ParStringFloat que representa o Produto, as unidades que compraram e a faturação
+     */
     public Set<ParStringFloat> getGFilProdSet(int branch, String cod){
         return gFil.getProdSetCodUni(branch, cod);
     }
@@ -483,6 +496,18 @@ public class GestVendas implements Serializable, IGestVendas {
         return compradoresMesFil;
     }
 
+    public int getFilialVendasMes(int branch, int month) {
+        return gFil.getFilialVendasMes(branch, month);
+    }
+
+    public int getFilialClientesCompradoresMes(int branch, int month) {
+        return gFil.getFilClientesCompradoresMes(branch, month);
+    }
+
+    public int getFactNumeroVendasMes(String prodCode, int month) {
+        return fact.getNumeroVendasMes(prodCode, month);
+    }
+
     //--------------------------------------------------------------Consultas Interativas-------------------------------------------------------------\\
 
     /**
@@ -523,8 +548,8 @@ public class GestVendas implements Serializable, IGestVendas {
         querie2[i++] = getGFilVendasMes(month);
         querie2[i++] = getGFilClientesDiferentesMes(month);
         for(int f = 0;f < 3;f++) {
-            querie2[i++] = getFilialVendas(f);
-            querie2[i++] = getFilialClientesCompradores(f);
+            querie2[i++] = getFilialVendasMes(f, month);
+            querie2[i++] = getFilialClientesCompradoresMes(f, month);
         }
 
         return querie2;
@@ -560,7 +585,7 @@ public class GestVendas implements Serializable, IGestVendas {
         float[] res;
         for(int month = 0;month < 12;month++){
             res = new float[3];
-            res[0] = getFactUniMes(cod,month);
+            res[0] = getFactNumeroVendasMes(cod,month);
             res[1] = getGFilClientesDiferentes(cod, month);
             res[2] = getFactTotalMes(cod,month);
             querie4.put(month,res);
@@ -575,14 +600,31 @@ public class GestVendas implements Serializable, IGestVendas {
      * @return      List com o resultado da querie
      */
     public List<ParStringFloat> getQ5(String cod) {
-        List<ParStringFloat> querie5 = new ArrayList<>();
+
+        Set<ParStringFloat> set = getGFilCliSet(0, cod);
         int i;
 
-        for(i=0; i<3; i++)
-            querie5.addAll(getGFilCliSet(i, cod));
 
-        querie5 = querie5.stream().sorted(new sortParbyValue()).collect(Collectors.toList());
-        return querie5;
+        for(i=1; i<3; i++) {
+            for (ParStringFloat p: getGFilCliSet(i, cod)) {
+                if (set.contains(p)) {
+                    Iterator<ParStringFloat> it = set.iterator();
+                    boolean b = true;
+                    ParStringFloat q;
+                    while (it.hasNext() && b) {
+                        q = it.next();
+                        if (q.getCode().equals(p.getCode())) {
+                            q.addUni(p.getValue(), p.getValue2());
+                            b = false;
+                        }
+                    }
+                } else
+                    set.add(p);
+            }
+        }
+
+
+        return set.stream().sorted(new sortParbyValue()).collect(Collectors.toList());
     }
 
     /**
@@ -640,13 +682,29 @@ public class GestVendas implements Serializable, IGestVendas {
      * @return          List com o resultado da querie
      */
     public List<ParStringFloat> getQ9(String codProd,int limit) {
-        List<ParStringFloat> querie9 = new ArrayList<>();
 
-        for(int i=0; i<3; i++)
-            querie9.addAll(getGFilProdSet(i, codProd));
+        Set<ParStringFloat> set = getGFilProdSet(0, codProd);
 
-        querie9 = querie9.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
-        return querie9;
+        for(int i=1; i<3; i++) {
+            for (ParStringFloat p : getGFilProdSet(i, codProd)) {
+                if (set.contains(p)) {
+                    Iterator<ParStringFloat> it = set.iterator();
+                    boolean b = true;
+                    ParStringFloat q;
+                    while (it.hasNext() && b) {
+                        q = it.next();
+                        if (q.getCode().equals(p.getCode())) {
+                            q.addUni(p.getValue(), p.getValue2());
+                            b = false;
+                        }
+                    }
+                } else
+                    set.add(p);
+            }
+        }
+
+        return set.stream().sorted(new sortParbyValue()).limit(limit).collect(Collectors.toList());
+
     }
 
     /**

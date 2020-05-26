@@ -1,3 +1,7 @@
+/**
+ * Classe com informação sobre uma Filial
+ */
+
 package Model;
 
 import java.io.Serializable;
@@ -8,16 +12,19 @@ public class Filial implements Serializable {
     private Map<String,ProdInfo> mapProd;
     private Map<String,CliInfo> mapCli;
     private int clientesCompradores;
-    private float[] cliCompradoresMes;
+    private int[] cliCompradoresMes;
     private int[] vendasMes;
 
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
+    /**
+     * Contrutos da classe Filial
+     */
     public Filial() {
         mapProd = new HashMap<>();
         mapCli = new HashMap<>();
         clientesCompradores = 0;
-        cliCompradoresMes = new float[12];
+        cliCompradoresMes = new int[12];
         vendasMes = new int[12];
     }
 
@@ -27,14 +34,30 @@ public class Filial implements Serializable {
         return mapCli.get(cliCode);
     }*/
 
+    /**
+     * Método que devolve o número de Clientes compradores da Filial
+     *
+     * @return  Inteiro que representa o número de Clientes compradores
+     */
     public int getClientesCompradores() {
         return clientesCompradores;
     }
 
-    public float[] getCliCompradoresMes() {
+    /**
+     * Método que devolve o número de Clientes compradores da Filial por mês
+     *
+     * @return      Array de Float(de tamanho 12) que representa o número de Clientes compradores associados ao mês
+     */
+    public int[] getCliCompradoresMes() {
         return cliCompradoresMes.clone();
     }
 
+    /**
+     * Método que devolve o número de Vendas de uma Filial num determinado mês
+     *
+     * @param month
+     * @return
+     */
     public int getVendasMes(int month) {
         return vendasMes[month];
     }
@@ -90,6 +113,10 @@ public class Filial implements Serializable {
         return mapProd.get(code).getSetCodUni();
     }
 
+    public int getClientesCompradoresMes(int month) {
+        return cliCompradoresMes[month];
+    }
+
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
     public int addSale(int month,float price,int uni,String prodCode,String cliCode){
@@ -101,6 +128,10 @@ public class Filial implements Serializable {
             cliCompradoresMes[month]++;
             res = 1;
             mapCli.put(cliCode,new CliInfo(cliCode));
+        }
+        else {
+            if(!mapCli.get(cliCode).containsMes(month))
+                cliCompradoresMes[month]++;
         }
         if(!mapProd.containsKey(prodCode))
             mapProd.put(prodCode,new ProdInfo(prodCode));

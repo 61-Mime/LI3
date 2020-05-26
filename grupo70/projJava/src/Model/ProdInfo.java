@@ -21,7 +21,7 @@ public class ProdInfo implements Serializable {
     }
 
     public Set<ParStringFloat> getSetCodUni(){
-        TreeSet<ParStringFloat> tree = new TreeSet<>();
+        Set<ParStringFloat> tree = new TreeSet<>();
         for(Map<String,ProdCliinfo> map: mapMes.values())
             for(Map.Entry<String,ProdCliinfo> entryProd: map.entrySet()) {
                 ParStringFloat c = new ParStringFloat(entryProd.getKey(),entryProd.getValue().getUni(),entryProd.getValue().getFat());

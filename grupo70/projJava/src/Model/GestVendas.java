@@ -27,7 +27,7 @@ public class GestVendas implements Serializable, IGestVendas {
     }
 
     /**
-     * Método que veridica se o Catalogo contém um cliente
+     * Método que verifica se o Catalogo contém um cliente
      *
      * @param cliCode   String com o Cliente
      * @return          Resultado Booleano

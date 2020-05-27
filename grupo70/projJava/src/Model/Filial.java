@@ -46,7 +46,7 @@ public class Filial implements Serializable {
     /**
      * Método que devolve o número de Clientes compradores da Filial por mês
      *
-     * @return      Array de Float(de tamanho 12) que representa o número de Clientes compradores associados ao mês
+     * @return      Array de Inteiros(de tamanho 12) que representa o número de Clientes compradores associados ao mês
      */
     public int[] getCliCompradoresMes() {
         return cliCompradoresMes.clone();
@@ -55,17 +55,28 @@ public class Filial implements Serializable {
     /**
      * Método que devolve o número de Vendas de uma Filial num determinado mês
      *
-     * @param month
-     * @return
+     * @param month     Inteiro que representa o mês
+     * @return          Inteiro que representa as Vendas de uma Filial num mês
      */
     public int getVendasMes(int month) {
         return vendasMes[month];
     }
 
+    /**
+     * Método que devolve o número de Vendas de um Filial
+     *
+     * @return  Inteiro que representa as Vendas de uma Filial
+     */
     public int getVendasFil(){
         return Arrays.stream(vendasMes).sum();
     }
 
+    /**
+     * Método que devolve os Clientes compradores de um determinado mês
+     *
+     * @param month     Inteiro que representa o mês
+     * @return          Inteiro que representa os Clientes compradores de um mês
+     */
     public Set<String> getClientesMes(int month){
         Set<String> clientes = new TreeSet<>();
 
@@ -75,24 +86,57 @@ public class Filial implements Serializable {
         return clientes;
     }
 
+    /**
+     * Método que devolve o número de compras que um Cliente fez num mês
+     *
+     * @param cliCode       String que representa o código do Cliente
+     * @param month         Inteiro que representa o mês
+     * @return              Float que representa ao número de compras de um Cliente num mês
+     */
     public float getNumeroCompras(String cliCode,int month){
         return (mapCli.get(cliCode)).getNumeroCompras(month);
     }
 
+    /**
+     * Método que devolve o gasto de um Cliente num determinado mês
+     *
+     * @param cliCode       String que representa o código de Cliente
+     * @param month         Inteiro que representa o mês
+     * @return              Float que representa o gasto de um Cliente num mês
+     */
     public float getGastoTotal(String cliCode,int month){
         return (mapCli.get(cliCode)).getGastoTotal(month);
     }
 
+    /**
+     * Método que devolve os Clientes que compraram um determinado Produto num determinado mês
+     *
+     * @param month     Inteiro que representa um mês
+     * @param code      String que representa o código do Produto
+     * @return          Set de Clientes que compraram um Produto no mês
+     */
     public Set<String> getClientesDiferentes(int month,String code) {
         if (!mapProd.containsKey(code))
             return new TreeSet<>();
         return mapProd.get(code).getCodeMonth(month);
     }
 
+    /**
+     * Método que devolve os Produtos diferentes que um Cliente comprou num determinado mês
+     *
+     * @param month     Inteiro que representa um mês
+     * @param code      String que representa o código do Cliente
+     * @return          Set de Produtos que o Cliente comprou no mês
+     */
     public Set<String> getProdutosDiferentes(int month,String code) {
         return mapCli.get(code).getCodeMonth(month);
     }
 
+    /**
+     * Método que devolve os três Clientes mais compradores
+     *
+     * @return      Lista dos três Clientes mais compradores
+     */
     public List<String> getClientesMaisCompradores() {
         return mapCli.values().stream().sorted().limit(3).map(CliInfo::getCode).collect(Collectors.toList());
     }
@@ -101,24 +145,58 @@ public class Filial implements Serializable {
         return mapProd.get(code).getMapList();
     }*/
 
+    /**
+     * Método que verifica se um Cliente existe na Filial
+     *
+     * @param code      String que representa o código de Cliente
+     * @return          Booleano que representa a existência do Cliente na Filial
+     */
     public boolean containsCliCode(String code){
         return mapCli.containsKey(code);
     }
 
+    /**
+     * Método que devolve -------------------------------------------------------------------------------------------------------
+     *
+     * @param code
+     * @return
+     */
     public Set<ParStringFloat> getCliSetCodUni(String code){
         return mapCli.get(code).getSetCodUni();
     }
 
+    /**
+     * Método que devolve -------------------------------------------------------------------------------------------------------
+     *
+     * @param code
+     * @return
+     */
     public Set<ParStringFloat> getProdSetCodUni(String code){
         return mapProd.get(code).getSetCodUni();
     }
 
+    /**
+     * Método que devolve o número de Clientes compradores de um determinado mês
+     *
+     * @param month     Inteiro que representa um mês
+     * @return          Inteiro que representa os
+     */
     public int getClientesCompradoresMes(int month) {
         return cliCompradoresMes[month];
     }
 
     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
 
+    /**
+     * Método que adiciona uma Venda à Filial
+     *
+     * @param month         Inteiro que representa o mês
+     * @param price         Float que representa o preço da Venda
+     * @param uni           Inteiro que representa as unidades vendidas
+     * @param prodCode      String que representa o código do Produto
+     * @param cliCode       String que representa o código de Cliente
+     * @return              Inteiro que representa se a Venda foi adiconada à Filial
+     */
     public int addSale(int month,float price,int uni,String prodCode,String cliCode){
         int res = -1;
 

@@ -251,14 +251,21 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
     /**
      * Método que devolve o número de Vendas efetuadas numa Filial num determinado mês
      *
-     * @param branch
-     * @param month
-     * @return
+     * @param branch    Inteiro que representa uma Filial
+     * @param month     Inteiro que representa o mês
+     * @return          Inteiro que representa as Vendas de uma Filial num mês
      */
     public int getFilialVendasMes(int branch, int month) {
         return gFil.get(branch).getVendasMes(month);
     }
 
+    /**
+     * Método que devolve o número de Clientes compradores de uma Filial num determinado mês
+     *
+     * @param branch    Inteiro que representa a Filal
+     * @param month     Inteiro que representa o mês
+     * @return          Inteiro que representa os Cliente compradores de uma Filial num mês
+     */
     public int getFilClientesCompradoresMes(int branch, int month) {
         return gFil.get(branch).getClientesCompradoresMes(month);
     }

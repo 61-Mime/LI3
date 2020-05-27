@@ -496,14 +496,35 @@ public class GestVendas implements Serializable, IGestVendas {
         return compradoresMesFil;
     }
 
+    /**
+     * Método que devolve o número de vendas de uma Filial num determinado mês
+     *
+     * @param branch    Inteiro que representa a Filial
+     * @param month     Inteiro que represernta o mês
+     * @return          Inteiro que representa as Vendas numa Filial num mês
+     */
     public int getFilialVendasMes(int branch, int month) {
         return gFil.getFilialVendasMes(branch, month);
     }
 
+    /**
+     * Método que devolve o número de Clientes que compraram numa Filial num determinado mês
+     *
+     * @param branch    Inteiro que representa a Filial
+     * @param month     Inteiro que representa o mês
+     * @return          Inteiro que representa os Clientes compradores numa Filial num mês
+     */
     public int getFilialClientesCompradoresMes(int branch, int month) {
         return gFil.getFilClientesCompradoresMes(branch, month);
     }
 
+    /**
+     * Método o número de Vendas de um produto num determinado mês
+     *
+     * @param prodCode      String que representa o Produto
+     * @param month         Inteiro que representa o mês
+     * @return
+     */
     public int getFactNumeroVendasMes(String prodCode, int month) {
         return fact.getNumeroVendasMes(prodCode, month);
     }

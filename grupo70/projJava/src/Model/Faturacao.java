@@ -158,6 +158,13 @@ public class Faturacao implements Serializable, IFaturacao {
         listaProd.get(prod).setFact(branch,month,price,uni);
     }
 
+    /**
+     * Método que devolve o número de Vendas de um Produto num determinadop mês
+     *
+     * @param prodCode      string que representa o código do Produto
+     * @param month         Inteiro que representa o mês
+     * @return              Inteiro que representa o número do de Vendas do Produto no mês
+     */
     public int getNumeroVendasMes(String prodCode, int month) {
         return listaProd.get(prodCode).getVendasMes(month);
     }

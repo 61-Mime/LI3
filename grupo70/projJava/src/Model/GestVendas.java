@@ -346,6 +346,24 @@ public class GestVendas implements Serializable, IGestVendas {
     }
 
     /**
+     * Método que devolve o caminho do ficheiro dos Clientes
+     *
+     * @return  String com o caminho
+     */
+    public String getLoadInfoCliPath(){
+        return loadInfo.getCliPath();
+    }
+
+    /**
+     * Método que devolve o caminho do ficheiro dos Produtos
+     *
+     * @return  String com o caminho
+     */
+    public String getLoadInfoProdPath(){
+        return loadInfo.getProdPath();
+    }
+
+    /**
      * Método que devolve o número de vendas inválidas
      *
      * @return  Inteiro com o número de vendas inválidas
@@ -382,6 +400,15 @@ public class GestVendas implements Serializable, IGestVendas {
     }
 
     /**
+     * Método que guarda o caminho do ficheiro das vendas
+     *
+     * @return  String com o caminho
+     */
+    public void setLoadInfoSalesPath(String path){
+        loadInfo.setSalesPath(path);
+    }
+
+    /**
      * Método que verifica se uma venda é válida
      *
      * @param branch    Inteiro com a filial
@@ -409,7 +436,7 @@ public class GestVendas implements Serializable, IGestVendas {
         try {
             br = new BufferedReader(new FileReader(filename));
         } catch (FileNotFoundException fnfex) {
-            System.exit(1);
+            return (1);
         }
         try {
             while ((line = br.readLine()) != null) {
@@ -423,7 +450,7 @@ public class GestVendas implements Serializable, IGestVendas {
             }
         }
         } catch (IOException ioex) {
-            System.exit(1);
+            return (1);
         }
         if(type == 0)
             loadInfo.setCliValidos(catClientes.getTotal());
@@ -451,7 +478,7 @@ public class GestVendas implements Serializable, IGestVendas {
         try {
             br = new BufferedReader(new FileReader(filename));
         } catch (FileNotFoundException fnfex) {
-            System.exit(1);
+            return (1);
         }
         try {
             while ((line = br.readLine()) != null) {
@@ -472,7 +499,7 @@ public class GestVendas implements Serializable, IGestVendas {
                 loadInfo.incInvalidas();
             }
         } catch (IOException ioex) {
-            System.exit(2);
+            return (2);
         }
         return 0;
     }
@@ -563,7 +590,6 @@ public class GestVendas implements Serializable, IGestVendas {
      * @return      Array de inteiros com o resultado da querie
      */
     public int[] getQ2(int month){
-
          int[] querie2 = new int[8];
         int i = 0;
         querie2[i++] = getGFilVendasMes(month);

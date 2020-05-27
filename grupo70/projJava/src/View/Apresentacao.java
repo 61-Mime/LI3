@@ -57,7 +57,7 @@ public class Apresentacao implements Serializable, IApresentacao {
         sb.append("2 | Consultas iterativas\n");
         sb.append("3 | Gravar estado\n");
         sb.append("4 | Carregar estado a partir de um ficheiro\n");
-        sb.append("5 | Carregar dados a partir do ficheiro vendas_1M.txt\n");
+        sb.append("5 | Carregar dados a partir do ficheiro de vendas\n");
         sb.append("0 | Sair\n");
         sb.append("-----------------------------------------------------\n");
         System.out.print(sb.toString());
@@ -133,6 +133,7 @@ public class Apresentacao implements Serializable, IApresentacao {
         System.out.println("Introduza o nome do ficheiro: ");
     }
 
+
     /**
      * Método que apresenta uma mensagem de aviso de erro a ler int
      */
@@ -151,9 +152,9 @@ public class Apresentacao implements Serializable, IApresentacao {
      * Método que apresenta uma mensagem de aviso de erro ao ler ficheiro
      */
     public void printErroLerFicheiro(int i){
-        if(i == 1)
+        if(i == 2)
             System.out.println("Erro a ler ficheiro!");
-        else
+        else if (i == 1)
             System.out.println("Ficheiro não encontrado!");
     }
 
@@ -210,6 +211,15 @@ public class Apresentacao implements Serializable, IApresentacao {
      */
     public String pedirNumero(){
         return "Introduza um número:";
+    }
+
+    /**
+     * Método que devolve uma mensagem a pedir o nome do ficheiro
+     *
+     * @return String com a mensagem
+     */
+    public String pedirTipoFicheiro(){
+        return "Pretende ler o ficheiro 1 milhão vendas (1) | 3 milhões vendas (2) | 5 milhões vendas (3)?";
     }
 
     /**

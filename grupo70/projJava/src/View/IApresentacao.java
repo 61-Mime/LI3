@@ -20,6 +20,7 @@ public interface IApresentacao {
     String pedirMes();
     String pedirLimite();
     String pedirNumero();
+    String pedirTipoFicheiro();
     void printQ10(String prod, float[][] arr);
     void printConsultasEstatisticas1(String salesPath, int vendasInvalidas, int totalProdutos, int prodsComprados, int prodsNaoComprados,
                                             int totalClientes, int cliCompradores, int cliNaoCompradores, int comprasValor0, float fatTotal);

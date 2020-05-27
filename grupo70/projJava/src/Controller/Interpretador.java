@@ -235,7 +235,8 @@ public class Interpretador implements Serializable {
     public void interpretador() throws IOException, ClassNotFoundException {
         boolean val = true,load = false;
         Scanner scanner = new Scanner(System.in);
-        int comand, n;
+        int comand, n,erro = 0;
+        String time;
         GestVendas sgv = new GestVendas();
         DataFile data = new DataFile();
 
@@ -289,19 +290,28 @@ public class Interpretador implements Serializable {
                         sgv = new GestVendas();
 
                     Crono.start();
-                    if((n = sgv.loadCat("Files/Clientes.txt",0)) != 0)
+                    if((n = sgv.loadCat(sgv.getLoadInfoCliPath(),0)) != 0 || (erro = sgv.loadCat(sgv.getLoadInfoProdPath(),1)) != 0) {
                         a.printErroLerFicheiro(n);
-                    if(n == 0 && (n = sgv.loadCat("Files/Produtos.txt",1)) != 0)
-                        a.printErroLerFicheiro(n);
-                    a.printTime(Crono.getTime(),"Catalogos");
-
-                    Crono.start();
-                    if(n == 0 && (n = sgv.loadSales(sgv.getLoadInfoSalesPath())) == 0){
-                        a.printTime(Crono.getTime(),"Vendas");
-                        load = true;
+                        a.printErroLerFicheiro(erro);
                     }
-                    else
-                        a.printErroLerFicheiro(n);
+                    else {
+                        time = Crono.getTime();
+
+                        n = lerInt(a.pedirTipoFicheiro(),1,3);
+                        if(n == 2)
+                            sgv.setLoadInfoSalesPath("Files/Vendas_3M.txt");
+                        else if(n == 3)
+                            sgv.setLoadInfoSalesPath("Files/Vendas_5M.txt");
+
+                        Crono.start();
+                        if ((n = sgv.loadSales(sgv.getLoadInfoSalesPath())) == 0)
+                            load = true;
+                        else
+                            a.printErroLerFicheiro(n);
+
+                        a.printTime(time, "Catalogos");
+                        a.printTime(Crono.getTime(), "Vendas");
+                    }
 
                     break;
             }

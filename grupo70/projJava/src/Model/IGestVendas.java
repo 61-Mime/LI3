@@ -7,7 +7,10 @@ import java.util.Map;
 import java.util.Set;
 
 public interface IGestVendas {
+    void setLoadInfoSalesPath(String path);
     String getLoadInfoSalesPath();
+    String getLoadInfoCliPath();
+    String getLoadInfoProdPath();
     int getLoadInfoVendasInvalidas();
     int getLoadInfoProdValidos();
     int getLoadInfoCliValidos();

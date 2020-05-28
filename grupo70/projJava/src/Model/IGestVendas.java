@@ -57,5 +57,5 @@ public interface IGestVendas {
     List<ParStringFloat> getQ8(int limit);
     List<ParStringFloat> getQ9(String code, int limit);
     Map<String,float[][]> getQ10();
-    List<String> listParStringFloatToListString(List<ParStringFloat> list);
+    List<String> listParStringFloatToListString(List<ParStringFloat> list,int type);
 }

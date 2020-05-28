@@ -145,14 +145,14 @@ public class Interpretador implements Serializable {
                     Crono.start();
                     List<ParStringFloat> q5 = sgv.getQ5(line);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q5));
+                    a.printArray(sgv.listParStringFloatToListString(q5,1));
                     break;
                 case 6:
                     num = lerInt(a.pedirLimite(),0,1000000);
                     Crono.start();
                     List<ParStringFloat> q6 = sgv.getQ6(num);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q6));
+                    a.printArray(sgv.listParStringFloatToListString(q6,0));
                     break;
                 case 7:
                     Crono.start();
@@ -165,7 +165,7 @@ public class Interpretador implements Serializable {
                     Crono.start();
                     List<ParStringFloat> q8 = sgv.getQ8(num);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q8));
+                    a.printArray(sgv.listParStringFloatToListString(q8,0));
                     break;
                 case 9:
                     num = lerInt(a.pedirLimite(),0,1000000);
@@ -173,7 +173,7 @@ public class Interpretador implements Serializable {
                     Crono.start();
                     List<ParStringFloat> q9 = sgv.getQ9(line, num);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q9));
+                    a.printArray(sgv.listParStringFloatToListString(q9,0));
                     break;
                 case 10:
                     time = interpretaQ10(sgv);

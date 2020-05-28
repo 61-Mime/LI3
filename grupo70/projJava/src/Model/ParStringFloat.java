@@ -133,10 +133,11 @@ public class ParStringFloat implements Serializable, Comparable<ParStringFloat>{
      */
     @Override
     public String toString() {
-        if(value.length == 2)
-            return String.format("%5s %1s %5.2f %1s %7.2f", code , " ", value[0] , " ", value[1]);
-        else
-            return String.format("%5s %1s %5.2f", code , " ", value[0] );
+        return String.format("%5s %1s %5.2f %1s %7.2f", code , " ", value[0] , " ", value[1]);
+    }
+
+    public String toString2() {
+        return String.format("%5s %1s %5.2f", code , " ", value[0] );
     }
 
     /**

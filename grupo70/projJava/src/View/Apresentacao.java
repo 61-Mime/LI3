@@ -285,12 +285,18 @@ public class Apresentacao implements Serializable, IApresentacao {
      */
     public void printConsultasEstatisticas3(float[][] tabela, int type) {
 
-        if (type == 0)
+        if (type == 0) {
             System.out.println("Facturação (Filial/Mês)");
-        else
+            System.out.println(String.format("%5s %7s %8s %10s %8s %10s %8s %10s", "Filial", "|", "1", "|", "2", "|", "3", "|"));
+            System.out.println(String.format("%s", "--------------------------------------------------------------------------"));
+        }
+        else {
             System.out.println("Clientes compradores (Filial/Mês)");
+            System.out.println(String.format("%5s %7s %7s %8s %7s %8s %7s %8s", "Filial" , "|", "1", "|", "2","|", "3","|"));
+            System.out.println(String.format("%s", "-----------------------------------------------------------------"));
+        }
 
-        System.out.println(String.format("%5s %7s %8s %10s %8s %10s %8s %10s", "Filial" , "|", "1", "|", "2","|", "3","|"));
+
         printTabela(tabela);
 
         clearScreen();
@@ -334,6 +340,7 @@ public class Apresentacao implements Serializable, IApresentacao {
         for(int mes = 0;mes < 12;mes++)
             res[mes] = querie3.get(mes);
         System.out.println(String.format("%5s %8s %8s %7s %8s %7s %8s %7s", "Mês" , "|", "Compras", "|", "Produtos","|", "Gasto","|"));
+        System.out.println(String.format("%s", "-----------------------------------------------------------------"));
         printTabela(res);
     }
 
@@ -346,7 +353,8 @@ public class Apresentacao implements Serializable, IApresentacao {
         float [][] res = new float[12][3];
         for(int mes = 0;mes < 12;mes++)
             res[mes] = querie4.get(mes);
-        System.out.println(String.format("%5s %8s %8s %7s %8s %7s %8s %7s", "Mês" , "|", "Vendas", "|", "Clientes","|", "Faturação","|"));
+        System.out.println(String.format("%5s %8s %8s %7s %8s %7s %8s %6s", "Mês" , "|", "Vendas", "|", "Clientes","|", "Faturação","|"));
+        System.out.println(String.format("%s", "-----------------------------------------------------------------"));
         printTabela(res);
     }
 
@@ -357,8 +365,8 @@ public class Apresentacao implements Serializable, IApresentacao {
      */
     public void printQ7(Map<Integer,List<String>> list) {
         System.out.println("3 Maiores compradores por filial\n\n");
-        System.out.println(String.format("%5s %5s %8s %7s %8s %7s %8s %7s", "Filial" , "|", "1º", "|", "2º","|", "3º","|"));
-        System.out.println(String.format("%s", "---------------------------------------------------------------"));
+        System.out.println(String.format("%5s %4s %8s %7s %8s %7s %8s %7s", "Filial" , "|", "1º", "|", "2º","|", "3º","|"));
+        System.out.println(String.format("%s", "--------------------------------------------------------------"));
         for(int i = 0;i < 3;i++) {
             System.out.println(String.format("%5d %5s %10s %5s %10s %5s %10s %5s", i+1 ,  "|", list.get(i).get(0),
                                                                                             "|",list.get(i).get(1), "|",list.get(i).get(2),"|"));
@@ -375,7 +383,8 @@ public class Apresentacao implements Serializable, IApresentacao {
 
         System.out.println("Faturação produto "+prod+"\n");
         if (arr != null){
-            System.out.println(String.format("%5s %8s %8s %10s %8s %10s %8s %10s", "Filial" , "|", "1", "|", "2","|", "3","|"));
+            System.out.println(String.format("%5s %7s %8s %7s %8s %7s %8s %7s", "Filial" , "|", "1", "|", "2","|", "3","|"));
+            System.out.println(String.format("%s", "-----------------------------------------------------------------"));
             printTabela(arr);
         }
         else
@@ -390,7 +399,7 @@ public class Apresentacao implements Serializable, IApresentacao {
      */
     private void printTabela(float[][] table){
         int mes = 1;
-        System.out.println(String.format("%s", "--------------------------------------------------------------------------"));
+
         for (final float[] row : table) {
             System.out.println(String.format("%5s %2d %5s %10.2f %5s %10.2f %5s %10.2f %5s", "Mes ",  mes, "|", row[0], "|",row[1], "|",row[2],"|"));
             mes++;

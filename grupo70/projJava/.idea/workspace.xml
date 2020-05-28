@@ -19,25 +19,26 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2020,_23_49_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2020__23_49__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_20,_17_16_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_14_26_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/Apresentacao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/ConsultasInterativas.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/IConsultasInterarivas.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/Tabela.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020__14_26__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="correcao de algumas queries">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Controller/Interpretador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Controller/Interpretador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/CliInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/CliInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/Faturacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/Faturacao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/Filial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/Filial.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/IGestVendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/IGestVendas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/ParStringFloat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/ParStringFloat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/ProdCliinfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/ProdCliinfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/ProdInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/ProdInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/sortCliByTotalFact.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/sortCliByTotalFact.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/sortParbyValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/sortParbyValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projJava/View/Apresentacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/View/Apresentacao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Interpretador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Interpretador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Filial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Filial.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GestVendas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GestVendas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GestaoFiliais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GestaoFiliais.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/IGestVendas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IGestVendas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ParStringFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ParStringFloat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Apresentacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Apresentacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,9 +270,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1590350456962" />
-    <state x="523" y="100" width="846" height="707" key="CommitChangelistDialog2" timestamp="1590531847423">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="354" y="80" width="846" height="552" key="CommitChangelistDialog2" timestamp="1590690009660">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
+    <state x="354" y="80" width="846" height="552" key="CommitChangelistDialog2/0.23.1440.821@0.23.1440.821" timestamp="1590690009660" />
     <state x="354" y="80" width="846" height="707" key="CommitChangelistDialog2/0.23.1440.822@0.23.1440.822" timestamp="1589989958843" />
     <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1590531847423" />
     <state x="242" y="116" width="1482" height="872" key="DiffContextDialog" timestamp="1590342680017">
@@ -282,43 +284,43 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1590351848705" />
-    <state width="1807" height="847" key="GridCell.Tab.0.bottom" timestamp="1590594644371">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1398" height="662" key="GridCell.Tab.0.bottom" timestamp="1590709269644">
+      <screen x="0" y="23" width="1440" height="814" />
     </state>
-    <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1589766310790" />
-    <state width="1398" height="642" key="GridCell.Tab.0.bottom/0.23.1440.814@0.23.1440.814" timestamp="1589823818796" />
+    <state width="1398" height="662" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1590602279384" />
+    <state width="1398" height="662" key="GridCell.Tab.0.bottom/0.23.1440.814@0.23.1440.814" timestamp="1590709269644" />
     <state width="1398" height="641" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1589990266443" />
-    <state width="1398" height="641" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1589950218229" />
+    <state width="1398" height="662" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1590691017550" />
     <state width="1398" height="641" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1589947465321" />
     <state width="1750" height="373" key="GridCell.Tab.0.bottom/0.23.1792.1033@0.23.1792.1033" timestamp="1589987912186" />
     <state width="1807" height="847" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1590594644371" />
-    <state width="1807" height="847" key="GridCell.Tab.0.center" timestamp="1590594644371">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1398" height="662" key="GridCell.Tab.0.center" timestamp="1590709269643">
+      <screen x="0" y="23" width="1440" height="814" />
     </state>
-    <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
-    <state width="1398" height="642" key="GridCell.Tab.0.center/0.23.1440.814@0.23.1440.814" timestamp="1589823818795" />
+    <state width="1398" height="662" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1590602279383" />
+    <state width="1398" height="662" key="GridCell.Tab.0.center/0.23.1440.814@0.23.1440.814" timestamp="1590709269643" />
     <state width="1398" height="641" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1589990266442" />
-    <state width="1398" height="641" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1589950218228" />
+    <state width="1398" height="662" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1590691017548" />
     <state width="1398" height="641" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1589947465320" />
     <state width="1750" height="373" key="GridCell.Tab.0.center/0.23.1792.1033@0.23.1792.1033" timestamp="1589987912185" />
     <state width="1807" height="847" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1590594644371" />
-    <state width="1807" height="847" key="GridCell.Tab.0.left" timestamp="1590594644370">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1398" height="662" key="GridCell.Tab.0.left" timestamp="1590709269641">
+      <screen x="0" y="23" width="1440" height="814" />
     </state>
-    <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
-    <state width="1398" height="642" key="GridCell.Tab.0.left/0.23.1440.814@0.23.1440.814" timestamp="1589823818795" />
+    <state width="1398" height="662" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1590602279382" />
+    <state width="1398" height="662" key="GridCell.Tab.0.left/0.23.1440.814@0.23.1440.814" timestamp="1590709269641" />
     <state width="1398" height="641" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1589990266442" />
-    <state width="1398" height="641" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1589950218227" />
+    <state width="1398" height="662" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1590691017547" />
     <state width="1398" height="641" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1589947465320" />
     <state width="1750" height="373" key="GridCell.Tab.0.left/0.23.1792.1033@0.23.1792.1033" timestamp="1589987912184" />
     <state width="1807" height="847" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1590594644370" />
-    <state width="1807" height="847" key="GridCell.Tab.0.right" timestamp="1590594644371">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1398" height="662" key="GridCell.Tab.0.right" timestamp="1590709269643">
+      <screen x="0" y="23" width="1440" height="814" />
     </state>
-    <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1589766310789" />
-    <state width="1398" height="642" key="GridCell.Tab.0.right/0.23.1440.814@0.23.1440.814" timestamp="1589823818796" />
+    <state width="1398" height="662" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1590602279383" />
+    <state width="1398" height="662" key="GridCell.Tab.0.right/0.23.1440.814@0.23.1440.814" timestamp="1590709269643" />
     <state width="1398" height="641" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1589990266443" />
-    <state width="1398" height="641" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1589950218228" />
+    <state width="1398" height="662" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1590691017550" />
     <state width="1398" height="641" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1589947465320" />
     <state width="1750" height="373" key="GridCell.Tab.0.right/0.23.1792.1033@0.23.1792.1033" timestamp="1589987912185" />
     <state width="1807" height="847" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1590594644371" />

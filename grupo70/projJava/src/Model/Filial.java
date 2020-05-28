@@ -156,23 +156,23 @@ public class Filial implements Serializable {
     }
 
     /**
-     * Método que devolve -------------------------------------------------------------------------------------------------------
+     * Método que devolve um treeSet de ParStringFloat que guarda para cada código de produto que o cliente comprou as unidades e o gasto
      *
-     * @param code
+     * @param cliCode
      * @return
      */
-    public Set<ParStringFloat> getCliSetCodUni(String code){
-        return mapCli.get(code).getSetCodUni();
+    public Set<ParStringFloat> getCliSetCodUni(String cliCode){
+        return mapCli.get(cliCode).getSetCodUni();
     }
 
     /**
-     * Método que devolve -------------------------------------------------------------------------------------------------------
+     * Método que devolve um treeSet de ParStringFloat que guarda para cada código de cliente que comprou o produto as unidades e a faturação
      *
-     * @param code
+     * @param prodCode
      * @return
      */
-    public Set<ParStringFloat> getProdSetCodUni(String code){
-        return mapProd.get(code).getSetCodUni();
+    public Set<ParStringFloat> getProdSetCodUni(String prodCode){
+        return mapProd.get(prodCode).getSetCodUni();
     }
 
     /**

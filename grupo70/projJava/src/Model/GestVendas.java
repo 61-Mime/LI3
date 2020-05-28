@@ -564,9 +564,12 @@ public class GestVendas implements Serializable, IGestVendas {
      * @param list  Lista ParStringFloat
      * @return      Lista String
      */
-    public List<String> listParStringFloatToListString(List<ParStringFloat> list){
+    public List<String> listParStringFloatToListString(List<ParStringFloat> list, int type){
         List<String> stringList = new ArrayList<>();
-        list.forEach(p -> stringList.add(p.toString()));
+        if(type == 0)
+            list.forEach(p -> stringList.add(p.toString()));
+        else
+            list.forEach(p -> stringList.add(p.toString2()));
 
         return stringList;
     }

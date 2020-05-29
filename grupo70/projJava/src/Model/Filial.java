@@ -18,7 +18,7 @@ public class Filial implements Serializable {
     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
 
     /**
-     * Contrutos da classe Filial
+     * Construtores da classe Filial
      */
     public Filial() {
         mapProd = new HashMap<>();

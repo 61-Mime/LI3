@@ -121,7 +121,4 @@ public class ProdCliinfo implements Serializable {
         return new ProdCliinfo(this);
     }
 
-    /*public int compareTo(Model.ProdCliinfo i) {
-        return this.getCod().compareTo(i.getCod());
-    }*/
 }

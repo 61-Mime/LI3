@@ -482,22 +482,22 @@ public class GestVendas implements Serializable, IGestVendas {
         }
         try {
             while ((line = br.readLine()) != null) {
-            venda = line.split(" ");
-            branch = Integer.parseInt(venda[6]);
-            month = Integer.parseInt(venda[5]);
-            price = Float.parseFloat(venda[1]);
-            uni = Integer.parseInt(venda[2]);
-            type = venda[3].charAt(0);
-            if(valSale(branch,month,price,uni,type) &&
-                    catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
-                loadInfo.incValidas();
-                fact.addSale((branch - 1), (month - 1), price, uni, venda[0]);
-                if (gFil.addSaleInfo((month - 1), price, uni, venda[0], venda[4], (branch - 1)))
-                    loadInfo.incCliComprador();
-            }
-            else
-                loadInfo.incInvalidas();
-            }
+                venda = line.split(" ");
+                branch = Integer.parseInt(venda[6]);
+                month = Integer.parseInt(venda[5]);
+                price = Float.parseFloat(venda[1]);
+                uni = Integer.parseInt(venda[2]);
+                type = venda[3].charAt(0);
+                if(valSale(branch,month,price,uni,type) &&
+                        catClientes.contem(venda[4]) && catProdutos.contem(venda[0])) {
+                    loadInfo.incValidas();
+                    fact.addSale((branch - 1), (month - 1), price, uni, venda[0]);
+                    if (gFil.addSaleInfo((month - 1), price, uni, venda[0], venda[4], (branch - 1)))
+                        loadInfo.incCliComprador();
+                }
+                else
+                    loadInfo.incInvalidas();
+                }
         } catch (IOException ioex) {
             return (2);
         }

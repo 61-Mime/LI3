@@ -54,7 +54,7 @@ public class Apresentacao implements Serializable, IApresentacao {
         sb.append("                       INÍCIO\n");
         sb.append("-----------------------------------------------------\n");
         sb.append("1 | Consultas estatisticas\n");
-        sb.append("2 | Consultas iterativas\n");
+        sb.append("2 | Consultas interativas\n");
         sb.append("3 | Gravar estado\n");
         sb.append("4 | Carregar estado a partir de um ficheiro\n");
         sb.append("5 | Carregar dados a partir do ficheiro de vendas\n");

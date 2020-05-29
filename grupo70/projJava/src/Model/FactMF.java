@@ -12,7 +12,6 @@ public class FactMF implements Serializable {
     private int[] unidadesMes;
     private int[] vendasMes;
     private float[][] faturacaoMesFill;
-    private float faturacaoTotal;
 
     /**
      * Construtor da Classe FactMF
@@ -21,7 +20,6 @@ public class FactMF implements Serializable {
         unidadesMes = new int[12];
         vendasMes = new int[12];
         faturacaoMesFill = new float[12][3];
-        faturacaoTotal = 0;
     }
 
     public int getVendasMes(int month) {
@@ -47,14 +45,6 @@ public class FactMF implements Serializable {
         return Arrays.stream(unidadesMes).sum();
     }
 
-    /**
-     * Método que devolve a faturação
-     *
-     * @return  Float com a faturação
-     */
-    public float getFaturacaoTotal() {
-        return faturacaoTotal;
-    }
 
     /**
      * Método que devolve a faturação num mês
@@ -86,7 +76,6 @@ public class FactMF implements Serializable {
     public void setFact(int branch, int month, float price,int uni) {
         unidadesMes[month] += uni;
         vendasMes[month]++;
-        faturacaoTotal += price*uni;
         faturacaoMesFill[month][branch] += price*uni;
     }
 }

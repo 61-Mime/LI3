@@ -20,7 +20,7 @@ public class Catalogo implements Serializable, ICatalogo {
     public Catalogo(int t){
         this.type = t;
         this.total = 0;
-        this.list = new TreeMap<>();
+        this.list = new HashMap<>();
     }
 
     /**

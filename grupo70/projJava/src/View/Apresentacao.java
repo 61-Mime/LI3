@@ -310,7 +310,7 @@ public class Apresentacao implements Serializable, IApresentacao {
      */
     public void printQ1(List<String> list, int size) {
         System.out.println("Produtos não comprados: " + size + "\n");
-        printArray(list);
+        printArray(list, 105);
     }
 
     /**
@@ -407,6 +407,31 @@ public class Apresentacao implements Serializable, IApresentacao {
     }
 
     /**
+     * Método que imprime o cabeçalho de uma tabela
+     *
+     * @param message   Mensagem do cabeçalho
+     * @param size      Inteiro com o comprimento da tabela
+     */
+    private void printLine(String message, int size) {
+        for(int i=0; i<size; i++) {
+            System.out.print("-");
+        }
+        System.out.println("");
+
+        int headerSize = (size - message.length())/2;
+
+        for(int i=0; i<headerSize; i++) {
+            System.out.print(" ");
+        }
+        System.out.println(message);
+
+        for(int i=0; i<size; i++) {
+            System.out.print("-");
+        }
+        System.out.println("");
+    }
+
+    /**
      * Método que imprime uma página das tabelas dinamicas
      *
      * @param list      Lista a apresentar
@@ -415,14 +440,13 @@ public class Apresentacao implements Serializable, IApresentacao {
      * @param max       Inteiro com o número máximo de elementos por página
      * @param maxpage   Inteiro com o número máximo de páginas
      */
-    private void printPagina(List<String> list, int page, int cols, int max, int maxpage) {
+    private void printPagina(List<String> list, int page, int cols, int max, int maxpage, int lengthLine) {
         int i, j;
         int size = list.size();
 
+        String header = "Página (" + (page+1) + "/" +(maxpage+1) +")";
 
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("                                       Página (" + (page+1) + "/" +(maxpage+1) +")");
-        System.out.println("---------------------------------------------------------------------------------------------");
+        printLine(header, lengthLine);
 
         for(i=max * page; i<(max * (page+1)) && i<size; i+=cols) {
             for(j=i; (j<i+cols-1) && (j<size-1); j++)
@@ -430,9 +454,25 @@ public class Apresentacao implements Serializable, IApresentacao {
             System.out.println(list.get(j));
         }
 
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("      [N] Next Page | [P] Previous Page | [F] First Page | [L] Last Page | [Q] Quit        ");
-        System.out.println("---------------------------------------------------------------------------------------------");
+        printLine("[N] Next | [P] Previous | [F] First | [L] Last | [#] Page Number | [Q] Quit", lengthLine);
+    }
+
+    /**
+     * Método que verifica se o input é um numero
+     *
+     * @param strNum    String a verificar
+     * @return          Resultado Booleano
+     */
+    private boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -440,15 +480,15 @@ public class Apresentacao implements Serializable, IApresentacao {
      *
      * @param list  Lista a imprimir
      */
-    public void printArray(List<String> list) {
-        int page = 0, lines = 6, cols = 93/(list.get(0).length() + 3);
+    public void printArray(List<String> list, int lengthLine) {
+        int page = 0, lines = 6, cols = (lengthLine + 5)/(list.get(0).length() + 5);
         int max = lines * cols, maxpage = (list.size()-1)/max;
         Scanner s = new Scanner(System.in);
         String line;
         boolean r=true;
 
         while(r) {
-            printPagina(list, page, cols, max, maxpage);
+            printPagina(list, page, cols, max, maxpage, lengthLine);
 
             line = s.nextLine();
 
@@ -463,6 +503,12 @@ public class Apresentacao implements Serializable, IApresentacao {
 
             else if(line.equals("L") || line.equals("l"))
                 page = maxpage;
+
+            else if(isNumeric(line)) {
+                int num = Integer.parseInt(line);
+                if(num<=(maxpage + 1) && num>0)
+                    page = num - 1;
+            }
 
             else if(line.equals("Q") || line.equals("q"))
                 r=false;

@@ -145,14 +145,14 @@ public class Interpretador implements Serializable {
                     Crono.start();
                     List<ParStringFloat> q5 = sgv.getQ5(line);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q5,1));
+                    a.printArray(sgv.listParStringFloatToListString(q5,1), 95);
                     break;
                 case 6:
-                    num = lerInt(a.pedirLimite(),0,1000000);
+                    num = lerInt(a.pedirLimite(),1,1000000);
                     Crono.start();
                     List<ParStringFloat> q6 = sgv.getQ6(num);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q6,0));
+                    a.printArray(sgv.listParStringFloatToListString(q6,0), 94);
                     break;
                 case 7:
                     Crono.start();
@@ -161,19 +161,19 @@ public class Interpretador implements Serializable {
                     a.printQ7(q7);
                     break;
                 case 8:
-                    num = lerInt(a.pedirLimite(),0,1000000);
+                    num = lerInt(a.pedirLimite(),1,1000000);
                     Crono.start();
                     List<ParStringFloat> q8 = sgv.getQ8(num);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q8,0));
+                    a.printArray(sgv.listParStringFloatToListString(q8,1), 85);
                     break;
                 case 9:
-                    num = lerInt(a.pedirLimite(),0,1000000);
+                    num = lerInt(a.pedirLimite(),1,1000000);
                     line = lerString(a.pedirProduto(),1,sgv);
                     Crono.start();
                     List<ParStringFloat> q9 = sgv.getQ9(line, num);
                     time = Crono.getTime();
-                    a.printArray(sgv.listParStringFloatToListString(q9,0));
+                    a.printArray(sgv.listParStringFloatToListString(q9,0), 91);
                     break;
                 case 10:
                     time = interpretaQ10(sgv);

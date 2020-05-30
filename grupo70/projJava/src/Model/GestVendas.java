@@ -411,7 +411,7 @@ public class GestVendas implements Serializable, IGestVendas {
     /**
      * Método que verifica se uma venda é válida
      *
-     * @param branch    Inteiro com a filial
+     * param branch    Inteiro com a filial
      * @param month     Inteiro com o mês
      * @param price     Float com o preço
      * @param uni       Inteiro com as unidades

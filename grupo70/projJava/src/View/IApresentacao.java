@@ -26,5 +26,5 @@ public interface IApresentacao {
                                             int totalClientes, int cliCompradores, int cliNaoCompradores, int comprasValor0, float fatTotal);
     void printConsultasEstatisticas2(int[] comprasMes);
     void printConsultasEstatisticas3(float[][] tabela, int type);
-    void printArray(List<String> list);
+    void printArray(List<String> list, int size);
 }

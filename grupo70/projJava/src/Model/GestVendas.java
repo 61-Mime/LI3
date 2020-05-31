@@ -401,8 +401,6 @@ public class GestVendas implements Serializable, IGestVendas {
 
     /**
      * Método que guarda o caminho do ficheiro das vendas
-     *
-     * @return  String com o caminho
      */
     public void setLoadInfoSalesPath(String path){
         loadInfo.setSalesPath(path);
@@ -550,7 +548,7 @@ public class GestVendas implements Serializable, IGestVendas {
      *
      * @param prodCode      String que representa o Produto
      * @param month         Inteiro que representa o mês
-     * @return
+     * @return              Inteiro que representa o número de Vendas de um Produto no mês
      */
     public int getFactNumeroVendasMes(String prodCode, int month) {
         return fact.getNumeroVendasMes(prodCode, month);

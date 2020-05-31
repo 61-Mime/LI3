@@ -61,11 +61,11 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
     }
 
     /**
-     * -----------------------------------------------------------------------------------------------------
+     * Método que devolve um treeSet de ParStringFloat que guarda para cada código de cliente que comprou o produto as unidades e a faturação
      *
-     * @param branch
-     * @param code
-     * @return
+     * @param branch    Inteiro que representa a Filial
+     * @param code      String que representa o código de Produto
+     * @return          Set de ParStringFloat que para código de Cliente que comprou o Produto guarda as unidades e a faturação
      */
     public Set<ParStringFloat> getProdSetCodUni(int branch,String code){
         return gFil.get(branch).getProdSetCodUni(code);
@@ -104,7 +104,7 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
      * @param cliIndex  Inteiro que representa o Cliente
      * @param cod       String que representa o código de Cliente
      * @param branch    Inteiro com o número da Filial
-     * @return          Resultado Booleano
+     * @return          Resultado Booleano que identifica se um Cliente comprou en«m todas as Filiais
      */
     private boolean isComprador(int cliIndex,String cod,int branch){
         boolean res=false;
@@ -118,15 +118,15 @@ public class GestaoFiliais implements Serializable, IGestaoFiliais {
     }
 
     /**
-     * Método que adiciona os dados de uma Venda a uma  ------------------------------------------------------------------------
+     * Método que adiciona os dados de uma Venda a uma Filial
      *
-     * @param month
-     * @param price
-     * @param uni
-     * @param prodCod
-     * @param cliCod
-     * @param branch
-     * @return
+     * @param month         Inteiro que representa o mês
+     * @param price         Inteiro que representa o preço
+     * @param uni           Inteiro que representa as unidades
+     * @param prodCod       String que representa o código do Produto
+     * @param cliCod        String que representa o código do Cliente
+     * @param branch        Inteiro que representa uma Filial
+     * @return              Booleano que identifica se um Cliente já fez alguma compra
      */
     public boolean addSaleInfo(int month,float price,int uni,String prodCod,String cliCod,int branch){
         int cliIndex = gFil.get(branch).addSale(month, price, uni, prodCod, cliCod);

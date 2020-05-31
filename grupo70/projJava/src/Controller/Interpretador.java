@@ -229,8 +229,8 @@ public class Interpretador implements Serializable {
     /**
      * Método que recebe input para a execução do programa
      *
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException              devolve um erro de IO (i.e. ficheiro não existir)
+     * @throws ClassNotFoundException   devolve um erro se a classe do objeto não for compatível
      */
     public void interpretador() throws IOException, ClassNotFoundException {
         boolean val = true,load = false;

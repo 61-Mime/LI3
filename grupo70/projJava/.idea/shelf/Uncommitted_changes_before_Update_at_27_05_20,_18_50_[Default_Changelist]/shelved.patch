@@ -1,0 +1,657 @@
+Index: src/Model/CliInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\n\nimport java.io.Serializable;\n\npublic class CliInfo extends ProdInfo implements Comparable<CliInfo>, Serializable {\n    private int []numeroCompras;\n    private float []gastoTotal;\n\n    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\\\\n\n    public CliInfo(String code) {\n        super(code);\n        numeroCompras = new int[12];\n        gastoTotal = new float[12];\n    }\n\n    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\\\\n\n    public int getNumeroCompras(int month) {\n        return numeroCompras[month];\n    }\n\n    public float getGastoTotal(int month) {\n        return gastoTotal[month];\n    }\n\n    public float getGastoTotal(){\n        float gasto = 0;\n        for (int i = 0;i< 12;i++)\n            gasto+=gastoTotal[i];\n        return gasto;\n    }\n\n    public void addProd(String prodCode, int month, int uni, float price) {\n        super.addCode(prodCode,month,price,uni);\n        numeroCompras[month]++;\n        gastoTotal[month] += uni * price;\n    }\n\n    //--------------------------------------------------------------compareTo--------------------------------------------------------------------------\\\\\n\n    public int compareTo(CliInfo c) {\n        return (int) (c.getGastoTotal() - this.getGastoTotal());\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Model/CliInfo.java	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ src/Model/CliInfo.java	(date 1590597737070)
+@@ -1,3 +1,7 @@
++/**
++ * Classe CliInfo
++ */
++
+ package Model;
+ 
+ import java.io.Serializable;
+@@ -8,6 +12,11 @@
+ 
+     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+ 
++    /**
++     * Construtor da Classe Filial
++     *
++     * @param code  String que representa o código do Cliente
++     */
+     public CliInfo(String code) {
+         super(code);
+         numeroCompras = new int[12];
+@@ -16,21 +25,46 @@
+ 
+     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
+ 
++    /**
++     * Método que devolve o número de compras de um determinado mês
++     *
++     * @param month     String que representa o código do Cliente
++     * @return          Inteiro que representa as compras do Cliente no mês
++     */
+     public int getNumeroCompras(int month) {
+         return numeroCompras[month];
+     }
+ 
++    /**
++     * Método que devolve o gasto total num detereminado mês
++     *
++     * @param month     Inteiro que representa o mês
++     * @return          Float que representa o gasto do Cliente no mês
++     */
+     public float getGastoTotal(int month) {
+         return gastoTotal[month];
+     }
+ 
++    /**
++     * Método que devolve o gasto total de um Cliente
++     *
++     * @return      Float que representa o gasto total do Cliente
++     */
+     public float getGastoTotal(){
+         float gasto = 0;
+         for (int i = 0;i< 12;i++)
+-            gasto+=gastoTotal[i];
++            gasto+=getGastoTotal(i);
+         return gasto;
+     }
+ 
++    /**
++     * Método que adiciona um Produto comprado pelo Cliente
++     *
++     * @param prodCode      String que representa o código do Produto
++     * @param month         Inteiro que representa o mês
++     * @param uni           Inteiro que representa as unidades compradas pelo Cliente
++     * @param price         Float que representa o preço do Produto
++     */
+     public void addProd(String prodCode, int month, int uni, float price) {
+         super.addCode(prodCode,month,price,uni);
+         numeroCompras[month]++;
+@@ -39,6 +73,12 @@
+ 
+     //--------------------------------------------------------------compareTo--------------------------------------------------------------------------\\
+ 
++    /**
++     * Comparador natural de CliInfo, que ordena por gsto total
++     *
++     * @param c     CliInfo usado para a comparação
++     * @return      Inteiro que representa a comparação entre os dois CliInfo
++     */
+     public int compareTo(CliInfo c) {
+         return (int) (c.getGastoTotal() - this.getGastoTotal());
+     }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"BranchesTreeState\">\n    <expand>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n    </expand>\n    <select />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"a7d9a260-62ee-47be-913f-994f23ac6e51\" name=\"Default Changelist\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2020,_23_49_[Default_Changelist]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2020__23_49__Default_Changelist_.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_20,_17_16_[Default_Changelist]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_14_26_[Default_Changelist]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/Apresentacao.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/ConsultasInterativas.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/IConsultasInterarivas.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/Tabela.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020__14_26__Default_Changelist_.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/Model/Filial.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/Model/Filial.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Model/Filial.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Model/Filial.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Model/GestVendas.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Model/GestVendas.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Model/GestaoFiliais.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Model/GestaoFiliais.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n        <option value=\"module-info\" />\n        <option value=\"Interface\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/../..\" />\n  </component>\n  <component name=\"ProjectId\" id=\"1c8Fj2TQojo9nh2mxu8jen24GJk\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <OptionsSetting value=\"false\" id=\"Update\" />\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\n    <property name=\"restartRequiresConfirmation\" value=\"false\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.keymap\" />\n  </component>\n  <component name=\"Push.Settings\">\n    <option name=\"SHOW_DETAILS_PANEL\" value=\"false\" />\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"projJava\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Main\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SvnConfiguration\">\n    <configuration />\n  </component>\n  <component name=\"TaskManager\">\n    <task id=\"LOCAL-00001\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755181422</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755181422</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755321878</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755321878</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755499813</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755499813</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"melhoramento interpretador e encapsulamento\">\n      <created>1589755872494</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589755872494</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Correção conflitos&#10;Melhorias Menus\">\n      <created>1589986574520</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589986574520</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"Melhorias Menus\">\n      <created>1589989312279</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589989312279</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Melhorias Menus\">\n      <created>1589989959052</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1589989959052</updated>\n    </task>\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"a7d9a260-62ee-47be-913f-994f23ac6e51\" name=\"Default Changelist\" comment=\"\" />\n      <created>1590174474414</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1590174474414</updated>\n      <workItem from=\"1590174481715\" duration=\"1357000\" />\n      <workItem from=\"1590252831009\" duration=\"247000\" />\n      <workItem from=\"1590272405716\" duration=\"318000\" />\n      <workItem from=\"1590341851383\" duration=\"10232000\" />\n      <workItem from=\"1590531570600\" duration=\"4305000\" />\n      <workItem from=\"1590589418248\" duration=\"5256000\" />\n      <workItem from=\"1590596796458\" duration=\"199000\" />\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"MVC\">\n      <created>1590342564673</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590342564673</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"MVC\">\n      <created>1590342653297</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590342653297</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"MVC + interfaces\">\n      <created>1590343645676</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590343645676</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"MVC + interfaces\">\n      <created>1590343955633</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590343955633</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"remocao classe consultas estatisticas\">\n      <created>1590347588058</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590347588058</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"documentacao classe GFiliais\">\n      <created>1590507363170</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590507363170</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"correcao de algumas queries\">\n      <created>1590513121145</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590513121145</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"correcao de algumas queries\">\n      <created>1590531847582</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1590531847582</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"16\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"2\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"melhoramento interpretador e encapsulamento\" />\n    <MESSAGE value=\"Correção conflitos&#10;Melhorias Menus\" />\n    <MESSAGE value=\"Melhorias Menus\" />\n    <MESSAGE value=\"MVC\" />\n    <MESSAGE value=\"MVC + interfaces\" />\n    <MESSAGE value=\"remocao classe consultas estatisticas\" />\n    <MESSAGE value=\"documentacao classe GFiliais\" />\n    <MESSAGE value=\"correcao de algumas queries\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"correcao de algumas queries\" />\n  </component>\n  <component name=\"WindowStateProjectService\">\n    <state x=\"863\" y=\"421\" width=\"251\" height=\"263\" key=\"#Notifications\" timestamp=\"1589755395318\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"863\" y=\"421\" width=\"251\" height=\"263\" key=\"#Notifications/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755395318\" />\n    <state x=\"476\" y=\"130\" width=\"1024\" height=\"845\" key=\"#Project_Structure\" timestamp=\"1590272657663\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"476\" y=\"130\" width=\"1024\" height=\"845\" key=\"#Project_Structure/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590272657663\" />\n    <state x=\"287\" y=\"176\" width=\"374\" height=\"585\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1590342468359\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"171\" y=\"138\" key=\"#com.intellij.ide.util.MemberChooser/0.23.1440.813@0.23.1440.813\" timestamp=\"1589759742959\" />\n    <state x=\"287\" y=\"176\" width=\"374\" height=\"585\" key=\"#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590342468359\" />\n    <state x=\"726\" y=\"301\" width=\"524\" height=\"502\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog\" timestamp=\"1590350456962\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"726\" y=\"301\" width=\"524\" height=\"502\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590350456962\" />\n    <state x=\"523\" y=\"100\" width=\"846\" height=\"707\" key=\"CommitChangelistDialog2\" timestamp=\"1590531847423\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"354\" y=\"80\" width=\"846\" height=\"707\" key=\"CommitChangelistDialog2/0.23.1440.822@0.23.1440.822\" timestamp=\"1589989958843\" />\n    <state x=\"523\" y=\"100\" width=\"931\" height=\"905\" key=\"CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590531847423\" />\n    <state x=\"242\" y=\"116\" width=\"1482\" height=\"872\" key=\"DiffContextDialog\" timestamp=\"1590342680017\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"242\" y=\"116\" width=\"1482\" height=\"872\" key=\"DiffContextDialog/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590342680017\" />\n    <state x=\"776\" y=\"310\" width=\"424\" height=\"484\" key=\"FileChooserDialogImpl\" timestamp=\"1590351848705\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"776\" y=\"310\" width=\"424\" height=\"484\" key=\"FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590351848705\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1590594644371\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310790\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.bottom/0.23.1440.814@0.23.1440.814\" timestamp=\"1589823818796\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816\" timestamp=\"1589990266443\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821\" timestamp=\"1589950218229\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822\" timestamp=\"1589947465321\" />\n    <state width=\"1750\" height=\"373\" key=\"GridCell.Tab.0.bottom/0.23.1792.1033@0.23.1792.1033\" timestamp=\"1589987912186\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590594644371\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.center\" timestamp=\"1590594644371\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310789\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.center/0.23.1440.814@0.23.1440.814\" timestamp=\"1589823818795\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816\" timestamp=\"1589990266442\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821\" timestamp=\"1589950218228\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822\" timestamp=\"1589947465320\" />\n    <state width=\"1750\" height=\"373\" key=\"GridCell.Tab.0.center/0.23.1792.1033@0.23.1792.1033\" timestamp=\"1589987912185\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590594644371\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.left\" timestamp=\"1590594644370\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310789\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.left/0.23.1440.814@0.23.1440.814\" timestamp=\"1589823818795\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816\" timestamp=\"1589990266442\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821\" timestamp=\"1589950218227\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822\" timestamp=\"1589947465320\" />\n    <state width=\"1750\" height=\"373\" key=\"GridCell.Tab.0.left/0.23.1792.1033@0.23.1792.1033\" timestamp=\"1589987912184\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590594644370\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.right\" timestamp=\"1590594644371\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813\" timestamp=\"1589766310789\" />\n    <state width=\"1398\" height=\"642\" key=\"GridCell.Tab.0.right/0.23.1440.814@0.23.1440.814\" timestamp=\"1589823818796\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816\" timestamp=\"1589990266443\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821\" timestamp=\"1589950218228\" />\n    <state width=\"1398\" height=\"641\" key=\"GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822\" timestamp=\"1589947465320\" />\n    <state width=\"1750\" height=\"373\" key=\"GridCell.Tab.0.right/0.23.1792.1033@0.23.1792.1033\" timestamp=\"1589987912185\" />\n    <state width=\"1807\" height=\"847\" key=\"GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590594644371\" />\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1590591114168\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590591114168\" />\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.center\" timestamp=\"1590591114167\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590591114167\" />\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.left\" timestamp=\"1590591114167\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590591114167\" />\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.right\" timestamp=\"1590591114167\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"1807\" height=\"334\" key=\"GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590591114167\" />\n    <state x=\"253\" y=\"98\" width=\"1482\" height=\"872\" key=\"MergeDialog\" timestamp=\"1590501444128\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"145\" y=\"79\" key=\"MergeDialog/0.23.1440.823@0.23.1440.823\" timestamp=\"1589936243590\" />\n    <state x=\"180\" y=\"93\" key=\"MergeDialog/0.23.1792.1033@0.23.1792.1033\" timestamp=\"1589986195688\" />\n    <state x=\"253\" y=\"98\" width=\"1482\" height=\"872\" key=\"MergeDialog/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590501444128\" />\n    <state x=\"351\" y=\"72\" key=\"SettingsEditor\" timestamp=\"1590591304657\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"221\" y=\"58\" key=\"SettingsEditor/0.23.1440.813@0.23.1440.813\" timestamp=\"1589760877445\" />\n    <state x=\"351\" y=\"72\" key=\"SettingsEditor/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590591304657\" />\n    <state width=\"498\" height=\"446\" key=\"SwitcherDM\" timestamp=\"1590589421101\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state width=\"498\" height=\"446\" key=\"SwitcherDM/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590589421101\" />\n    <state x=\"588\" y=\"288\" width=\"876\" height=\"528\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1590531849519\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"405\" y=\"227\" key=\"Vcs.Push.Dialog.v2/0.23.1440.822@0.23.1440.822\" timestamp=\"1589989960260\" />\n    <state x=\"504\" y=\"279\" key=\"Vcs.Push.Dialog.v2/0.23.1792.1033@0.23.1792.1033\" timestamp=\"1589986576358\" />\n    <state x=\"588\" y=\"288\" width=\"876\" height=\"528\" key=\"Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590531849519\" />\n    <state x=\"764\" y=\"467\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1589755483482\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"764\" y=\"467\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1589755483482\" />\n    <state x=\"656\" y=\"257\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1590593766078\">\n      <screen x=\"67\" y=\"27\" width=\"1853\" height=\"1053\" />\n    </state>\n    <state x=\"656\" y=\"257\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/67.27.1853.1053@67.27.1853.1053\" timestamp=\"1590593766078\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ .idea/workspace.xml	(date 1590601818971)
+@@ -20,24 +20,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a7d9a260-62ee-47be-913f-994f23ac6e51" name="Default Changelist" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2020,_23_49_[Default_Changelist]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2020__23_49__Default_Changelist_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_20,_17_16_[Default_Changelist]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_14_26_[Default_Changelist]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/Apresentacao.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/ConsultasInterativas.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/IConsultasInterarivas.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/Tabela.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020,_15_49_[Default_Changelist]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2020__14_26__Default_Changelist_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/Filial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/Filial.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/GestVendas.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/GestaoFiliais.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projJava/Model/LoadInfo.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Model/Filial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Filial.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Model/GestVendas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GestVendas.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Model/GestaoFiliais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GestaoFiliais.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Model/CliInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/CliInfo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Model/Faturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Faturacao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Model/ParStringFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ParStringFloat.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Model/ProdCliinfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ProdCliinfo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Model/ProdInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ProdInfo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Model/sortCliByTotalFact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/sortCliByTotalFact.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Model/sortParbyValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/sortParbyValue.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -164,7 +154,7 @@
+       <workItem from="1590341851383" duration="10232000" />
+       <workItem from="1590531570600" duration="4305000" />
+       <workItem from="1590589418248" duration="5256000" />
+-      <workItem from="1590596796458" duration="199000" />
++      <workItem from="1590596796458" duration="4086000" />
+     </task>
+     <task id="LOCAL-00008" summary="MVC">
+       <created>1590342564673</created>
+@@ -222,7 +212,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1590531847582</updated>
+     </task>
+-    <option name="localTasksCounter" value="16" />
++    <task id="LOCAL-00016" summary="Documentação GestVendas e Filial">
++      <created>1590597038021</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1590597038021</updated>
++    </task>
++    <option name="localTasksCounter" value="17" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -249,7 +246,8 @@
+     <MESSAGE value="remocao classe consultas estatisticas" />
+     <MESSAGE value="documentacao classe GFiliais" />
+     <MESSAGE value="correcao de algumas queries" />
+-    <option name="LAST_COMMIT_MESSAGE" value="correcao de algumas queries" />
++    <MESSAGE value="Documentação GestVendas e Filial" />
++    <option name="LAST_COMMIT_MESSAGE" value="Documentação GestVendas e Filial" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="863" y="421" width="251" height="263" key="#Notifications" timestamp="1589755395318">
+@@ -269,11 +267,11 @@
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1590350456962" />
+-    <state x="523" y="100" width="846" height="707" key="CommitChangelistDialog2" timestamp="1590531847423">
++    <state x="523" y="100" width="846" height="707" key="CommitChangelistDialog2" timestamp="1590597037839">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="354" y="80" width="846" height="707" key="CommitChangelistDialog2/0.23.1440.822@0.23.1440.822" timestamp="1589989958843" />
+-    <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1590531847423" />
++    <state x="523" y="100" width="931" height="905" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1590597037839" />
+     <state x="242" y="116" width="1482" height="872" key="DiffContextDialog" timestamp="1590342680017">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+@@ -353,19 +351,19 @@
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state width="498" height="446" key="SwitcherDM/67.27.1853.1053@67.27.1853.1053" timestamp="1590589421101" />
+-    <state x="588" y="288" width="876" height="528" key="Vcs.Push.Dialog.v2" timestamp="1590531849519">
++    <state x="588" y="288" width="876" height="528" key="Vcs.Push.Dialog.v2" timestamp="1590597040465">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="405" y="227" key="Vcs.Push.Dialog.v2/0.23.1440.822@0.23.1440.822" timestamp="1589989960260" />
+     <state x="504" y="279" key="Vcs.Push.Dialog.v2/0.23.1792.1033@0.23.1792.1033" timestamp="1589986576358" />
+-    <state x="588" y="288" width="876" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1590531849519" />
++    <state x="588" y="288" width="876" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1590597040465" />
+     <state x="764" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589755483482">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+     <state x="764" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589755483482" />
+-    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1590593766078">
++    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1590600465603">
+       <screen x="67" y="27" width="1853" height="1053" />
+     </state>
+-    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1590593766078" />
++    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1590600465603" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/Model/ProdInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\n\nimport java.io.Serializable;\nimport java.util.*;\n\npublic class ProdInfo implements Serializable {\n    private String code;\n    private Map<Integer,Map<String,ProdCliinfo>> mapMes;\n\n    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\\\\n\n    public ProdInfo(String code) {\n        this.code = code;\n        mapMes = new HashMap<>();\n    }\n\n    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\\\\n\n    public String getCode() {\n        return code;\n    }\n\n    public Set<ParStringFloat> getSetCodUni(){\n        Set<ParStringFloat> tree = new TreeSet<>();\n        for(Map<String,ProdCliinfo> map: mapMes.values())\n            for(Map.Entry<String,ProdCliinfo> entryProd: map.entrySet()) {\n                ParStringFloat c = new ParStringFloat(entryProd.getKey(),entryProd.getValue().getUni(),entryProd.getValue().getFat());\n                if (tree.contains(c)) {\n                    Iterator<ParStringFloat> it = tree.iterator();\n                    boolean b = true;\n                    ParStringFloat q;\n                    while (it.hasNext() && b) {\n                        q = it.next();\n                        if (q.getCode().equals(c.getCode())) {\n                            q.addUni(c.getValue(),c.getValue2());\n                            b = false;\n                        }\n                    }\n                } else\n                    tree.add(c);\n            }\n        return tree;\n    }\n\n    public Set<String> getCodeMonth(int month){\n        Set<String> clientes = new TreeSet<>();\n\n        if(mapMes.containsKey(month))\n            clientes.addAll(mapMes.get(month).keySet());\n\n        return clientes;\n    }\n\n    //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\\\\n\n    public void addCode(String cliCode,int month,float price,int uni) {\n        mapMes.putIfAbsent(month,new HashMap<>());\n        if(mapMes.get(month).containsKey(cliCode))\n            mapMes.get(month).get(cliCode).add(uni,price);\n        else\n            mapMes.get(month).put(cliCode,new ProdCliinfo(month,price * uni,uni));\n    }\n\n    public boolean containsMes(int month) {\n        return mapMes.containsKey(month);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Model/ProdInfo.java	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ src/Model/ProdInfo.java	(date 1590601771299)
+@@ -1,3 +1,7 @@
++/**
++ * Classe de ProdInfo
++ */
++
+ package Model;
+ 
+ import java.io.Serializable;
+@@ -9,6 +13,11 @@
+ 
+     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+ 
++    /**
++     * Construtor de ProdInfo
++     *
++     * @param code      String que representa o código do Produto
++     */
+     public ProdInfo(String code) {
+         this.code = code;
+         mapMes = new HashMap<>();
+@@ -16,10 +25,20 @@
+ 
+     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
+ 
++    /**
++     * Método que devolve o código de um Produto
++     *
++     * @return      String que representa o código do Produto
++     */
+     public String getCode() {
+         return code;
+     }
+ 
++    /**
++     * Método que devolve o código e os respetivos gasto/faturação e diferentes Clientes/Produtos (ParStringFloat) dos Clientes/Produtos
++     *
++     * @return      Set de ParStringFloat que representa o código e os respetivos gasto/faturação e diferentes Clientes/Produtos dos Clientes/Produtos
++     */
+     public Set<ParStringFloat> getSetCodUni(){
+         Set<ParStringFloat> tree = new TreeSet<>();
+         for(Map<String,ProdCliinfo> map: mapMes.values())
+@@ -42,6 +61,12 @@
+         return tree;
+     }
+ 
++    /**
++     * Método que devolve os Clientes que compraram o Produto num determinado mês
++     *
++     * @param month     Inteiro que representa o mês
++     * @return          Set de String que representa os CLientes compradores do Produto no mês
++     */
+     public Set<String> getCodeMonth(int month){
+         Set<String> clientes = new TreeSet<>();
+ 
+@@ -53,6 +78,14 @@
+ 
+     //--------------------------------------------------------------Outros métodos--------------------------------------------------------------------------\\
+ 
++    /**
++     * Método que adiciona uma Venda
++     *
++     * @param cliCode       String que representa o código do Cliente
++     * @param month         Inteiro que representa o mês
++     * @param price         Float que representa o preço
++     * @param uni           Inteiro que representa o número de unidades
++     */
+     public void addCode(String cliCode,int month,float price,int uni) {
+         mapMes.putIfAbsent(month,new HashMap<>());
+         if(mapMes.get(month).containsKey(cliCode))
+@@ -61,6 +94,12 @@
+             mapMes.get(month).put(cliCode,new ProdCliinfo(month,price * uni,uni));
+     }
+ 
++    /**
++     * Métod que verifica se um Produto foi vendido num determinado mês
++     *
++     * @param month     Inteiro que representa o mês
++     * @return          Booleano que representa a venda do Produto no mẽs
++     */
+     public boolean containsMes(int month) {
+         return mapMes.containsKey(month);
+     }
+Index: src/Model/Faturacao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/**\n * Classe com a Faturação do programa\n */\n\npackage Model;\n\nimport java.io.Serializable;\nimport java.util.*;\n\npublic class Faturacao implements Serializable, IFaturacao {\n    private Map<String,FactMF> listaProd;\n    private int comprados;\n    private int compras0;\n    private float faturacaoTotal;\n    private float [][] faturacaoMesFil;\n    private int [] comprasMes;\n\n    /**\n     * Contrutor da Classe Faturação\n     */\n    public Faturacao() {\n        listaProd = new HashMap<>();\n        comprados = 0;\n        compras0 = 0;\n        faturacaoTotal = 0;\n        comprasMes = new int[12];\n        faturacaoMesFil = new float[12][3];\n    }\n\n    /**\n     * Método que devolve o número de produtos vendidos\n     *\n     * @return  Inteiro com o número de produtos vendidos\n     */\n    public int getComprados() {\n        return comprados;\n    }\n\n    /**\n     * Método que devolve o número de produtos que não foram vendidos\n     *\n     * @return  Inteiro com o número de produtos\n     */\n    public int getCompras0() {\n        return compras0;\n    }\n\n    /**\n     * Método que devolve a faturação do sistema\n     *\n     * @return  Float com a faturação\n     */\n    public float getFaturacaoTotal() {\n        return faturacaoTotal;\n    }\n\n    /**\n     * Método que devolve o número de compras por mês\n     *\n     * @return  Array de Int com o número de compras\n     */\n    public int[] getComprasMes() {\n        return comprasMes.clone();\n    }\n\n    /**\n     * Método que devolve a faturação por mês e por filial\n     *\n     * @return  Matriz de Float com a faturação\n     */\n    public float[][] getFaturacaoMesFil() {\n        return faturacaoMesFil.clone();\n    }\n\n    /**\n     * Método que devolve os produtos da Faturação\n     *\n     * @return  Set com os produtos\n     */\n    public Set<String> getKeys() {\n        return new TreeSet<>(listaProd.keySet());\n    }\n\n    /**\n     * Método que devilve o número de unidades vendidas de um produto\n     *\n     * @param code  String com o produto\n     * @return      Inteiro com o número de unidades\n     */\n    public int getUni(String code) {\n        return listaProd.get(code).getUniTotal();\n    }\n\n    /**\n     * Método que devolve a faturação total de um produto num mês\n     *\n     * @param code  String com o produto\n     * @param month Inteiro com o mês\n     * @return      Float com a faturação\n     */\n    public float getFatTotalMes(String code,int month){\n        return listaProd.get(code).getFaturacaoMes(month);\n    }\n\n    /**\n     * Método que devolve a Faturação de um produto por mês e filial\n     *\n     * @param code  String com o produto\n     * @return      Matriz de Float com a faturação\n     */\n    public float[][] getFatMesFilProd(String code){\n        return listaProd.get(code).getFaturacaoMesFill();\n    }\n\n    /**\n     * Método que devolve o número de unidades vendidas de um produto num mês\n     *\n     * @param code  String com o produto\n     * @param month Inteiro com o mês\n     * @return      Inteiro com o número de unidades\n     */\n    public float getUniMes(String code,int month){\n        return listaProd.get(code).getUnidadesMes(month);\n    }\n\n    /**\n     * Método que verifica se um produto existe na Faturação\n     *\n     * @param prodCode  String com o produto\n     * @return          Resultado Booleano\n     */\n    public boolean containsProd(String prodCode){\n        return listaProd.containsKey(prodCode);\n    }\n\n    /**\n     * Método que adiciona uma venda à faturação\n     *\n     * @param branch    Inteiro com a filial\n     * @param month     Inteiro com o mês\n     * @param price     Float com o preço\n     * @param uni       Inteiro com as unidades\n     * @param prod      String com o produto\n     */\n    public void addSale(int branch,int month,float price,int uni,String prod){\n\n        if(!listaProd.containsKey(prod)) {\n            comprados++;\n            listaProd.put(prod,new FactMF());\n        }\n        if(price * uni == 0.0)\n            compras0++;\n\n        float f = price * uni;\n        faturacaoTotal += f;\n        comprasMes[month]++;\n        faturacaoMesFil [month][branch]+= f;\n        listaProd.get(prod).setFact(branch,month,price,uni);\n    }\n\n    public int getNumeroVendasMes(String prodCode, int month) {\n        return listaProd.get(prodCode).getVendasMes(month);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Model/Faturacao.java	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ src/Model/Faturacao.java	(date 1590600579975)
+@@ -158,6 +158,13 @@
+         listaProd.get(prod).setFact(branch,month,price,uni);
+     }
+ 
++    /**
++     * Método que devolve o número de Vendas de um Produto num determinadop mês
++     *
++     * @param prodCode      string que representa o código do Produto
++     * @param month         Inteiro que representa o mês
++     * @return              Inteiro que representa o número do de Vendas do Produto no mês
++     */
+     public int getNumeroVendasMes(String prodCode, int month) {
+         return listaProd.get(prodCode).getVendasMes(month);
+     }
+Index: src/Model/sortParbyValue.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\n\nimport Model.ParStringFloat;\n\nimport java.io.Serializable;\nimport java.util.Comparator;\n\npublic class sortParbyValue implements Serializable, Comparator<ParStringFloat>{\n    public int compare(ParStringFloat normal, ParStringFloat aux) {\n        int i = (int) (aux.getValue() - normal.getValue());\n        if (i == 0)\n            return normal.getCode().compareTo(aux.getCode());\n        return i;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Model/sortParbyValue.java	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ src/Model/sortParbyValue.java	(date 1590601818855)
+@@ -1,3 +1,7 @@
++/**
++ * Classe de comparador de PaStringFloat
++ */
++
+ package Model;
+ 
+ import Model.ParStringFloat;
+@@ -6,6 +10,14 @@
+ import java.util.Comparator;
+ 
+ public class sortParbyValue implements Serializable, Comparator<ParStringFloat>{
++
++    /**
++     * Método que compara dois ParStringFloat por gasto/faturação
++     *
++     * @param normal    ParStringFloat usado para comparação
++     * @param aux       ParStringFloat usado para comparação
++     * @return          Inteiro que representa o resultado da comparação
++     */
+     public int compare(ParStringFloat normal, ParStringFloat aux) {
+         int i = (int) (aux.getValue() - normal.getValue());
+         if (i == 0)
+Index: src/Model/ParStringFloat.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\n\nimport java.io.Serializable;\n\npublic class ParStringFloat implements Serializable, Comparable<ParStringFloat>{\n    private String code;\n    private float[] value;\n\n    public ParStringFloat(String code, float value) {\n        this.code = code;\n        this.value = new float[1];\n        this.value[0] = value;\n    }\n\n    public ParStringFloat(String code, float value,float value2) {\n        this.code = code;\n        this.value = new float[2];\n        this.value[0] = value;\n        this.value[1] = value2;\n    }\n\n    public ParStringFloat(ParStringFloat q) {\n        this.code = q.getCode();\n        this.value = q.getArray();\n    }\n\n    public String getCode() {\n        return code;\n    }\n\n    public void setValue2(float dif) {\n        this.value[1] = dif;\n    }\n\n    public float getValue() {\n        return value[0];\n    }\n\n    public float getValue2() {\n        return value[1];\n    }\n\n    public float[] getArray(){\n        return value;\n    }\n\n    public void addUni(float value,float value2) {\n        this.value[0] += value;\n        this.value[1] += value2;\n    }\n\n    public int compareTo(ParStringFloat aux) {\n        return this.getCode().compareTo(aux.getCode());\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) return true;\n        if (o == null || getClass() != o.getClass()) return false;\n        ParStringFloat ParStringFloat = (ParStringFloat) o;\n        return this.getCode().equals(ParStringFloat.getCode());\n    }\n\n    @Override\n    public String toString() {\n        if(value.length == 2)\n            return String.format(\"%5s %1s %5.2f %1s %7.2f\", code , \" \", value[0] , \" \", value[1]);\n        else\n            return String.format(\"%5s %1s %5.2f\", code , \" \", value[0] );\n    }\n\n    public ParStringFloat clone() {\n        return new ParStringFloat(this);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Model/ParStringFloat.java	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ src/Model/ParStringFloat.java	(date 1590600579963)
+@@ -1,3 +1,7 @@
++/**
++ * Classe que contém um código(Produto ou Cliente) e valores da gasto/faturaçao e o número de diferentes Clientes/Produtos
++ */
++
+ package Model;
+ 
+ import java.io.Serializable;
+@@ -6,12 +10,25 @@
+     private String code;
+     private float[] value;
+ 
++    /**
++     * Contrutor de ParStringFloat
++     *
++     * @param code      String que representa o código co Cliente/Produto
++     * @param value     Float que representa os diferentes Clientes/Produtos
++     */
+     public ParStringFloat(String code, float value) {
+         this.code = code;
+         this.value = new float[1];
+         this.value[0] = value;
+     }
+ 
++    /**
++     * Construtor de ParStringFloat
++     *
++     * @param code      String que representa o código de Cliente/Produto
++     * @param value     Float que representa os diferentes Clientes/Produto
++     * @param value2    Float que representa o gasto/faturação do Cliente/Produto
++     */
+     public ParStringFloat(String code, float value,float value2) {
+         this.code = code;
+         this.value = new float[2];
+@@ -19,40 +36,88 @@
+         this.value[1] = value2;
+     }
+ 
++    /**
++     * Construtor de ParStringFloat
++     *
++     * @param q     ParStringFloat usado para construção de um novo
++     */
+     public ParStringFloat(ParStringFloat q) {
+         this.code = q.getCode();
+         this.value = q.getArray();
+     }
+ 
++    /**
++     * Método que devolve o código de Cliente/Produto
++     *
++     * @return      String que representa o código do Cliente/Produto
++     */
+     public String getCode() {
+         return code;
+     }
+ 
++    /**
++     * Método que atribui os diferentes Clientes/Produtos
++     *
++     * @param dif       Float que representa os diferentes Clientes/Produtos
++     */
+     public void setValue2(float dif) {
+         this.value[1] = dif;
+     }
+ 
++    /**
++     * Método que devolve o gasto/faturação de um Cliente/Produto
++     *
++     * @return      FLloat que representa o gasto/faturaçao do Cliente/Produto
++     */
+     public float getValue() {
+         return value[0];
+     }
+ 
++    /**
++     * Método que devolve o número de diferentes Clientes/Produtos
++     *
++     * @return      Float que representa os diferentes Clientes/Produtos
++     */
+     public float getValue2() {
+         return value[1];
+     }
+ 
++    /**
++     * Método que devolve o gasto/faturação de um Cliente/Produto e o número de diferentes Clietnes/Produtos
++     *
++     * @return      Array de Float(de tamanho 2) que representa o gasto/faturação do Cliente/Produto e dos diferentes Clientes/Produtos
++     */
+     public float[] getArray(){
+         return value;
+     }
+ 
++    /**
++     * Método que adiciona o gasto/faturação e o númeroe de diferentes Clientes/Produtos
++     *
++     * @param value         Float que represeta o gasto/faturação do Cliente/Produto
++     * @param value2        Float que representa os diferentes Clientes/Produtos
++     */
+     public void addUni(float value,float value2) {
+         this.value[0] += value;
+         this.value[1] += value2;
+     }
+ 
++    /**
++     * Comparador de ParStringFloat que ordena por ordem alfabética
++     *
++     * @param aux   ParstringFloat usado para comparação
++     * @return      Inteiro que representa o resultado da comparação
++     */
+     public int compareTo(ParStringFloat aux) {
+         return this.getCode().compareTo(aux.getCode());
+     }
+ 
++    /**
++     * Equals da classe ParStringFloat
++     *
++     * @param o     Objeto usado para ver a igualdade
++     * @return      Booleano que representa a igualdade dos dois objetos
++     */
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+@@ -61,6 +126,11 @@
+         return this.getCode().equals(ParStringFloat.getCode());
+     }
+ 
++    /**
++     * Método que transforma o ParStringFloat numa String
++     *
++     * @return  String que representa o ParStringFloat
++     */
+     @Override
+     public String toString() {
+         if(value.length == 2)
+@@ -69,6 +139,11 @@
+             return String.format("%5s %1s %5.2f", code , " ", value[0] );
+     }
+ 
++    /**
++     * Método que clona o ParStringFloat
++     *
++     * @return  ParStringFloat que representa o clone
++     */
+     public ParStringFloat clone() {
+         return new ParStringFloat(this);
+     }
+Index: src/Model/sortCliByTotalFact.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\n\nimport Model.CliInfo;\nimport Model.ProdInfo;\n\nimport java.io.Serializable;\nimport java.util.Comparator;\n\npublic class sortCliByTotalFact implements Serializable, Comparator<ProdInfo> {\n\n    public int compare(ProdInfo c1, ProdInfo c2) {\n        return (int) (((CliInfo) c2).getGastoTotal() - ((CliInfo) c1).getGastoTotal());\n    }\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Model/sortCliByTotalFact.java	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ src/Model/sortCliByTotalFact.java	(date 1590601771275)
+@@ -1,3 +1,7 @@
++/**
++ * Classe de comparador de ProdInfo
++ */
++
+ package Model;
+ 
+ import Model.CliInfo;
+@@ -8,6 +12,13 @@
+ 
+ public class sortCliByTotalFact implements Serializable, Comparator<ProdInfo> {
+ 
++    /**
++     * Método que compara dois ProdInfo por gasto total
++     *
++     * @param c1    ProdInfo usado para comparação
++     * @param c2    ProdInfo usado para comparação
++     * @return      Inteiro que representa o resultado da comparação
++     */
+     public int compare(ProdInfo c1, ProdInfo c2) {
+         return (int) (((CliInfo) c2).getGastoTotal() - ((CliInfo) c1).getGastoTotal());
+     }
+Index: src/Model/ProdCliinfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\n\nimport java.io.Serializable;\n\npublic class ProdCliinfo implements Serializable {\n    private int month;\n    private float fat;\n    private int uni;\n\n    //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\\\\n\n    public ProdCliinfo(int month,float fat,int uni) {\n        this.month = month;\n        this.fat = fat;\n        this.uni = uni;\n    }\n\n    public ProdCliinfo(ProdCliinfo p) {\n        this.month = p.getMonth();\n        this.fat = p.getFat();\n        this.uni = p.getUni();\n    }\n\n    //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\\\\n\n    public int getMonth() {\n        return month;\n    }\n\n    public float getFat() {\n        return fat;\n    }\n\n    public int getUni() {\n        return uni;\n    }\n\n    public void add(int uni,float price){\n        this.uni += uni;\n        this.fat += uni * price;\n    }\n\n    //--------------------------------------------------------------toString, equals e clone--------------------------------------------------------------------------\\\\\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o)\n            return true;\n        if (o == null || getClass() != o.getClass())\n            return false;\n        ProdCliinfo that = (ProdCliinfo) o;\n        return month == that.month &&\n                Double.compare(that.fat, fat) == 0 &&\n                uni == that.uni;\n    }\n\n    @Override\n    public String toString() {\n        final StringBuilder sb = new StringBuilder(\"Model.ProdCliinfo{\");\n        sb.append(\", month=\").append(month);\n        sb.append(\", price=\").append(fat);\n        sb.append(\", uni=\").append(uni);\n        sb.append('}');\n        return sb.toString();\n    }\n\n    public ProdCliinfo clone() {\n        return new ProdCliinfo(this);\n    }\n\n    /*public int compareTo(Model.ProdCliinfo i) {\n        return this.getCod().compareTo(i.getCod());\n    }*/\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Model/ProdCliinfo.java	(revision 9f4a73d81819c7ba35d6512ce38d3d1ab1f034fc)
++++ src/Model/ProdCliinfo.java	(date 1590601036954)
+@@ -1,3 +1,7 @@
++/**
++ * Classe de ProdCliinfo
++ */
++
+ package Model;
+ 
+ import java.io.Serializable;
+@@ -9,12 +13,24 @@
+ 
+     //--------------------------------------------------------------Construtores--------------------------------------------------------------------------\\
+ 
++    /**
++     * Construtor de ProdCliinfo
++     *
++     * @param month     Inteiro que representa o mês do ProdCliinfo
++     * @param fat       Float que representa a faturação do ProdCliinfo
++     * @param uni       Inteiro que representa as unidades do ParStringFloat
++     */
+     public ProdCliinfo(int month,float fat,int uni) {
+         this.month = month;
+         this.fat = fat;
+         this.uni = uni;
+     }
+ 
++    /**
++     * Contrutor de ParStringFloat
++     *
++     * @param p     ProdCliinfo usado para a contrução
++     */
+     public ProdCliinfo(ProdCliinfo p) {
+         this.month = p.getMonth();
+         this.fat = p.getFat();
+@@ -23,18 +39,39 @@
+ 
+     //--------------------------------------------------------------Getters/Setters--------------------------------------------------------------------------\\
+ 
++    /**
++     * Método que devolve o mês do ProdCliinfo
++     *
++     * @return  Inteiro que representa o mês do ProdCliinfo
++     */
+     public int getMonth() {
+         return month;
+     }
+ 
++    /**
++     * Método que devolve a faturação do ProdCliinfo
++     *
++     * @return      Float que representa a faturação do ProdCliinfo
++     */
+     public float getFat() {
+         return fat;
+     }
+ 
++    /**
++     * Método que devolve as unidades do ProdCliinfo
++     *
++     * @return      Inteiro que representa as unidades do PrdoCliinfo
++     */
+     public int getUni() {
+         return uni;
+     }
+ 
++    /**
++     * Método que adiciona unidades e faturação ao ProdCliinfo
++     *
++     * @param uni       Inteiro que representa as unidades
++     * @param price     Float que representa o preço
++     */
+     public void add(int uni,float price){
+         this.uni += uni;
+         this.fat += uni * price;
+@@ -42,6 +79,12 @@
+ 
+     //--------------------------------------------------------------toString, equals e clone--------------------------------------------------------------------------\\
+ 
++    /**
++     * Equals de ProdCliinfo
++     *
++     * @param o     Objeto usado para vet a igualdade
++     * @return      Inteiro que representa a igualdade dos dois objetos
++     */
+     @Override
+     public boolean equals(Object o) {
+         if (this == o)
+@@ -54,6 +97,11 @@
+                 uni == that.uni;
+     }
+ 
++    /**
++     * Método que tranforma o ProdCliinfo numa String
++     *
++     * @return      String que representa o ProdCliinfo
++     */
+     @Override
+     public String toString() {
+         final StringBuilder sb = new StringBuilder("Model.ProdCliinfo{");
+@@ -64,6 +112,11 @@
+         return sb.toString();
+     }
+ 
++    /**
++     * Clone do ProdCliinfo
++     *
++     * @return      ProdCliinfo que representa o clone
++     */
+     public ProdCliinfo clone() {
+         return new ProdCliinfo(this);
+     }
